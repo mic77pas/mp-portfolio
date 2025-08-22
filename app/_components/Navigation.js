@@ -2,16 +2,18 @@ import Link from "next/link";
 
 export default function Logo() {
   return (
-    <nav className="z-10 text-xl">
-      <ul
-        className="flex gap-16 items-center text-nav-50 font-semibold text-shadow-lg"
-        style={{ textShadow: "2px 2px 0 #18210F", color: "#98B493" }}
-      >
+    <nav className="z-10">
+      <ul className="nav-list">
         <li>
-          <Link href="/about">about</Link>
+          {/* Apply the class to the Link component, which will pass it to the <a> tag */}
+          <Link href="/about" className="nav-link">
+            about
+          </Link>
         </li>
         <li>
-          <Link href="/projects">projects</Link>
+          <Link href="/projects" className="nav-link">
+            projects
+          </Link>
         </li>
       </ul>
     </nav>

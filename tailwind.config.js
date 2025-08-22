@@ -9,7 +9,8 @@ module.exports = {
     extend: {
       colors: {
         nav: {
-          50: "#98B493",
+          50: "#D2E6CF",
+          100: "#98B493",
         },
         //   primary: {
         //     50: "#E1E8EF",

@@ -31,3 +31,22 @@ body {
 main {
   background: #2E3A2B
 }
+
+.nav-list {
+  display: flex;
+  gap: 3rem; /* Use a relative unit like rem for better scalability */
+  align-items: center;
+  font-weight: 600; /* Use numbers instead of strings for font-weight */
+  list-style: none; /* Add this to remove bullet points */
+}
+
+.nav-link {
+  text-shadow: 2px 2px 0 #18210f;
+  color: #98B493;
+  transition: color 0.3s ease; /* Add a smooth transition for the hover effect */
+}
+
+/* Correctly define the hover state */
+.nav-link:hover {
+  color: #D2E6CF;
+}
