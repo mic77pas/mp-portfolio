@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 :root {
-  --background: #282B27;
+  --background: #282b27;
   --foreground: #171717;
 }
 
@@ -29,7 +29,7 @@ body {
 }
 
 main {
-  background: #2E3A2B
+  background: #2e3a2b;
 }
 
 .nav-list {
@@ -38,15 +38,16 @@ main {
   align-items: center;
   font-weight: 600; /* Use numbers instead of strings for font-weight */
   list-style: none; /* Add this to remove bullet points */
+  flex-wrap: nowrap;
 }
 
 .nav-link {
   text-shadow: 2px 2px 0 #18210f;
-  color: #98B493;
+  color: #98b493;
   transition: color 0.3s ease; /* Add a smooth transition for the hover effect */
 }
 
 /* Correctly define the hover state */
 .nav-link:hover {
-  color: #D2E6CF;
+  color: #d2e6cf;
 }

@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="mt-24">
+      <main className="mt-24 rounded-4xl">
         {/* <Image
           src={bg}
           fill
@@ -14,7 +14,7 @@ export default function Home() {
           alt="Mountains and forests with two cabins"
         /> */}
 
-        <div className="relative z-10 text-center">
+        <div className="relative z-10 text-center px-4 py-4">
           <h1 className="text-8xl text-primary-50 mb-10 tracking-tight font-normal">
             Michael Pasyechnyk
           </h1>
@@ -26,10 +26,6 @@ export default function Home() {
           </Link>
         </div>
       </main>
-
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        &copy; {new Date().getFullYear()} | Michael Pasyechnyk
-      </footer>
     </div>
   );
 }
