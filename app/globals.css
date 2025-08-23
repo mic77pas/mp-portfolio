@@ -38,7 +38,7 @@ main {
 
 .nav-list {
   display: flex;
-  gap: 3rem; /* Use a relative unit like rem for better scalability */
+  gap: 5rem; /* Use a relative unit like rem for better scalability */
   align-items: center;
   font-weight: 600; /* Use numbers instead of strings for font-weight */
   list-style: none; /* Add this to remove bullet points */
@@ -48,10 +48,9 @@ main {
 .nav-link {
   text-shadow: 2px 2px 0 #18210f;
   color: #98b493;
-  transition: color 0.3s ease; /* Add a smooth transition for the hover effect */
+  transition: color 0.3s ease;
 }
 
-/* Correctly define the hover state */
 .nav-link:hover {
   color: #d2e6cf;
 }
