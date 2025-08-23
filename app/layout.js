@@ -2,6 +2,7 @@ import { Montserrat } from "next/font/google";
 import "./globals.css";
 import Header from "./_components/Header";
 import Footer from "./_components/Footer";
+// import DarkModeToggle from "./_components/DarkModeToggle";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -16,7 +17,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <body className={`${montserrat.className} antialiased`}>
         <Header />
         {children}

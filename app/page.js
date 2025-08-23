@@ -12,12 +12,12 @@ const inter = Inter({
 export default function Home() {
   return (
     <>
-      <div className="p-8 flex items-center justify-center">
+      <div className="p-8 pt-20 flex items-center justify-center">
         <main className="flex flex-col rounded-4xl p-8">
           {/* New container for the image and text */}
           <div className="flex flex-col md:flex-row md:items-stretch gap-6 md:gap-8">
             {/* Left: Image */}
-            <div className="w-64 h-64 md:h-auto relative flex-shrink-0">
+            <div className="w-60 h-64 md:h-auto relative flex-shrink-0">
               <Image
                 src="/selfie.jpg" // replace with your image path
                 fill
@@ -29,12 +29,12 @@ export default function Home() {
             {/* Right: Text content */}
             <div className="flex flex-col justify-start text-left md:text-left">
               <h1
-                className={`${inter.className} text-[#98B493] text-shadow-md text-shadow-[#1f271d] text-4xl md:text-6xl text-primary-50 mb-2 tracking-tight font-bold`}
+                className={`${inter.className} text-[#98B493] text-shadow-md text-shadow-[#1f271d] text-5xl md:text-5xl mb-2 tracking-tight`}
               >
                 Michael Pasyechnyk
               </h1>
 
-              <div className="mb-8 text-lg md:text-xl">
+              <div className="mb-4">
                 <TypingSentence />
               </div>
 

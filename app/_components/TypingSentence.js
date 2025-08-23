@@ -3,7 +3,7 @@ import { TypeAnimation } from "react-type-animation";
 
 export default function TypingSentence() {
   return (
-    <div className="text-[44px] font-semibold text-[#bfccbd]">
+    <div className="text-[30px] md:text-[30px] font-semibold text-[#bfccbd]">
       <TypeAnimation
         sequence={[
           "developer and designer",
