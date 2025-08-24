@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import TypingSentence from "./_components/TypingSentence";
 import { Inter } from "next/font/google";
+import UWLogo from "./_components/UWLogo";
 
 const inter = Inter({
   weight: "800",
@@ -39,10 +40,29 @@ export default function Home() {
               </div>
 
               <p className="text-[#c4d3c1] text-base md:text-lg max-w-xl">
-                I’m a software engineering intern at <b>IpserLab</b> working on
-                front-end and learning the ropes in Product Management, and a{" "}
-                <b>Systems Design Engineering</b> student at the University of
-                Waterloo.
+                I’m a software engineering intern at{" "}
+                <Link
+                  href="https://ipserlab.com/"
+                  className="hover:text-[#8aa385] transition duration-100"
+                >
+                  <b>IpserLab</b>
+                </Link>{" "}
+                working on front-end and learning the ropes in product
+                management, and a{" "}
+                <Link
+                  href="https://uwaterloo.ca/systems-design-engineering/"
+                  className="hover:text-[#8aa385] transition duration-100"
+                >
+                  <b>Systems Design Engineering</b>
+                </Link>{" "}
+                student at the{" "}
+                <Link
+                  href="https://uwaterloo.ca/"
+                  className="hover:text-[#8aa385] transition duration-100"
+                >
+                  <b>University of Waterloo </b>
+                  <UWLogo className="-translate-y-px"/>
+                </Link>{" "}
               </p>
             </div>
           </div>

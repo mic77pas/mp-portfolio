@@ -10,9 +10,9 @@ export default function TypingSentence() {
           2000,
           "engineering student",
           2000,
-          "boardgame enjoyer",
+          "climbing enjoyer",
           500,
-          "boardgame enthusiast",
+          "climbing enthusiast",
           2000,
         ]}
         wrapper="span"
