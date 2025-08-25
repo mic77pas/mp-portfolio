@@ -118,9 +118,8 @@ export default function Page() {
 
   // Filter projects based on search query
   const filteredProjects = projects.filter(
-    (project) =>
-      project.title.toLowerCase().includes(search.toLowerCase()) 
-      // || project.description.toLowerCase().includes(search.toLowerCase())
+    (project) => project.title.toLowerCase().includes(search.toLowerCase())
+    // || project.description.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
@@ -196,23 +195,22 @@ export default function Page() {
             </button>
 
             {/* Loader overlay */}
-            {loadingGif && (
-              <div className="flex justify-center items-center min-h-[150px]">
-                <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-[#98B493]"></div>
-              </div>
-            )}
+            <div className="relative w-full">
+              {loadingGif && (
+                <div className="absolute inset-0 flex justify-center items-center bg-black/40 rounded-lg">
+                  <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-[#98B493]" />
+                </div>
+              )}
 
-            {/* GIF */}
-            <Image
-              src={selected.gif || selected.image}
-              alt={selected.title}
-              className={`rounded-lg mb-2 object-cover w-full ${
-                loadingGif ? "opacity-0" : "opacity-100"
-              }`}
-              width={800}
-              height={400}
-              onLoad={() => setLoadingGif(false)}
-            />
+              <Image
+                src={selected.gif || selected.image}
+                alt={selected.title}
+                className="rounded-lg mb-2 object-cover w-full"
+                width={800}
+                height={400}
+                onLoad={() => setLoadingGif(false)}
+              />
+            </div>
 
             <h2 className="text-2xl text-gray-300 mb-2 font-bold">
               {selected.title}
