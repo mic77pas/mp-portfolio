@@ -71,13 +71,13 @@ export default function Home() {
         </main>
       </div>
 
-      {/*
+      
       <div className="p-8 flex items-center justify-center">
         <main
           className={`flex flex-col rounded-4xl p-8 ${inter.className} text-[#98B493] text-shadow-md text-shadow-[#1f271d] text-3xl mb-2 tracking-tight`}
         >
           Skills
-          <div className="w-full max-w-5xl">
+          {/* <div className="w-full max-w-5xl">
             <Image
               src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg"
               width={60}
@@ -90,15 +90,15 @@ export default function Home() {
               height={60}
               alt="javascript"
             />
-          </div>
+          </div> */}
         </main>
       </div>
-      */}
+     
       <div className="p-8 flex items-center justify-center">
-        <main className="flex flex-col rounded-4xl p-8">Experience</main>
-      </div>
-      <div className="p-8 flex items-center justify-center">
-        <main className="flex flex-col rounded-4xl p-8">Other</main>
+        <main
+          className={`flex flex-col rounded-4xl p-8 ${inter.className} text-[#98B493] text-shadow-md text-shadow-[#1f271d] text-3xl mb-2 tracking-tight`}
+        >
+          Other</main>
       </div>
     </>
   );
