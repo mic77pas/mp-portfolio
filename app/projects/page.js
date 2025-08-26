@@ -183,7 +183,7 @@ export default function Page() {
             {/* Close button */}
             <button
               onClick={() => setSelected(null)}
-              className="absolute top-4 right-4 text-[#3c493a] hover:text-[#72916d]"
+              className="absolute top-4 right-4 z-50 text-[#3c493a] hover:text-[#72916d]"
             >
               <div className="relative inline-flex items-center justify-center cursor-pointer">
                 <div className="w-8 h-8 rounded-full bg-[#3c493a]" />

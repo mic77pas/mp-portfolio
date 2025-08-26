@@ -26,7 +26,7 @@ export default function Page() {
 
             <p className="text-[#c4d3c1] text-base md:text-lg max-w-lg">
               I&apos;m a Systems Design Engineering student at the University of
-              Waterloo.
+              Waterloo, with a growing interest in software development, ux/ui, and product design.
             </p>
           </div>
           {/* Left: Image */}
