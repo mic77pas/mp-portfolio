@@ -1,46 +1,44 @@
 import Image from "next/image";
 import Link from "next/link";
 import TypingSentence from "./_components/TypingSentence";
-import { Inter } from "next/font/google";
 import UWLogo from "./_components/UWLogo";
 import SkillCarousel from "./_components/SkillCarousel";
-
-const inter = Inter({
-  weight: "800",
-  subsets: ["latin"],
-  display: "swap",
-});
+import { IoSearch } from "react-icons/io5";
 
 export default function Home() {
   return (
     <>
-      <div className="p-8 flex items-center justify-center">
-        <main className="flex flex-col rounded-4xl p-8">
-          {/* New container for the image and text */}
-          <div className="flex flex-col md:flex-row md:items-stretch gap-6 md:gap-8">
-            {/* Left: Image */}
-            <div className="w-60 h-64 md:h-auto relative flex-shrink-0">
+      {/* Hero Section */}
+      <section className="p-8 flex items-center justify-center">
+        <main className="flex flex-col w-full max-w-3xl rounded-4xl">
+          <div className="flex flex-col md:flex-row gap-8 items-start md:items-center">
+            {/* Left: (optional photo) */}
+            {/* <div className="w-48 h-48 relative flex-shrink-0">
               <Image
-                src="/selfie.jpg" // replace with your image path
+                src="/selfie.jpg"
                 fill
                 className="object-cover rounded-2xl shadow-xl"
                 alt="Photo"
               />
-            </div>
+            </div> */}
 
             {/* Right: Text content */}
-            <div className="flex flex-col justify-start text-left md:text-left">
-              <h1
-                className={`${inter.className} text-[#98B493] text-shadow-md text-shadow-[#1f271d] text-5xl md:text-5xl mb-2 tracking-tight`}
-              >
+            <div className="flex flex-col">
+              <h1 className="font-extrabold text-[#98B493] text-shadow-md text-shadow-[#1f271d] text-6xl md:text-7xl tracking-tight text-center md:text-left">
                 Michael Pasyechnyk
               </h1>
 
-              <div className="mb-4">
-                <TypingSentence />
+              {/* Typing Sentence inside search bar */}
+              <div className="my-6 flex justify-center md:justify-start">
+                <div className="flex items-center bg-[#515d4f]/50 rounded-full shadow-md w-full max-w-lg px-4 py-2">
+                  <span className="mr-3 text-[#2c312b]">
+                    <IoSearch size={22} />
+                  </span>
+                  <TypingSentence className="text-lg md:text-xl" />
+                </div>
               </div>
 
-              <p className="text-[#c4d3c1] text-base md:text-lg max-w-xl">
+              <p className="text-[#c4d3c1] text-base md:text-lg leading-relaxed max-w-2xl">
                 I’m a software engineering intern at{" "}
                 <Link
                   href="https://ipserlab.com/"
@@ -49,57 +47,74 @@ export default function Home() {
                   <b>IpserLab</b>
                 </Link>{" "}
                 working on front-end and learning the ropes in product
-                management, and a{" "}
+                management, and studying{" "}
                 <Link
                   href="https://uwaterloo.ca/systems-design-engineering/"
                   className="hover:text-[#8aa385] transition duration-100"
                 >
                   <b>Systems Design Engineering</b>
                 </Link>{" "}
-                student at the{" "}
+                at the{" "}
                 <Link
                   href="https://uwaterloo.ca/"
                   className="hover:text-[#8aa385] transition duration-100"
                 >
                   <b>University of Waterloo </b>
-                  <UWLogo className="-translate-y-px" />
-                </Link>{" "}
+                  <UWLogo className="-translate-y-px inline-block" />
+                </Link>
               </p>
             </div>
           </div>
-          {/* <hr className="mt-6 w-full border-t-2 border-primary-400 border-[#282c28]" /> */}
         </main>
-      </div>
+      </section>
 
-      
-      <div className="p-8 flex items-center justify-center">
-        <main
-          className={`flex flex-col rounded-4xl p-8 ${inter.className} text-[#98B493] text-shadow-md text-shadow-[#1f271d] text-3xl mb-2 tracking-tight`}
-        >
-          Skills
-          {/* <div className="w-full max-w-5xl">
-            <Image
-              src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg"
-              width={60}
-              height={60}
-              alt="javascript"
-            />
-            <Image
-              src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg"
-              width={60}
-              height={60}
-              alt="javascript"
-            />
-          </div> */}
+      {/* Skills Section */}
+      <section className="p-8 flex items-center justify-center">
+        <main className="flex flex-col w-full max-w-3xl rounded-3xl p-8 bg-[#2e3a2b] shadow-lg">
+          <h2 className="text-[#98B493] text-2xl md:text-3xl font-bold pb-3 text-center">
+            Skills
+          </h2>
+          <hr className="pb-4"/>
+          <ul className="list-disc ml-6 text-[#c4d3c1] space-y-3">
+            <li>
+              <span className="font-semibold text-[#98B493]">Languages:</span>{" "}
+              Javascript/Typescript, Python, C++, HTML5, CSS3
+            </li>
+            <li>
+              <span className="font-semibold text-[#98B493]">
+                Frontend / UI:
+              </span>{" "}
+              React, Next.js, Redux, Context API, React Query, TailwindCSS,
+              Styled Components, Vite
+            </li>
+            <li>
+              <span className="font-semibold text-[#98B493]">
+                Backend / Fullstack:
+              </span>{" "}
+              Node.js, Django, Supabase, PostgreSQL
+            </li>
+            <li>
+              <span className="font-semibold text-[#98B493]">
+                Tools & Deployment:
+              </span>{" "}
+              Git, GitHub, Netlify, Vercel, Figma, Canva, Notion
+            </li>
+          </ul>
+
+          <div className="mt-8">
+            <SkillCarousel />
+          </div>
         </main>
-      </div>
-     
-      <div className="p-8 flex items-center justify-center">
-        <main
-          className={`flex flex-col rounded-4xl p-8 ${inter.className} text-[#98B493] text-shadow-md text-shadow-[#1f271d] text-3xl mb-2 tracking-tight`}
-        >
-          Other</main>
-      </div>
+      </section>
+
+      {/* Other Section */}
+      <section className="p-8 flex items-center justify-center">
+        <main className="flex flex-col w-full max-w-3xl rounded-3xl p-8 bg-[#1f271d] text-center shadow-md">
+          <h2 className="text-[#98B493] text-2xl md:text-3xl font-bold">
+            Other
+          </h2>
+        </main>
+      </section>
     </>
   );
 }

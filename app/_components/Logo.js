@@ -3,6 +3,7 @@ import Link from "next/link";
 import logoLight from "./logoLight.svg";
 import logoDark from "./logoDark.svg";
 import { useState } from "react";
+import newLogo from "./newLogo.png";
 
 export default function Logo() {
   const [isHovering, setIsHovering] = useState(false);
@@ -12,12 +13,12 @@ export default function Logo() {
       <Image
         onMouseEnter={() => setIsHovering(true)}
         onMouseLeave={() => setIsHovering(false)}
-        src={isHovering ? logoLight : logoDark}
+        // src={isHovering ? logoLight : logoDark}
+        src={newLogo}
         alt="Signature"
         quality={100}
-        width={15}
-        height={15}
-        className="h-auto max-h-14 w-auto transition-transform duration-300 ease-in-out hover:-translate-y-1"
+        width={100}
+        className="h-auto max-h-14 w-auto transition-transform duration-300 ease-in-out hover:-translate-y-1 hover:brightness-120"
       />
     </Link>
   );

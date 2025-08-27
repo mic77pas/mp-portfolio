@@ -10,6 +10,9 @@ const nextConfig = {
         protocol: "https",
         hostname: "user-attachments.githubusercontent.com",
       },
+      {
+        hostname: "cdn.jsdelivr.net",
+      },
     ],
   },
 };
