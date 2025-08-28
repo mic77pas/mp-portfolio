@@ -38,14 +38,116 @@ body {
   flex-wrap: nowrap;
 }
 
-.nav-link {
-  text-shadow: 2px 2px 0 #18210f;
-  color: #98b493;
-  transition: color 0.3s ease;
-}
+@layer components {
+  .nav-link {
+    text-shadow: 2px 2px 0 #18210f;
+    color: #98b493;
+    transition: color 0.3s ease;
+  }
 
-.nav-link:hover {
-  color: #d2e6cf;
+  .nav-link:hover {
+    color: #d2e6cf;
+  }
+
+  .logo {
+    height: auto;
+    max-height: 3.5rem; /* Tailwind's max-h-14 = 3.5rem */
+    width: auto;
+    
+    transition:
+      transform 0.2s ease-in-out,
+      filter 0.2s ease-in-out;
+  }
+
+  .logo:hover {
+    transform: translateY(-0.25rem); /* Tailwind's -translate-y-1 = -0.25rem */
+    filter: brightness(1.2); /* Tailwind's brightness-120 */
+  }
+
+  .link {
+    color: #becebc;
+    transition: color 0.2s ease;
+  }
+
+  .link:hover {
+    color: #8aa385;
+  }
+
+  .card-hover {
+    position: relative;
+    border-radius: 0.5rem; /* rounded-2xl */
+    overflow: hidden;
+    box-shadow:
+      0 10px 15px rgba(0, 0, 0, 0.1),
+      0 4px 6px rgba(0, 0, 0, 0.05); /* shadow-lg */
+    cursor: pointer;
+    transition: transform 0.3s ease; /* transition + hover scale */
+  }
+
+  .card-hover:hover {
+    transform: scale(1.05); /* hover:scale-105 */
+  }
+
+  /* Link hover color */
+  .hover-link {
+    color: #98b493;
+    transition: color 0.2s ease;
+  }
+
+  .hover-link:hover {
+    color: #8aa385;
+  }
+
+  /* Logo hover transform + brightness */
+  .logo-hover {
+    height: auto;
+    max-height: 3.5rem; /* ~14 */
+    width: auto;
+    transition:
+      transform 0.3s ease-in-out,
+      filter 0.3s ease-in-out;
+  }
+
+  .logo-hover:hover {
+    transform: translateY(-0.25rem); /* same as -translate-y-1 */
+    filter: brightness(1.2);
+  }
+
+  /* Icon hover swap */
+  .icon-hover-swap {
+    display: block;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .icon-hover-swap-hidden {
+    display: none;
+  }
+
+  .group:hover .icon-hover-swap-hidden {
+    display: block;
+  }
+
+  .group:hover .icon-hover-swap-visible {
+    display: none;
+  }
+
+  .icon-hover-swap-visible {
+    display: block;
+  }
+
+  .button-hover {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem; /* 2 = 0.5rem */
+    padding: 0.5rem 1rem; /* py-2 px-4 */
+    border-radius: 0.5rem; /* rounded-lg */
+    background-color: #638b5c;
+    transition: background-color 0.3s ease;
+  }
+
+  .button-hover:hover {
+    background-color: #98b493;
+  }
 }
 
 @keyframes scroll-left {

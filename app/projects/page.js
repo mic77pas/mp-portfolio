@@ -144,7 +144,7 @@ export default function Page() {
         {filteredProjects.map((project) => (
           <div
             key={project.id}
-            className="relative rounded-2xl overflow-hidden shadow-lg hover:scale-105 transition cursor-pointer"
+            className="card-hover"
             onClick={() => {
               setSelected(project);
               setLoadingGif(true); // reset loader when opening modal
@@ -222,7 +222,7 @@ export default function Page() {
                 href={selected.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#638b5c] hover:bg-[#98b493] transition"
+                className="button-hover"
               >
                 <FaGithub size={20} /> View on GitHub
               </a>

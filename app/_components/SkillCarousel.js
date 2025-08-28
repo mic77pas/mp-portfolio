@@ -21,7 +21,7 @@ export default function SkillCarousel() {
               width={64}
               height={64}
               alt={skill.name}
-              className="h-16 w-16" // Ensures a consistent size
+              className="h-13 w-12" // Ensures a consistent size
             />
           </div>
         ))}

@@ -54,54 +54,51 @@ export default function Page() {
       </section>
 
       {/* About blocks with accordion */}
-      <section className="flex flex-col rounded-3xl p-8 bg-[#2e3a2b] shadow-lg w-full max-w-4xl">
-        <Accordion type="single" collapsible>
-          <AccordionItem value="experience">
-            <AccordionTrigger className="text-[#98B493] text-3xl font-bold">
+      <section className="flex flex-col rounded-xl px-3 py-3 border-[#2e3a2b] border-8 shadow-md w-full max-w-4xl">
+        <Accordion type="single" collapsible className="rounded-xl">
+          {/* Experience */}
+          <AccordionItem value="experience" className="border-0 pb-3">
+            <AccordionTrigger className="flex items-center justify-between w-full px-4 py-4 text-lg font-semibold text-white hover:bg-[#2e3a2b] data-[state=open]:bg-[#2e3a2b] data-[state=open]:rounded-b-none rounded-lg transition">
               Experience
             </AccordionTrigger>
-            <AccordionContent>
-              <div className="mt-4">
-                <p className="font-semibold text-lg text-white">
-                  IpserLab — Software Engineering Intern
-                </p>
-                <p className="text-sm text-gray-400 mb-2">
-                  May 2025 – Aug 2025
-                </p>
-                <p className="text-[#c4d3c1] text-base">
-                  Worked on front-end development, UI improvements, and product
-                  management tasks.
-                </p>
-              </div>
+            <AccordionContent className="px-6 py-4 text-[#c4d3c1] text-base bg-[#3e4f3a] rounded-b-xl">
+              <p className="font-semibold text-lg text-white">
+                IpserLab — Software Engineering Intern
+              </p>
+              <p className="text-sm text-gray-400 mb-2">May 2025 – Aug 2025</p>
+              <p>
+                Worked on front-end development, UI improvements, and product
+                management tasks.
+              </p>
             </AccordionContent>
           </AccordionItem>
-          <AccordionItem value="education">
-            <AccordionTrigger className="text-[#98B493] text-3xl font-bold">
+
+          {/* Community */}
+          <AccordionItem value="community" className="border-0 pb-3">
+            <AccordionTrigger className="flex items-center justify-between w-full px-4 py-4 text-lg font-semibold text-white hover:bg-[#2e3a2b] data-[state=open]:bg-[#2e3a2b] data-[state=open]:rounded-b-none rounded-lg transition">
+              Community
+            </AccordionTrigger>
+            <AccordionContent className="px-6 py-4 text-[#c4d3c1] text-base bg-[#3e4f3a] rounded-b-xl">
+              <p>
+                Clubs, volunteering, and leadership experiences can go here.
+              </p>
+            </AccordionContent>
+          </AccordionItem>
+
+          {/* Education */}
+          <AccordionItem value="education" className="border-0">
+            <AccordionTrigger className="flex items-center justify-between w-full px-4 py-4 text-lg font-semibold text-white hover:bg-[#2e3a2b] data-[state=open]:bg-[#2e3a2b] data-[state=open]:rounded-b-none rounded-lg transition">
               Education
             </AccordionTrigger>
-            <AccordionContent>
-              <div className="mt-4">
-                <p className="font-semibold text-lg text-white">
-                  University of Waterloo — Systems Design Engineering (BASc)
-                </p>
-                <p className="text-sm text-gray-400 mb-2">2025 – 2030</p>
-                <p className="text-[#c4d3c1] text-base">
-                  <b>Relevant Courses:</b> Human Factors of Design, Data
-                  Structures and Algorithms, Digital Systems.
-                </p>
-              </div>
-            </AccordionContent>
-            <AccordionContent>
-              <div className="mt-4">
-                <p className="font-semibold text-lg text-white">
-                  University of Waterloo — Systems Design Engineering (BASc)
-                </p>
-                <p className="text-sm text-gray-400 mb-2">2025 – 2030</p>
-                <p className="text-[#c4d3c1] text-base">
-                  <b>Relevant Courses:</b> Human Factors of Design, Data
-                  Structures and Algorithms, Digital Systems.
-                </p>
-              </div>
+            <AccordionContent className="px-6 py-4 text-[#c4d3c1] text-base bg-[#3e4f3a] rounded-b-xl">
+              <p className="font-semibold text-lg text-white">
+                University of Waterloo — Systems Design Engineering (BASc)
+              </p>
+              <p className="text-sm text-gray-400 mb-2">2025 – 2030</p>
+              <p>
+                <b>Relevant Courses:</b> Human Factors of Design, Data
+                Structures and Algorithms, Digital Systems.
+              </p>
             </AccordionContent>
           </AccordionItem>
         </Accordion>

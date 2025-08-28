@@ -18,7 +18,8 @@ export default function Logo() {
         alt="Signature"
         quality={100}
         width={100}
-        className="h-auto max-h-14 w-auto transition-transform duration-300 ease-in-out hover:-translate-y-1 hover:brightness-120"
+        className="logo h-10 sm:h-12 md:h-14 lg:h-16 w-auto"
+
       />
     </Link>
   );
