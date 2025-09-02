@@ -19,11 +19,7 @@ export default function Header() {
         {/* Left: Logo + About + Projects */}
         <div className="flex items-center gap-8">
           <Logo />
-          <nav
-            className="flex items-center gap-4 sm:gap-6 md:gap-8 
-  text-[#98B493] font-semibold 
-  text-xs sm:text-sm md:text-base lg:text-lg"
-          >
+          <nav className="flex items-center gap-4 sm:gap-6 md:gap-8 text-[#98B493] font-semibold text-xs sm:text-sm md:text-base lg:text-lg">
             <Link href="/about" className="nav-link">
               about
             </Link>

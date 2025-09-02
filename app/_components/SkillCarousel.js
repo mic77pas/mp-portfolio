@@ -14,7 +14,7 @@ export default function SkillCarousel() {
         {allSkills.map((skill, index) => (
           <div
             key={index}
-            className="flex-shrink-0 flex items-center justify-center p-3 bg-[#6d8e6b]"
+            className="flex-shrink-0 flex items-center justify-center p-3 bg-[#3A434F]" // #3A434F Grey 
           >
             <Image
               src={skill.icon}

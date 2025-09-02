@@ -1,16 +1,12 @@
-import { Montserrat } from "next/font/google";
 import "./globals.css";
-import Header from "./_components/Header";
-import Footer from "./_components/Footer";
+import ClientWrapper from "./_components/ClientWrapper";
 // import DarkModeToggle from "./_components/DarkModeToggle";
 
-const montserrat = Montserrat({
-  subsets: ["latin"],
-  display: "swap",
-});
-
 export const metadata = {
-  title: "Michael Pasyechnyk",
+  title: {
+    template: "%s / Michael Pasyechnyk",
+    default: "Michael Pasyechnyk",
+  },
   description:
     "My portfolio website built using React.js and Next.js, showcasing my skills, experience, and other information for potential employers",
 };
@@ -24,11 +20,8 @@ export default function RootLayout({ children }) {
           href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
         />
       </head>
-      <body className={`${montserrat.className} antialiased`}>
-        <Header />
-        {children}
-        <Footer />
-      </body>
+      {/* The new Client Component wrapper is used here */}
+      <ClientWrapper>{children}</ClientWrapper>
     </html>
   );
 }
