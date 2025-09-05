@@ -34,9 +34,9 @@ export default function Header() {
   text-[#98B493] font-semibold 
   text-xs sm:text-sm md:text-base lg:text-lg"
         >
-          <Link href="/blog" className="nav-link">
+          {/* <Link href="/blog" className="nav-link">
             blogs
-          </Link>
+          </Link> */}
           <Link
             href="/resume.pdf"
             target="_blank"
