@@ -55,7 +55,7 @@ export default function Page() {
             <div className="flex flex-col gap-4">
               <div className="relative w-60 h-60 flex-shrink-0 overflow-hidden rounded-2xl">
                 <Image
-                  src="/env.jpg"
+                  src="/env.avif"
                   fill
                   className="object-cover rounded-2xl shadow-xl transition-transform duration-500 ease-in-out hover:scale-110"
                   alt="Second Photo"

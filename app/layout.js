@@ -13,7 +13,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en">
       <head>
         <link
           rel="stylesheet"
@@ -21,6 +21,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       {/* The new Client Component wrapper is used here */}
+      {/* <ClientWrapper><body className="starry-bg">{children}</body></ClientWrapper> */}
       <ClientWrapper>{children}</ClientWrapper>
     </html>
   );

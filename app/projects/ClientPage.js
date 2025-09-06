@@ -130,7 +130,7 @@ export default function Page() {
 
   return (
     <motion.div variants={fadeUp} initial="hidden" animate="visible">
-      <div className="min-h-screen bg-background text-foreground px-8 py-12">
+      <div className="min-h-screen text-foreground px-8 py-12">
         <h1 className="text-[40px] font-bold mb-6 text-center text-[#98B493] text-shadow-lg text-shadow-[#1f271d]">
           My Projects
         </h1>

@@ -107,8 +107,8 @@ export default function Home() {
 
                 {/* Typing Sentence inside search bar */}
                 <div className="my-5 flex justify-center md:justify-start">
-                  <div className="flex items-center bg-[#515d4f]/50 rounded-full shadow-md w-full max-w-lg px-4 py-2">
-                    <span className="mr-3 text-[#2c312b]">
+                  <div className="flex items-center bg-[#303b2d] rounded-full shadow-md w-full max-w-lg px-4 py-2">
+                    <span className="mr-3 text-[#1c201b]">
                       <IoSearch size={22} />
                     </span>
                     <TypingSentence />
