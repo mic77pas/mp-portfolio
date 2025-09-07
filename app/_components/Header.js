@@ -11,15 +11,14 @@ export default function Header() {
       {/* Floating centered container */}
       <div
         className="flex w-full max-w-5xl items-center justify-between 
-  rounded-b-2xl sm:rounded-b-4xl 
-  bg-neutral-950/35 backdrop-blur-lg shadow-md 
+  rounded-b-2xl sm:rounded-b-4xl bg-[#111810]/40 backdrop-blur-lg shadow-md 
   px-4 sm:px-6 md:px-8 py-3 sm:py-4 md:py-5"
       >
         {" "}
         {/* Left: Logo + About + Projects */}
         <div className="flex items-center gap-8">
           <Logo />
-          <nav className="flex items-center gap-4 sm:gap-6 md:gap-8 text-[#98B493] font-semibold text-xs sm:text-sm md:text-base lg:text-lg">
+          <nav className="flex items-center gap-4 sm:gap-6 md:gap-8 font-semibold text-xs sm:text-sm md:text-base lg:text-lg">
             <Link href="/about" className="nav-link">
               about
             </Link>

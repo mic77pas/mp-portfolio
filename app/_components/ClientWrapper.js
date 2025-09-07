@@ -21,7 +21,9 @@ export default function ClientWrapper({ children }) {
   }, []);
 
   return (
-    <body className={`${montserrat.className} antialiased`}>
+    <body
+      className={`${montserrat.className} antialiased flex flex-col min-h-screen`}
+    >
       <Header />
       <motion.main
         variants={fadeUp}
