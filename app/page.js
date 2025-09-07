@@ -140,7 +140,7 @@ export default function Home() {
         </section>
 
         {/* Skills Section */}
-        <section className="py-3 flex items-center justify-center">
+        <section className="px-8 py-3 flex items-center justify-center">
           <main className="flex flex-col w-full max-w-4xl rounded-3xl p-8 bg-[#303b2d] shadow-lg">
             <h2 className="text-[#98B493] text-2xl md:text-3xl font-bold pb-3 text-center">
               Skills & Tools

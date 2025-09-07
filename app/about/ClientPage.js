@@ -16,12 +16,12 @@ export default function Page() {
       <div className="p-8 flex flex-col gap-8 items-center">
         {/* About block */}
         <section className="flex flex-col rounded-3xl p-8 bg-[#2e3a2b] shadow-lg w-full max-w-4xl">
-          <div className="flex flex-col md:flex-row gap-6">
+          <div className="flex flex-col md:flex-row gap-6 items-center">
             <div>
-              <h1 className="text-[#9ab397] text-4xl font-extrabold mb-6 rounded-xl">
+              <h1 className="text-[#9ab397] text-2xl md:text-4xl font-extrabold mb-6 rounded-xl">
                 Hey, I&apos;m Michael! 👋
               </h1>
-              <div className="text-[#c4d3c1] text-base md:text-lg max-w-lg pb-5">
+              <div className="text-[#c4d3c1] text-sm md:text-lg max-w-lg pb-2">
                 <p className="border-l-4 border-[#9ab397] pl-4">
                   I&apos;m a Systems Design Engineering student at the
                   University of Waterloo, with a growing interest in software
@@ -42,7 +42,7 @@ export default function Page() {
                 </p>
               </div>
             </div>
-            <div className="md:w-85 md:h-110 w-50 h-100 relative flex-shrink-0 overflow-hidden rounded-2xl">
+            <div className="md:w-85 md:h-110 w-70 h-70 relative flex-shrink-0 overflow-hidden rounded-2xl">
               <Image
                 src="/selfie2.jpg"
                 fill
@@ -73,8 +73,8 @@ export default function Page() {
             >
               <div className="flex flex-col md:flex-row gap-6">
                 {/* Image container */}
-                <div className="flex flex-col gap-4">
-                  <div className="relative w-52 h-52 flex-shrink-0 overflow-hidden rounded-2xl">
+                <div className="flex md:flex-col gap-4 flex-row justify-between">
+                  <div className="relative md:w-52 md:h-52 w-30 h-30 flex-shrink-0 overflow-hidden rounded-2xl">
                     <Image
                       src="/env.avif"
                       fill
@@ -82,7 +82,7 @@ export default function Page() {
                       alt="Second Photo"
                     />
                   </div>
-                  <div className="relative w-52 h-52 flex-shrink-0 overflow-hidden rounded-2xl">
+                  <div className="relative md:w-52 md:h-52 w-30 h-30 flex-shrink-0 overflow-hidden rounded-2xl">
                     <Image
                       src="/eng.jpg"
                       fill
@@ -95,16 +95,16 @@ export default function Page() {
 
                 {/* Text content */}
                 <div>
-                  <div className="flex items-center justify-between mb-6 text-[#9ab397] text-3xl rounded-full px-4 py-2 bg-[#41503f]">
+                  <div className="flex items-center justify-between mb-6 text-[#9ab397] md:text-3xl text-xl rounded-full px-4 py-2 bg-[#41503f]">
                     <h1 className="font-extrabold">
                       EN<span className="text-[#4e9646]">V</span> to EN
                       <span className="text-[#8d3aa1]">G</span>
                     </h1>
-                    <span className="text-[#c4d3c1] text-xs italic">
+                    <span className="text-[#c4d3c1] md:text-xs text-[10px] italic">
                       August 24th, 2025
                     </span>
                   </div>
-                  <div className="text-[#c4d3c1] text-sm pb-5 pl-2">
+                  <div className="text-[#c4d3c1] text-sm pl-2">
                     <p>
                       When I first applied to Waterloo, I wasn’t completely
                       certain about my academic goals. Coming from a family in
