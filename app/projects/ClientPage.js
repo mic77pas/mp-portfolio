@@ -113,7 +113,15 @@ const projects = [
     gif: "https://github.com/user-attachments/assets/6576e93c-5790-4168-8392-d05318becbff",
     github: "https://github.com/mic77pas/ReactApps",
   },
-
+  {
+    id: 11,
+    title: "Google Mimic",
+    description:
+      "Simple HTML/CSS project mimicking Google's UI/UX and usability",
+    image: "/projects/google.png",
+    gif: "/projects/google.gif",
+    github: "https://github.com/mic77pas/CS50-WebProjects",
+  },
   // add more projects...
 ];
 
@@ -215,6 +223,7 @@ export default function Page() {
                   className="rounded-lg mb-2 object-cover w-full"
                   width={800}
                   height={400}
+                  unoptimized={true}
                   onLoad={() => setLoadingGif(false)}
                 />
               </div>
