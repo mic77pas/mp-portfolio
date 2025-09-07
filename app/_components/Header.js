@@ -23,7 +23,7 @@ export default function Header() {
               about
             </Link>
             <Link href="/projects" className="nav-link">
-              projects
+              project
             </Link>
           </nav>
         </div>
