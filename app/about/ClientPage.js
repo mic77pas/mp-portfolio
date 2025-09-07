@@ -29,7 +29,7 @@ export default function Page() {
                 </p>
                 <br />
                 <p>
-                  As a junior developer, I'm always eager to learn any new
+                  As a junior developer, I&apos;m always eager to learn any new
                   technologies and ways to grow in design and development to
                   make the world a better place. To me, learning is a lifelong
                   journey and it never stops.
@@ -91,6 +91,7 @@ export default function Page() {
                     />
                   </div>
                 </div>
+
 
                 {/* Text content */}
                 <div>
