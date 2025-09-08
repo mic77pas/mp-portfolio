@@ -62,83 +62,80 @@ export default function Page() {
         </button>
 
         {/* Expanded content */}
-        <AnimatePresence>
-          {expanded && (
-            <motion.section
-              className="flex flex-col rounded-3xl p-8 bg-[#2e3a2b] shadow-lg w-full max-w-4xl"
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.4, ease: "easeInOut" }}
-            >
-              <div className="flex flex-col md:flex-row gap-6">
-                {/* Image container */}
-                <div className="flex md:flex-col gap-4 flex-row justify-between">
-                  <div className="relative md:w-52 md:h-52 w-30 h-30 flex-shrink-0 overflow-hidden rounded-2xl">
-                    <Image
-                      src="/env.avif"
-                      fill
-                      className="object-cover rounded-2xl shadow-xl transition-transform duration-500 ease-in-out hover:scale-110"
-                      alt="Second Photo"
-                    />
-                  </div>
-                  <div className="relative md:w-52 md:h-52 w-30 h-30 flex-shrink-0 overflow-hidden rounded-2xl">
-                    <Image
-                      src="/eng.jpg"
-                      fill
-                      className="object-cover rounded-2xl shadow-xl transition-transform duration-500 ease-in-out hover:scale-110"
-                      alt="Photo"
-                    />
-                  </div>
+        {expanded && (
+          <motion.section
+            className="flex flex-col rounded-3xl p-8 bg-[#2e3a2b] shadow-lg w-full max-w-4xl"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
+          >
+            <div className="flex flex-col md:flex-row gap-6">
+              {/* Image container */}
+              <div className="flex md:flex-col gap-4 flex-row justify-between">
+                <div className="relative md:w-52 md:h-52 w-30 h-30 flex-shrink-0 overflow-hidden rounded-2xl">
+                  <Image
+                    src="/env.avif"
+                    fill
+                    className="object-cover rounded-2xl shadow-xl transition-transform duration-500 ease-in-out hover:scale-110"
+                    alt="Second Photo"
+                  />
                 </div>
-
-
-                {/* Text content */}
-                <div>
-                  <div className="flex items-center justify-between mb-6 text-[#9ab397] md:text-3xl text-xl rounded-full px-4 py-2 bg-[#41503f]">
-                    <h1 className="font-extrabold">
-                      EN<span className="text-[#4e9646]">V</span> to EN
-                      <span className="text-[#8d3aa1]">G</span>
-                    </h1>
-                    <span className="text-[#c4d3c1] md:text-xs text-[10px] italic">
-                      August 24th, 2025
-                    </span>
-                  </div>
-                  <div className="text-[#c4d3c1] text-sm pl-2">
-                    <p>
-                      When I first applied to Waterloo, I wasn’t completely
-                      certain about my academic goals. Coming from a family in
-                      the tech field—and with encouragement from my father—I
-                      applied to Computer Science, a subject I enjoyed in high
-                      school and thought would be the right fit.
-                    </p>
-                    <br />
-                    <p>
-                      Instead, I was deferred to the Geomatics program in the
-                      Faculty of Environment. While unfamiliar at first, I came
-                      to appreciate how it connected mapping, spatial data, and
-                      technology to real-world systems. Geomatics gave me a
-                      strong foundation in problem-solving, analytical thinking,
-                      and collaboration, and I’m grateful for the professors,
-                      peers, and opportunities that shaped my first year.
-                    </p>
-                    <br />
-                    <p>
-                      Still, I wanted a program that blended technology, design,
-                      and systems thinking more closely with my interests. That
-                      led me to Systems Design Engineering (SYDE), where I’m
-                      excited to explore engineering principles, human-centered
-                      design, and innovation. Looking back, I see Geomatics not
-                      as a detour but as a valuable first step that gave me
-                      perspective and clarity-and now, I’m ready to take on the
-                      challenges ahead.
-                    </p>
-                  </div>
+                <div className="relative md:w-52 md:h-52 w-30 h-30 flex-shrink-0 overflow-hidden rounded-2xl">
+                  <Image
+                    src="/eng.jpg"
+                    fill
+                    className="object-cover rounded-2xl shadow-xl transition-transform duration-500 ease-in-out hover:scale-110"
+                    alt="Photo"
+                  />
                 </div>
               </div>
-            </motion.section>
-          )}
-        </AnimatePresence>
+
+              {/* Text content */}
+              <div>
+                <div className="flex items-center justify-between mb-6 text-[#9ab397] md:text-3xl text-xl rounded-full px-4 py-2 bg-[#41503f]">
+                  <h1 className="font-extrabold">
+                    EN<span className="text-[#4e9646]">V</span> to EN
+                    <span className="text-[#8d3aa1]">G</span>
+                  </h1>
+                  <span className="text-[#c4d3c1] md:text-xs text-[10px] italic">
+                    August 24th, 2025
+                  </span>
+                </div>
+                <div className="text-[#c4d3c1] text-sm pl-2">
+                  <p>
+                    When I first applied to Waterloo, I wasn’t completely
+                    certain about my academic goals. Coming from a family in the
+                    tech field—and with encouragement from my father—I applied
+                    to Computer Science, a subject I enjoyed in high school and
+                    thought would be the right fit.
+                  </p>
+                  <br />
+                  <p>
+                    Instead, I was deferred to the Geomatics program in the
+                    Faculty of Environment. While unfamiliar at first, I came to
+                    appreciate how it connected mapping, spatial data, and
+                    technology to real-world systems. Geomatics gave me a strong
+                    foundation in problem-solving, analytical thinking, and
+                    collaboration, and I’m grateful for the professors, peers,
+                    and opportunities that shaped my first year.
+                  </p>
+                  <br />
+                  <p>
+                    Still, I wanted a program that blended technology, design,
+                    and systems thinking more closely with my interests. That
+                    led me to Systems Design Engineering (SYDE), where I’m
+                    excited to explore engineering principles, human-centered
+                    design, and innovation. Looking back, I see Geomatics not as
+                    a detour but as a valuable first step that gave me
+                    perspective and clarity-and now, I’m ready to take on the
+                    challenges ahead.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </motion.section>
+        )}
       </div>
     </motion.div>
   );
