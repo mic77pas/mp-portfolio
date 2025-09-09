@@ -203,10 +203,20 @@ export default function Home() {
                   <p className="text-sm text-[#c4d3c1] mb-2">
                     May 2025 - Aug 2025 · Remote
                   </p>
-                  <p>
-                    Worked on front-end development, UI improvements, and
-                    product management tasks.
-                  </p>
+                  <ul className="list-disc ml-6 space-y-1 mb-4">
+                    <li>
+                      Designed and implemented front-end features using React
+                      and TypeScript for early-stage startup products
+                    </li>
+                    <li>
+                      Collaborated with founders and engineers to define feature
+                      requirements and ensure alignment with product vision.
+                    </li>
+                    <li>
+                      Participated in Agile Sprints and code reviews,
+                      contributing to improved development cycle efficiency.
+                    </li>
+                  </ul>
                 </AccordionContent>
               </AccordionItem>
 

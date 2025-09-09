@@ -128,7 +128,7 @@ export default function Page() {
                     excited to explore engineering principles, human-centered
                     design, and innovation. Looking back, I see Geomatics not as
                     a detour but as a valuable first step that gave me
-                    perspective and clarity-and now, I’m ready to take on the
+                    perspective and clarity. And now, I’m ready to take on the
                     challenges ahead.
                   </p>
                 </div>
