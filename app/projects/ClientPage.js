@@ -140,6 +140,33 @@ const projects = [
     gif: "/projects/network.gif",
     github: "https://github.com/mic77pas/CS50-WebProjects",
   },
+  {
+    id: 14,
+    title: "E-Commerce",
+    description:
+      "A Django-powered auction platform where users can post product listings with images and descriptions, place bids on active listings, comment on items, add items to a personal watchlist, close auctions and view winner results. Implements user authentication and dynamic listing updates using Django’s ORM and templating engine.",
+    image: "/projects/commerce.png",
+    gif: "/projects/commerce.gif",
+    github: "https://github.com/mic77pas/CS50-WebProjects",
+  },
+  {
+    id: 16,
+    title: "Mail",
+    description:
+      "A single-page application that mimics Gmail functionality to compose, send, read, and archive emails, mark messages as read/unread, view inbox, sent mail, and archived folders. Implemented using JavaScript fetch API and a Django backend for asynchronous communication.",
+    image: "/projects/mail.png",
+    gif: "/projects/mail.gif",
+    github: "https://github.com/mic77pas/CS50-WebProjects",
+  },
+  {
+    id: 17,
+    title: "Resume Builder",
+    description:
+      "A modern resume builder that allows users to create, edit, and export professional resumes (with optional AI-assist). Features include real-time content editing, dynamic section management, and a clean export-ready layout. Designed as a capstone project to integrate full-stack development and product thinking.",
+    image: "/projects/resume.png",
+    gif: "/projects/resume.gif",
+    github: "https://github.com/mic77pas/CS50-WebProjects",
+  },
   // add more projects...
 ];
 
