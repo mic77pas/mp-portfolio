@@ -117,9 +117,27 @@ const projects = [
     id: 11,
     title: "Google Mimic",
     description:
-      "Simple HTML/CSS project mimicking Google's UI/UX and usability",
+      "Simple HTML/CSS project mimicking Google's UI/UX and usability, includes regular/image/advanced search and 'Feeling Lucky' option",
     image: "/projects/google.png",
     gif: "/projects/google.gif",
+    github: "https://github.com/mic77pas/CS50-WebProjects",
+  },
+  {
+    id: 12,
+    title: "Wiki",
+    description:
+      "Markdown-based encyclopedia that supports viewing existing pages, searching for articles, creating and editing entries, and viewing random articles. Designed with a clean interface and secure content editing, leveraging Django for server-side logic and content rendering",
+    image: "/projects/wiki.png",
+    gif: "/projects/wiki.gif",
+    github: "https://github.com/mic77pas/CS50-WebProjects",
+  },
+  {
+    id: 13,
+    title: "Social Network",
+    description:
+      "A Twitter-style social platform where users can create and edit posts, follow/unfollow users, like/unlike posts, and view a personalized feed of followed users. Utilizes Django for backend logic and JavaScript for dynamic front-end interactions including live updates and pagination.",
+    image: "/projects/network.png",
+    gif: "/projects/network.gif",
     github: "https://github.com/mic77pas/CS50-WebProjects",
   },
   // add more projects...
