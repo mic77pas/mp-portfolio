@@ -1,7 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import logoLight from "./logoLight.svg";
-import logoDark from "./logoDark.svg";
 import { useState } from "react";
 import newLogo from "./newLogo.png";
 
