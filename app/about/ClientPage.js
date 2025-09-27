@@ -10,6 +10,7 @@ const fadeUp = {
 
 export default function Page() {
   const [expanded, setExpanded] = useState(false);
+  const [expanded2, setExpanded2] = useState(false);
 
   return (
     <motion.div variants={fadeUp} initial="hidden" animate="visible">
@@ -136,6 +137,29 @@ export default function Page() {
             </div>
           </motion.section>
         )}
+        
+        {/* 
+        <button
+          onClick={() => setExpanded2(!expanded2)}
+          className="w-full max-w-4xl rounded-3xl bg-[#41503f] text-[#c4d3c1] font-semibold px-6 py-3 shadow-md hover:bg-[#4a5a46] transition text-lg"
+        >
+          {expanded2 ? "▲ Hide FAQs" : "▼ Show FAQs"}
+        </button>
+
+        {expanded2 && (
+          <motion.section
+            className="flex flex-col rounded-3xl p-8 bg-[#2e3a2b] shadow-lg w-full max-w-4xl"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
+          >
+            <div className="flex flex-col md:flex-row gap-6 ">
+              <p className="text-[#c4d3c1] font-semibold">What is Systems Design Engineering?</p>
+            </div>
+          </motion.section>
+        )}
+        */ }
       </div>
     </motion.div>
   );
