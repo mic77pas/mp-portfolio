@@ -44,27 +44,27 @@ export default function Page() {
                 </p>
               </div>
             </div>
-            {/* <ProfileCard
+            <ProfileCard
               name="Michael Pasyechnyk"
               title="Developer and Designer"
               handle="mic77_pas"
               status="Online"
-              contactText="Contact Me"
-              avatarUrl="selfiesticker.png"
+              contactText={<span>&#8599;</span>}
+              avatarUrl="headshot.png"
               miniAvatarUrl={"selfie2.jpg"}
               showUserInfo={true}
               enableTilt={true}
               enableMobileTilt={false}
               onContactClick={() => console.log("Contact clicked")}
-            /> */}
-            <div className="md:w-85 md:h-110 w-70 h-70 relative flex-shrink-0 overflow-hidden rounded-2xl">
+            />
+            {/* <div className="md:w-85 md:h-110 w-70 h-70 relative flex-shrink-0 overflow-hidden rounded-2xl">
               <Image
                 src="/selfie2.jpg"
                 fill
                 className="object-cover rounded-2xl shadow-xl transition-transform duration-500 ease-in-out hover:scale-120"
                 alt="Photo"
               />
-            </div>
+            </div> */}
           </div>
         </section>
 
