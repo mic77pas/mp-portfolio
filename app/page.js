@@ -2,7 +2,7 @@
 import Link from "next/link";
 import TypingSentence from "./_components/TypingSentence";
 import UWLogo from "./_components/UWLogo";
-import SkillCarousel from "./_components/SkillCarousel";
+// import SkillCarousel from "./_components/SkillCarousel";
 import { IoSearch } from "react-icons/io5";
 import {
   Accordion,
@@ -11,6 +11,9 @@ import {
   AccordionContent,
 } from "./_components/accordion";
 import { motion } from "framer-motion";
+import CurvedLoop from "@/components/CurvedLoop";
+import { skills } from "./_data/skills";
+import LogoLoop from "@/components/LogoLoop";
 
 // experienceData.ts (or define at top of your component)
 export const volunteering = [
@@ -149,7 +152,23 @@ export default function Home() {
             <hr className="h-1 bg-gradient-to-r from-[#98B493] via-[#638b5c] to-[#98B493] border-0 mb-5 rounded" />
 
             <div className="mb-4">
-              <SkillCarousel />
+              {/* <SkillCarousel /> */}
+              <LogoLoop
+                logos={skills.map((skill) => ({
+                  src: skill.icon,
+                  alt: skill.name,
+                  title: skill.name,
+                }))}
+                speed={100}
+                direction="left"
+                logoHeight={48} // adjust size as needed
+                gap={32} // spacing between logos
+                pauseOnHover={true}
+                fadeOut={true}
+                fadeOutColor="#25383f"
+                scaleOnHover={true}
+                className="bg-[#334a52] rounded-xl p-4"
+              />
             </div>
 
             <ul className="list-disc ml-6 text-[#c4d3c1] space-y-3">
@@ -277,7 +296,6 @@ export default function Home() {
             </Accordion>
           </main>
         </section>
-
         {/* Other Section */}
         {/* <section className="p-4 pb-10 flex items-center justify-center gap-8">
           <Link

@@ -3,9 +3,19 @@ import Logo from "./Logo";
 import Link from "next/link";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { HiMail, HiMailOpen } from "react-icons/hi";
+import GlassSurface from "@/components/GlassSurface";
 import MobileHeader from "./MobileHeader"; // Import the new component
 
 export default function Header() {
+  // <GlassSurface
+  //         width="100%" // Full width header
+  //         height={70} // Adjust as needed
+  //         borderRadius={24} // Rounded corners
+  //         blur={12} // Glass blur
+  //         brightness={50}
+  //         opacity={0.85}
+  //         className="w-full max-w-5xl flex items-center justify-between px-4 sm:px-6 md:px-8 py-3 sm:py-4 md:py-5"
+  //       ></GlassSurface>
   return (
     <>
       {/* Full Header for Desktop and larger screens */}

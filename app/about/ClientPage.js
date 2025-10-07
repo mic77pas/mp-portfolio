@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+import ProfileCard from "@/components/ProfileCard";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 15 },
@@ -43,6 +44,19 @@ export default function Page() {
                 </p>
               </div>
             </div>
+            {/* <ProfileCard
+              name="Michael Pasyechnyk"
+              title="Developer and Designer"
+              handle="mic77_pas"
+              status="Online"
+              contactText="Contact Me"
+              avatarUrl="selfiesticker.png"
+              miniAvatarUrl={"selfie2.jpg"}
+              showUserInfo={true}
+              enableTilt={true}
+              enableMobileTilt={false}
+              onContactClick={() => console.log("Contact clicked")}
+            /> */}
             <div className="md:w-85 md:h-110 w-70 h-70 relative flex-shrink-0 overflow-hidden rounded-2xl">
               <Image
                 src="/selfie2.jpg"
@@ -137,7 +151,7 @@ export default function Page() {
             </div>
           </motion.section>
         )}
-        
+
         {/* 
         <button
           onClick={() => setExpanded2(!expanded2)}
@@ -159,7 +173,7 @@ export default function Page() {
             </div>
           </motion.section>
         )}
-        */ }
+        */}
       </div>
     </motion.div>
   );

@@ -4,6 +4,7 @@ import Image from "next/image";
 import { FaGithub } from "react-icons/fa";
 import { IoIosCloseCircle } from "react-icons/io";
 import { motion } from "framer-motion";
+import ScrollReveal from "@/components/ScrollReveal";
 
 /*
 
@@ -200,17 +201,22 @@ export default function Page() {
         </div>
 
         {/* Grid of project cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <ScrollReveal
+          baseOpacity={0}
+          enableBlur={true}
+          baseRotation={2}
+          blurStrength={8}
+          containerClassName="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto"
+        >
           {filteredProjects.map((project) => (
             <div
               key={project.id}
-              className="card-hover"
+              className="card-hover relative"
               onClick={() => {
                 setSelected(project);
-                setLoadingGif(true); // reset loader when opening modal
+                setLoadingGif(true);
               }}
             >
-              {/* Static preview image */}
               <Image
                 src={project.image}
                 alt={project.title}
@@ -218,8 +224,6 @@ export default function Page() {
                 height={300}
                 className="object-cover w-full h-64"
               />
-
-              {/* Glassy overlay */}
               <div className="absolute bottom-0 h-24 w-full bg-black/50 backdrop-blur-md text-white p-3">
                 <h2 className="text-lg font-semibold">{project.title}</h2>
                 <p className="text-sm text-gray-200 line-clamp-2">
@@ -228,7 +232,7 @@ export default function Page() {
               </div>
             </div>
           ))}
-        </div>
+        </ScrollReveal>
 
         {/* Modal */}
         {selected && (

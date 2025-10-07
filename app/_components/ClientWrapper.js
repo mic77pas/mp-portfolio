@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Header from "./Header";
 import Footer from "./Footer";
 import { Montserrat } from "next/font/google"; // Import font here if used within this component
+import PixelTrail from "@/components/PixelTrail";
 
 const montserrat = Montserrat({
   subsets: ["latin"],

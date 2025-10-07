@@ -23,14 +23,6 @@ export const skills = [
     name: "CSS3",
     icon: "https://cdn.jsdelivr.net/npm/devicon@2.17.0/icons/css3/css3-original.svg",
   },
-  //   {
-  //     name: "Markdown",
-  //     icon: "https://cdn.jsdelivr.net/npm/devicon@2.17.0/icons/markdown/markdown-original.svg",
-  //   },
-  //   {
-  //     name: "Bash",
-  //     icon: "https://cdn.jsdelivr.net/npm/devicon@2.17.0/icons/bash/bash-original.svg",
-  //   },
   {
     name: "React",
     icon: "https://cdn.jsdelivr.net/npm/devicon@2.17.0/icons/react/react-original.svg",
