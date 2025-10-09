@@ -22,7 +22,7 @@ export default function Header() {
       <header className="hidden sm:flex sticky top-0 z-30 justify-center px-8 pb-8">
         <div
           className="flex w-full max-w-5xl items-center justify-between
-          rounded-b-2xl sm:rounded-b-4xl bg-[#0c0d0c]/40 backdrop-blur-lg shadow-md
+          rounded-b-2xl sm:rounded-b-4xl bg-[#202420]/40 backdrop-blur-lg shadow-md
           px-4 sm:px-6 md:px-8 py-3 sm:py-4 md:py-5"
         >
           {/* Left: Logo + About + Projects */}

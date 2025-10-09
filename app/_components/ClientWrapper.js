@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import Header from "./Header";
 import Footer from "./Footer";
 import { Montserrat } from "next/font/google"; // Import font here if used within this component
-import PixelTrail from "@/components/PixelTrail";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -22,7 +21,7 @@ export default function ClientWrapper({ children }) {
   }, []);
 
   return (
-    <body
+    <div
       className={`${montserrat.className} antialiased flex flex-col min-h-screen`}
     >
       <Header />
@@ -35,6 +34,6 @@ export default function ClientWrapper({ children }) {
         {children}
       </motion.main>
       <Footer />
-    </body>
+    </div>
   );
 }

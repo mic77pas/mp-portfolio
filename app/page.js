@@ -15,6 +15,19 @@ import CurvedLoop from "@/components/CurvedLoop";
 import { skills } from "./_data/skills";
 import LogoLoop from "@/components/LogoLoop";
 
+const accordionVariants = {
+  hidden: {
+    opacity: 0,
+    height: 0,
+    transition: { duration: 0.3, ease: "easeOut" },
+  },
+  visible: {
+    opacity: 1,
+    height: "auto",
+    transition: { duration: 0.3, ease: "easeOut" },
+  },
+};
+
 // experienceData.ts (or define at top of your component)
 export const volunteering = [
   {
@@ -207,35 +220,43 @@ export default function Home() {
                 <AccordionTrigger className="flex items-center justify-between w-full px-4 py-4 text-lg hover:no-underline hover:cursor-pointer font-semibold text-white hover:bg-[#2e3a2b] data-[state=open]:bg-[#2e3a2b] data-[state=open]:rounded-b-none rounded-lg transition">
                   Experience
                 </AccordionTrigger>
-                <AccordionContent className="px-6 py-4 text-[#c4d3c1] text-base bg-[#3e4f3a] rounded-b-xl">
-                  <p className="font-semibold text-md text-white">
-                    Software Engineering Intern -{" "}
-                    <Link
-                      href="https://ipserlab.com/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-[#cef4c8] hover:text-[#85a281] transition duration-200"
-                    >
-                      IpserLab
-                    </Link>
-                  </p>
-                  <p className="text-sm text-[#c4d3c1] mb-2">
-                    May 2025 - Aug 2025 · Remote
-                  </p>
-                  <ul className="list-disc ml-6 space-y-1 mb-4">
-                    <li>
-                      Designed and implemented front-end features using React
-                      and TypeScript for early-stage startup products
-                    </li>
-                    <li>
-                      Collaborated with founders and engineers to define feature
-                      requirements and ensure alignment with product vision.
-                    </li>
-                    <li>
-                      Participated in Agile Sprints and code reviews,
-                      contributing to improved development cycle efficiency.
-                    </li>
-                  </ul>
+                <AccordionContent asChild>
+                  <motion.div
+                    className="px-6 py-4 text-[#c4d3c1] text-base bg-[#3e4f3a] rounded-b-xl overflow-hidden"
+                    variants={accordionVariants}
+                    initial="hidden"
+                    animate="visible"
+                  >
+                    <p className="font-semibold text-md text-white">
+                      Software Engineering Intern -{" "}
+                      <Link
+                        href="https://ipserlab.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[#cef4c8] hover:text-[#85a281] transition duration-200"
+                      >
+                        IpserLab
+                      </Link>
+                    </p>
+                    <p className="text-sm text-[#c4d3c1] mb-2">
+                      May 2025 - Aug 2025 · Remote
+                    </p>
+                    <ul className="list-disc ml-6 space-y-1 mb-4">
+                      <li>
+                        Designed and implemented front-end features using React
+                        and TypeScript for early-stage startup products
+                      </li>
+                      <li>
+                        Collaborated with founders and engineers to define
+                        feature requirements and ensure alignment with product
+                        vision.
+                      </li>
+                      <li>
+                        Participated in Agile Sprints and code reviews,
+                        contributing to improved development cycle efficiency.
+                      </li>
+                    </ul>
+                  </motion.div>
                 </AccordionContent>
               </AccordionItem>
 
@@ -243,28 +264,37 @@ export default function Home() {
                 <AccordionTrigger className="flex items-center justify-between w-full px-4 py-4 text-lg hover:no-underline hover:cursor-pointer font-semibold text-white hover:bg-[#2e3a2b] data-[state=open]:bg-[#2e3a2b] data-[state=open]:rounded-b-none rounded-lg transition">
                   Volunteering
                 </AccordionTrigger>
-                <AccordionContent className="px-6 py-4 text-[#c4d3c1] text-base bg-[#3e4f3a] rounded-b-xl">
-                  {volunteering.map((exp, i) => (
-                    <div key={i}>
-                      <p className="font-semibold text-md text-white">
-                        {exp.position} -{" "}
-                        <Link
-                          href={exp.organizationLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-[#cef4c8] hover:text-[#85a281] transition duration-200"
-                        >
-                          {exp.organization}
-                        </Link>
-                      </p>
-                      <p className="text-sm text-[#c4d3c1] mb-2">{exp.time}</p>
-                      <ul className="list-disc ml-6 space-y-1 mb-4">
-                        {exp.descriptions.map((d, j) => (
-                          <li key={j}>{d}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
+                <AccordionContent asChild>
+                  <motion.div
+                    className="px-6 py-4 text-[#c4d3c1] text-base bg-[#3e4f3a] rounded-b-xl"
+                    variants={accordionVariants}
+                    initial="hidden"
+                    animate="visible"
+                  >
+                    {volunteering.map((exp, i) => (
+                      <div key={i}>
+                        <p className="font-semibold text-md text-white">
+                          {exp.position} -{" "}
+                          <Link
+                            href={exp.organizationLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-[#cef4c8] hover:text-[#85a281] transition duration-200"
+                          >
+                            {exp.organization}
+                          </Link>
+                        </p>
+                        <p className="text-sm text-[#c4d3c1] mb-2">
+                          {exp.time}
+                        </p>
+                        <ul className="list-disc ml-6 space-y-1 mb-4">
+                          {exp.descriptions.map((d, j) => (
+                            <li key={j}>{d}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </motion.div>
                 </AccordionContent>
               </AccordionItem>
 
@@ -272,25 +302,32 @@ export default function Home() {
                 <AccordionTrigger className="flex items-center justify-between w-full px-4 py-4 text-lg hover:no-underline hover:cursor-pointer font-semibold text-white hover:bg-[#2e3a2b] data-[state=open]:bg-[#2e3a2b] data-[state=open]:rounded-b-none rounded-lg transition">
                   Education
                 </AccordionTrigger>
-                <AccordionContent className="px-6 py-4 text-[#c4d3c1] text-base bg-[#3e4f3a] rounded-b-xl">
-                  <p className="font-semibold text-md text-white">
-                    University of Waterloo - Systems Design Engineering (BASc)
-                  </p>
-                  <p className="text-sm text-[#c4d3c1] mb-2">Class of 2030</p>
-                  <p>
-                    <b>Relevant Courses:</b> Human Factors of Design, Data
-                    Structures and Algorithms, Digital Systems.
-                  </p>
-                  <br />
-                  <p className="font-semibold text-md text-white">
-                    University of Waterloo - Geomatics (BES)
-                  </p>
-                  <p className="text-sm text-[#c4d3c1] mb-2">2024 – 2025</p>
-                  <p>
-                    <b>Relevant Courses:</b> Designing Functional Programs,
-                    Algorithm Design and Data Abstraction, Geospatial Data,
-                    Geographic Information Systems
-                  </p>
+                <AccordionContent asChild>
+                  <motion.div
+                    className="px-6 py-4 text-[#c4d3c1] text-base bg-[#3e4f3a] rounded-b-xl"
+                    variants={accordionVariants}
+                    initial="hidden"
+                    animate="visible"
+                  >
+                    <p className="font-semibold text-md text-white">
+                      University of Waterloo - Systems Design Engineering (BASc)
+                    </p>
+                    <p className="text-sm text-[#c4d3c1] mb-2">Class of 2030</p>
+                    <p>
+                      <b>Relevant Courses:</b> Human Factors of Design, Data
+                      Structures and Algorithms, Digital Systems.
+                    </p>
+                    <br />
+                    <p className="font-semibold text-md text-white">
+                      University of Waterloo - Geomatics (BES)
+                    </p>
+                    <p className="text-sm text-[#c4d3c1] mb-2">2024 – 2025</p>
+                    <p>
+                      <b>Relevant Courses:</b> Designing Functional Programs,
+                      Algorithm Design and Data Abstraction, Geospatial Data,
+                      Geographic Information Systems
+                    </p>
+                  </motion.div>
                 </AccordionContent>
               </AccordionItem>
             </Accordion>

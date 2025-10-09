@@ -15,17 +15,17 @@ export default function Page() {
 
   return (
     <motion.div variants={fadeUp} initial="hidden" animate="visible">
-      <div className="p-8 flex flex-col gap-8 items-center">
+      <div className="pt-2 p-8 flex flex-col gap-8 items-center">
         {/* About block */}
         <section className="flex flex-col rounded-3xl p-8 bg-[#2e3a2b] shadow-lg w-full max-w-4xl">
-          <div className="flex flex-col md:flex-row gap-6 items-center">
+          <div className="flex flex-col-reverse md:flex-row gap-6 items-center md:items-start justify-center">
             <div>
-              <h1 className="text-[#9ab397] text-2xl md:text-4xl font-extrabold mb-6 rounded-xl">
-                Hey, I&apos;m Michael! 👋
-              </h1>
-              <div className="text-[#c4d3c1] text-sm md:text-lg max-w-lg pb-2">
+              {/* <h1 className="text-[#9ab397] text-2xl md:text-4xl font-extrabold mb-6 rounded-xl">
+                Hey! 👋
+              </h1> */}
+              <div className="text-[#c4d3c1] text-sm md:text-lg max-w-lg pb-2 pt-10 bg-[#272b29]/70 rounded-2xl px-4 h-120">
                 <p className="border-l-4 border-[#9ab397] pl-4">
-                  I&apos;m a Systems Design Engineering student at the
+                  Hey! I&apos;m a Systems Design Engineering student at the
                   University of Waterloo, with a growing interest in software
                   development, ux/ui, and product design.
                 </p>
