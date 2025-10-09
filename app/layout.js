@@ -55,7 +55,7 @@ export default function RootLayout({ children }) {
             mouseReact={true}
             mouseStrength={1}
             pageLoadAnimation={true}
-            brightness={0.3}
+            brightness={0.5}
           />
         </div>
 
