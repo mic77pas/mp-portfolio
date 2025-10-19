@@ -49,7 +49,7 @@ export default function TypingSentence() {
           speed={50}
           deletionSpeed={50}
           repeat={Infinity}
-          className="text-[18px] md:text-[24px] leading-tight"
+          className="text-[16px] md:text-[24px] leading-tight"
         />
       </div>
     </div>
