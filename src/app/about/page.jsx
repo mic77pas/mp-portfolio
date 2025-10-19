@@ -106,8 +106,8 @@ export default function About() {
           font="20px Montserrat text-[5px]"
         />
       </div>
-      <hr className="h-1 w-full bg-gradient-to-r from-[#98B493] via-[#7da376] to-[#98B493] border-0 rounded mb-10" />
-      <div className="flex flex-col items-center sm:green-div w-full rounded-2xl h-120 px-4">
+      <hr className="h-1 w-full bg-gradient-to-r from-[#98B493] via-[#7da376] to-[#98B493] border-0 rounded mb-6" />
+      <div className="flex flex-col items-center w-full rounded-2xl h-120">
         <h2 className="bg-[#455445] text-[#90AD8F] mt-4 p-5.5 rounded-t-xl w-full text-center text-4xl font-bold border-b-[#30382f] border-b-6 z-10">
           My Career
         </h2>
