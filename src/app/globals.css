@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #242524;
   --foreground: #171717;
 }
 
@@ -22,5 +22,44 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-montserrat), sans-serif;
+}
+
+.poetsen-one-regular {
+  font-family: "Poetsen One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.nav-link {
+  @apply text-[#AABF9F] hover:text-[#d6e0d3] transition-colors text-shadow-lg;
+}
+
+.green-div {
+  @apply bg-[#393D39];
+}
+
+.skill-blob {
+  @apply text-[#373737] text-[16px] px-4 py-1 w-auto rounded-full font-medium shadow-sm hover:brightness-120 hover:scale-110 duration-300 cursor-pointer;
+}
+
+.button-view {
+  @apply bg-[#92A38A] text-[#343C30] text-[16px] px-6 py-2 font-bold rounded-2xl shadow-md hover:bg-[#bbcdb3] transition-all duration-150;
+}
+
+@layer components {
+
+  .button-hover {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem; /* 2 = 0.5rem */
+    padding: 0.5rem 1rem; /* py-2 px-4 */
+    border-radius: 0.5rem; /* rounded-lg */
+    background-color: #638b5c;
+    transition: background-color 0.3s ease;
+  }
+
+  .button-hover:hover {
+    background-color: #98b493;
+  }
 }
