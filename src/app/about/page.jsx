@@ -63,8 +63,8 @@ export default function About() {
               className="hover:text-[#d5e3d0] duration-200"
               target="_blank"
             >
-              <b>University of Waterloo </b>
-              <UWLogo className="-translate-y-px inline-block" />
+              <b>University of Waterloo. </b>
+              {/* <UWLogo className="-translate-y-px inline-block" /> */}
               <b> </b>
             </Link>
             I love learning and putting to practice all types of new
