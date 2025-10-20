@@ -2,13 +2,15 @@ import Image from "next/image";
 
 export default function Page() {
   return (
-    <div className="flex justify-center align-center pt-30 pb-38">
+    <div className="flex flex-col items-center justify-center text-center px-6 pt-40">
       <Image
-        src={"/wip.png"}
-        alt={"posts are a work in progress!"}
+        src="/wip.png"
+        alt="Posts are a work in progress!"
         width={300}
         height={200}
+        className="mb-6"
       />
+      <p className="text-2xl font-bold text-[#b2bfa8]">Come back to this page soon!</p>
     </div>
   );
 }

@@ -31,7 +31,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="flex flex-col md:justify-center items-center min-h-[30vh] md:min-h-[75vh] text-center pt-14 md:pt-0">
+      <div className="flex flex-col justify-center items-center min-h-[calc(100vh-170px)] text-center">
         <h3
           className={`${poetsen.className} text-[60px] md:text-[90px] leading-[1.1] mb-3 pb-3 text-[#90AD8F] drop-shadow-[7px_7px_0px_rgba(0,0,0,0.25)]`}
         >

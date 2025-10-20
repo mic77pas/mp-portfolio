@@ -18,9 +18,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={montserrat.className}>
-      <body>
+      <body className="flex flex-col min-h-screen">
         <Header />
-        <ClientLayout>{children}</ClientLayout>
+        <main className="flex-grow">
+           <ClientLayout>{children}</ClientLayout>
+        </main>
+       
         <Footer />
       </body>
     </html>
