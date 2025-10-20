@@ -42,7 +42,13 @@ export default function About() {
         </div>
 
         <div className="flex sm:hidden justify-center">
-          <Image src="/regularhs.JPG" alt="It's me!" width={300} height={300} className="w-full mb-8 border-[#39493a] border-8 rounded-xl shadow-lg shadow-[#0c0c0c]" />
+          <Image
+            src="/regularhs.JPG"
+            alt="It's me!"
+            width={300}
+            height={300}
+            className="w-full mb-8 border-[#39493a] border-8 rounded-xl shadow-lg shadow-[#0c0c0c]"
+          />
         </div>
 
         {/* ⭐️ FIX 4: Adjust width and margin for spacing and responsiveness.
@@ -67,17 +73,16 @@ export default function About() {
               {/* <UWLogo className="-translate-y-px inline-block" /> */}
               <b> </b>
             </Link>
-            I love learning and putting to practice all types of new
-            technologies, ranging from{" "}
+            I’m passionate about exploring and building with new technologies, paricularly in{" "}
             <span className="font-bold">
               full-stack development, product design, artificial intelligence,
               and ui/ux!
             </span>
           </p>
           <p className="mb-6 sm:mb-15">
-            As a curious developer, I’m always looking for{" "}
+            As a curious developer, I’m always seeking{" "}
             <span className="font-bold">
-              new opportunities to expand and put my skills to use.
+              new opportunities to grow and apply my skills.
             </span>{" "}
             And whenever I’m not on the grind, you can usually find me{" "}
             <span className="font-bold">

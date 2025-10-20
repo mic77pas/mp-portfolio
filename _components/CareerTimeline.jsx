@@ -38,7 +38,7 @@ export default function CareerTimeline({ events }) {
             className="relative flex flex-col items-center justify-center w-[280px] sm:w-[360px] select-none"
           >
             <motion.div
-              className="w-40 h-40 rounded-full flex items-center justify-center shadow-lg shadow-[#262824] overflow-hidden mb-3 bg-[#1c1f1c]"
+              className="w-32 h-32 rounded-full flex items-center justify-center shadow-lg shadow-[#262824] overflow-hidden mb-3 bg-[#ffffff]"
               whileHover={{ scale: 1.15 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -46,8 +46,8 @@ export default function CareerTimeline({ events }) {
                 <Image
                   src={event.logo}
                   alt={event.title}
-                  width={140}
-                  height={140}
+                  width={120}
+                  height={120}
                   className="object-contain p-1 scale-115 rounded-full"
                 />
               ) : (
@@ -66,9 +66,9 @@ export default function CareerTimeline({ events }) {
         ))}
 
         {/* TBD Item */}
-        <div className="relative flex flex-col items-center justify-center w-[280px] sm:w-[360px] select-none">
+        <div className="relative flex flex-col items-center justify-center w-[280px] sm:w-[360px] select-none pr-5">
           <motion.div
-            className="w-40 h-40 rounded-full flex items-center justify-center bg-[#1c1f1c] overflow-hidden mb-3"
+            className="w-32 h-32 rounded-full flex items-center justify-center bg-[#1c1f1c] overflow-hidden mb-3"
             whileHover={{ scale: 1.15 }}
             whileTap={{ scale: 0.95 }}
           >

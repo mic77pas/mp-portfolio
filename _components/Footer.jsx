@@ -19,19 +19,19 @@ export default function Footer() {
             target="_blank"
             className="nav-link"
           >
-            <FaLinkedin className="w-6 h-6 sm:w-7 sm:h-7 md:w-9 md:h-9" />
+            <FaLinkedin className="w-7 h-7 sm:w-8 sm:h-8 md:w-11 md:h-11" />
           </Link>
           <Link
             href="https://github.com/mic77pas"
             target="_blank"
             className="nav-link"
           >
-            <FaGithub className="w-6 h-6 sm:w-7 sm:h-7 md:w-9 md:h-9" />
+            <FaGithub className="w-6 h-6 sm:w-7 sm:h-7 md:w-11 md:h-11" />
           </Link>
         </nav>
       </footer>
 
-      <footer className="sm:hidden">
+      <footer className="md:hidden">
         <div className="h-20">
 
         </div>

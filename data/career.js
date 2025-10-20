@@ -6,12 +6,12 @@ const careers = [
   //   },
   {
     title: "First Year Geomatics Student",
-    date: "Sep 2024",
+    date: "Sep 2024 - May 2025",
     logo: "/logos/uwaterloo.png",
   },
   {
     title: "Software Engineer Intern",
-    date: "May 2025",
+    date: "May 2025 - Aug 2025",
     logo: "/logos/ipserlab.jpg",
   },
   {
