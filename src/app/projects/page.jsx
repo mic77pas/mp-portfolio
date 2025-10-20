@@ -19,10 +19,12 @@ export default function Page() {
   );
 
   return (
-    <div className="min-h-screen text-foreground px-8 pt-25 pb-10">
+    <div className="min-h-screen text-foreground px-8 pt-25 max-w-6xl mx-auto">
       <h1 className="text-[50px] font-bold mb-6 text-center text-[#90AD8F]">
         My Projects
       </h1>
+
+      {/* <hr className="h-1 w-auto bg-gradient-to-r from-[#98B493] via-[#7da376] to-[#98B493] border-0 rounded mb-10" /> */}
 
       {/* Search bar */}
       <div className="flex justify-center mb-10">

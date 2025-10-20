@@ -12,5 +12,7 @@ export default function Page() {
       />
       <p className="text-2xl font-bold text-[#b2bfa8]">Come back to this page soon!</p>
     </div>
+
+    
   );
 }
