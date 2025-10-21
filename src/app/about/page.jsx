@@ -69,17 +69,16 @@ export default function About() {
               className="hover:text-[#d5e3d0] duration-200"
               target="_blank"
             >
-              <b>University of Waterloo. </b>
+              <b>University of Waterloo</b>
               {/* <UWLogo className="-translate-y-px inline-block" /> */}
-              <b> </b>
             </Link>
-            I’m passionate about exploring and building with new technologies, paricularly in{" "}
+            , with a non-traditional path into tech. I’m passionate about exploring and building with new and innovative tools, particularly in{" "}
             <span className="font-bold">
               full-stack development, product design, artificial intelligence,
               and ui/ux!
             </span>
           </p>
-          <p className="mb-6 sm:mb-15">
+          <p className="mb-6 sm:mb-8">
             As a curious developer, I’m always seeking{" "}
             <span className="font-bold">
               new opportunities to grow and apply my skills.
