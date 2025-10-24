@@ -63,3 +63,10 @@ body {
     background-color: #98b493;
   }
 }
+
+.fit-text {
+  font-size: clamp(14px, 4vw, 28px);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
