@@ -72,15 +72,17 @@ export default function Skills() {
       <div className="flex flex-col max-w-95 md:max-w-5xl w-full gap-6 p-3 rounded-2xl green-div">
         <div className="flex flex-row flex-wrap justify-center gap-3">
           {sortedSkills.map((skill) => (
-            <p
+            <a
               key={skill.name}
+              href={skill.link}
+              target="_blank"
               className={`
                 skill-blob
                 ${CATEGORY_COLORS[skill.category] || "bg-gray-500"}
                 `}
             >
               {skill.name}
-            </p>
+            </a>
           ))}
         </div>
       </div>

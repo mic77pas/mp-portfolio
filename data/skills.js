@@ -133,6 +133,18 @@ export const skills = [
     icon: `https://cdn.simpleicons.org/netlify/${OLIVE_GREEN}`,
     link: "https://www.netlify.com/",
   },
+  {
+    name: "Vite",
+    category: 'DevOps/Tool',
+    icon: `https://cdn.simpleicons.org/vite/${OLIVE_GREEN}`,
+    link: "https://vite.dev/",
+  },
+  {
+    name: "MCP",
+    category: 'DevOps/Tool',
+    icon: `https://cdn.simpleicons.org/modelcontextprotocol/${OLIVE_GREEN}`,
+    link: "https://modelcontextprotocol.io/",
+  },
   
   // --- Design / Other ---
   {
