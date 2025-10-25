@@ -8,12 +8,17 @@ export default function ClientLayout({ children }) {
   useEffect(() => {
     const formatTitle = (path) => {
       if (path === "/") return "Michael Pasyechnyk";
-      const page = path
-        .replace("/", "")
+
+      // Split by '/' and remove empty strings
+      const parts = path.split("/").filter(Boolean);
+
+      // Take only the *last* segment (e.g. 'geomatics' from '/about/geomatics')
+      const page = parts[parts.length - 1]
         .split("-")
         .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
         .join(" ");
-      return `${page} / Michael Pasyechnyk`;
+
+      return `Michael Pasyechnyk / ${page}`;
     };
 
     document.title = formatTitle(pathname);
