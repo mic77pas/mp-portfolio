@@ -82,7 +82,15 @@ export default function PostsPage() {
   }, [posts.length, postHeight, y]);
 
   return (
-    <div className="relative w-full h-[calc(100vh-157px)] overflow-hidden text-[#b2bfa8]">
+    <motion.div
+      initial={{ opacity: 0, scale: 1 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{
+        duration: 0.6,
+        ease: "easeOut",
+      }}
+      className="relative w-full h-[calc(100vh-157px)] overflow-hidden text-[#b2bfa8]"
+    >
       {/* Top "You've made it" text */}
 
       {/* Draggable wall */}
@@ -165,6 +173,6 @@ export default function PostsPage() {
           </div>
         ))}
       </motion.div>
-    </div>
+    </motion.div>
   );
 }

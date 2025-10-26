@@ -283,7 +283,11 @@ const ProfileCardComponent = ({
         transformOrigin: "top center",
       }}
     >
-      <section ref={cardRef} className="pc-card">
+      <section
+        ref={cardRef}
+        className="pc-card"
+        style={{ willChange: "transform, opacity" }}
+      >
         <div className="pc-inside">
           <div className="pc-shine" />
           <div className="pc-glare" />

@@ -3,7 +3,7 @@ import Image from "next/image";
 import { FaGithub } from "react-icons/fa";
 import { IoIosCloseCircle } from "react-icons/io";
 import ScrollReveal from "../../components/ScrollReveal";
-// import { motion } from "motion/react";
+import { motion } from "motion/react";
 import { useState } from "react";
 import projects from "../../../data/projects";
 
@@ -19,7 +19,15 @@ export default function Page() {
   );
 
   return (
-    <div className="min-h-screen text-foreground px-8 pt-25 max-w-6xl mx-auto">
+    <motion.div
+      initial={{ opacity: 0, scale: 0.97 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{
+        duration: 0.6,
+        ease: "easeOut",
+      }}
+      className="min-h-screen text-foreground px-8 pt-25 max-w-6xl mx-auto"
+    >
       <h1 className="text-[50px] font-bold mb-6 text-center text-[#90AD8F]">
         My Projects
       </h1>
@@ -135,6 +143,6 @@ export default function Page() {
           </div>
         </div>
       )}
-    </div>
+    </motion.div>
   );
 }

@@ -76,7 +76,7 @@ export default function CompanyClient({ selected }) {
           href="/about"
           className="text-[20px] text-end hover:text-[#e9f0e8] duration-100"
         >
-          <p className="bg-[#3a3f3a] rounded-xl py-2 px-3 inline-block">
+          <p className="bg-[#3a3f3a] text-[14px] font-bold rounded-xl py-2 px-3 inline-block">
             Return to About Me &#x21a9;
           </p>
         </a>

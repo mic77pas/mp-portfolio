@@ -1,6 +1,6 @@
 "use client";
 import ProfileCard from "../../components/ProfileCard";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import CircularGallery from "../../components/CircularGallery";
 import galleryImages from "../../../data/galleryImages";
 import Link from "next/link";
@@ -9,6 +9,7 @@ import { FaInstagram } from "react-icons/fa";
 import CareerTimeline from "../../../_components/CareerTimeline";
 import careers from "../../../data/career";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 const items = galleryImages.map((item) => ({
   image: item.src, // Mapped to image
@@ -20,10 +21,22 @@ export default function About() {
     window.scrollTo({ top: 0, behavior: "instant" });
   }, []);
 
+  const [gradientsReady, setGradientsReady] = useState(false);
+  useEffect(() => {
+    const t = setTimeout(() => setGradientsReady(true), 800);
+    return () => clearTimeout(t);
+  }, []);
+
   return (
-    // ⭐️ FIX 1: Use a container with max-w-7xl and mx-auto for proper centering.
-    // ⭐️ FIX 2: Use "items-start" to align content to the top.
-    <div className="flex flex-col items-start max-w-5xl mx-auto md:px-4 pt-10 md:pt-20 pb-10">
+    <motion.div
+      className="flex flex-col items-start max-w-5xl mx-auto md:px-4 pt-10 md:pt-20 pb-10"
+      initial={{ opacity: 0, scale: 0.97 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{
+        duration: 0.6,
+        ease: "easeOut",
+      }}
+    >
       <div className="rounded-2xl flex flex-col sm:flex-row items-center justify-center mt-4 max-w-5xl">
         <div className="w-full sm:w-auto flex justify-center items-center">
           <div className="hidden sm:flex">
@@ -37,6 +50,7 @@ export default function About() {
               showUserInfo={true}
               enableTilt={true}
               enableMobileTilt={false}
+              // showBehindGradient={gradientsReady}
             />
           </div>
         </div>
@@ -51,8 +65,6 @@ export default function About() {
           />
         </div>
 
-        {/* ⭐️ FIX 4: Adjust width and margin for spacing and responsiveness.
-               "w-full max-w-md" makes it occupy a reasonable space. */}
         <div className="w-[82%] sm:ml-10 sm:w-full text-[#ADB9A9] text-md sm:text-xl leading-8">
           <p className="mb-5">
             Hey! I’m a{" "}
@@ -70,9 +82,10 @@ export default function About() {
               target="_blank"
             >
               <b>University of Waterloo</b>
-              {/* <UWLogo className="-translate-y-px inline-block" /> */}
             </Link>
-            , with a non-traditional path into tech. I’m passionate about exploring and building with new and innovative tools, particularly in{" "}
+            , with a non-traditional path into tech. I’m passionate about
+            exploring and building with new and innovative tools, particularly
+            in{" "}
             <span className="font-bold">
               full-stack development, product design, artificial intelligence,
               and ui/ux!
@@ -100,7 +113,6 @@ export default function About() {
         style={{ height: "600px", position: "relative" }}
         className="w-full max-w-5xl mx-auto inset-shadow-lg max-h-90 mt-7 -mb-15"
       >
-        {/* <SimpleGallery /> */}
         <CircularGallery
           items={items}
           bend={0}
@@ -110,6 +122,7 @@ export default function About() {
           font="20px Montserrat text-[5px]"
         />
       </div>
+
       <hr className="h-1 w-full bg-gradient-to-r from-[#98B493] via-[#7da376] to-[#98B493] border-0 rounded mb-6" />
       <div className="flex flex-col items-center w-full rounded-2xl h-120">
         <h2 className="bg-[#455445] text-[#90AD8F] mt-4 p-5.5 rounded-t-xl w-full text-center text-4xl font-bold border-b-[#30382f] border-b-6 z-10">
@@ -117,6 +130,6 @@ export default function About() {
         </h2>
         <CareerTimeline events={careers} />
       </div>
-    </div>
+    </motion.div>
   );
 }
