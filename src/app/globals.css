@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@custom-variant hover (&:hover);
 
 :root {
   --background: #242524;
@@ -40,7 +41,7 @@ body {
 }
 
 .skill-blob {
-  @apply text-[#373737] text-[16px] px-4 py-1 w-auto rounded-full font-medium shadow-sm hover:brightness-120 hover:scale-110 duration-300 cursor-pointer;
+  @apply text-[#373737] text-[16px] px-4 py-1 w-auto rounded-full font-medium shadow-sm cursor-pointer hover:brightness-120 hover:scale-110 duration-300;
 }
 
 .button-view {
@@ -48,7 +49,6 @@ body {
 }
 
 @layer components {
-
   .button-hover {
     display: inline-flex;
     align-items: center;
