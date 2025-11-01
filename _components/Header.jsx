@@ -3,7 +3,7 @@ import { Montserrat } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation"; // ✅ import this
+import { usePathname } from "next/navigation";
 import MobileHeader from "./MobileHeader";
 
 const montserrat = Montserrat({
@@ -54,8 +54,8 @@ export default function Header() {
             <Image
               src="/logo.png"
               alt="Logo"
-              width={60}
-              height={60}
+              width={65}
+              height={65}
               className="transition-transform duration-300 hover:-translate-y-1 hover:brightness-120"
             />
           </Link>
