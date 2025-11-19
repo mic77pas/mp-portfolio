@@ -1,9 +1,15 @@
 import LogoLoop from "../src/components/LogoLoop";
 import { skills, CATEGORY_COLORS } from "../data/skills";
-import { useMemo } from "react";
+import { useMemo, useState, useCallback } from "react";
 import { motion } from "motion/react";
 
 export default function Skills() {
+  const [counter, setCounter] = useState(0);
+
+  const handleClick = useCallback(() => {
+    setCounter(prev => prev + 1);
+  }, []);
+
   const skillsByCategory = useMemo(() => {
     return skills.reduce((acc, skill) => {
       const category = skill.category || "Other"; // Fallback
@@ -46,10 +52,10 @@ export default function Skills() {
 
   return (
     <motion.div
-    //   initial={{ opacity: 0, y: 50 }} // starts slightly below, invisible
-    //   whileInView={{ opacity: 1, y: 0 }} // fades & slides up
-    //   transition={{ duration: 0.7, ease: "easeOut" }} // smooth timing
-    //   viewport={{ once: true, amount: 0.2 }} // triggers only once when 20% is visible
+      //   initial={{ opacity: 0, y: 50 }} // starts slightly below, invisible
+      //   whileInView={{ opacity: 1, y: 0 }} // fades & slides up
+      //   transition={{ duration: 0.7, ease: "easeOut" }} // smooth timing
+      //   viewport={{ once: true, amount: 0.2 }} // triggers only once when 20% is visible
       className="flex flex-col md:mt-30 pt-5 pb-5 justify-center items-center gap-6"
     >
       <h2 className="text-4xl font-bold text-[#90AD8F]">Skills</h2>

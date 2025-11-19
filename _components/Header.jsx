@@ -75,7 +75,7 @@ export default function Header() {
             posts
           </Link>
           <Link
-            href="https://drive.google.com/file/d/1xjUtUyP-G2ZbX70XMVxO5C6djpVyiSXO/view?usp=sharing"
+            href="https://drive.google.com/file/d/12k13lA9vVpsJVKTUUe4M1nzCn-Keg7Kl/view?usp=drive_link"
             target="_blank"
             rel="noopener noreferrer"
             className="nav-link"
