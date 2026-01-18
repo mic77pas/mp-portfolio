@@ -7,7 +7,7 @@ export default function Skills() {
   const [counter, setCounter] = useState(0);
 
   const handleClick = useCallback(() => {
-    setCounter(prev => prev + 1);
+    setCounter((prev) => prev + 1);
   }, []);
 
   const skillsByCategory = useMemo(() => {
@@ -56,12 +56,13 @@ export default function Skills() {
       //   whileInView={{ opacity: 1, y: 0 }} // fades & slides up
       //   transition={{ duration: 0.7, ease: "easeOut" }} // smooth timing
       //   viewport={{ once: true, amount: 0.2 }} // triggers only once when 20% is visible
-      className="flex flex-col md:mt-30 pt-5 pb-5 justify-center items-center gap-6"
+      className="flex flex-col pt-5 pb-5 justify-center items-center"
     >
-      <h2 className="text-4xl font-bold text-[#90AD8F]">Skills</h2>
-      <hr className="h-1 w-95 md:w-5xl bg-gradient-to-r from-[#98B493] via-[#7da376] to-[#98B493] border-0 rounded" />
-      <div className="w-full max-w-95 md:max-w-5xl">
-        {/* Your actual skills content will go here */}
+      <h2 className="font-minecraft text-4xl font-bold text-[#90AD8F] text-shadow-[0px_3px_1px_rgba(0,0,0,0.5)] mb-6">
+        Tech Stack
+      </h2>
+      {/* <hr className="h-1 w-full bg-gradient-to-r from-[#98B493] via-[#7da376] to-[#98B493] border-0 rounded" /> */}
+      <div className="w-full">
         <LogoLoop
           logos={logoProps}
           speed={60}
@@ -70,12 +71,16 @@ export default function Skills() {
           gap={30}
           pauseOnHover={true}
           fadeOut={true}
-          fadeOutColor="#2b302a"
+          fadeOutColor="#1a1d1a"
           scaleOnHover={true}
-          className="bg-[#454d45] pt-3 rounded-2xl p-4"
+          className="border border-[#384438] bg-[#2c332c]/75 pt-3 rounded-t-2xl"
+          // style={{ boxShadow: "0px 4px 4px rgba(0,0,0,0.5)" }}
         />
       </div>
-      <div className="flex flex-col max-w-95 md:max-w-5xl w-full gap-6 p-3 rounded-2xl green-div">
+      <div
+        className="flex flex-col w-full mb-6 p-3 rounded-b-2xl border border-[#384438] bg-[#131813]/75 py-5"
+        style={{ boxShadow: "0px 4px 8px rgba(0,0,0,0.5)" }}
+      >
         <div className="flex flex-row flex-wrap justify-center gap-3">
           {sortedSkills.map((skill) => (
             <a

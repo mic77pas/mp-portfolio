@@ -2,9 +2,10 @@
 import { Montserrat } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { usePathname } from "next/navigation";
 import MobileHeader from "./MobileHeader";
+import AnimatedLogo from "./AnimatedLogo";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -13,76 +14,92 @@ const montserrat = Montserrat({
 });
 
 export default function Header() {
-  const [showMain, setShowMain] = useState(true);
-  const pathname = usePathname(); // ✅ gives you current route
+  const [hidden, setHidden] = useState(false);
+  const lastY = useRef(0);
+  const ticking = useRef(false);
 
   useEffect(() => {
-    // ✅ Only apply scroll behavior on the homepage
-    if (pathname !== "/") {
-      setShowMain(false); // always visible elsewhere
-      return;
-    }
+    lastY.current = window.scrollY;
 
-    const handleScroll = () => {
-      setShowMain(window.scrollY <= 50);
+    const onScroll = () => {
+      if (ticking.current) return;
+      ticking.current = true;
+
+      requestAnimationFrame(() => {
+        const y = window.scrollY;
+        const delta = y - lastY.current;
+
+        // Ignore tiny scroll movements (prevents flicker)
+        const THRESHOLD = 8;
+
+        if (Math.abs(delta) > THRESHOLD) {
+          // hide when scrolling down, show when scrolling up
+          setHidden(delta > 0 && y > 60); // don't hide at very top
+          lastY.current = y;
+        }
+
+        ticking.current = false;
+      });
     };
 
-    handleScroll(); // initialize state
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [pathname]); // re-run if route changes
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
+    // bg-[#1b1d1b]/85 backdrop-blur-sm shadow-[0px_4px_2px_rgba(0,0,0,0.6)]
+
     <>
       <header
-        className={`
-        hidden sm:flex sticky top-10 z-30 justify-between items-center w-full max-w-4xl mx-auto py-3 px-8 bg-[#2b322c]/70 backdrop-blur-xl shadow-lg rounded-full
-        transition-opacity duration-300 ease-in-out
-        ${
-          pathname === "/"
-            ? showMain
-              ? "opacity-0 pointer-events-none"
-              : "opacity-100 pointer-events-auto"
-            : "opacity-100 pointer-events-auto"
-        }
-      `}
+        className={[
+          "fixed top-0 z-30 w-full h-22 hidden sm:flex",
+          "justify-center items-center",
+          "transform-gpu transition-transform duration-300 ease-out",
+          "bg-[url('/comps/header.png')] bg-size-[100%_100%] bg-no-repeat bg-center",
+          hidden ? "-translate-y-full" : "translate-y-0",
+        ].join(" ")}
       >
-        {/* Logo */}
-        <div className="flex items-center gap-3">
+        <div className="flex flex-row items-center justify-center w-full max-w-7xl px-4">
           <Link href="/">
             <Image
-              src="/logo.png"
+              src="/logos/pixelnew.png"
               alt="Logo"
-              width={65}
-              height={65}
-              className="transition-transform duration-300 hover:-translate-y-1 hover:brightness-120"
+              width={60}
+              height={60}
+              className="transition-transform duration-300 hover:scale-105 hover:brightness-120 saturate-50 mr-8"
             />
           </Link>
-        </div>
 
-        {/* Nav Links */}
-        <nav
-          className={`${montserrat.className} flex gap-6 text-[#8EA783] font-bold`}
-        >
-          <Link href="/about" className="nav-link">
-            about
-          </Link>
-          <Link href="/projects" className="nav-link">
-            projects
-          </Link>
-          <Link href="/posts" className="nav-link">
-            posts
-          </Link>
-          <Link
-            href="https://drive.google.com/file/d/12k13lA9vVpsJVKTUUe4M1nzCn-Keg7Kl/view?usp=drive_link"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="nav-link"
-          >
-            resume
-          </Link>
-        </nav>
+          <nav>
+            <ul className="font-minecraft flex gap-8 font-bold">
+              <li>
+                <Link href="/about" className="nav-link">
+                  about
+                </Link>
+              </li>
+              <li>
+                <Link href="/portfolio" className="nav-link">
+                  portfolio
+                </Link>
+              </li>
+              {/* <li>
+                <Link href="/posts" className="nav-link">
+                  posts
+                </Link>
+              </li> */}
+              <li>
+                <Link
+                  href="https://drive.google.com/file/d/1xgr0Tnh312nnLodXmELN-nXhDgSsDJXZ/view?usp=sharing"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="nav-link"
+                >
+                  resume
+                </Link>
+              </li>
+            </ul>
+          </nav>
+        </div>
       </header>
 
       <div className="sm:hidden">

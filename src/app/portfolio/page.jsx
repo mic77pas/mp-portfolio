@@ -6,11 +6,19 @@ import ScrollReveal from "../../components/ScrollReveal";
 import { motion } from "motion/react";
 import { useState } from "react";
 import projects from "../../../data/projects";
+import Skills from "../../../_components/Skills";
+import Dock from "../../components/Dock";
+
+import { VscVscode } from "react-icons/vsc";
+import { IoLogoFigma } from "react-icons/io5";
+import { SiFramer } from "react-icons/si";
+import { FaPencil } from "react-icons/fa6";
 
 export default function Page() {
   const [selected, setSelected] = useState(null);
   const [loadingGif, setLoadingGif] = useState(true);
   const [search, setSearch] = useState("");
+  const [mode, setMode] = useState("code"); // "code" | "figma" | "framer" | "other"
 
   // Filter projects based on search query
   const filteredProjects = projects.filter(
@@ -18,24 +26,51 @@ export default function Page() {
     // || project.description.toLowerCase().includes(search.toLowerCase())
   );
 
+  const items = [
+    {
+      icon: <VscVscode size={20} />,
+      label: "Code",
+      onClick: () => setMode("code"),
+      active: mode === "code",
+    },
+    {
+      icon: <IoLogoFigma size={20} />,
+      label: "Figma",
+      onClick: () => setMode("figma"),
+      active: mode === "figma",
+    },
+    {
+      icon: <SiFramer size={20} />,
+      label: "Framer",
+      onClick: () => setMode("framer"),
+      active: mode === "framer",
+    },
+    {
+      icon: <FaPencil size={20} />,
+      label: "Other",
+      onClick: () => setMode("other"),
+      active: mode === "other",
+    },
+  ];
+
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.97 }}
+      initial={{ opacity: 0, scale: 1 }}
       animate={{ opacity: 1, scale: 1 }}
-      transition={{
-        duration: 0.6,
-        ease: "easeOut",
-      }}
-      className="min-h-screen text-foreground px-8 pt-25 max-w-6xl mx-auto"
+      transition={{ duration: 1, ease: "easeOut" }}
+      className="min-h-screen text-foreground px-8 w-full mx-auto"
     >
-      <h1 className="text-[50px] font-bold mb-6 text-center text-[#90AD8F]">
-        My Projects
-      </h1>
+      <Dock items={items} panelHeight={70} />
 
-      {/* <hr className="h-1 w-auto bg-gradient-to-r from-[#98B493] via-[#7da376] to-[#98B493] border-0 rounded mb-10" /> */}
-
-      {/* Search bar */}
-      <div className="flex justify-center mb-10">
+      {mode === "code" && (
+        <>
+          <Skills />
+          <h1 className="font-minecraft text-4xl text-center font-bold text-[#90AD8F] text-shadow-[0px_3px_1px_rgba(0,0,0,0.5)] mb-6">
+            My Projects
+          </h1>
+          {/* <hr className="h-1 w-auto bg-gradient-to-r from-[#98B493] via-[#7da376] to-[#98B493] border-0 rounded mb-10" /> */}
+          {/* Search bar */}
+          {/* <div className="flex justify-center mb-10">
         <input
           type="text"
           placeholder="Search projects..."
@@ -43,44 +78,64 @@ export default function Page() {
           onChange={(e) => setSearch(e.target.value)}
           className="w-full max-w-4xl px-5 py-3 mb-3 rounded-full bg-[#3d453b] text-white placeholder-[#99b198] shadow-md focus:outline-none focus:ring-2 focus:ring-[#60775c] transition-all duration-300 sm:w-3/4 md:w-2/3 lg:w-1/2"
         />
-      </div>
-
-      {/* Grid of project cards */}
-      <div
-        // baseOpacity={0}
-        // enableBlur={true}
-        // baseRotation={2}
-        // blurStrength={8}
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto mb-10"
-      >
-        {filteredProjects.map((project) => (
+      </div> */}
+          {/* Grid of project cards */}
           <div
-            key={project.id}
-            className="relative rounded-xl overflow-hidden shadow-lg cursor-pointer"
-            onClick={() => {
-              setSelected(project);
-              setLoadingGif(true);
-            }}
+            // baseOpacity={0}
+            // enableBlur={true}
+            // baseRotation={2}
+            // blurStrength={8}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 gap-y-16 w-full mb-14"
           >
-            {/* Inner content scales on hover */}
-            <div className="">
-              <Image
-                src={project.image}
-                alt={project.title}
-                width={500}
-                height={300}
-                className="transform transition-transform duration-300 hover:scale-105 object-cover w-full h-64"
-              />
-              <div className="absolute bottom-0 h-24 w-full bg-black/50 backdrop-blur-md text-white p-3">
-                <h2 className="text-lg font-semibold">{project.title}</h2>
-                <p className="text-sm text-gray-200 line-clamp-2">
-                  {project.description}
-                </p>
+            {filteredProjects.map((project) => (
+              <div
+                key={project.id}
+                className="group relative rounded-xl overflow-visible shadow-lg cursor-pointer"
+                onClick={() => {
+                  setSelected(project);
+                  setLoadingGif(true);
+                }}
+                // hover:border-4 hover:border-[#aabeaa]
+              >
+                {/* Inner content scales on hover */}
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  width={500}
+                  height={300}
+                  className="
+    w-full h-64 object-cover rounded-xl
+    ring-0 ring-transparent
+    transition-all duration-300 ease-out
+    group-hover:ring-4
+    group-hover:ring-[#aabeaa]
+    group-hover:scale-[1.02]
+  "
+                />
+                <div
+                  className="
+    absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-6
+    w-4/5 h-16 rounded-xl
+    flex items-center justify-center
+    bg-[#586d58]/90 backdrop-blur-sm
+    text-[#262b26]
+    border-3 border-transparent
+    transition-all duration-300 ease-out
+    group-hover:bg-[#2c332c]/70
+    group-hover:text-white
+    group-hover:border-[#aabeaa]
+    shadow-[0px_3px_4px_rgba(0,0,0,0.5)]
+  "
+                >
+                  <h2 className="font-minecraft text-center font-black text-[22px] mb-1">
+                    {project.title}
+                  </h2>
+                </div>
               </div>
-            </div>
+            ))}
           </div>
-        ))}
-      </div>
+        </>
+      )}
 
       {/* Modal */}
       {selected && (

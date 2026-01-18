@@ -85,10 +85,7 @@ export default function PostsPage() {
     <motion.div
       initial={{ opacity: 0, scale: 1 }}
       animate={{ opacity: 1, scale: 1 }}
-      transition={{
-        duration: 0.6,
-        ease: "easeOut",
-      }}
+      transition={{ duration: 1, ease: "easeOut" }}
       className="relative w-full h-[calc(100vh-157px)] overflow-hidden text-[#b2bfa8]"
     >
       {/* Top "You've made it" text */}
