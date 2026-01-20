@@ -20,6 +20,7 @@ function DockItem({
   children,
   className = "",
   onClick,
+  active,
   mouseX,
   spring,
   distance,
@@ -47,19 +48,22 @@ function DockItem({
   return (
     <motion.div
       ref={ref}
-      style={{
-        width: size,
-        height: size,
-      }}
+      style={{ width: size, height: size }}
       onHoverStart={() => isHovered.set(1)}
       onHoverEnd={() => isHovered.set(0)}
       onFocus={() => isHovered.set(1)}
       onBlur={() => isHovered.set(0)}
       onClick={onClick}
-      className={`relative inline-flex items-center justify-center rounded-full bg-[#060010] border-[#818f7d] border-2 shadow-md ${className}`}
+      className={`
+    relative inline-flex items-center justify-center rounded-full border-2 shadow-md
+    transition-colors duration-200
+    ${
+      active ? "bg-[#98B493] border-[#98B493]" : "bg-[#060010] border-[#92ad89]"
+    }
+    ${className}
+  `}
       tabIndex={0}
       role="button"
-      aria-haspopup="true"
     >
       {Children.map(children, (child) => cloneElement(child, { isHovered }))}
     </motion.div>
@@ -96,9 +100,15 @@ function DockLabel({ children, className = "", ...rest }) {
   );
 }
 
-function DockIcon({ children, className = "" }) {
+function DockIcon({ children, className = "", active }) {
   return (
-    <div className={`group flex items-center justify-center ${className}`}>
+    <div
+      className={`
+        flex items-center justify-center transition-all duration-200
+        ${active ? "text-[#181b18] scale-125" : "text-[#98B493]"}
+        ${className}
+      `}
+    >
       {children}
     </div>
   );
@@ -139,9 +149,48 @@ export default function Dock({
   const heightRow = useTransform(isHovered, [0, 1], [panelHeight, maxHeight]);
   const height = useSpring(heightRow, spring);
 
+  const [hidden, setHidden] = useState(false);
+  const lastY = useRef(0);
+  const accum = useRef(0);
+
+  useEffect(() => {
+    lastY.current = window.scrollY;
+
+    const onScroll = () => {
+      const y = window.scrollY;
+      const dy = y - lastY.current;
+      lastY.current = y;
+
+      // Ignore tiny jitter
+      if (Math.abs(dy) < 4) return;
+
+      // Accumulate scroll in one direction
+      accum.current += dy;
+
+      const HIDE_AFTER = 80; // px scroll down to hide
+      const SHOW_AFTER = -40; // px scroll up to show
+
+      if (accum.current > HIDE_AFTER) {
+        setHidden(true);
+        accum.current = 0;
+      } else if (accum.current < SHOW_AFTER) {
+        setHidden(false);
+        accum.current = 0;
+      }
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <motion.div
-      style={{ height }} // you can keep this for hover animation
+      style={{ height }}
+      animate={{
+        opacity: hidden ? 0 : 1,
+        y: hidden ? 24 : 0,
+      }}
+      transition={{ duration: 0.2 }}
       className="fixed left-1/2 -translate-x-1/2 bottom-4 z-50 flex items-end pointer-events-none"
     >
       <motion.div
@@ -153,7 +202,9 @@ export default function Dock({
           isHovered.set(0);
           mouseX.set(Infinity);
         }}
-        className={`${className} pointer-events-auto flex items-end w-fit gap-4 rounded-2xl border-[#818f7d] border-2 pb-2 px-4 bg-[#0f0f0f]/80 backdrop-blur-md shadow-lg`}
+        className={`${className} pointer-events-auto ${
+          hidden ? "pointer-events-none" : ""
+        } flex items-end w-fit gap-4 rounded-2xl border-[#92ad89] border-2 pb-2 px-4 bg-[#0f0f0f]/80 backdrop-blur-md shadow-lg`}
         style={{ height: panelHeight }}
         role="toolbar"
         aria-label="Application dock"
@@ -162,6 +213,7 @@ export default function Dock({
           <DockItem
             key={index}
             onClick={item.onClick}
+            active={item.active}
             className={`${item.className} ${
               item.active ? "" : ""
             } cursor-pointer`}
@@ -171,7 +223,10 @@ export default function Dock({
             magnification={magnification}
             baseItemSize={baseItemSize}
           >
-            <DockIcon className="text-[#98B493] scale-120 group-hover:scale-160 transition-transform duration-200">
+            <DockIcon
+              className="scale-120 group-hover:scale-160 transition-transform duration-200"
+              active={item.active}
+            >
               {item.icon}
             </DockIcon>
             <DockLabel>{item.label}</DockLabel>

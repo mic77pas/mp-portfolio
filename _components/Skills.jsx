@@ -3,6 +3,15 @@ import { skills, CATEGORY_COLORS } from "../data/skills";
 import { useMemo, useState, useCallback } from "react";
 import { motion } from "motion/react";
 
+const hexToRgba = (hex, alpha = 0.3) => {
+  if (!hex) return "transparent";
+  const h = hex.replace("#", "");
+  const r = parseInt(h.substring(0, 2), 16);
+  const g = parseInt(h.substring(2, 4), 16);
+  const b = parseInt(h.substring(4, 6), 16);
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+};
+
 export default function Skills() {
   const [counter, setCounter] = useState(0);
 
@@ -56,7 +65,7 @@ export default function Skills() {
       //   whileInView={{ opacity: 1, y: 0 }} // fades & slides up
       //   transition={{ duration: 0.7, ease: "easeOut" }} // smooth timing
       //   viewport={{ once: true, amount: 0.2 }} // triggers only once when 20% is visible
-      className="flex flex-col pt-5 pb-5 justify-center items-center"
+      className="flex flex-col pb-5 justify-center items-center"
     >
       <h2 className="font-minecraft text-4xl font-bold text-[#90AD8F] text-shadow-[0px_3px_1px_rgba(0,0,0,0.5)] mb-6">
         Tech Stack
@@ -87,10 +96,26 @@ export default function Skills() {
               key={skill.name}
               href={skill.link}
               target="_blank"
-              className={`
-                skill-blob
-                ${CATEGORY_COLORS[skill.category] || "bg-gray-500"}
-                `}
+              className="skill-blob border transition-colors"
+              style={{
+                borderColor: CATEGORY_COLORS[skill.category] ?? "#dfdfdf",
+                backgroundColor: hexToRgba(
+                  CATEGORY_COLORS[skill.category],
+                  0.15
+                ),
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = hexToRgba(
+                  CATEGORY_COLORS[skill.category],
+                  1
+                ); // stronger on hover
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = hexToRgba(
+                  CATEGORY_COLORS[skill.category],
+                  0.15
+                );
+              }}
             >
               {skill.name}
             </a>

@@ -2,12 +2,12 @@
 const OLIVE_GREEN = "90AD8F";
 
 export const CATEGORY_COLORS = {
-  Language: "bg-[#cf9182]", // Example Color 1 (Choose your own)
-  Frontend: "bg-[#abcddb]", // Olive Green (Matching your palette)
-  Backend: "bg-[#abcf82]",
-  Database: "bg-[#cfbe82]",
-  "DevOps/Tool": "bg-[#b888ba]",
-  // Design: "bg-[#b888ba]",
+  Language: "#cf9182", // Example Color 1 (Choose your own)
+  Frontend: "#abcddb", // Olive Green (Matching your palette)
+  Backend: "#abcf82",
+  Database: "#cfbe82",
+  "DevOps/Tool": "#b888ba",
+  // Design: "#b888ba",
 };
 
 export const skills = [
@@ -132,6 +132,12 @@ export const skills = [
     category: "DevOps/Tool",
     icon: `https://cdn.simpleicons.org/vercel/${OLIVE_GREEN}`,
     link: "https://vercel.com/",
+  },
+  {
+    name: "Docker",
+    category: "DevOps/Tool",
+    icon: `https://cdn.simpleicons.org/docker/${OLIVE_GREEN}`,
+    link: "https://www.docker.com/",
   },
   {
     name: "Netlify",

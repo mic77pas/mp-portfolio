@@ -13,6 +13,7 @@ import { VscVscode } from "react-icons/vsc";
 import { IoLogoFigma } from "react-icons/io5";
 import { SiFramer } from "react-icons/si";
 import { FaPencil } from "react-icons/fa6";
+import ModelView from "../../components/ModelView";
 
 export default function Page() {
   const [selected, setSelected] = useState(null);
@@ -58,7 +59,7 @@ export default function Page() {
       initial={{ opacity: 0, scale: 1 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 1, ease: "easeOut" }}
-      className="min-h-screen text-foreground px-8 w-full mx-auto"
+      className="min-h-screen text-foreground px-8 w-full mx-auto mt-10 flex flex-col justify-start"
     >
       <Dock items={items} panelHeight={70} />
 
@@ -68,17 +69,6 @@ export default function Page() {
           <h1 className="font-minecraft text-4xl text-center font-bold text-[#90AD8F] text-shadow-[0px_3px_1px_rgba(0,0,0,0.5)] mb-6">
             My Projects
           </h1>
-          {/* <hr className="h-1 w-auto bg-gradient-to-r from-[#98B493] via-[#7da376] to-[#98B493] border-0 rounded mb-10" /> */}
-          {/* Search bar */}
-          {/* <div className="flex justify-center mb-10">
-        <input
-          type="text"
-          placeholder="Search projects..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="w-full max-w-4xl px-5 py-3 mb-3 rounded-full bg-[#3d453b] text-white placeholder-[#99b198] shadow-md focus:outline-none focus:ring-2 focus:ring-[#60775c] transition-all duration-300 sm:w-3/4 md:w-2/3 lg:w-1/2"
-        />
-      </div> */}
           {/* Grid of project cards */}
           <div
             // baseOpacity={0}
@@ -117,7 +107,7 @@ export default function Page() {
     absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-6
     w-4/5 h-16 rounded-xl
     flex items-center justify-center
-    bg-[#586d58]/90 backdrop-blur-sm
+    bg-[#738d73]/90 backdrop-blur-sm
     text-[#262b26]
     border-3 border-transparent
     transition-all duration-300 ease-out
@@ -135,6 +125,15 @@ export default function Page() {
             ))}
           </div>
         </>
+      )}
+
+      {mode === "other" && (
+        <div className="flex flex-col text-center">
+          <h2 className="font-minecraft text-3xl mb-4 text-[#90AD8F]">
+            Solidworks
+          </h2>
+          <ModelView />
+        </div>
       )}
 
       {/* Modal */}
