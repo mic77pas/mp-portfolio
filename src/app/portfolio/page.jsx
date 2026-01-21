@@ -129,9 +129,9 @@ export default function Page() {
 
       {mode === "other" && (
         <div className="flex flex-col text-center">
-          <h2 className="font-minecraft text-3xl mb-4 text-[#90AD8F]">
+          <h1 className="font-minecraft text-4xl text-center font-bold text-[#90AD8F] text-shadow-[0px_3px_1px_rgba(0,0,0,0.5)] mb-6">
             Solidworks
-          </h2>
+          </h1>
           <ModelView />
         </div>
       )}

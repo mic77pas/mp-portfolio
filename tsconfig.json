@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     "src/app/layout.jsx",
     "src/app/page.jsx"
-, "src/components/ModelView.jsx"  ],
+, "src/components/ModelView.tsx"  ],
   "exclude": ["node_modules"]
 }
