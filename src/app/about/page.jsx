@@ -2,7 +2,7 @@
 import ProfileCard from "../../components/ProfileCard";
 import { useEffect, useState } from "react";
 import CircularGallery from "../../components/CircularGallery";
-import galleryImages from "../../../data/galleryImages";
+import images from "../../../data/galleryImages";
 import Link from "next/link";
 import UWLogo from "../../../_components/UWLogo";
 import { FaInstagram } from "react-icons/fa";
@@ -11,8 +11,9 @@ import careers from "../../../data/career";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import ExperienceSection from "../../../_components/Experience";
+import PixelTransition from "../../components/PixelTransition";
 
-const items = galleryImages.map((item) => ({
+const items = images.map((item) => ({
   image: item.src, // Mapped to image
   text: item.caption, // Mapped to text (for the OGL text renderer)
 }));
@@ -24,13 +25,61 @@ export default function About() {
 
   return (
     <motion.div
-      className="flex flex-col items-start px-8 w-full mx-auto"
+      className="flex flex-col items-start px-8 w-full mx-auto gap-8"
       initial={{ opacity: 0, scale: 1 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 1, ease: "easeOut" }}
     >
       <div className="rounded-2xl flex flex-col sm:flex-row items-start justify-center mt-4 max-w-5xl">
         <div className="w-full sm:w-auto flex justify-center items-start">
+          <Image
+            src="/profile2.png"
+            alt="Profile"
+            width={280}
+            height={300}
+            className="filter brightness-95 hover:brightness-105 transition-all duration-300 hover:-rotate-1 hover:scale-105"
+          />
+          {/* <PixelTransition
+            firstContent={
+              <img
+                src="/selfie2.jpg"
+                alt="default pixel transition content"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  scale: "1.7",
+                  translateY: "40px",
+                }}
+              />
+            }
+            secondContent={
+              <div
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  display: "grid",
+                  placeItems: "center",
+                  backgroundColor: "#111",
+                }}
+              >
+                <p
+                  style={{
+                    fontWeight: 900,
+                    fontSize: "3rem",
+                    color: "#000000",
+                  }}
+                >
+                  Meow!
+                </p>
+              </div>
+            }
+            gridSize={32}
+            once={false}
+            animationStepDuration={0.6}
+            className=""
+            pixelColor="#70916a"
+          /> */}
           {/* <div className="hidden sm:flex">
             <ProfileCard
               name="Michael Pasyechnyk"
@@ -46,57 +95,6 @@ export default function About() {
             />
           </div> */}
         </div>
-
-        {/* <div className="flex sm:hidden justify-center">
-          <Image
-            src="/regularhs.JPG"
-            alt="It's me!"
-            width={300}
-            height={300}
-            className="w-full mb-8 border-[#39493a] border-8 rounded-xl shadow-lg shadow-[#0c0c0c]"
-          />
-        </div> */}
-
-        {/* <div className="w-[82%] sm:ml-10 sm:w-full text-[#ADB9A9] text-md sm:text-xl leading-8">
-          <p className="mb-5">
-            Hey! I’m a{" "}
-            <Link
-              href="https://uwaterloo.ca/systems-design-engineering/"
-              className="hover:text-[#d5e3d0] duration-200"
-              target="_blank"
-            >
-              <b>Systems Design Engineering</b>
-            </Link>{" "}
-            student at the{" "}
-            <Link
-              href="https://uwaterloo.ca/"
-              className="hover:text-[#d5e3d0] duration-200"
-              target="_blank"
-            >
-              <b>University of Waterloo</b>
-            </Link>
-            , with a non-traditional path into tech. I’m passionate about
-            exploring and building with new and innovative tools, particularly
-            in{" "}
-            <span className="font-bold">
-              full-stack development, product design, artificial intelligence,
-              and ui/ux!
-            </span>
-          </p>
-          <p className="mb-6 sm:mb-8">
-            As a curious developer, I’m always seeking{" "}
-            <span className="font-bold">
-              new opportunities to grow and apply my skills.
-            </span>{" "}
-            And whenever I’m not on the grind, you can usually find me{" "}
-            <span className="font-bold">
-              rock climbing, playing games, volunteering, and cooking!
-            </span>
-          </p>
-          <a href="/posts" className="button-view block w-full text-center">
-            View some of my highlights
-          </a>
-        </div> */}
       </div>
 
       {/* <hr className="h-1 w-full bg-gradient-to-r from-[#98B493] via-[#7da376] to-[#98B493] border-0 rounded mt-10" /> */}
