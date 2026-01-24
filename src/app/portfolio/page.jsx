@@ -136,6 +136,48 @@ export default function Page() {
         </div>
       )}
 
+      {mode === "figma" && (
+        <div className="flex flex-col text-center">
+          <h1 className="font-minecraft text-4xl text-center font-bold text-[#90AD8F] text-shadow-[0px_3px_1px_rgba(0,0,0,0.5)] mb-6">
+            Figma Designs
+          </h1>
+
+          <div className="mt-20 gap-4 flex flex-col justify-center items-center">
+            <Image
+              src="/wip.png"
+              width={300}
+              height={100}
+              alt="Coming soon"
+              className="mx-auto saturate-120 brightness-130"
+            />
+            <h2 className="font-minecraft text-2xl text-center font-bold text-[#90AD8F] text-shadow-[0px_3px_1px_rgba(0,0,0,0.5)]">
+              Coming soon!
+            </h2>
+          </div>
+        </div>
+      )}
+
+      {mode === "framer" && (
+        <div className="flex flex-col text-center">
+          <h1 className="font-minecraft text-4xl text-center font-bold text-[#90AD8F] text-shadow-[0px_3px_1px_rgba(0,0,0,0.5)] mb-6">
+            Framer Sites
+          </h1>
+
+          <div className="mt-20 gap-4 flex flex-col justify-center items-center">
+            <Image
+              src="/wip.png"
+              width={300}
+              height={100}
+              alt="Coming soon"
+              className="mx-auto saturate-120 brightness-130"
+            />
+            <h2 className="font-minecraft text-2xl text-center font-bold text-[#90AD8F] text-shadow-[0px_3px_1px_rgba(0,0,0,0.5)]">
+              Coming soon!
+            </h2>
+          </div>
+        </div>
+      )}
+
       {/* Modal */}
       {selected && (
         <div

@@ -51,7 +51,7 @@ function ModelTile({ src, title }: { src: string; title?: string }) {
 
 export default function ModelGrid() {
   const models = [
-    { src: "/models/CarFinal.glb", title: "Car" },
+    { src: "/models/CarFinal.glb", title: "Cyber Truck" },
     { src: "/models/Beaver.glb", title: "Nutcracker" },
   ];
 
