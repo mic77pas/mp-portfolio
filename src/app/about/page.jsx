@@ -25,85 +25,45 @@ export default function About() {
 
   return (
     <motion.div
-      className="flex flex-col items-start px-8 w-full mx-auto gap-8"
+      className="flex flex-col items-start px-8 w-full mx-auto gap-8 mt-10"
       initial={{ opacity: 0, scale: 1 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 1, ease: "easeOut" }}
     >
-      <div className="rounded-2xl flex flex-col sm:flex-row items-start justify-center mt-4 max-w-5xl">
+      <div className="rounded-2xl flex flex-col sm:flex-row items-start justify-center max-w-5xl">
         <div className="w-full sm:w-auto flex justify-center items-start">
-          <Image
-            src="/profile2.png"
-            alt="Profile"
-            width={280}
-            height={300}
-            className="filter brightness-95 hover:brightness-105 transition-all duration-300 hover:-rotate-1 hover:scale-105"
-          />
-          {/* <PixelTransition
-            firstContent={
-              <img
-                src="/selfie2.jpg"
-                alt="default pixel transition content"
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  scale: "1.7",
-                  translateY: "40px",
-                }}
-              />
-            }
-            secondContent={
-              <div
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  display: "grid",
-                  placeItems: "center",
-                  backgroundColor: "#111",
-                }}
-              >
-                <p
-                  style={{
-                    fontWeight: 900,
-                    fontSize: "3rem",
-                    color: "#000000",
-                  }}
-                >
-                  Meow!
-                </p>
-              </div>
-            }
-            gridSize={32}
-            once={false}
-            animationStepDuration={0.6}
-            className=""
-            pixelColor="#70916a"
-          /> */}
-          {/* <div className="hidden sm:flex">
-            <ProfileCard
-              name="Michael Pasyechnyk"
-              handle="mic77_pas"
-              status="Online"
-              contactText={<FaInstagram />}
-              avatarUrl="headshot.png"
-              miniAvatarUrl="selfie2.jpg"
-              showUserInfo={true}
-              enableTilt={true}
-              enableMobileTilt={false}
-              // showBehindGradient={gradientsReady}
+          <div
+            className="relative w-[280px] h-[358px] group
+                transition-all duration-300
+                hover:-rotate-1 hover:scale-105 cursor-pointer"
+          >
+            {/* Base image */}
+            <Image
+              src="/profile3.png"
+              alt="Profile"
+              fill
+              className="object-cover transition-all duration-300
+               filter brightness-95
+               group-hover:opacity-0"
             />
-          </div> */}
+
+            {/* Hover image */}
+            <Image
+              src="/stats.png"
+              alt="Profile Hover"
+              fill
+              className="object-cover transition-all duration-300
+               opacity-0
+               group-hover:opacity-100
+               brightness-105"
+            />
+          </div>
         </div>
       </div>
 
-      {/* <hr className="h-1 w-full bg-gradient-to-r from-[#98B493] via-[#7da376] to-[#98B493] border-0 rounded mt-10" /> */}
-
-      <ExperienceSection />
-
       {/* <div
-        style={{ height: "600px", position: "relative" }}
-        className="w-full max-w-5xl mx-auto inset-shadow-lg max-h-90 mt-7 -mb-15"
+        style={{ height: "300px", position: "relative" }}
+        className="w-full max-w-5xl bg-[#0F1511] mx-auto inset-shadow-lg max-h-90 mt-7 -mb-17"
       >
         <CircularGallery
           items={items}
@@ -114,6 +74,10 @@ export default function About() {
           font="20px Montserrat text-[5px]"
         />
       </div> */}
+
+      {/* <hr className="h-1 w-full bg-gradient-to-r from-[#98B493] via-[#7da376] to-[#98B493] border-0 rounded mt-10" /> */}
+
+      <ExperienceSection />
 
       {/* <hr className="h-1 w-full bg-gradient-to-r from-[#98B493] via-[#7da376] to-[#98B493] border-0 rounded mb-6" /> */}
       {/* <div className="flex flex-col items-center w-full rounded-2xl h-120">

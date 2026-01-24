@@ -49,14 +49,14 @@ const educationData: ExperienceItem[] = [
     iconSrc: "/logos/uwaterloo.png",
   },
   {
-    role: "Software Coursework",
-    org: "Harvard CS50",
+    role: "CS50 Courses",
+    org: "Harvard University",
     date: "",
     bullets: [
       "Web Programming w/ Python and Javascript",
       "Programming with Python",
     ],
-    iconSrc: "/logos/cs50.png",
+    iconSrc: "/logos/harvardlogo.png",
   },
   {
     role: "Technical Learning",
@@ -120,47 +120,47 @@ function TimelineItem({ item }: { item: ExperienceItem }) {
           ))}
         </ul>
         {item.org === "University of Waterloo" && (
-          <div className="lg:flex flex-row justify-start mt-4 w-fit rounded-full shadow-[0px_4px_6px_rgba(0,0,0,0.5)] hidden">
-            <div className="bg-[#b176a2] w-14 h-7 flex text-center justify-center items-center rounded-l-full">
+          <div className="lg:flex flex-row justify-start mt-4 w-fit cursor-pointer rounded-full shadow-[0px_4px_6px_rgba(0,0,0,0.5)] hidden">
+            <div className="bg-[#b176a2] hover:bg-[#c4a1bb] w-14 h-7 flex text-center justify-center items-center rounded-l-full">
               <p className="text-[#ffffff] text-xs font-semibold">1A</p>
             </div>
-            <div className="bg-[#b176a2] w-14 h-7 flex text-center justify-center items-center">
+            <div className="bg-[#b176a2] hover:bg-[#c4a1bb] w-14 h-7 flex text-center justify-center items-center">
               <p className="text-[#ffffff] text-xs font-semibold">Co-op</p>
             </div>
-            <div className="bg-[#44283d]/50 border-[#b687aa] border w-14 h-7 flex text-center justify-center items-center">
+            <div className="bg-[#44283d]/50 hover:bg-[#1f1418] border-[#b687aa] border w-14 h-7 flex text-center justify-center items-center">
               <p className="text-[#94758d] text-xs font-semibold">1B</p>
             </div>
-            <div className="bg-[#44283d]/50 border-[#b687aa] border w-14 h-7 flex text-center justify-center items-center">
+            <div className="bg-[#44283d]/50 hover:bg-[#1f1418] border-[#b687aa] border w-14 h-7 flex text-center justify-center items-center">
               <p className="text-[#94758d] text-xs font-semibold">Co-op</p>
             </div>
-            <div className="bg-[#44283d]/50 border-[#b687aa] border w-14 h-7 flex text-center justify-center items-center">
+            <div className="bg-[#44283d]/50 hover:bg-[#1f1418] border-[#b687aa] border w-14 h-7 flex text-center justify-center items-center">
               <p className="text-[#94758d] text-xs font-semibold">2A</p>
             </div>
-            <div className="bg-[#44283d]/50 border-[#b687aa] border w-14 h-7 flex text-center justify-center items-center">
+            <div className="bg-[#44283d]/50 hover:bg-[#1f1418] border-[#b687aa] border w-14 h-7 flex text-center justify-center items-center">
               <p className="text-[#94758d] text-xs font-semibold">Co-op</p>
             </div>
-            <div className="bg-[#44283d]/50 border-[#b687aa] border w-14 h-7 flex text-center justify-center items-center">
+            <div className="bg-[#44283d]/50 hover:bg-[#1f1418] border-[#b687aa] border w-14 h-7 flex text-center justify-center items-center">
               <p className="text-[#94758d] text-xs font-semibold">2B</p>
             </div>
-            <div className="bg-[#44283d]/50 border-[#b687aa] border w-14 h-7 flex text-center justify-center items-center">
+            <div className="bg-[#44283d]/50 hover:bg-[#1f1418] border-[#b687aa] border w-14 h-7 flex text-center justify-center items-center">
               <p className="text-[#94758d] text-xs font-semibold">Co-op</p>
             </div>
-            <div className="bg-[#44283d]/50 border-[#b687aa] border w-14 h-7 flex text-center justify-center items-center">
+            <div className="bg-[#44283d]/50 hover:bg-[#1f1418] border-[#b687aa] border w-14 h-7 flex text-center justify-center items-center">
               <p className="text-[#94758d] text-xs font-semibold">3A</p>
             </div>
-            <div className="bg-[#44283d]/50 border-[#b687aa] border w-14 h-7 flex text-center justify-center items-center">
+            <div className="bg-[#44283d]/50 hover:bg-[#1f1418] border-[#b687aa] border w-14 h-7 flex text-center justify-center items-center">
               <p className="text-[#94758d] text-xs font-semibold">Co-op</p>
             </div>
-            <div className="bg-[#44283d]/50 border-[#b687aa] border w-14 h-7 flex text-center justify-center items-center">
+            <div className="bg-[#44283d]/50 hover:bg-[#1f1418] border-[#b687aa] border w-14 h-7 flex text-center justify-center items-center">
               <p className="text-[#94758d] text-xs font-semibold">3B</p>
             </div>
-            <div className="bg-[#44283d]/50 border-[#b687aa] border w-14 h-7 flex text-center justify-center items-center">
+            <div className="bg-[#44283d]/50 hover:bg-[#1f1418] border-[#b687aa] border w-14 h-7 flex text-center justify-center items-center">
               <p className="text-[#94758d] text-xs font-semibold">Co-op</p>
             </div>
-            <div className="bg-[#44283d]/50 border-[#b687aa] border w-14 h-7 flex text-center justify-center items-center">
+            <div className="bg-[#44283d]/50 hover:bg-[#1f1418] border-[#b687aa] border w-14 h-7 flex text-center justify-center items-center">
               <p className="text-[#94758d] text-xs font-semibold">4A</p>
             </div>
-            <div className="bg-[#44283d]/50 border-[#b687aa] border w-14 h-7 flex text-center justify-center items-center rounded-r-full">
+            <div className="bg-[#44283d]/50 hover:bg-[#1f1418] border-[#b687aa] border w-14 h-7 flex text-center justify-center items-center rounded-r-full">
               <p className="text-[#94758d] text-xs font-semibold">4B</p>
             </div>
           </div>

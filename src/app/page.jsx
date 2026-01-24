@@ -24,7 +24,7 @@ export default function Home() {
         className="flex items-center"
       >
         <div className="flex flex-col justify-center items-center text-center mt-16">
-          <h3 className="font-minecraft font-bold text-[60px] md:text-[90px] leading-[1.1] pb-4 text-[#99b494] hover:text-[#bbd3b6] transition duration-200 drop-shadow-[0px_6px_0px_rgba(0,0,0,0.5)]">
+          <h3 className="font-minecraft font-bold text-[50px] md:text-[90px] leading-[1.1] pb-4 text-[#99b494] hover:text-[#bbd3b6] transition duration-200 drop-shadow-[0px_6px_0px_rgba(0,0,0,0.5)]">
             Michael Pasyechnyk
           </h3>
           {/* <hr className="w-5xl border-4 border-[#3a3f39] drop-shadow-[0px_4px_0px_rgba(0,0,0,0.5)]" /> */}
