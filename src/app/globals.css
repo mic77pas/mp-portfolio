@@ -107,3 +107,12 @@ body {
   right: -10px;
   clip-path: polygon(0 0, 100% 0, 100% 100%, 55% 100%, 55% 40%, 0 40%);
 }
+
+@keyframes shimmer {
+  from {
+    transform: translateX(-120%);
+  }
+  to {
+    transform: translateX(120%);
+  }
+}

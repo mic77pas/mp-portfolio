@@ -175,14 +175,14 @@ export default function ExperienceSection() {
 
   const items = useMemo(
     () => (tab === "work" ? workData : educationData),
-    [tab]
+    [tab],
   );
 
   return (
     <section className="w-full flex flex-col justify-center items-center mb-16">
-      <h2 className="font-minecraft text-4xl font-bold text-[#90AD8F] text-shadow-[0px_3px_1px_rgba(0,0,0,0.5)] mb-6">
+      {/* <h2 className="font-minecraft text-4xl font-bold text-[#90AD8F] text-shadow-[0px_3px_1px_rgba(0,0,0,0.5)] mb-6">
         Experience
-      </h2>
+      </h2> */}
 
       {/* TABS (final version with safe padding + no clipping) */}
       <div className="relative w-full rounded-2xl border border-[#384438] bg-[#0E120E]/70 shadow-[0px_10px_30px_rgba(0,0,0,0.55)]">

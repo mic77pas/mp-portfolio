@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -162,6 +163,46 @@ const Bar = ({
 );
 
 export default function AboutHeader() {
+  const [isOfflineHours, setIsOfflineHours] = useState(false);
+
+  useEffect(() => {
+    const computeStatus = () => {
+      // === CALIFORNIA TIME (ACTIVE) ===
+      const laHour = Number(
+        new Intl.DateTimeFormat("en-US", {
+          hour: "numeric",
+          hour12: false,
+          timeZone: "America/Los_Angeles",
+        }).format(new Date()),
+      );
+
+      setIsOfflineHours(laHour >= 0 && laHour < 6);
+
+      // === TORONTO TIME (COMMENTED — swap if needed) ===
+      /*
+      const torontoHour = Number(
+        new Intl.DateTimeFormat("en-CA", {
+          hour: "numeric",
+          hour12: false,
+          timeZone: "America/Toronto",
+        }).format(new Date())
+      );
+
+      setIsOfflineHours(torontoHour >= 0 && torontoHour < 6);
+      */
+    };
+
+    // 🔧 FORCE MODE FOR TESTING
+    // setIsOfflineHours(true); // FORCE OFFLINE
+    // setIsOfflineHours(false); // FORCE ONLINE
+    // return;
+
+    computeStatus();
+
+    // Update every minute so it flips exactly at 6:00am
+    const interval = window.setInterval(computeStatus, 60_000);
+    return () => window.clearInterval(interval);
+  }, []);
   return (
     <motion.section
       initial={{ opacity: 0, y: 10 }}
@@ -189,10 +230,28 @@ export default function AboutHeader() {
           {/* ONLINE PING */}
           <div className="flex items-center gap-2 shrink-0">
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#98B493]/70 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#98B493]" />
+              <span
+                className={[
+                  "absolute inline-flex h-full w-full rounded-full animate-ping opacity-75",
+                  isOfflineHours ? "bg-red-500/70" : "bg-[#98B493]/70",
+                ].join(" ")}
+              />
+              <span
+                className={[
+                  "relative inline-flex h-2 w-2 rounded-full",
+                  isOfflineHours ? "bg-red-500" : "bg-[#98B493]",
+                ].join(" ")}
+              />
             </span>
-            <p className="text-xs text-[#cfe0c9] tracking-wide">ONLINE</p>
+
+            <p
+              className={[
+                "text-xs tracking-wide font-minecraft",
+                isOfflineHours ? "text-red-300" : "text-[#cfe0c9]",
+              ].join(" ")}
+            >
+              {isOfflineHours ? "OFFLINE" : "ONLINE"}
+            </p>
           </div>
         </div>
 
