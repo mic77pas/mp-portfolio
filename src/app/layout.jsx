@@ -44,9 +44,12 @@ export const minecraft = localFont({
 });
 
 export const metadata = {
-  title: "Michael Pasyechnyk",
-  description: "Portfolio of Michael Pasyechnyk",
+  title: {
+    default: "Michael Pasyechnyk",
+    template: "Michael Pasyechnyk / %s",
+  },
 };
+
 
 export default function RootLayout({ children }) {
   return (

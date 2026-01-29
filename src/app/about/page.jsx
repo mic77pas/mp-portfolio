@@ -12,6 +12,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import ExperienceSection from "../../../_components/Experience";
 import PixelTransition from "../../components/PixelTransition";
+import AboutHeader from "../../../_components/AboutHeader";
 
 const items = images.map((item) => ({
   image: item.src, // Mapped to image
@@ -30,53 +31,7 @@ export default function About() {
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 1, ease: "easeOut" }}
     >
-      <div className="rounded-2xl flex flex-col sm:flex-row items-start justify-center max-w-5xl">
-        <div className="w-full sm:w-auto flex justify-center items-start">
-          <div
-            className="relative w-[280px] h-[358px] group
-                transition-all duration-300
-                hover:-rotate-1 hover:scale-105 cursor-pointer"
-          >
-            {/* Base image */}
-            <Image
-              src="/profile3.png"
-              alt="Profile"
-              fill
-              className="object-cover transition-all duration-300
-               filter brightness-95
-               group-hover:opacity-0"
-            />
-
-            {/* Hover image */}
-            <Image
-              src="/stats.png"
-              alt="Profile Hover"
-              fill
-              className="object-cover transition-all duration-300
-               opacity-0
-               group-hover:opacity-100
-               brightness-105"
-            />
-          </div>
-        </div>
-      </div>
-
-      {/* <div
-        style={{ height: "300px", position: "relative" }}
-        className="w-full max-w-5xl bg-[#0F1511] mx-auto inset-shadow-lg max-h-90 mt-7 -mb-17"
-      >
-        <CircularGallery
-          items={items}
-          bend={0}
-          textColor="#a6b2a3"
-          borderRadius={0.05}
-          scrollEase={0.05}
-          font="20px Montserrat text-[5px]"
-        />
-      </div> */}
-
-      {/* <hr className="h-1 w-full bg-gradient-to-r from-[#98B493] via-[#7da376] to-[#98B493] border-0 rounded mt-10" /> */}
-
+      <AboutHeader />
       <ExperienceSection />
 
       {/* <hr className="h-1 w-full bg-gradient-to-r from-[#98B493] via-[#7da376] to-[#98B493] border-0 rounded mb-6" /> */}

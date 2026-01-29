@@ -7,12 +7,42 @@ import RecentProjects from "../../_components/RecentProjects";
 import Image from "next/image";
 import { motion } from "motion/react";
 import Link from "next/link";
+import SplitText from "../components/SplitText";
 
 const poetsen = Poetsen_One({
   subsets: ["latin"],
   weight: "400",
   display: "swap",
 });
+
+const handleAnimationComplete = () => {
+  console.log("All letters have animated!");
+};
+
+const iconContainer = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.2,
+      staggerDirection: 1, // 🔥 start from the right
+    },
+  },
+};
+
+const iconItem = {
+  hidden: {
+    opacity: 0,
+    y: 40,
+  },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 1,
+      ease: [0.34, 1.56, 0.64, 1], // bounce-y easing
+    },
+  },
+};
 
 export default function Home() {
   return (
@@ -24,13 +54,37 @@ export default function Home() {
         className="flex items-center"
       >
         <div className="flex flex-col justify-center items-center text-center mt-16">
-          <h3 className="font-minecraft font-bold text-[50px] md:text-[90px] leading-[1.1] pb-4 text-[#99b494] hover:text-[#bbd3b6] transition duration-200 drop-shadow-[0px_6px_0px_rgba(0,0,0,0.5)]">
+          {/* <h3 className="font-minecraft font-bold text-[50px] md:text-[90px] leading-[1.1] pb-4 text-[#99b494] hover:text-[#bbd3b6] transition duration-200 drop-shadow-[0px_6px_0px_rgba(0,0,0,0.5)]">
             Michael Pasyechnyk
-          </h3>
+          </h3> */}
+          <SplitText
+            text="Michael Pasyechnyk"
+            className="font-minecraft font-bold text-[50px] md:text-[90px] leading-[1.1] pb-4 text-[#99b494] hover:text-[#bbd3b6] transition duration-200 drop-shadow-[0px_6px_0px_rgba(0,0,0,0.5)]"
+            delay={50}
+            duration={1}
+            ease="power3.out"
+            splitType="chars"
+            from={{ opacity: 0, y: 40 }}
+            to={{ opacity: 1, y: 0 }}
+            threshold={0.1}
+            rootMargin="-100px"
+            textAlign="center"
+            onLetterAnimationComplete={handleAnimationComplete}
+            showCallback
+          />
           {/* <hr className="w-5xl border-4 border-[#3a3f39] drop-shadow-[0px_4px_0px_rgba(0,0,0,0.5)]" /> */}
           <TypingSentence />
-          <div className="flex flex-row justify-center items-start gap-4 mt-6">
-            <div className="flex flex-col justify-center items-center gap-2 w-28 group">
+
+          <motion.div
+            className="flex flex-row justify-center items-start gap-4 mt-6"
+            variants={iconContainer}
+            initial="hidden"
+            animate="show"
+          >
+            <motion.div
+              className="flex flex-col justify-center items-center gap-2 w-28 group"
+              variants={iconItem}
+            >
               <div className="relative w-20 h-20 group rounded-full shadow-[0px_4px_4px_rgba(0,0,0,0.5)]">
                 <Link
                   href="https://uwaterloo.ca/systems-design-engineering/"
@@ -61,9 +115,12 @@ export default function Home() {
               >
                 Studying SYDE
               </p>
-            </div>
+            </motion.div>
 
-            <div className="flex flex-col justify-center items-center gap-2 w-28 group">
+            <motion.div
+              className="flex flex-col justify-center items-center gap-2 w-28 group"
+              variants={iconItem}
+            >
               {/* <div className="relative w-20 h-20 group rounded-full shadow-[0px_4px_4px_rgba(0,0,0,0.5)]">
                 <Link
                   href="https://www.linkedin.com/in/michaelpasyechnyk/"
@@ -124,9 +181,45 @@ export default function Home() {
               >
                 SWE Intern
               </p>
-            </div>
+            </motion.div>
 
-            <div className="flex flex-col justify-center items-center gap-2 w-28 group">
+            <motion.div
+              className="flex flex-col justify-center items-center gap-2 w-28 group"
+              variants={iconItem}
+            >
+              <div className="relative w-20 h-20 group rounded-full shadow-[0px_4px_4px_rgba(0,0,0,0.5)]">
+                <Link
+                  href="https://linkedin.com/in/michaelpasyechnyk"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Image
+                    src="/logos/map.png"
+                    alt="Logo"
+                    fill
+                    className="transition-opacity duration-200 opacity-100 group-hover:opacity-0"
+                  />
+                  <Image
+                    src="/logos/mapcolored.png"
+                    alt="Logo hover"
+                    fill
+                    className="transition-opacity duration-200 opacity-0 group-hover:opacity-100"
+                  />
+                </Link>
+              </div>
+              <p
+                className="font-minecraft text-[16px] text-[#dbe0db] opacity-0
+              translate-y-1
+              transition-all
+              duration-200
+              group-hover:opacity-100
+              group-hover:translate-y-0"
+              >
+                Based in CA/US
+              </p>
+            </motion.div>
+
+            {/* <motion.div className="flex flex-col justify-center items-center gap-2 w-28 group" variants={iconItem}>
               <div className="relative w-20 h-20 group rounded-full shadow-[0px_4px_4px_rgba(0,0,0,0.5)]">
                 <Link
                   href="https://uwaterloo.ca/systems-design-engineering/"
@@ -157,8 +250,8 @@ export default function Home() {
               >
                 Curious by default!
               </p>
-            </div>
-          </div>
+            </motion.div> */}
+          </motion.div>
         </div>
         {/* <RecentProjects /> */}
 
