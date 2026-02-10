@@ -32,7 +32,7 @@ export default function About() {
       transition={{ duration: 1, ease: "easeOut" }}
     >
       <AboutHeader />
-      <ExperienceSection />
+
 
       {/* <hr className="h-1 w-full bg-gradient-to-r from-[#98B493] via-[#7da376] to-[#98B493] border-0 rounded mb-6" /> */}
       {/* <div className="flex flex-col items-center w-full rounded-2xl h-120">

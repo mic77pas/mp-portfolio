@@ -199,6 +199,7 @@ export default function Home() {
                     fill
                     className="transition-opacity duration-200 opacity-100 group-hover:opacity-0"
                   />
+
                   <Image
                     src="/logos/mapcolored.png"
                     alt="Logo hover"

@@ -62,7 +62,10 @@ const educationData: ExperienceItem[] = [
     role: "Technical Learning",
     org: "Udemy",
     date: "",
-    bullets: ["Modern React and Front-End Development"],
+    bullets: [
+      "Typescript Fundamentals",
+      "Modern React and Front-End Development",
+    ],
     iconSrc: "/logos/udemy.png",
   },
 ];
