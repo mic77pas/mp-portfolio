@@ -59,7 +59,7 @@ export default function Home() {
           </h3> */}
           <SplitText
             text="Michael Pasyechnyk"
-            className="font-minecraft font-bold text-[50px] md:text-[90px] leading-[1.1] pb-4 text-[#99b494] hover:text-[#bbd3b6] transition duration-200 drop-shadow-[0px_6px_0px_rgba(0,0,0,0.5)]"
+            className="font-minecraft font-bold text-[40px] md:text-[75px] leading-[1.1] pb-4 text-[#99b494] hover:text-[#bbd3b6] transition duration-200 drop-shadow-[0px_6px_0px_rgba(0,0,0,0.5)]"
             delay={50}
             duration={1}
             ease="power3.out"
@@ -85,7 +85,7 @@ export default function Home() {
               className="flex flex-col justify-center items-center gap-2 w-28 group"
               variants={iconItem}
             >
-              <div className="relative w-20 h-20 group rounded-full shadow-[0px_4px_4px_rgba(0,0,0,0.5)]">
+              <div className="relative  w-18 h-18 group rounded-full shadow-[0px_4px_4px_rgba(0,0,0,0.5)]">
                 <Link
                   href="https://uwaterloo.ca/systems-design-engineering/"
                   target="_blank"
@@ -151,7 +151,7 @@ export default function Home() {
               >
                 Searching for work!
               </p> */}
-              <div className="relative w-20 h-20 group rounded-full shadow-[0px_4px_4px_rgba(0,0,0,0.5)]">
+              <div className="relative w-18 h-18 group rounded-full shadow-[0px_4px_4px_rgba(0,0,0,0.5)]">
                 <Link
                   href="https://www.parkusher.app/"
                   target="_blank"
@@ -187,7 +187,7 @@ export default function Home() {
               className="flex flex-col justify-center items-center gap-2 w-28 group"
               variants={iconItem}
             >
-              <div className="relative w-20 h-20 group rounded-full shadow-[0px_4px_4px_rgba(0,0,0,0.5)]">
+              <div className="relative w-18 h-18 group rounded-full shadow-[0px_4px_4px_rgba(0,0,0,0.5)]">
                 <Link
                   href="https://linkedin.com/in/michaelpasyechnyk"
                   target="_blank"
@@ -216,7 +216,7 @@ export default function Home() {
               group-hover:opacity-100
               group-hover:translate-y-0"
               >
-                Based in CA/US
+                US/Canada
               </p>
             </motion.div>
 

@@ -14,10 +14,10 @@ export default function Footer() {
       <footer
         id="site-footer"
         className="flex flex-col justify-center items-center w-full h-24 pt-6 py-5 gap-2 font-medium"
-        style={{
-          backgroundImage: "url('/comps/footer3.png')",
-          backgroundSize: "100% 100%",
-        }}
+        // style={{
+        //   backgroundImage: "url('/comps/footer3.png')",
+        //   backgroundSize: "100% 100%",
+        // }}
       >
         <nav className="flex gap-6 font-bold items-center">
           <Link

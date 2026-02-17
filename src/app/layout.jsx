@@ -50,18 +50,17 @@ export const metadata = {
   },
 };
 
-
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${montserrat.className} ${minecraft.variable}`}>
-      <body className="relative min-h-screen flex flex-col items-center antialiased bg-[url('/bg/waterfall.gif')] bg-cover bg-center bg-no-repeat bg-fixed">  
+      <body className="relative min-h-screen flex flex-col items-center antialiased bg-[url('/bg/waterfall.gif')] bg-cover bg-center bg-no-repeat bg-fixed">
         {/* Overlay */}
-        <div className="absolute inset-0 bg-[#242524]/85 pointer-events-none" />
+        <div className="absolute inset-0 bg-[#242524]/90 pointer-events-none" />
 
         {/* Content */}
-        <div className="relative w-full min-h-screen flex flex-col items-center">
+        <div className="relative w-full max-w-5xl min-h-screen flex flex-col items-center">
           <Header />
-          <main className="flex-1 w-full max-w-6xl p-4 pt-26 flex justify-center">
+          <main className="flex-1 w-full p-4 pt-26 flex justify-center">
             <ClientLayout>{children}</ClientLayout>
           </main>
           <Footer />

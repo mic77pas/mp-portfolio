@@ -52,14 +52,14 @@ export default function Header() {
     <>
       <header
         className={[
-          "fixed top-0 z-30 w-full h-22 hidden sm:flex",
+          "fixed top-0 z-30 w-full max-w-5xl h-22 hidden sm:flex",
           "justify-center items-center",
           "transform-gpu transition-transform duration-300 ease-out",
           "bg-[url('/comps/header.png')] bg-size-[100%_100%] bg-no-repeat bg-center",
           hidden ? "-translate-y-full" : "translate-y-0",
         ].join(" ")}
       >
-        <div className="flex flex-row items-center justify-center w-full max-w-7xl px-4">
+        <div className="flex flex-row items-center justify-between w-full px-12">
           <Link href="/">
             <Image
               src="/logos/pixelnew.png"
