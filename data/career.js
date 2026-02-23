@@ -23,7 +23,7 @@ const careers = [
     name: "ipserlab",
     title: "Software Engineer Intern",
     date: "May 2025 - Aug 2025",
-    logo: "/logos/ipserlab.jpg",
+    logo: "/logos/experience/ipserlab.jpg",
     about:
       "IpserLab is an early-stage startup focused on building innovative software solutions that solve real-world problems. As a small but fast-moving team, the company emphasizes rapid iteration, collaboration between engineers and founders, and a strong product-driven approach. It provides interns and employees with hands-on exposure to both front-end and back-end development, fostering a practical understanding of software engineering workflows, Agile practices, and startup culture.",
     do: "During my internship at IpserLab, I designed and implemented front-end features using React and TypeScript, collaborating closely with founders and engineers to define requirements and align with the product vision. I gained exposure to Java-based backend systems, APIs, and deployment workflows, and participated in Agile sprints and code reviews. My contributions helped reduce feature turnaround time by 15% while improving overall product quality.",
@@ -40,7 +40,7 @@ const careers = [
     do: "",
     // "During my 1A term, I completed core courses in engineering fundamentals, programming, design thinking, and systems modeling. I engaged in lab sessions and team projects that required me to apply problem-solving techniques, develop software prototypes, and analyze system-level trade-offs. I also began integrating design principles with technical knowledge, learning to approach problems from both functional and user-centered perspectives.",
     learn: "",
-      // "I developed a foundational understanding of systems design principles, engineering problem-solving, and interdisciplinary collaboration. I strengthened my programming and modeling skills, learned to approach technical challenges holistically, and gained experience working in team settings on complex projects. Most importantly, I refined my ability to combine technical solutions with design considerations, laying the groundwork for future SYDE projects and co-op experiences.",
+    // "I developed a foundational understanding of systems design principles, engineering problem-solving, and interdisciplinary collaboration. I strengthened my programming and modeling skills, learned to approach technical challenges holistically, and gained experience working in team settings on complex projects. Most importantly, I refined my ability to combine technical solutions with design considerations, laying the groundwork for future SYDE projects and co-op experiences.",
   },
 ];
 

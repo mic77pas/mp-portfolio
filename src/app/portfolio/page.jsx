@@ -15,7 +15,6 @@ import { SiFramer } from "react-icons/si";
 import { FaPencil } from "react-icons/fa6";
 import ModelView from "../../components/ModelView";
 
-
 export default function Page() {
   const [selected, setSelected] = useState(null);
   const [loadingGif, setLoadingGif] = useState(true);
@@ -24,7 +23,7 @@ export default function Page() {
 
   // Filter projects based on search query
   const filteredProjects = projects.filter(
-    (project) => project.title.toLowerCase().includes(search.toLowerCase())
+    (project) => project.title.toLowerCase().includes(search.toLowerCase()),
     // || project.description.toLowerCase().includes(search.toLowerCase())
   );
 
@@ -60,7 +59,7 @@ export default function Page() {
       initial={{ opacity: 0, scale: 1 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 1, ease: "easeOut" }}
-      className="min-h-screen text-foreground px-8 w-full mx-auto mt-10 flex flex-col justify-start"
+      className="min-h-screen text-foreground flex flex-col justify-start"
     >
       <Dock items={items} panelHeight={70} />
 

@@ -116,3 +116,37 @@ body {
     transform: translateX(120%);
   }
 }
+
+/* Minecraft Inventory Scrollbar */
+.inventory-scroll::-webkit-scrollbar {
+  width: 10px;
+}
+
+.inventory-scroll::-webkit-scrollbar-track {
+  background: #0b0e0b;
+  border-left: 2px solid #2a342a;
+}
+
+.inventory-scroll::-webkit-scrollbar-thumb {
+  background: #2a342a;
+  border: 2px solid #0b0e0b;
+  box-shadow: 0 2px 0 #070907;
+}
+
+.inventory-scroll::-webkit-scrollbar-thumb:hover {
+  background: #98b493;
+}
+
+/* Firefox */
+.inventory-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #2a342a #0b0e0b;
+}
+
+.inventory-scroll::-webkit-scrollbar-thumb {
+  opacity: 0;
+}
+
+.inventory-scroll:hover::-webkit-scrollbar-thumb {
+  opacity: 1;
+}

@@ -49,6 +49,8 @@ export default function TypingSentence() {
             2000,
             "eager learner",
             2000,
+            "boardgame fanatic",
+            2000,
             "climbing enjoyer",
             500,
             "climbing enthusiast",

@@ -13,7 +13,7 @@ export default function Footer() {
     <>
       <footer
         id="site-footer"
-        className="flex flex-col justify-center items-center w-full h-24 pt-6 py-5 gap-2 font-medium"
+        className="flex flex-col justify-center items-center w-full h-24 pt-6 py-5 gap-2 font-medium bg-linear-to-t from-[#0c0e0c]"
         // style={{
         //   backgroundImage: "url('/comps/footer3.png')",
         //   backgroundSize: "100% 100%",
