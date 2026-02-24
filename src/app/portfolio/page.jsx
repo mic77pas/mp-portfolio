@@ -75,7 +75,7 @@ export default function Page() {
             // enableBlur={true}
             // baseRotation={2}
             // blurStrength={8}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 gap-y-16 w-full mb-14"
+            className="grid grid-cols-1 lg:grid-cols-2 gap-8 gap-y-16 w-full mb-14"
           >
             {filteredProjects.map((project) => (
               <div
@@ -105,7 +105,7 @@ export default function Page() {
                 <div
                   className="
     absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-6
-    w-4/5 h-16 rounded-xl
+    w-4/5 h-14 rounded-xl
     flex items-center justify-center
     bg-[#738d73]/90 backdrop-blur-sm
     text-[#262b26]
