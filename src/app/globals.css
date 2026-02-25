@@ -52,7 +52,7 @@ body {
 }
 
 .skill-blob {
-  @apply text-[#ddd8d8] text-[16px] px-3 py-1 w-auto rounded-full font-medium border-2 shadow-[0px_2px_4px_rgba(0,0,0,0.5)] transition-transform cursor-pointer hover:brightness-120 hover:scale-110 hover:text-[#292929] duration-300;
+  @apply text-[#ddd8d8] text-[16px] px-3 py-1 w-auto rounded-full font-medium border shadow-[0px_2px_4px_rgba(0,0,0,0.5)] transition-transform cursor-pointer hover:brightness-120 hover:scale-110 hover:text-[#292929] duration-300;
 }
 
 .button-view {

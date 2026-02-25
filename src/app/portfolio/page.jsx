@@ -94,7 +94,7 @@ export default function Page() {
                   width={500}
                   height={300}
                   className="
-    w-full h-64 object-cover rounded-xl
+    w-full aspect-4/2 object-cover rounded-xl
     ring-0 ring-transparent
     transition-all duration-300 ease-out
     group-hover:ring-4

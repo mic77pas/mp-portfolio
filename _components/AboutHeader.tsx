@@ -11,14 +11,22 @@ import {
   FaInstagram,
   FaGuitar,
   FaGear,
+  FaHeart,
+  FaRegStar,
 } from "react-icons/fa6";
 import { FileText } from "lucide-react";
 import { LuBookOpen, LuHeart, LuSwords, LuTarget } from "react-icons/lu";
-import { FaMoneyBillWaveAlt, FaShieldAlt, FaSkiing } from "react-icons/fa";
+import {
+  FaArrowAltCircleUp,
+  FaMoneyBillWaveAlt,
+  FaShieldAlt,
+  FaSkiing,
+} from "react-icons/fa";
 import { TbCampfireFilled, TbFishHook } from "react-icons/tb";
 import { GiMountainClimbing } from "react-icons/gi";
 import { PiPersonSimpleHikeBold } from "react-icons/pi";
 import { RiSpeakFill } from "react-icons/ri";
+import { CiStar } from "react-icons/ci";
 
 function PixelPanel({ children }: { children: ReactNode }) {
   return (
@@ -57,17 +65,20 @@ function Bar({
   label,
   valueText,
   pct,
+  icon,
 }: {
   label: string;
   valueText?: string;
   pct: number;
+  icon: ReactNode;
 }) {
   const width = `${Math.max(0, Math.min(100, pct))}%`;
   return (
     <div className="w-full">
-      <div className="flex items-center justify-between gap-3">
-        <p className="font-minecraft text-md text-[#cfe0c9]">{label}</p>
-        <p className="text-xs text-[#a6b2a3] tracking-wide">{valueText}</p>
+      <div className="flex items-center justify-start gap-2 text-[#cfe0c9]">
+        <div className="">{icon}</div>
+        <p className="font-minecraft text-md">{label}</p>
+        <p className="text-xs tracking-wide">{valueText}</p>
       </div>
       <div className="mt-2 h-2.5 w-full bg-[#101310] border border-[#2a342a] rounded">
         <div className="h-full bg-[#98B493]/60 rounded" style={{ width }} />
@@ -200,8 +211,8 @@ function SlideshowModal({
       <div className="w-full max-w-3xl bg-[#0f130f]/90 border-2 border-[#2a342a] rounded-xl shadow-[0_12px_0_#0b0d0b] overflow-hidden">
         {/* Header */}
         <div className="flex items-center justify-between px-4 py-3 border-b border-[#2a342a]">
-          <p className="text-xs uppercase tracking-[0.28em] text-[#a6b2a3] font-minecraft">
-            GALLERY
+          <p className="text-md uppercase text-[#a6b2a3] font-minecraft">
+            INVENTORY
           </p>
           <button
             onClick={onClose}
@@ -212,8 +223,22 @@ function SlideshowModal({
         </div>
 
         {/* Body */}
-        <div className="relative w-full aspect-[16/9] bg-[#0b0e0b]">
-          {/* Main image */}
+        <div className="relative w-full aspect-[16/9] bg-[#0b0e0b] overflow-hidden">
+          {/* Blurred stretched background */}
+          <Image
+            src={img.src}
+            alt=""
+            fill
+            sizes="(max-width: 768px) 100vw, 900px"
+            className="object-cover scale-110 blur-xl opacity-40"
+            aria-hidden
+            priority
+          />
+
+          {/* Optional dark overlay to improve contrast */}
+          <div className="absolute inset-0 bg-black/20" />
+
+          {/* Foreground main image */}
           <Image
             src={img.src}
             alt={img.alt ?? `Slide ${index + 1}`}
@@ -228,12 +253,12 @@ function SlideshowModal({
             onClick={prev}
             aria-label="Previous image"
             className="absolute left-3 top-1/2 -translate-y-1/2
-              w-11 h-11 grid place-items-center rounded-md
-              bg-[#0b0e0b]/80 border-2 border-[#2a342a]
-              shadow-[0_6px_0_#070907]
-              text-[#cfe0c9]
-              hover:bg-[#141a14] active:shadow-[0_4px_0_#070907]
-              transition"
+      w-11 h-11 grid place-items-center rounded-md
+      bg-[#0b0e0b]/80 border-2 border-[#2a342a]
+      shadow-[0_6px_0_#070907]
+      text-[#cfe0c9]
+      hover:bg-[#141a14] active:shadow-[0_4px_0_#070907]
+      transition"
           >
             ←
           </button>
@@ -243,12 +268,12 @@ function SlideshowModal({
             onClick={next}
             aria-label="Next image"
             className="absolute right-3 top-1/2 -translate-y-1/2
-              w-11 h-11 grid place-items-center rounded-md
-              bg-[#0b0e0b]/80 border-2 border-[#2a342a]
-              shadow-[0_6px_0_#070907]
-              text-[#cfe0c9]
-              hover:bg-[#141a14] active:shadow-[0_4px_0_#070907]
-              transition"
+      w-11 h-11 grid place-items-center rounded-md
+      bg-[#0b0e0b]/80 border-2 border-[#2a342a]
+      shadow-[0_6px_0_#070907]
+      text-[#cfe0c9]
+      hover:bg-[#141a14] active:shadow-[0_4px_0_#070907]
+      transition"
           >
             →
           </button>
@@ -361,14 +386,17 @@ export default function AboutHeader() {
   }, []);
 
   useEffect(() => {
+    const FORCE_TEST_HOUR = 14; // 14 or 2
     const computeStatus = () => {
-      const laHour = Number(
-        new Intl.DateTimeFormat("en-US", {
-          hour: "numeric",
-          hour12: false,
-          timeZone: "America/Los_Angeles",
-        }).format(new Date()),
-      );
+      const laHour =
+        FORCE_TEST_HOUR ??
+        Number(
+          new Intl.DateTimeFormat("en-US", {
+            hour: "numeric",
+            hour12: false,
+            timeZone: "America/Los_Angeles",
+          }).format(new Date()),
+        );
 
       setIsOfflineHours(laHour >= 0 && laHour < 6);
     };
@@ -422,7 +450,7 @@ export default function AboutHeader() {
       />
       {/* <PixelPanel> */}
       {/* Header / HUD */}
-      {/* <div className="px-5 sm:px-6 py-4 bg-[#0f130f]/70 border-b-2 border-[#2a342a] flex items-center justify-between gap-4">
+      <div className="px-5 sm:px-6 py-4 bg-[#0f130f]/70 border-b-2 border-[#2a342a] rounded-lg flex items-center justify-between gap-4 mb-4">
         <div className="flex items-center gap-3 min-w-0">
           <div className="w-3 h-3 bg-[#98B493]/70 border border-[#2a342a] shrink-0" />
           <p className="text-xs uppercase tracking-[0.28em] text-[#a6b2a3] truncate">
@@ -439,11 +467,9 @@ export default function AboutHeader() {
               className={`relative inline-flex h-2 w-2 rounded-full ${dotColor}`}
             />
           </span>
-          <p className={`text-xs tracking-wide font-minecraft ${statusColor}`}>
-            {statusText}
-          </p>
+          <p className={`text-xs tracking-wide ${statusColor}`}>{statusText}</p>
         </div>
-      </div> */}
+      </div>
       {/* Body */}
       <div className="h-fit">
         <div className="flex flex-col lg:flex-row gap-4 items-start">
@@ -486,15 +512,15 @@ export default function AboutHeader() {
 
               <div className="w-full py-2 px-4 bg-[#0f130f]/55 border-2 border-[#2a342a] rounded-lg shadow-[0_8px_0_#0b0d0b]">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <Bar label="HP" pct={82} />
-                  <Bar label="XP" pct={64} />
+                  <Bar label="HP" pct={82} icon={<FaHeart />} />
+                  <Bar label="XP" pct={64} icon={<FaArrowAltCircleUp />} />
                 </div>
 
                 <div className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-2">
                   <StatPill k="STR" v="09" icon={<LuSwords size={16} />} />
                   <StatPill k="DEX" v="14" icon={<FaShieldAlt size={16} />} />
                   <StatPill k="INT" v="16" icon={<LuBookOpen size={16} />} />
-                  <StatPill k="CHA" v="12" icon={<LuHeart size={16} />} />
+                  <StatPill k="CHA" v="12" icon={<FaRegStar size={16} />} />
                 </div>
               </div>
             </div>

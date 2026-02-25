@@ -46,7 +46,7 @@ function IconLink({ href, img, hoverImg, label, imgClassName = "" }) {
       className="flex flex-col items-center gap-2 w-28 group"
       variants={iconItem}
     >
-      <div className="relative w-[80px] h-[80px] rounded-full shadow-[0px_4px_4px_rgba(0,0,0,0.5)]">
+      <div className="relative w-[77px] h-[77px] rounded-full shadow-[0px_4px_4px_rgba(0,0,0,0.5)]">
         <Link href={href} target="_blank" rel="noopener noreferrer">
           <Image
             src={img}
@@ -101,11 +101,11 @@ export default function Home() {
       transition={{ duration: 1, ease: "easeOut" }}
       className="w-full h-full flex items-center justify-center mt-8"
     >
-      <div className="flex flex-col items-center text-center">
+      <div className="flex flex-col items-center text-center gap-2">
         <div className="relative inline-block group cursor-pointer">
           <SplitText
             text="Michael Pasyechnyk"
-            className="font-minecraft font-bold text-[40px] md:text-[75px] leading-[1.1] pb-4 text-[#99b494] hover:text-[#bbd3b6] transition duration-200 drop-shadow-[0px_6px_0px_rgba(0,0,0,0.5)]"
+            className="font-minecraft font-bold text-[36px] md:text-[60px] lg:text-[75px] leading-[1.1] text-[#99b494] hover:text-[#bbd3b6] transition duration-200 drop-shadow-[0px_6px_0px_rgba(0,0,0,0.5)]"
             delay={50}
             duration={1}
             ease="power3.out"
@@ -127,7 +127,7 @@ export default function Home() {
       transition-all duration-300 ease-out
       text-[#dbe0db]
       text-sm md:text-base
-      flex items-center gap-2
+      flex items-center
     "
           >
             <Image
@@ -135,10 +135,10 @@ export default function Home() {
               alt="UA"
               width="70"
               height="70"
-              className="rotate-2 mr-1 mt-6"
+              className="-rotate-1 mr-1 mt-7"
             />
 
-            <span className={`${caveat.className} text-[40px]`}>
+            <span className={`${caveat.className} text-[40px] ml-1 mr-3`}>
               “pass-itch-nick”!
             </span>
             <Image
@@ -154,7 +154,7 @@ export default function Home() {
         <TypingSentence />
 
         <motion.div
-          className="flex flex-row justify-center items-start gap-4 mt-6"
+          className="flex flex-row justify-center items-start gap-4 mt-3"
           variants={iconContainer}
           initial="hidden"
           animate="show"
