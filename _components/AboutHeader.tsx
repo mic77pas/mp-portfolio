@@ -386,7 +386,7 @@ export default function AboutHeader() {
   }, []);
 
   useEffect(() => {
-    const FORCE_TEST_HOUR = 14; // 14 or 2
+    const FORCE_TEST_HOUR = null; // 14 or 2
     const computeStatus = () => {
       const laHour =
         FORCE_TEST_HOUR ??
