@@ -81,11 +81,18 @@ export default function Home() {
     },
     {
       href: "https://www.parkusher.app/",
-      img: "/logos/greenpark.png",
-      hoverImg: "/logos/experience/parkusher.png",
-      label: "SWE Intern",
-      imgClassName: "brightness-80 saturate-70",
+      img: "/logos/greenwork.png",
+      hoverImg: "/logos/work.png",
+      label: "Seeking work for Fall 2026!",
+      imgClassName: "brightness-120",
     },
+    // {
+    //   href: "https://www.parkusher.app/",
+    //   img: "/logos/greenpark.png",
+    //   hoverImg: "/logos/experience/parkusher.png",
+    //   label: "SWE Intern",
+    //   imgClassName: "brightness-80 saturate-70",
+    // },
     {
       href: "https://linkedin.com/in/michaelpasyechnyk",
       img: "/logos/map.png",
