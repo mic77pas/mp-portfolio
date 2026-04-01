@@ -80,7 +80,7 @@ export default function Home() {
       imgClassName: "saturate-60",
     },
     {
-      href: "https://www.parkusher.app/",
+      href: "https://linkedin.com/in/michaelpasyechnyk",
       img: "/logos/greenwork.png",
       hoverImg: "/logos/work.png",
       label: "Seeking work for Fall 2026!",
