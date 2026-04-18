@@ -167,7 +167,7 @@ export default function Home() {
           animate="show"
         >
           {icons.map((item) => (
-            <IconLink key={item.href} {...item} />
+            <IconLink key={item.label} {...item} />
           ))}
         </motion.div>
       </div>

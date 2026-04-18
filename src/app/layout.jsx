@@ -1,4 +1,5 @@
 import Header from "../../_components/Header";
+import HeaderV2 from "../../_components/HeaderV2";
 import Footer from "../../_components/Footer";
 import "./globals.css";
 import { Montserrat } from "next/font/google";
@@ -12,11 +13,31 @@ const montserrat = Montserrat({
 
 export const minecraft = localFont({
   src: [
-    { path: "../../public/fonts/minecraft/MinecraftRegular.otf", weight: "400", style: "normal" },
-    { path: "../../public/fonts/minecraft/MinecraftBold.otf", weight: "700", style: "normal" },
-    { path: "../../public/fonts/minecraft/MinecraftItalic.otf", weight: "400", style: "italic" },
-    { path: "../../public/fonts/minecraft/MinecraftBoldItalic.otf", weight: "700", style: "italic" },
-    { path: "../../public/fonts/minecraft/MinecraftTen.ttf", weight: "900", style: "normal" },
+    {
+      path: "../../public/fonts/minecraft/MinecraftRegular.otf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/minecraft/MinecraftBold.otf",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/minecraft/MinecraftItalic.otf",
+      weight: "400",
+      style: "italic",
+    },
+    {
+      path: "../../public/fonts/minecraft/MinecraftBoldItalic.otf",
+      weight: "700",
+      style: "italic",
+    },
+    {
+      path: "../../public/fonts/minecraft/MinecraftTen.ttf",
+      weight: "900",
+      style: "normal",
+    },
   ],
   variable: "--font-minecraft",
   display: "swap",

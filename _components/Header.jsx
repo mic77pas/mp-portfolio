@@ -52,7 +52,7 @@ export default function Header() {
     <>
       <header
         className={[
-          "fixed top-0 z-30 w-full max-w-5xl h-22 hidden sm:flex",
+          "fixed top-0 z-100 w-full max-w-5xl h-22 hidden sm:flex",
           "justify-center items-center",
           "transform-gpu transition-transform duration-300 ease-out",
           "bg-[url('/comps/header.png')] bg-size-[100%_100%] bg-no-repeat bg-center",

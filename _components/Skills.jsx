@@ -56,7 +56,7 @@ export default function Skills() {
         width: 48,
         height: 48,
       })),
-    []
+    [],
   );
 
   return (
@@ -67,9 +67,9 @@ export default function Skills() {
       //   viewport={{ once: true, amount: 0.2 }} // triggers only once when 20% is visible
       className="flex flex-col pb-5 justify-center items-center"
     >
-      <h2 className="font-minecraft text-4xl font-bold text-[#90AD8F] text-shadow-[0px_3px_1px_rgba(0,0,0,0.5)] mb-6">
+      {/* <h2 className="font-minecraft text-4xl font-bold text-[#90AD8F] text-shadow-[0px_3px_1px_rgba(0,0,0,0.5)] mb-6">
         Tech Stack
-      </h2>
+      </h2> */}
       {/* <hr className="h-1 w-full bg-gradient-to-r from-[#98B493] via-[#7da376] to-[#98B493] border-0 rounded" /> */}
       <div className="w-full">
         <LogoLoop
@@ -82,11 +82,11 @@ export default function Skills() {
           fadeOut={true}
           fadeOutColor="#1a1d1a"
           scaleOnHover={true}
-          className="border border-[#384438] bg-[#2c332c]/75 pt-3 rounded-t-2xl"
+          className="border-2 border-[#6a8366] bg-[#141614]/75 pt-3 rounded-2xl"
           // style={{ boxShadow: "0px 4px 4px rgba(0,0,0,0.5)" }}
         />
       </div>
-      <div
+      {/* <div
         className="flex flex-col w-full mb-6 p-3 rounded-b-2xl border border-[#384438] bg-[#131813]/75 py-5"
         style={{ boxShadow: "0px 4px 8px rgba(0,0,0,0.5)" }}
       >
@@ -101,19 +101,19 @@ export default function Skills() {
                 borderColor: CATEGORY_COLORS[skill.category] ?? "#dfdfdf",
                 backgroundColor: hexToRgba(
                   CATEGORY_COLORS[skill.category],
-                  0.15
+                  0.15,
                 ),
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.backgroundColor = hexToRgba(
                   CATEGORY_COLORS[skill.category],
-                  1
+                  1,
                 ); // stronger on hover
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.backgroundColor = hexToRgba(
                   CATEGORY_COLORS[skill.category],
-                  0.15
+                  0.15,
                 );
               }}
             >
@@ -121,7 +121,7 @@ export default function Skills() {
             </a>
           ))}
         </div>
-      </div>
+      </div> */}
     </motion.div>
   );
 }
