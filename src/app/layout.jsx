@@ -5,6 +5,7 @@ import "./globals.css";
 import { Montserrat } from "next/font/google";
 import localFont from "next/font/local";
 import ClientLayout from "../../_components/ClientLayout";
+import MobileHeader from "../../_components/MobileHeader";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -57,13 +58,19 @@ export default function RootLayout({ children }) {
         <div className="absolute inset-0 bg-[#242524]/90 pointer-events-none" />
 
         <div className="relative w-full min-h-screen flex flex-col items-center">
-          <Header />
+          <div className="hidden md:flex w-full justify-center">
+            <Header />
+          </div>
 
-          <main className="w-full flex-1 flex justify-center px-4 pt-26">
+          <main className="w-full flex-1 flex justify-center px-4 pt-6 md:pt-26 pb-24 md:pb-0">
             <ClientLayout>{children}</ClientLayout>
           </main>
 
-          <Footer />
+          <div className="hidden md:block w-full">
+            <Footer />
+          </div>
+
+          <MobileHeader />
         </div>
       </body>
     </html>

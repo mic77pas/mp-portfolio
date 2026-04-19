@@ -92,7 +92,7 @@ export const skillBadgeData = {
   Django: {
     name: "Django",
     label: "Django",
-    icon: "https://cdn.simpleicons.org/django/092E20",
+    icon: "https://cdn.simpleicons.org/django/4a9453",
     category: "Backend",
   },
   Git: {

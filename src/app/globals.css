@@ -41,7 +41,7 @@ body {
 }
 
 .nav-link {
-  @apply inline-block text-[#AABF9F] text-lg
+  @apply inline-block text-[#8fa783] md:text-[#AABF9F] 
          hover:text-[#d6e0d3] hover:scale-105
          transition-transform transition-colors duration-200 ease-out
          [text-shadow:1px_2px_2px_rgba(0,0,0,0.8)];

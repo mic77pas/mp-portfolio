@@ -63,10 +63,10 @@ export default function Page() {
                 {/* Expanding image layer */}
                 <div
                   className="
-    absolute left-4 right-4 top-4 h-20
+    absolute left-4 right-4 top-4 bottom-[calc(100%-6rem)]
     overflow-hidden rounded-xl border-2 border-[#6a8366]
-    transition-[height] duration-500 ease-out
-    group-hover:h-62
+    transition-[bottom] duration-500 ease-out
+    group-hover:bottom-4
     z-40
   "
                 >
@@ -74,20 +74,17 @@ export default function Page() {
                     src={project.image}
                     alt={project.title}
                     fill
-                    className="object-cover brightness-70 hover:brightness-100 transition duration-500 ease-out group-hover:scale-105"
+                    className="object-cover brightness-70 transition duration-500 ease-out group-hover:scale-105 group-hover:brightness-100"
                   />
-
-                  {/* Optional dark overlay */}
-                  {/* <div className="absolute inset-0 bg-black/10 transition-colors duration-500 group-hover:bg-black/35" /> */}
                 </div>
 
                 {/* Any content you want above image */}
-                <div className="relative z-10 p-4 pt-26 flex flex-col h-full">
-                  <p className="text-[#c7d3b4] text-sm transition-opacity duration-300 group-hover:opacity-0">
+                <div className="relative z-10 p-4 pt-28 flex flex-col h-full">
+                  <p className="text-[#c7d3b4] text-sm font-minecraft transition-opacity duration-300 group-hover:opacity-0">
                     {project.description}
                   </p>
 
-                  <div className="mt-auto flex flex-wrap items-center justify-start gap-2 py-7">
+                  <div className="flex flex-wrap items-center justify-start gap-2 py-3 pb-7">
                     {project.skills?.map((skill) => (
                       <SkillBadge key={skill} name={skill} />
                     ))}

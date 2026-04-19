@@ -50,7 +50,7 @@ export const skillIcons = {
   Supabase: { icon: SiSupabase, color: "#3ECF8E" },
   PostgreSQL: { icon: SiPostgresql, color: "#4169E1" },
   MySQL: { icon: SiMysql, color: "#4479A1" },
-  Django: { icon: SiDjango, color: "#092E20" },
+  Django: { icon: SiDjango, color: "#4a9453" },
 
   // Tools
   Git: { icon: FaGitAlt, color: "#F05032" },

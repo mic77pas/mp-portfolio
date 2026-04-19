@@ -7,7 +7,7 @@ export default function SkillBadge({ name, size = "md" }) {
   return (
     <div
       className={`
-        rounded-full border border-[#636363] bg-[#2b2c2b]
+        rounded-lg border border-[#636363] bg-[#2b2c2b]
         text-white flex items-center justify-center gap-2 w-fit h-7
         transition-all duration-200
         hover:brightness-110 hover:scale-105

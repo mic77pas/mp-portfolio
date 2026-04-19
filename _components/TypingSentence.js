@@ -19,7 +19,8 @@ export default function TypingSentence() {
       className={`
         ${montserrat.className}
         relative flex flex-row items-center text-[#A1BD98]
-        w-[540px] h-[54px]
+        w-[420px] h-[52px]
+        md:w-[540px] md:h-[54px]
         px-3 py-2 gap-3 z-20
         hover:brightness-120 transition-all duration-200
       `}
@@ -60,7 +61,7 @@ export default function TypingSentence() {
           speed={50}
           deletionSpeed={50}
           repeat={Infinity}
-          className="text-[26px] leading-tight font-minecraft font-normal"
+          className="text-[24px] md:text-[26px] leading-tight font-minecraft font-normal"
         />
       </div>
     </motion.div>

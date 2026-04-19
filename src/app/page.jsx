@@ -46,7 +46,7 @@ function IconLink({ href, img, hoverImg, label, imgClassName = "" }) {
       className="flex flex-col items-center gap-2 w-28 group"
       variants={iconItem}
     >
-      <div className="relative w-[77px] h-[77px] rounded-full shadow-[0px_4px_4px_rgba(0,0,0,0.5)]">
+      <div className="relative w-[80px] h-[80px] md:w-[77px] md:h-[77px] rounded-full shadow-[0px_4px_4px_rgba(0,0,0,0.5)]">
         <Link href={href} target="_blank" rel="noopener noreferrer">
           <Image
             src={img}
@@ -63,7 +63,7 @@ function IconLink({ href, img, hoverImg, label, imgClassName = "" }) {
         </Link>
       </div>
 
-      <p className="font-minecraft text-[16px] text-[#dbe0db] opacity-0 translate-y-1 transition-all duration-200 group-hover:opacity-100 group-hover:translate-y-0">
+      <p className="font-minecraft text-[16px] md:text-[16px] text-[#dbe0db] opacity-0 translate-y-1 transition-all duration-200 group-hover:opacity-100 group-hover:translate-y-0">
         {label}
       </p>
     </motion.div>
@@ -109,10 +109,10 @@ export default function Home() {
       className="w-full h-full flex items-center justify-center mt-8"
     >
       <div className="flex flex-col items-center text-center gap-2">
-        <div className="relative inline-block group cursor-pointer">
+        <div className="relative inline-block group cursor-pointer pointer-events-none md:pointer-events-auto">
           <SplitText
             text="Michael Pasyechnyk"
-            className="font-minecraft font-bold text-[36px] md:text-[60px] lg:text-[75px] leading-[1.1] text-[#99b494] hover:text-[#bbd3b6] transition duration-200 drop-shadow-[0px_6px_0px_rgba(0,0,0,0.5)]"
+            className="font-minecraft font-bold text-[54px] md:text-[60px] lg:text-[75px] leading-[1.1] text-[#99b494] hover:text-[#bbd3b6] transition duration-200 drop-shadow-[0px_6px_0px_rgba(0,0,0,0.5)]"
             delay={50}
             duration={1}
             ease="power3.out"
@@ -125,6 +125,7 @@ export default function Home() {
           />
           <div
             className="
+            
       pointer-events-none
       absolute
       right-0
@@ -161,7 +162,7 @@ export default function Home() {
         <TypingSentence />
 
         <motion.div
-          className="flex flex-row justify-center items-start gap-4 mt-3"
+          className="flex flex-row justify-center items-start md:gap-4 mt-3"
           variants={iconContainer}
           initial="hidden"
           animate="show"
