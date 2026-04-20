@@ -75,13 +75,18 @@ function Bar({
   const width = `${Math.max(0, Math.min(100, pct))}%`;
   return (
     <div className="w-full">
-      <div className="flex items-center justify-start gap-2 text-[#cfe0c9]">
-        <div className="">{icon}</div>
-        <p className="font-minecraft text-md">{label}</p>
-        <p className="text-xs tracking-wide">{valueText}</p>
+      <div className="flex items-center justify-between text-[#cfe0c9]">
+        <div className="flex flex-row gap-2 items-center">
+          {icon}
+          <p className="font-minecraft font-bold text-md">{label}</p>
+        </div>
+
+        <p className="text-xs font-minecraft text-[#98a198] tracking-wide">
+          {valueText}
+        </p>
       </div>
-      <div className="mt-2 h-2.5 w-full bg-[#101310] border border-[#2a342a] rounded">
-        <div className="h-full bg-[#98B493]/60 rounded" style={{ width }} />
+      <div className="mt-2 h-3 w-full bg-[#101310] border border-[#2a342a] rounded-full">
+        <div className="h-full bg-[#9cb498] rounded-full" style={{ width }} />
       </div>
     </div>
   );
@@ -93,7 +98,7 @@ function StatPill({ k, v, icon }: { k: string; v: string; icon?: ReactNode }) {
       {/* Left: icon + label grouped */}
       <div className="flex items-center gap-1 text-[#a6b2a3]">
         {icon && <span className="flex items-center">{icon}</span>}
-        <span>{k}</span>
+        <span className="text-xs font-minecraft font-bold">{k}</span>
       </div>
 
       {/* Right: value */}
@@ -406,33 +411,10 @@ export default function AboutHeader() {
     return () => window.clearInterval(t);
   }, []);
 
-  const statusText = isOfflineHours ? "OFFLINE" : "ONLINE";
-  const statusColor = isOfflineHours ? "text-red-300" : "text-[#cfe0c9]";
-  const dotColor = isOfflineHours ? "bg-red-500" : "bg-[#98B493]";
-  const pingColor = isOfflineHours ? "bg-red-500/70" : "bg-[#98B493]/70";
-
-  // put your real links here whenever you want
-  const socials = useMemo(
-    () => [
-      {
-        href: "https://linkedin.com/in/michaelpasyechnyk",
-        label: "LinkedIn",
-        icon: <FaLinkedin size={20} />,
-      },
-      {
-        href: "https://github.com",
-        label: "GitHub",
-        icon: <FaGithub size={20} />,
-      },
-      {
-        href: "https://instagram.com",
-        label: "Instagram",
-        icon: <FaInstagram size={20} />,
-      },
-      { href: "/resume", label: "Resume", icon: <FileText size={20} /> },
-    ],
-    [],
-  );
+  const statusText = isOfflineHours ? "Offline" : "Online";
+  const statusColor = isOfflineHours ? "text-[#dfc241]" : "text-[#cfe0c9]";
+  const dotColor = isOfflineHours ? "bg-[#d6b72f]" : "bg-[#98B493]";
+  const pingColor = isOfflineHours ? "bg-[#d6b72f]/70" : "bg-[#98B493]/70";
 
   return (
     <motion.section
@@ -448,97 +430,69 @@ export default function AboutHeader() {
         onClose={() => setGalleryOpen(false)}
         onChangeIndex={setGalleryIndex}
       />
-      {/* <PixelPanel> */}
-      {/* Header / HUD */}
-      <div className="px-5 sm:px-6 py-4 bg-[#0f130f]/70 border-b-2 border-[#2a342a] rounded-lg flex items-center justify-between gap-4 mb-4">
-        <div className="flex items-center gap-3 min-w-0">
-          <div className="w-3 h-3 bg-[#98B493]/70 border border-[#2a342a] shrink-0" />
-          <p className="text-xs uppercase tracking-[0.28em] text-[#a6b2a3] truncate">
-            PROFILE // MP-001
-          </p>
-        </div>
 
-        <div className="flex items-center gap-2 shrink-0">
-          <span className="relative flex h-2 w-2">
-            <span
-              className={`absolute inline-flex h-full w-full rounded-full animate-ping opacity-75 ${pingColor}`}
-            />
-            <span
-              className={`relative inline-flex h-2 w-2 rounded-full ${dotColor}`}
-            />
-          </span>
-          <p className={`text-xs tracking-wide ${statusColor}`}>{statusText}</p>
+      <div className="flex flex-row gap-4 bg-[#181B18]/90 border-2 border-[#87a082] rounded-xl w-full p-8 ">
+        <div
+          className="relative w-[280px] h-[400px] overflow-hidden rounded-lg
+      after:content-[''] after:absolute after:inset-0 
+      after:shadow-[inset_0_0_20px_rgba(0,0,0,0.6)] after:pointer-events-none border-2 border-[#87a082]"
+        >
+          <Image
+            src="/me.jpg"
+            alt="Photo of me!"
+            fill
+            className="object-cover"
+          />
         </div>
-      </div>
-      {/* Body */}
-      <div className="h-fit">
-        <div className="flex flex-col lg:flex-row gap-4 items-start">
-          {/* Left: photo + socials */}
-          <div className="w-full lg:w-[320px] shrink-0">
-            <div className="flex flex-col items-center lg:items-start">
-              <div className="relative w-[280px] h-[358px] sm:w-[300px] sm:h-[385px] rounded-md overflow-hidden hover:-rotate-1 hover:scale-102 transition-transform duration-200">
-                <Image
-                  src="/profile.png"
-                  alt="Profile"
-                  fill
-                  priority
-                  sizes="300px"
-                  className="object-cover"
+        <div className="flex flex-1 flex-col gap-4">
+          <div className="flex flex-row gap-4">
+            <div className="flex flex-col w-32 gap-4">
+              <div className="flex w-full h-fit py-1 pl-3 items-center justify-start gap-3 shrink-0 bg-[#121412] border-2 border-[#87a082] rounded-lg">
+                <span className="relative flex h-3 w-3">
+                  <span
+                    className={`absolute inline-flex h-full w-full rounded-full animate-ping opacity-75 ${pingColor}`}
+                  />
+                  <span
+                    className={`relative inline-flex h-3 w-3 rounded-full ${dotColor}`}
+                  />
+                </span>
+                <p
+                  className={`text-md font-minecraft font-bold tracking-wide ${statusColor}`}
+                >
+                  {statusText}
+                </p>
+              </div>
+              <div className="flex flex-col w-full h-fit pt-1 px-4 items-center justify-start shrink-0 bg-[#262D26] border-2 border-[#87a082] rounded-lg text-[#C7D8C0] font-minecraft font-bold">
+                <p className="ml-2 tracking-[4px] drop-shadow-[0_3px_0_rgba(0,0,0,0.8)]">
+                  LEVEL
+                </p>
+                <p className="text-[30px] drop-shadow-[0_3px_0_rgba(0,0,0,0.8)]">
+                  19
+                </p>
+              </div>
+            </div>
+            <div className="w-full rounded-lg border-2 border-[#87a082] bg-[#121412] p-4">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                <Bar label="HP" pct={82} icon={<FaHeart />} />
+                <Bar
+                  label="EXP"
+                  pct={70}
+                  icon={<FaArrowAltCircleUp />}
+                  valueText={"Lvl. up on July 30th!"}
                 />
               </div>
 
-              {/* <div className="mt-5 flex gap-3">
-                {socials.map((s) => (
-                  <SocialIcon key={s.label} href={s.href} label={s.label}>
-                    {s.icon}
-                  </SocialIcon>
-                ))}
-              </div> */}
-            </div>
-          </div>
-
-          {/* Right: level + stats + inventory */}
-          <div className="w-full flex flex-col gap-4 h-full">
-            {/* Top row: Level + Bars */}
-            <div className="flex w-full flex-row gap-6 items-stretch">
-              <div className="flex flex-col justify-between items-center px-3 pb-4 pt-6 bg-[#0f130f]/70 border-2 border-[#2a342a] rounded-lg shadow-[0_8px_0_#0b0d0b] text-center shrink-0">
-                <p className="text-[18px] font-minecraft pl-2 uppercase tracking-[0.3em] font-bold text-[#a6b2a3]/90">
-                  Level
-                </p>
-                <p className="font-minecraft text-[#cfe0c9] text-[32px] font-bold">
-                  {age}
-                </p>
-              </div>
-
-              <div className="w-full py-2 px-4 bg-[#0f130f]/55 border-2 border-[#2a342a] rounded-lg shadow-[0_8px_0_#0b0d0b]">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <Bar label="HP" pct={82} icon={<FaHeart />} />
-                  <Bar label="XP" pct={64} icon={<FaArrowAltCircleUp />} />
-                </div>
-
-                <div className="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-2">
-                  <StatPill k="STR" v="09" icon={<LuSwords size={16} />} />
-                  <StatPill k="DEX" v="14" icon={<FaShieldAlt size={16} />} />
-                  <StatPill k="INT" v="16" icon={<LuBookOpen size={16} />} />
-                  <StatPill k="CHA" v="12" icon={<FaRegStar size={16} />} />
-                </div>
-              </div>
-            </div>
-
-            {/* Bottom: Inventory fills remaining height */}
-            <div className="mt-3 w-full bg-[#0f130f]/55 border-2 border-[#2a342a] rounded-lg shadow-[0_8px_0_#0b0d0b] p-4">
-              {/* This sets a fixed “window” height (same as now). Adjust h-48/h-56/h-64 to match your current look */}
-              <div className="h-48">
-                {/* Scroll happens INSIDE */}
-                <div className="h-full overflow-y-auto inventory-scroll">
-                  <InventoryGrid onOpenAt={openGalleryAt} />
-                </div>
+              <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-4">
+                <StatPill k="STR" v="09" icon={<LuSwords size={14} />} />
+                <StatPill k="DEX" v="17" icon={<FaShieldAlt size={14} />} />
+                <StatPill k="INT" v="15" icon={<LuBookOpen size={14} />} />
+                <StatPill k="CHA" v="12" icon={<FaRegStar size={14} />} />
               </div>
             </div>
           </div>
+          <div className="flex flex-1 flex-col rounded-lg border-2 border-[#87a082] bg-[#121412]"></div>
         </div>
       </div>
-      {/* </PixelPanel> */}
     </motion.section>
   );
 }

@@ -52,17 +52,20 @@ export default function MobileHeader() {
                   />
                 </Link>
               </li>
-              <li className="-ml-5">
-                <Link href="/about" className="nav-link text-[14px] md:text-lg">
-                  <MdAccountCircle size={40} />
+              <li className="-ml-5 drop-shadow-[0_4px_0px_rgba(0,0,0,0.8)]">
+                <Link
+                  href="/about"
+                  className="nav-link text-[14px] md:text-lg "
+                >
+                  <MdAccountCircle size={40} className="" />
                 </Link>
               </li>
-              <li>
+              <li className="drop-shadow-[0_4px_0px_rgba(0,0,0,0.8)]">
                 <Link href="/portfolio" className="nav-link">
                   <FaSuitcase size={34} />
                 </Link>
               </li>
-              <li className="relative">
+              <li className="relative drop-shadow-[0_4px_0px_rgba(0,0,0,0.8)]">
                 <button
                   type="button"
                   onClick={toggleContact}
@@ -125,7 +128,7 @@ export default function MobileHeader() {
                   </div>
                 </div>
               </li>
-              <li>
+              <li className="drop-shadow-[0_4px_0px_rgba(0,0,0,0.8)]">
                 <Link
                   href="https://drive.google.com/file/d/1jc0GwlNZtplVagNXbdJmbcPwFYXuaBdc/view?usp=sharing"
                   target="_blank"

@@ -5,8 +5,7 @@ import { IoIosCloseCircle } from "react-icons/io";
 import ScrollReveal from "../../components/ScrollReveal";
 import { motion } from "motion/react";
 import { useState } from "react";
-import projects from "../../../data/projects";
-import reactProjects from "../../../data/udemyReact";
+import { projects, reactApps } from "../../../data/projects";
 
 import Skills from "../../../_components/Skills";
 import Dock from "../../components/Dock";
@@ -193,12 +192,18 @@ export default function Page() {
               </div>
             </button>
 
-            {/* Loader overlay */}
+            {/* Loader overlay
             <div className="relative w-full">
               {loadingGif && (
-                <div className="absolute inset-0 flex justify-center items-center bg-black/40 rounded-lg">
-                  <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-[#98B493]" />
-                </div>
+                // Default values shown
+                <Square
+                  size="35"
+                  stroke="5"
+                  strokeLength="0.25"
+                  bgOpacity="0.1"
+                  speed="1.2"
+                  color="black"
+                />
               )}
 
               <Image
@@ -210,7 +215,7 @@ export default function Page() {
                 unoptimized={true}
                 onLoad={() => setLoadingGif(false)}
               />
-            </div>
+            </div> */}
 
             <h2 className="text-2xl text-gray-300 mb-2 font-bold">
               {selected.title}

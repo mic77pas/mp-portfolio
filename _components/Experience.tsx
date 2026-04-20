@@ -354,15 +354,13 @@ export default function ExperienceSection() {
 
       {/* Card */}
       <div className="mt-6 w-full rounded-2xl border border-[#384438] bg-[#0E120E]/75 shadow-[0px_18px_40px_rgba(0,0,0,0.6)] overflow-hidden">
-        <div className="divide-y divide-[#2a342a]">
-          {tab === "work"
-            ? (items as WorkItem[]).map((item, idx) => (
-                <WorkRow key={`${item.org}-${idx}`} item={item} />
-              ))
-            : (items as EducationGroup[]).map((g, idx) => (
-                <EducationGroupCard key={`${g.org}-${idx}`} group={g} />
-              ))}
-        </div>
+        {tab === "work"
+          ? (items as WorkItem[]).map((item, idx) => (
+              <WorkRow key={`${item.org}-${idx}`} item={item} />
+            ))
+          : (items as EducationGroup[]).map((g, idx) => (
+              <EducationGroupCard key={`${g.org}-${idx}`} group={g} />
+            ))}
       </div>
     </section>
   );

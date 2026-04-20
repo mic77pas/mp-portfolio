@@ -4,7 +4,7 @@ import { FaCode, FaFigma, FaGithub } from "react-icons/fa";
 import { IoIosCloseCircle } from "react-icons/io";
 import { motion } from "motion/react";
 import { useState } from "react";
-import { cs50Apps } from "../../../../data/projects";
+import { reactApps } from "../../../../data/projects";
 import { Square } from "ldrs/react";
 import "ldrs/react/Square.css";
 
@@ -32,7 +32,7 @@ export default function Page() {
         // blurStrength={8}
         className="grid grid-cols-1 lg:grid-cols-2 gap-8 gap-y-16 w-full mb-14"
       >
-        {cs50Apps.map((project) => (
+        {reactApps.map((project) => (
           <div
             key={project.id}
             className="group relative rounded-xl overflow-visible shadow-lg cursor-pointer"
@@ -83,7 +83,7 @@ export default function Page() {
       {/* Modal */}
       {selected && (
         <div
-          className="fixed inset-0 bg-black/70 flex items-center justify-center z-50"
+          className="fixed inset-0 bg-black/70 flex items-center justify-center z-110"
           onClick={() => setSelected(null)}
         >
           <div

@@ -46,7 +46,7 @@ function IconLink({ href, img, hoverImg, label, imgClassName = "" }) {
       className="flex flex-col items-center gap-2 w-28 group"
       variants={iconItem}
     >
-      <div className="relative w-[80px] h-[80px] md:w-[77px] md:h-[77px] rounded-full shadow-[0px_4px_4px_rgba(0,0,0,0.5)]">
+      <div className="relative w-[77px] h-[77px] rounded-full shadow-[0px_4px_4px_rgba(0,0,0,0.5)]">
         <Link href={href} target="_blank" rel="noopener noreferrer">
           <Image
             src={img}
@@ -106,7 +106,7 @@ export default function Home() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1, ease: "easeOut" }}
-      className="w-full h-full flex items-center justify-center mt-8"
+      className="w-full h-full flex items-center justify-center mt-14"
     >
       <div className="flex flex-col items-center text-center gap-2">
         <div className="relative inline-block group cursor-pointer pointer-events-none md:pointer-events-auto">
