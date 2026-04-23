@@ -524,7 +524,41 @@ export default function AboutHeader() {
             </div>
           </div>
 
-          <div className="flex flex-col lg:flex-1 h-30 rounded-lg border-2 border-[#87a082] bg-[#121412]"></div>
+          <div className="flex flex-col lg:flex-1 h-fit p-3 rounded-lg border-2 border-[#87a082] bg-[#121412]">
+            <p className="text-[#ccd8c2] font-minecraft">
+              Hey! My name is Michael, and I&apos;m a{" "}
+              <Link
+                href="https://uwaterloo.ca/systems-design-engineering/"
+                className="inline-flex items-center gap-1 hover:text-[#eef1eb] hover:scale-102 transition duration-200"
+              >
+                SYDE
+              </Link>{" "}
+              student at the{" "}
+              <Link
+                href="https://uwaterloo.ca"
+                className="inline-flex items-center gap-1 hover:text-[#eef1eb] hover:scale-102 transition duration-200"
+              >
+                University of Waterloo
+                <Image
+                  src="/logos/uwaterloo.png"
+                  alt="Logo"
+                  width={20}
+                  height={20}
+                />
+              </Link>{" "}
+              based in both California and Toronto.
+              <br />
+              <br />
+              I&apos;m a software engineer with full-stack experience and am
+              also dabbling in other areas like AI, UI/UX, product design, and
+              modelling.
+              <br />
+              <br />
+              When I&apos;m not on the grind, I also love to go climbing,
+              travelling, cooking, and am always looking to learn or take on
+              something new!
+            </p>
+          </div>
         </div>
       </div>
     </motion.section>

@@ -112,7 +112,7 @@ export default function Home() {
         <div className="relative inline-block group cursor-pointer pointer-events-none md:pointer-events-auto">
           <SplitText
             text="Michael Pasyechnyk"
-            className="font-minecraft font-bold text-[54px] md:text-[60px] lg:text-[75px] leading-[1.1] text-[#99b494] hover:text-[#bbd3b6] transition duration-200 drop-shadow-[0px_6px_0px_rgba(0,0,0,0.5)]"
+            className="font-minecraft font-bold text-[58px] md:text-[60px] lg:text-[75px] leading-[1.1] text-[#99b494] hover:text-[#bbd3b6] transition duration-200 drop-shadow-[0px_6px_0px_rgba(0,0,0,0.5)]"
             delay={50}
             duration={1}
             ease="power3.out"

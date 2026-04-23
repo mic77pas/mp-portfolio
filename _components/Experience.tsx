@@ -191,7 +191,7 @@ function UWTimelineChips({
   return (
     <div className="hidden lg:flex flex-row justify-start mt-4 w-fit rounded-full shadow-[0px_4px_6px_rgba(0,0,0,0.5)] overflow-hidden">
       {labels.map((label, i) => {
-        const isActive = activeIndex != null ? i === activeIndex : i < 2; // default: first two like your old example
+        const isActive = activeIndex != null ? i === activeIndex : i < 3; // default: first two like your old example
         const isFirst = i === 0;
         const isLast = i === labels.length - 1;
 
