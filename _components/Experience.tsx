@@ -39,7 +39,7 @@ const workData: WorkItem[] = [
   {
     title: "Software Engineer Intern",
     org: "ParkUsher",
-    date: "Jan 2026 – Present",
+    date: "Jan 2026 – Apr 2026",
     iconSrc: "/logos/experience/parkusher.png",
     href: "https://www.parkusher.app/",
   },
@@ -115,7 +115,7 @@ function Icon({ src, alt }: { src?: string; alt: string }) {
   if (!src) return null;
 
   return (
-    <div className="relative w-11 h-11 shrink-0 rounded-full overflow-hidden bg-[#0F1511] ring-2 ring-[#2B352A] shadow-[0px_4px_10px_rgba(0,0,0,0.6)]">
+    <div className="relative w-11 h-11 rounded-full overflow-hidden shadow-[0px_4px_10px_rgba(0,0,0,0.6)]">
       <Image src={src} alt={alt} fill sizes="44px" className="object-cover" />
     </div>
   );
@@ -313,7 +313,7 @@ export default function ExperienceSection() {
   return (
     <section className="w-full flex flex-col items-center mb-16">
       {/* Tabs */}
-      <div className="relative w-full rounded-2xl border border-[#384438] bg-[#0E120E]/70 shadow-[0px_10px_30px_rgba(0,0,0,0.55)]">
+      <div className="relative w-full rounded-2xl border-2 border-[#87a082] bg-[#0E120E]/70 shadow-[0px_10px_30px_rgba(0,0,0,0.55)]">
         <div className="relative p-2">
           <div
             className={[
@@ -353,7 +353,7 @@ export default function ExperienceSection() {
       </div>
 
       {/* Card */}
-      <div className="mt-6 w-full rounded-2xl border border-[#384438] bg-[#0E120E]/75 shadow-[0px_18px_40px_rgba(0,0,0,0.6)] overflow-hidden">
+      <div className="mt-6 w-full rounded-2xl border-2 border-[#87a082] bg-[#0E120E]/75 shadow-[0px_18px_40px_rgba(0,0,0,0.6)] overflow-hidden">
         {tab === "work"
           ? (items as WorkItem[]).map((item, idx) => (
               <WorkRow key={`${item.org}-${idx}`} item={item} />

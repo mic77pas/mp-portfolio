@@ -23,7 +23,7 @@ export default function Page() {
   const [selected, setSelected] = useState(null);
   const [loadingGif, setLoadingGif] = useState(true);
   const [search, setSearch] = useState("");
-  const [mode, setMode] = useState("code"); // "code" | "figma" | "framer" | "other"
+  const [mode, setMode] = useState("code"); // "code" | "figma" | "framer" | "models"
 
   // Filter projects based on search query
   const filteredProjects = projects.filter(
@@ -117,11 +117,11 @@ export default function Page() {
         </>
       )}
 
-      {mode === "other" && (
+      {mode === "models" && (
         <div className="flex flex-col text-center">
-          <h1 className="font-minecraft text-4xl text-center font-bold text-[#90AD8F] text-shadow-[0px_3px_1px_rgba(0,0,0,0.5)] mb-6">
-            Solidworks
-          </h1>
+          {/* <h1 className="font-minecraft text-4xl text-center font-bold text-[#90AD8F] text-shadow-[0px_3px_1px_rgba(0,0,0,0.5)] mb-6">
+            3D Models
+          </h1> */}
           <ModelView />
         </div>
       )}
@@ -308,11 +308,11 @@ const SkillsDock = ({ mode, setMode }) => {
         />
       </button>
 
-      {/* Other */}
+      {/* Models */}
       <button
-        onClick={() => setMode("other")}
+        onClick={() => setMode("models")}
         className={`group w-13 h-13 flex items-center justify-center rounded-full border-2 transition cursor-pointer ${
-          mode === "other"
+          mode === "models"
             ? "bg-[#8dad8c] border-[#8dad8c]"
             : "bg-[#101310] border-[#8dad8c] hover:bg-[#8dad8c]"
         }`}
@@ -323,7 +323,7 @@ const SkillsDock = ({ mode, setMode }) => {
           width={32}
           height={32}
           className={`transition-all duration-150 ${
-            mode === "other"
+            mode === "models"
               ? "grayscale brightness-0"
               : "group-hover:grayscale group-hover:brightness-0"
           }`}

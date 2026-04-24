@@ -4,6 +4,7 @@ import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Environment, useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 import { useLayoutEffect } from "react";
+import Image from "next/image";
 
 function CenteredModel({ src }: { src: string }) {
   const { scene } = useGLTF(src);
@@ -14,51 +15,90 @@ function CenteredModel({ src }: { src: string }) {
     scene.position.sub(center);
   }, [scene]);
 
-  return <primitive object={scene} />;
+  return (
+    <group position={[0, 0.01, 0]}>
+      <primitive object={scene} />
+    </group>
+  );
 }
 
-function ModelTile({ src, title }: { src: string; title?: string }) {
+function ModelTile({
+  src,
+  hoverSrc,
+  title,
+  type = "model",
+}: {
+  src: string;
+  hoverSrc?: string;
+  title?: string;
+  type?: "model" | "image";
+}) {
   return (
     <div
       className="group
-    transition-all duration-300 ease-out hover:border-[#aabeaa] rounded-xl overflow-hidden bg-[#1b1b1b] shadow-lg border border-white/10"
+      transition-all duration-300 ease-out border-2 hover:border-[#99b699]
+     rounded-xl overflow-hidden bg-[#1b1b1b]
+      shadow-lg cursor-pointer"
     >
-      <div className="aspect-video w-full">
-        <Canvas camera={{ position: [0.22, 0.1, 0.22], fov: 25 }}>
-          <ambientLight intensity={0.2} />
-          <directionalLight position={[0, 5, 0]} intensity={1} />
-          <Environment preset="studio" />
-          <CenteredModel src={src} />
-          <OrbitControls enableZoom={false} enablePan={false} enableDamping />
-        </Canvas>
+      <div className="relative aspect-video w-full">
+        {type === "model" ? (
+          <Canvas camera={{ position: [0.22, 0.1, 0.22], fov: 25 }}>
+            <ambientLight intensity={0.2} />
+            <directionalLight position={[0, 5, 0]} intensity={1} />
+            <Environment preset="studio" />
+            <CenteredModel src={src} />
+            <OrbitControls enableZoom={false} enablePan={false} enableDamping />
+          </Canvas>
+        ) : (
+          <>
+            {/* Base image */}
+            <Image
+              src={src}
+              alt={title || "image"}
+              fill
+              className={`object-cover transition-opacity duration-300 ${
+                hoverSrc ? "group-hover:opacity-0" : ""
+              }`}
+            />
+
+            {/* Hover image */}
+            {hoverSrc && (
+              <Image
+                src={hoverSrc}
+                alt="hover image"
+                fill
+                className="object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              />
+            )}
+          </>
+        )}
       </div>
-      {title ? (
-        <div
-          className="text-[20px] pt-2 pb-3 font-minecraft font-black bg-[#738d73]/90 backdrop-blur-sm
-    text-[#262b26]
-    border border-transparent
-    transition-all duration-300 ease-out
-    group-hover:bg-[#2c332c]/70
-    group-hover:text-white
-    group-hover:border-t-[#aabeaa] rounded-b-lg "
-        >
-          {title}
-        </div>
-      ) : null}
     </div>
   );
 }
 
 export default function ModelGrid() {
   const models = [
-    { src: "/models/CarFinal.glb", title: "Cyber Truck" },
-    { src: "/models/Beaver.glb", title: "Nutcracker" },
+    {
+      hoverSrc: "/models/Donut&Coffee1.png",
+      src: "/models/DonutViewport.png",
+      title: "Blender Scene",
+      type: "image",
+    },
+    { src: "/models/CarFinal.glb", title: "Cyber Truck", type: "model" },
+    { src: "/models/Beaver.glb", title: "Nutcracker", type: "model" },
   ];
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
       {models.map((m) => (
-        <ModelTile key={m.src} src={m.src} title={m.title} />
+        <ModelTile
+          key={m.src}
+          src={m.src}
+          hoverSrc={m.hoverSrc}
+          title={m.title}
+          type={m.type as "model" | "image"}
+        />
       ))}
     </div>
   );
