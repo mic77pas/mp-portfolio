@@ -6,8 +6,28 @@ import * as THREE from "three";
 import { useLayoutEffect } from "react";
 import Image from "next/image";
 
-function CenteredModel({ src }: { src: string }) {
+function CenteredModel({
+  src,
+  material,
+}: {
+  src: string;
+  material?: THREE.MeshStandardMaterialParameters;
+}) {
   const { scene } = useGLTF(src);
+
+  useLayoutEffect(() => {
+    scene.traverse((child) => {
+      if (child instanceof THREE.Mesh) {
+        child.material = new THREE.MeshStandardMaterial(
+          material || {
+            color: "#a3a3a3",
+            roughness: 0.2,
+            metalness: 0.8,
+          },
+        );
+      }
+    });
+  }, [scene, material]);
 
   useLayoutEffect(() => {
     const box = new THREE.Box3().setFromObject(scene);
@@ -27,18 +47,20 @@ function ModelTile({
   hoverSrc,
   title,
   type = "model",
+  material,
 }: {
   src: string;
   hoverSrc?: string;
   title?: string;
   type?: "model" | "image";
+  material?: THREE.MeshStandardMaterialParameters;
 }) {
   return (
     <div
       className="group
-      transition-all duration-300 ease-out border-2 hover:border-[#99b699]
+      transition-all duration-300 ease-out 
      rounded-xl overflow-hidden bg-[#1b1b1b]
-      shadow-lg cursor-pointer"
+      shadow-[0_6px_4px_rgba(0,0,0,0.5)] cursor-pointer"
     >
       <div className="relative aspect-video w-full">
         {type === "model" ? (
@@ -46,7 +68,7 @@ function ModelTile({
             <ambientLight intensity={0.2} />
             <directionalLight position={[0, 5, 0]} intensity={1} />
             <Environment preset="studio" />
-            <CenteredModel src={src} />
+            <CenteredModel src={src} material={material} />
             <OrbitControls enableZoom={false} enablePan={false} enableDamping />
           </Canvas>
         ) : (
@@ -80,15 +102,32 @@ function ModelTile({
 export default function ModelGrid() {
   const models = [
     {
-      hoverSrc: "/models/Donut&Coffee1.png",
-      src: "/models/DonutViewport.png",
+      src: "/models/Donut&Coffee1.png",
+      hoverSrc: "/models/DonutViewport.png",
       title: "Blender Scene",
       type: "image",
     },
-    { src: "/models/CarFinal.glb", title: "Cyber Truck", type: "model" },
-    { src: "/models/Beaver.glb", title: "Nutcracker", type: "model" },
+    {
+      src: "/models/CarFinal.glb",
+      title: "Cyber Truck",
+      type: "model",
+      material: {
+        color: "#bebebe",
+        roughness: 0.4,
+        metalness: 0.9,
+      },
+    },
+    {
+      src: "/models/Beaver.glb",
+      title: "Nutcracker",
+      type: "model",
+      material: {
+        color: "#503112",
+        roughness: 0.6,
+        metalness: 0.3,
+      },
+    },
   ];
-
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
       {models.map((m) => (
@@ -98,6 +137,7 @@ export default function ModelGrid() {
           hoverSrc={m.hoverSrc}
           title={m.title}
           type={m.type as "model" | "image"}
+          material={m.material}
         />
       ))}
     </div>

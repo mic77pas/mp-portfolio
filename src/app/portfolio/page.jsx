@@ -42,9 +42,9 @@ export default function Page() {
 
       {mode === "code" && (
         <>
-          {/* <h1 className="font-minecraft text-4xl text-center font-bold text-[#90AD8F] text-shadow-[0px_3px_1px_rgba(0,0,0,0.5)] mb-6">
-            My Projects
-          </h1> */}
+          <h1 className="font-minecraft text-4xl text-center font-bold text-[#90AD8F] text-shadow-[0px_3px_1px_rgba(0,0,0,0.5)] mb-6">
+            Software Projects
+          </h1>
           {/* Grid of project cards */}
           <div
             // baseOpacity={0}
@@ -118,12 +118,17 @@ export default function Page() {
       )}
 
       {mode === "models" && (
-        <div className="flex flex-col text-center">
-          {/* <h1 className="font-minecraft text-4xl text-center font-bold text-[#90AD8F] text-shadow-[0px_3px_1px_rgba(0,0,0,0.5)] mb-6">
+        <>
+          <h1 className="font-minecraft text-4xl text-center font-bold text-[#90AD8F] text-shadow-[0px_3px_1px_rgba(0,0,0,0.5)] mb-6">
+            3D Models
+          </h1>{" "}
+          <div className="flex flex-col text-center">
+            {/* <h1 className="font-minecraft text-4xl text-center font-bold text-[#90AD8F] text-shadow-[0px_3px_1px_rgba(0,0,0,0.5)] mb-6">
             3D Models
           </h1> */}
-          <ModelView />
-        </div>
+            <ModelView />
+          </div>
+        </>
       )}
 
       {mode === "figma" && (
@@ -287,7 +292,7 @@ const SkillsDock = ({ mode, setMode }) => {
       </button>
 
       {/* Framer */}
-      <button
+      {/* <button
         onClick={() => setMode("framer")}
         className={`group w-13 h-13 flex items-center justify-center rounded-full border-2 transition cursor-pointer ${
           mode === "framer"
@@ -306,7 +311,7 @@ const SkillsDock = ({ mode, setMode }) => {
               : "group-hover:grayscale group-hover:brightness-0"
           }`}
         />
-      </button>
+      </button> */}
 
       {/* Models */}
       <button
