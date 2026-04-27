@@ -105,7 +105,7 @@ const educationGroups: EducationGroup[] = [
 function PlusBullet({ children }: { children: React.ReactNode }) {
   return (
     <li className="flex gap-3">
-      <span className="mt-[2px] font-minecraft text-[#80967d]">■</span>
+      <span className="font-minecraft text-[#80967d]">⯀</span>
       <span className="text-[#D9DED8] leading-6">{children}</span>
     </li>
   );
@@ -157,17 +157,17 @@ function WorkRow({ item }: { item: WorkItem }) {
           <p className="font-minecraft text-[18px] text-white truncate">
             {item.org}
           </p>
-          <p className="text-[#C9D1C8] text-sm truncate">{item.title}</p>
+          <p className="font-minecraft text-[#C9D1C8] text-sm truncate">{item.title}</p>
         </div>
 
         <div className="ml-auto flex items-center gap-4 shrink-0">
           {item.date ? (
-            <p className="text-[#93A093] text-sm hidden sm:block">
+            <p className="font-minecraft text-[#93A093] text-sm">
               {item.date}
             </p>
           ) : null}
           {item.href ? (
-            <ArrowUpRight className="text-[#cfe0c9] opacity-80" size={18} />
+            <ArrowUpRight className="hidden sm:block text-[#cfe0c9] opacity-80" size={18} />
           ) : null}
         </div>
       </div>
@@ -231,11 +231,11 @@ function EducationGroupCard({ group }: { group: EducationGroup }) {
         <div className="min-w-0 flex-1">
           <div className="flex items-start justify-between gap-4">
             <div className="min-w-0">
-              <h3 className="font-minecraft text-[20px] text-white drop-shadow-[0px_2px_0px_rgba(0,0,0,0.6)] truncate">
+              <h3 className="font-minecraft text-[14px] md:text-[20px] text-white drop-shadow-[0px_2px_0px_rgba(0,0,0,0.6)] truncate">
                 {group.org}
               </h3>
               {group.description ? (
-                <p className="text-[#C9D1C8] text-md mt-1">
+                <p className="font-minecraft text-[#C9D1C8] text-sm mt-1">
                   {group.description}
                 </p>
               ) : null}
@@ -243,7 +243,7 @@ function EducationGroupCard({ group }: { group: EducationGroup }) {
 
             <div className="flex items-center gap-3 shrink-0">
               {group.date ? (
-                <p className="text-[#93A093] text-sm">{group.date}</p>
+                <p className="font-minecraft text-[#93A093] text-sm">{group.date}</p>
               ) : null}
               {group.href ? (
                 <ArrowUpRight className="text-[#cfe0c9] opacity-80" size={18} />
@@ -259,7 +259,7 @@ function EducationGroupCard({ group }: { group: EducationGroup }) {
           ) : null}
 
           {group.courses?.length ? (
-            <ul className="mt-3 space-y-2">
+            <ul className="mt-1">
               {group.courses.map((c, i) => (
                 <PlusBullet key={`${c.title}-${i}`}>
                   {c.href ? (
@@ -267,12 +267,12 @@ function EducationGroupCard({ group }: { group: EducationGroup }) {
                       href={c.href}
                       target="_blank"
                       rel="noreferrer"
-                      className="no-underline decoration-white/20 hover:decoration-white/60 transition"
+                      className="font-minecraft text-sm no-underline decoration-white/20 hover:decoration-white/60 transition"
                     >
                       {c.title}
                     </Link>
                   ) : (
-                    c.title
+                    <p className="font-minecraft text-sm">{c.title}</p>
                   )}
                 </PlusBullet>
               ))}

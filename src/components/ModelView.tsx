@@ -1,10 +1,33 @@
 "use client";
 
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Environment, useGLTF } from "@react-three/drei";
+import { OrbitControls, Environment, useGLTF, useProgress } from "@react-three/drei";
 import * as THREE from "three";
-import { useLayoutEffect } from "react";
+import { Suspense, useLayoutEffect } from "react";
 import Image from "next/image";
+
+function ModelLoader() {
+  return (
+    <Html center>
+      <div className="h-8 w-8 animate-spin rounded-full border-4 border-[#87a082] border-t-transparent" />
+    </Html>
+  );
+}
+
+function ModelLoaderOverlay() {
+  const { active, progress } = useProgress();
+
+  if (!active) return null;
+
+  return (
+    <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-[#1b1b1b]">
+      <div className="h-8 w-8 animate-spin rounded-full border-4 border-[#87a082] border-t-transparent" />
+      <p className="mt-3 font-minecraft text-sm text-[#ccd8c2]">
+        {Math.round(progress)}%
+      </p>
+    </div>
+  );
+}
 
 function CenteredModel({
   src,
@@ -57,23 +80,26 @@ function ModelTile({
 }) {
   return (
     <div
-      className="group
-      transition-all duration-300 ease-out 
-     rounded-xl overflow-hidden bg-[#1b1b1b]
+      className="group transition-all duration-300 ease-out rounded-xl overflow-hidden bg-[#1b1b1b]
       shadow-[0_6px_4px_rgba(0,0,0,0.5)] cursor-pointer"
     >
       <div className="relative aspect-video w-full">
         {type === "model" ? (
+          <>
+          <ModelLoaderOverlay />
           <Canvas camera={{ position: [0.22, 0.1, 0.22], fov: 25 }}>
             <ambientLight intensity={0.2} />
             <directionalLight position={[0, 5, 0]} intensity={1} />
             <Environment preset="studio" />
-            <CenteredModel src={src} material={material} />
+
+            <Suspense fallback={<ModelLoader />}>
+              <CenteredModel src={src} material={material} />
+            </Suspense>
+
             <OrbitControls enableZoom={false} enablePan={false} enableDamping />
-          </Canvas>
+          </Canvas></>
         ) : (
           <>
-            {/* Base image */}
             <Image
               src={src}
               alt={title || "image"}
@@ -83,7 +109,6 @@ function ModelTile({
               }`}
             />
 
-            {/* Hover image */}
             {hoverSrc && (
               <Image
                 src={hoverSrc}
@@ -128,6 +153,7 @@ export default function ModelGrid() {
       },
     },
   ];
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
       {models.map((m) => (

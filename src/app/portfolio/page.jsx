@@ -51,7 +51,7 @@ export default function Page() {
             // enableBlur={true}
             // baseRotation={2}
             // blurStrength={8}
-            className="grid grid-cols-1 lg:grid-cols-2 gap-8 gap-y-16 w-full mb-16 auto-rows-fr"
+            className="grid grid-cols-1 md:grid-cols-2 gap-8 gap-y-16 w-full mb-16 auto-rows-fr"
           >
             {projects.map((project) => (
               <Link
@@ -122,7 +122,7 @@ export default function Page() {
           <h1 className="font-minecraft text-4xl text-center font-bold text-[#90AD8F] text-shadow-[0px_3px_1px_rgba(0,0,0,0.5)] mb-6">
             3D Models
           </h1>{" "}
-          <div className="flex flex-col text-center">
+          <div className="flex flex-col text-center pb-5">
             {/* <h1 className="font-minecraft text-4xl text-center font-bold text-[#90AD8F] text-shadow-[0px_3px_1px_rgba(0,0,0,0.5)] mb-6">
             3D Models
           </h1> */}
@@ -137,7 +137,7 @@ export default function Page() {
             Figma Designs
           </h1>
 
-          <div className="mt-20 gap-4 flex flex-col justify-center items-center">
+          {/* <div className="mt-20 gap-4 flex flex-col justify-center items-center">
             <Image
               src="/wip.png"
               width={300}
@@ -148,7 +148,7 @@ export default function Page() {
             <h2 className="font-minecraft text-2xl text-center font-bold text-[#90AD8F] text-shadow-[0px_3px_1px_rgba(0,0,0,0.5)]">
               Coming soon!
             </h2>
-          </div>
+          </div> */}
         </div>
       )}
 

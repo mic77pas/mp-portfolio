@@ -391,6 +391,25 @@ export default function AboutHeader() {
 
   const [isOfflineHours, setIsOfflineHours] = useState(false);
 
+  const birthdayProgress = useMemo(() => {
+    const today = new Date();
+    const birthMonth = 6;
+    const birthDay = 30;
+
+    let lastBirthday = new Date(today.getFullYear(), birthMonth, birthDay);
+    let nextBirthday = new Date(today.getFullYear() + 1, birthMonth, birthDay);
+
+    if (today < lastBirthday) {
+      lastBirthday = new Date(today.getFullYear() - 1, birthMonth, birthDay);
+      nextBirthday = new Date(today.getFullYear(), birthMonth, birthDay);
+    }
+
+    const total = nextBirthday.getTime() - lastBirthday.getTime();
+    const elapsed = today.getTime() - lastBirthday.getTime();
+
+    return Math.round((elapsed / total) * 100);
+  }, []);
+
   const age = useMemo(() => {
     const birthDate = new Date(2006, 6, 30);
     const today = new Date();
@@ -408,6 +427,8 @@ export default function AboutHeader() {
 
     return years;
   }, []);
+
+  
 
   useEffect(() => {
     const FORCE_TEST_HOUR = null;
@@ -509,8 +530,8 @@ export default function AboutHeader() {
                 <Bar label="HP" pct={82} icon={<FaHeart />} />
                 <Bar
                   label="EXP"
-                  pct={70}
-                  icon={<FaArrowAltCircleUp />}
+  pct={birthdayProgress}
+  icon={<FaArrowAltCircleUp />}
                   valueText={"Lvl. up on July 30th!"}
                 />
               </div>

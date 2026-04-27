@@ -69,7 +69,7 @@ export default function MobileHeader() {
                 <button
                   type="button"
                   onClick={toggleContact}
-                  className={`nav-link flex items-center justify-center transition-transform duration-200 ${
+                  className={`nav-link cursor-pointer flex items-center justify-center transition-transform duration-200 ${
                     isContactOpen ? "scale-110" : "scale-100"
                   }`}
                   aria-label="Open contact links"
