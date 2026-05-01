@@ -1,16 +1,21 @@
 "use client";
 
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Environment, useGLTF, useProgress } from "@react-three/drei";
+import {
+  OrbitControls,
+  Environment,
+  useGLTF,
+  useProgress,
+} from "@react-three/drei";
 import * as THREE from "three";
 import { Suspense, useLayoutEffect } from "react";
 import Image from "next/image";
 
 function ModelLoader() {
   return (
-    <Html center>
+    <div className="flex items-center justify-center">
       <div className="h-8 w-8 animate-spin rounded-full border-4 border-[#87a082] border-t-transparent" />
-    </Html>
+    </div>
   );
 }
 
@@ -86,18 +91,23 @@ function ModelTile({
       <div className="relative aspect-video w-full">
         {type === "model" ? (
           <>
-          <ModelLoaderOverlay />
-          <Canvas camera={{ position: [0.22, 0.1, 0.22], fov: 25 }}>
-            <ambientLight intensity={0.2} />
-            <directionalLight position={[0, 5, 0]} intensity={1} />
-            <Environment preset="studio" />
+            <ModelLoaderOverlay />
+            <Canvas camera={{ position: [0.22, 0.1, 0.22], fov: 25 }}>
+              <ambientLight intensity={0.2} />
+              <directionalLight position={[0, 5, 0]} intensity={1} />
+              <Environment preset="studio" />
 
-            <Suspense fallback={<ModelLoader />}>
-              <CenteredModel src={src} material={material} />
-            </Suspense>
+              <Suspense fallback={<ModelLoader />}>
+                <CenteredModel src={src} material={material} />
+              </Suspense>
 
-            <OrbitControls enableZoom={false} enablePan={false} enableDamping />
-          </Canvas></>
+              <OrbitControls
+                enableZoom={false}
+                enablePan={false}
+                enableDamping
+              />
+            </Canvas>
+          </>
         ) : (
           <>
             <Image
@@ -155,7 +165,7 @@ export default function ModelGrid() {
   ];
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       {models.map((m) => (
         <ModelTile
           key={m.src}

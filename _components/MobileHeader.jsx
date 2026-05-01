@@ -48,7 +48,7 @@ export default function MobileHeader() {
                     alt="Logo"
                     width={55}
                     height={55}
-                    className="transition-transform duration-300 hover:scale-105 hover:brightness-120 saturate-50"
+                    className="transition-transform drop-shadow-[0_4px_0px_rgba(0,0,0,0.8)] duration-300 hover:scale-105 hover:brightness-120 saturate-50"
                   />
                 </Link>
               </li>

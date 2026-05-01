@@ -34,7 +34,7 @@ export default function Page() {
       >
         {reactApps.map((project) => (
           <div
-            key={project.id}
+            key={project.title}
             className="group relative rounded-xl overflow-visible shadow-lg cursor-pointer"
             onClick={() => {
               setSelected(project);

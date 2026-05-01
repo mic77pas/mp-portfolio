@@ -1,12 +1,36 @@
 const projects = [
   {
     title: "Portfolio Website",
-    image: "/projects/images/portfolio.png",
-    skills: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Node.js"],
     slug: "portfolio-website",
+
+    caption: "Full-stack Next.js portfolio",
     description:
       "Full-stack Next.js portfolio displaying my background and experience (you're in it right now!)",
+
+    image: "/projects/images/portfolio.png",
+    gif: "", // optional but highly recommended
+
     github: "https://github.com/mic77pas/mp-portfolio",
+
+    skills: [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Node.js",
+      "Vercel",
+    ],
+
+    // NEW SECTIONS
+    tools: "Next.js, TypeScript, Tailwind CSS, Vercel",
+
+    whatIsIt:
+      "A personal portfolio site to showcase projects, experience, and skills in an interactive way.",
+
+    why: "I wanted a highly customized portfolio that felt unique and interactive rather than a standard template.",
+
+    learned:
+      "Improved my skills in Next.js routing, component architecture, animations, and responsive UI design.",
   },
   {
     title: "React Apps",
@@ -38,7 +62,14 @@ const projects = [
   {
     title: "Client Sites",
     image: "/projects/images/clientsite.jpg",
-    skills: ["React", "Next.js", "JavaScript", "Tailwind CSS", "Node.js"],
+    skills: [
+      "React",
+      "Next.js",
+      "JavaScript",
+      "Tailwind CSS",
+      "Node.js",
+      "Vercel",
+    ],
     slug: "client-sites",
     description: "Portfolio websites made for various clientele",
     github: "https://github.com/mic77pas/client-sites",
@@ -48,7 +79,6 @@ const projects = [
 
 const reactApps = [
   {
-    id: 10,
     title: "Wild Oasis Website",
     description:
       "Hotel booking site (connected with `The Wild Oasis`) utilizing the Next.js 'app' router, react server components, server actions, and authentication with NextAuth ",
@@ -58,7 +88,6 @@ const reactApps = [
     tech: ["React", "Front-End", "UX"],
   },
   {
-    id: 9,
     title: "The Wild Oasis",
     description:
       "Hotel management site w/ bookings, cabin editing, and user settings, utlizing react query, styled componenets, reack hook form, supabase, advanced compound component patterns, authentication, charts, dark mode, and professional application planning/development",
@@ -68,7 +97,6 @@ const reactApps = [
     tech: ["React", "Full-Stack Development", "UX"],
   },
   {
-    id: 8,
     title: "Fast React Pizza",
     description:
       "Pizza menu/ordering site with a search order, cart overview, and order tracker, practising React router data loading, redux/redux toolkit, thunks, and Tailwind CSS",
@@ -77,7 +105,6 @@ const reactApps = [
     github: "https://github.com/mic77pas/ReactApps",
   },
   {
-    id: 7,
     title: "WorldWise",
     description:
       "World map travelling tracker practising React Router, Context API, memo/useMemo, useCallback, and the Leaflet library",
@@ -86,7 +113,6 @@ const reactApps = [
     github: "https://github.com/mic77pas/ReactApps",
   },
   {
-    id: 6,
     title: "The React Quiz",
     description:
       "Multiple-choice react-based quiz w/ points and timer, practising the useReducer hook",
@@ -95,7 +121,6 @@ const reactApps = [
     github: "https://github.com/mic77pas/ReactApps",
   },
   {
-    id: 5,
     title: "Classy Weather",
     description: "Simple weather app utilizing react class components",
     image: "/projects/classy-weather.png",
@@ -103,7 +128,6 @@ const reactApps = [
     github: "https://github.com/mic77pas/ReactApps",
   },
   {
-    id: 4,
     title: "usePopcorn",
     description:
       "Movie rating gallery with built-in search and movie stats, practising useEffect, data fetching, and custom hooks",
@@ -112,7 +136,6 @@ const reactApps = [
     github: "https://github.com/mic77pas/ReactApps",
   },
   {
-    id: 3,
     title: "Eat-N-Split",
     description:
       "Money splitting application to track expenses with friends practising React components",
@@ -121,7 +144,6 @@ const reactApps = [
     github: "https://github.com/mic77pas/ReactApps",
   },
   {
-    id: 2,
     title: "Travel List",
     description:
       "Travel 'to-do' list with sorting and packing status practising useState and other state management concepts",
@@ -130,7 +152,6 @@ const reactApps = [
     github: "https://github.com/mic77pas/ReactApps",
   },
   {
-    id: 1,
     title: "React Pizza Graphic",
     description:
       "Simple menu graphic made with react components, props, and JSX",
@@ -143,7 +164,6 @@ const reactApps = [
 
 const cs50Apps = [
   {
-    id: 17,
     title: "Resume Builder",
     description:
       "A modern resume builder that allows users to create, edit, and export professional resumes (with optional AI-assist). Features include real-time content editing, dynamic section management, and a clean export-ready layout. Designed as a capstone project to integrate full-stack development and product thinking.",
@@ -152,7 +172,6 @@ const cs50Apps = [
     github: "https://github.com/mic77pas/CS50-WebProjects",
   },
   {
-    id: 13,
     title: "Social Network",
     description:
       "A Twitter-style social platform where users can create and edit posts, follow/unfollow users, like/unlike posts, and view a personalized feed of followed users. Utilizes Django for backend logic and JavaScript for dynamic front-end interactions including live updates and pagination.",
@@ -161,7 +180,6 @@ const cs50Apps = [
     github: "https://github.com/mic77pas/CS50-WebProjects",
   },
   {
-    id: 12,
     title: "Wiki",
     description:
       "Markdown-based encyclopedia that supports viewing existing pages, searching for articles, creating and editing entries, and viewing random articles. Designed with a clean interface and secure content editing, leveraging Django for server-side logic and content rendering",
@@ -171,7 +189,6 @@ const cs50Apps = [
   },
 
   {
-    id: 14,
     title: "E-Commerce",
     description:
       "A Django-powered auction platform where users can post product listings with images and descriptions, place bids on active listings, comment on items, add items to a personal watchlist, close auctions and view winner results. Implements user authentication and dynamic listing updates using Django’s ORM and templating engine.",
@@ -180,7 +197,6 @@ const cs50Apps = [
     github: "https://github.com/mic77pas/CS50-WebProjects",
   },
   {
-    id: 16,
     title: "Mail",
     description:
       "A single-page application that mimics Gmail functionality to compose, send, read, and archive emails, mark messages as read/unread, view inbox, sent mail, and archived folders. Implemented using JavaScript fetch API and a Django backend for asynchronous communication.",
@@ -189,7 +205,6 @@ const cs50Apps = [
     github: "https://github.com/mic77pas/CS50-WebProjects",
   },
   {
-    id: 11,
     title: "Google Mimic",
     description:
       "Simple HTML/CSS project mimicking Google's UI/UX and usability, includes regular/image/advanced search and 'Feeling Lucky' option",

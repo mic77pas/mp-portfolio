@@ -4,8 +4,9 @@ import { FaCode, FaFigma, FaGithub, FaReact } from "react-icons/fa";
 import { IoIosCloseCircle } from "react-icons/io";
 import ScrollReveal from "../../components/ScrollReveal";
 import { motion } from "motion/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { projects, reactApps } from "../../../data/projects";
+import { useSearchParams } from "next/navigation";
 
 import Skills from "../../../_components/Skills";
 import Dock from "../../components/Dock";
@@ -23,7 +24,23 @@ export default function Page() {
   const [selected, setSelected] = useState(null);
   const [loadingGif, setLoadingGif] = useState(true);
   const [search, setSearch] = useState("");
-  const [mode, setMode] = useState("code"); // "code" | "figma" | "framer" | "models"
+  const searchParams = useSearchParams();
+  const initialMode = searchParams.get("mode") || "code";
+
+  const [mode, setMode] = useState("code");
+
+  useEffect(() => {
+    const savedMode = sessionStorage.getItem("portfolioMode");
+
+    if (savedMode) {
+      setMode(savedMode);
+    }
+  }, []);
+
+  const handleSetMode = (newMode) => {
+    setMode(newMode);
+    sessionStorage.setItem("portfolioMode", newMode);
+  };
 
   // Filter projects based on search query
   const filteredProjects = projects.filter(
@@ -36,9 +53,9 @@ export default function Page() {
       initial={{ opacity: 0, scale: 1 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 1, ease: "easeOut" }}
-      className="min-h-screen text-foreground flex flex-col justify-start"
+      className="h-fit text-foreground flex flex-col justify-start"
     >
-      <SkillsDock mode={mode} setMode={setMode} />
+      <SkillsDock mode={mode} setMode={handleSetMode} />
 
       {mode === "code" && (
         <>
@@ -56,6 +73,7 @@ export default function Page() {
             {projects.map((project) => (
               <Link
                 href={`/portfolio/${project.slug}`}
+                onClick={() => sessionStorage.setItem("portfolioMode", mode)}
                 key={project.slug}
                 className="group relative flex flex-col w-full h-full overflow-visible rounded-xl border-2 border-[#6a8366] bg-[#1a1b1a] shadow-lg"
               >
@@ -122,10 +140,7 @@ export default function Page() {
           <h1 className="font-minecraft text-4xl text-center font-bold text-[#90AD8F] text-shadow-[0px_3px_1px_rgba(0,0,0,0.5)] mb-6">
             3D Models
           </h1>{" "}
-          <div className="flex flex-col text-center pb-5">
-            {/* <h1 className="font-minecraft text-4xl text-center font-bold text-[#90AD8F] text-shadow-[0px_3px_1px_rgba(0,0,0,0.5)] mb-6">
-            3D Models
-          </h1> */}
+          <div className="flex flex-col text-center mb-6">
             <ModelView />
           </div>
         </>
@@ -136,19 +151,6 @@ export default function Page() {
           <h1 className="font-minecraft text-4xl text-center font-bold text-[#90AD8F] text-shadow-[0px_3px_1px_rgba(0,0,0,0.5)] mb-6">
             Figma Designs
           </h1>
-
-          {/* <div className="mt-20 gap-4 flex flex-col justify-center items-center">
-            <Image
-              src="/wip.png"
-              width={300}
-              height={100}
-              alt="Coming soon"
-              className="mx-auto saturate-120 brightness-130"
-            />
-            <h2 className="font-minecraft text-2xl text-center font-bold text-[#90AD8F] text-shadow-[0px_3px_1px_rgba(0,0,0,0.5)]">
-              Coming soon!
-            </h2>
-          </div> */}
         </div>
       )}
 

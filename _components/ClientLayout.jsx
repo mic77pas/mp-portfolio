@@ -36,5 +36,5 @@ export default function ClientLayout({ children }) {
   }
 
   // all other pages: centered horizontally, max width 5xl
-  return <div className="w-full max-w-5xl px-8 mx-auto pt-10">{children}</div>;
+  return <div className="w-full max-w-5xl px-8 mx-auto pt-5">{children}</div>;
 }
