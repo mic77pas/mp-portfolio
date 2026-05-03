@@ -9,6 +9,7 @@ import {
   FaCss3Alt,
   FaNodeJs,
 } from "react-icons/fa";
+import { FiFigma } from "react-icons/fi";
 
 import {
   SiTypescript,
@@ -26,6 +27,7 @@ import {
   SiVite,
   SiJupyter,
   SiScikitlearn,
+  SiFramer,
 } from "react-icons/si";
 
 export const skillIcons = {
@@ -59,6 +61,7 @@ export const skillIcons = {
   Docker: { icon: FaDocker, color: "#2496ED" },
   Netlify: { icon: SiNetlify, color: "#00C7B7" },
   Vite: { icon: SiVite, color: "#646CFF" },
+  Figma: { icon: FiFigma, color: "#F24E1E" },
 
   // Project-specific
   AWS: { icon: FaAws, color: "#FF9900" },

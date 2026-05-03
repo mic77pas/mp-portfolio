@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     "src/app/layout.jsx",
     "src/app/page.jsx"
-, "src/components/ModelView.tsx", "src/components/ImageCard.tsx", "src/app/portfolio/page.jsx", "src/app/portfolio/portfolio-website/page.tsx"  ],
+, "src/components/ModelView.tsx", "src/components/ImageCard.tsx", "src/app/portfolio/page.jsx", "src/app/portfolio/portfolio-website/page.tsx", "src/app/portfolio/cs50-web/page.jsx"  ],
   "exclude": ["node_modules"]
 }

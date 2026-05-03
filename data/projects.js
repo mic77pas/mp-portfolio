@@ -8,7 +8,7 @@ const projects = [
       "Full-stack Next.js portfolio displaying my background and experience (you're in it right now!)",
 
     image: "/projects/images/portfolio.png",
-    gif: "", // optional but highly recommended
+    gif: "/projects/videos/portfolio.mp4", // optional but highly recommended
 
     github: "https://github.com/mic77pas/mp-portfolio",
 
@@ -51,7 +51,7 @@ const projects = [
     github: "https://github.com/mic77pas/mp-portfolio",
   },
   {
-    title: "CS50 Web Programming",
+    title: "CS50 Web",
     image: "/projects/images/cs50.jpg",
     skills: ["Python", "JavaScript", "Django", "MySQL", "HTML5", "CSS3"],
     slug: "cs50-web",

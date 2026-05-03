@@ -5,10 +5,11 @@ export default function SkillBadge({ name, size = "md" }) {
   const Icon = skill?.icon;
 
   return (
-    <div
+    <span
       className={`
+        inline-flex items-center align-middle
         rounded-lg border border-[#636363] bg-[#2b2c2b]
-        text-white flex items-center justify-center gap-2 w-fit h-7
+        text-white justify-center gap-2 w-fit h-7
         transition-all duration-200
         hover:brightness-110 hover:scale-105
         ${size === "sm" ? "px-2.5 py-1 text-xs" : "px-3 py-1.5 text-sm"}
@@ -16,6 +17,6 @@ export default function SkillBadge({ name, size = "md" }) {
     >
       {Icon && <Icon size={size === "sm" ? 14 : 16} color={skill.color} />}
       <span>{name}</span>
-    </div>
+    </span>
   );
 }

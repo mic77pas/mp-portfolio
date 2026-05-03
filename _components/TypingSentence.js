@@ -19,7 +19,7 @@ export default function TypingSentence() {
       className={`
         ${montserrat.className}
         relative flex flex-row items-center text-[#A1BD98]
-        w-[420px] h-[52px]
+        w-[420px] sm:w-[500px] h-[52px]
         md:w-[540px] md:h-[54px]
         px-3 py-2 gap-3 z-20
         hover:brightness-120 transition-all duration-200
