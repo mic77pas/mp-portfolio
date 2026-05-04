@@ -20,21 +20,11 @@ const projects = [
       "Node.js",
       "Vercel",
     ],
-
-    // NEW SECTIONS
-    tools: "Next.js, TypeScript, Tailwind CSS, Vercel",
-
-    whatIsIt:
-      "A personal portfolio site to showcase projects, experience, and skills in an interactive way.",
-
-    why: "I wanted a highly customized portfolio that felt unique and interactive rather than a standard template.",
-
-    learned:
-      "Improved my skills in Next.js routing, component architecture, animations, and responsive UI design.",
   },
   {
     title: "React Apps",
     image: "/projects/images/react.jpg",
+    gif: "/projects/videos/ReactApps.mp4", // optional but highly recommended
     skills: [
       "JavaScript",
       "React",

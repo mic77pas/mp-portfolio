@@ -32,9 +32,9 @@ export default function Page() {
   return (
     <main className="flex flex-col gap-8 text-[#c7d3b4]">
       <AnimatedProjectSection delay={0}>
-        <ProjectHeroDrawer project={project} />
+        <ProjectHeroDrawer project={project} scale={125} />
       </AnimatedProjectSection>
-      <AnimatedProjectSection delay={0.3}>
+      <AnimatedProjectSection delay={0.1}>
         <div className="grid grid-cols-3 items-center -mt-5 w-full text-shadow-[0px_3px_1px_rgba(0,0,0,0.5)] text-[12px] md:text-[16px]">
           {/* LEFT */}
           <div className="justify-self-start">

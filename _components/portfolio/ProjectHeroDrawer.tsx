@@ -5,7 +5,13 @@ import { FaGithub, FaRegHandPointer } from "react-icons/fa6";
 
 type Project = (typeof projects)[number];
 
-export function ProjectHeroDrawer({ project }: { project: Project }) {
+export function ProjectHeroDrawer({
+  project,
+  scale,
+}: {
+  project: Project;
+  scale?: number;
+}) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -23,7 +29,7 @@ export function ProjectHeroDrawer({ project }: { project: Project }) {
               loop
               muted
               playsInline
-              className="h-full w-full object-cover scale-125"
+              className={`h-full w-full object-cover scale-${scale ? scale : 100}`}
             />
           ) : (
             <Image
