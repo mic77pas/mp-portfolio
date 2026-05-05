@@ -6,6 +6,7 @@ import { Montserrat } from "next/font/google";
 import localFont from "next/font/local";
 import ClientLayout from "../../_components/ClientLayout";
 import MobileHeader from "../../_components/MobileHeader";
+import { Analytics } from "@vercel/analytics/next";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -72,6 +73,7 @@ export default function RootLayout({ children }) {
 
           <MobileHeader />
         </div>
+        <Analytics />
       </body>
     </html>
   );

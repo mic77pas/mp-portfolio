@@ -2,6 +2,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { projects } from "../../data/projects";
 import { FaGithub, FaRegHandPointer } from "react-icons/fa6";
+import { Square } from "ldrs/react";
 
 type Project = (typeof projects)[number];
 
@@ -13,6 +14,7 @@ export function ProjectHeroDrawer({
   scale?: number;
 }) {
   const [open, setOpen] = useState(false);
+  const [loadingMedia, setLoadingMedia] = useState(true);
 
   return (
     <section className="overflow-hidden rounded-xl  bg-[#101310] shadow-[0_0_20px_rgba(0,0,0,0.8)]">
@@ -22,6 +24,20 @@ export function ProjectHeroDrawer({
         className="relative block aspect-video w-full cursor-pointer overflow-visible z-10 "
       >
         <div className="absolute inset-0 overflow-hidden">
+          {/* Loader overlay */}
+          {loadingMedia && (
+            <div className="absolute inset-0 flex justify-center items-center bg-black/40 z-50">
+              <Square
+                size="35"
+                stroke="5"
+                strokeLength="0.25"
+                bgOpacity="0.1"
+                speed="1.2"
+                color="#95ad94"
+              />
+            </div>
+          )}
+
           {project.gif?.endsWith(".mp4") || project.gif?.endsWith(".webm") ? (
             <video
               src={project.gif}
@@ -29,6 +45,7 @@ export function ProjectHeroDrawer({
               loop
               muted
               playsInline
+              onLoadedData={() => setLoadingMedia(false)} // ✅ key line
               className={`h-full w-full object-cover scale-${scale ? scale : 100}`}
             />
           ) : (
@@ -37,6 +54,7 @@ export function ProjectHeroDrawer({
               alt={`${project.title} preview`}
               fill
               unoptimized={project.gif?.endsWith(".gif")}
+              onLoadingComplete={() => setLoadingMedia(false)} // ✅ for images
               className="object-cover"
             />
           )}
