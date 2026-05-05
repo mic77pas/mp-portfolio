@@ -6,7 +6,6 @@ import ScrollReveal from "../../components/ScrollReveal";
 import { motion } from "motion/react";
 import { useState, useEffect } from "react";
 import { projects, reactApps } from "../../../data/projects";
-import { useSearchParams } from "next/navigation";
 
 import Skills from "../../../_components/Skills";
 import Dock from "../../components/Dock";
@@ -24,8 +23,6 @@ export default function Page() {
   const [selected, setSelected] = useState(null);
   const [loadingGif, setLoadingGif] = useState(true);
   const [search, setSearch] = useState("");
-  const searchParams = useSearchParams();
-  const initialMode = searchParams.get("mode") || "code";
 
   const [mode, setMode] = useState("code");
 
