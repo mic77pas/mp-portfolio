@@ -115,7 +115,7 @@ function Icon({ src, alt }: { src?: string; alt: string }) {
   if (!src) return null;
 
   return (
-    <div className="relative w-11 h-11 rounded-full overflow-hidden shadow-[0px_4px_10px_rgba(0,0,0,0.6)]">
+    <div className="relative w-11 h-11 shrink-0 rounded-full overflow-hidden shadow-[0px_4px_10px_rgba(0,0,0,0.6)]">
       <Image src={src} alt={alt} fill sizes="44px" className="object-cover" />
     </div>
   );
@@ -157,17 +157,20 @@ function WorkRow({ item }: { item: WorkItem }) {
           <p className="font-minecraft text-[18px] text-white truncate">
             {item.org}
           </p>
-          <p className="font-minecraft text-[#C9D1C8] text-sm truncate">{item.title}</p>
+          <p className="font-minecraft text-[#C9D1C8] text-sm truncate">
+            {item.title}
+          </p>
         </div>
 
         <div className="ml-auto flex items-center gap-4 shrink-0">
           {item.date ? (
-            <p className="font-minecraft text-[#93A093] text-sm">
-              {item.date}
-            </p>
+            <p className="font-minecraft text-[#93A093] text-sm">{item.date}</p>
           ) : null}
           {item.href ? (
-            <ArrowUpRight className="hidden sm:block text-[#cfe0c9] opacity-80" size={18} />
+            <ArrowUpRight
+              className="hidden sm:block text-[#cfe0c9] opacity-80"
+              size={18}
+            />
           ) : null}
         </div>
       </div>
@@ -243,7 +246,9 @@ function EducationGroupCard({ group }: { group: EducationGroup }) {
 
             <div className="flex items-center gap-3 shrink-0">
               {group.date ? (
-                <p className="font-minecraft text-[#93A093] text-sm">{group.date}</p>
+                <p className="font-minecraft text-[#93A093] text-sm">
+                  {group.date}
+                </p>
               ) : null}
               {group.href ? (
                 <ArrowUpRight className="text-[#cfe0c9] opacity-80" size={18} />

@@ -106,13 +106,13 @@ export default function Home() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1, ease: "easeOut" }}
-      className="w-full h-full flex items-center justify-center mt-14"
+      className="w-full h-full flex items-center justify-center mt-14 px-8"
     >
-      <div className="flex flex-col items-center text-center gap-2">
+      <div className="flex flex-col items-center text-center gap-2 ">
         <div className="relative inline-block group cursor-pointer pointer-events-none md:pointer-events-auto">
           <SplitText
             text="Michael Pasyechnyk"
-            className="font-minecraft font-bold text-[58px] md:text-[60px] lg:text-[75px] leading-[1.1] text-[#99b494] hover:text-[#bbd3b6] transition duration-200 drop-shadow-[0px_6px_0px_rgba(0,0,0,0.5)]"
+            className="font-minecraft font-bold text-[50px] md:text-[60px] lg:text-[75px] leading-[1.1] text-[#99b494] hover:text-[#bbd3b6] transition duration-200 drop-shadow-[0px_6px_0px_rgba(0,0,0,0.5)]"
             delay={50}
             duration={1}
             ease="power3.out"

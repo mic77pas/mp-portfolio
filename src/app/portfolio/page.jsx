@@ -56,7 +56,7 @@ export default function Page() {
 
       {mode === "code" && (
         <>
-          <h1 className="font-minecraft text-4xl text-center font-bold text-[#90AD8F] text-shadow-[0px_3px_1px_rgba(0,0,0,0.5)] mb-6">
+          <h1 className="font-minecraft text-3xl md:text-4xl text-center font-bold text-[#90AD8F] text-shadow-[0px_3px_1px_rgba(0,0,0,0.5)] mb-6">
             Software Projects
           </h1>
           {/* Grid of project cards */}
@@ -134,7 +134,7 @@ export default function Page() {
 
       {mode === "models" && (
         <>
-          <h1 className="font-minecraft text-4xl text-center font-bold text-[#90AD8F] text-shadow-[0px_3px_1px_rgba(0,0,0,0.5)] mb-6">
+          <h1 className="font-minecraft text-3xl md:text-4xl text-center font-bold text-[#90AD8F] text-shadow-[0px_3px_1px_rgba(0,0,0,0.5)] mb-6">
             3D Models
           </h1>{" "}
           <div className="flex flex-col text-center mb-6">
@@ -145,7 +145,7 @@ export default function Page() {
 
       {mode === "figma" && (
         <div className="flex flex-col text-center">
-          <h1 className="font-minecraft text-4xl text-center font-bold text-[#90AD8F] text-shadow-[0px_3px_1px_rgba(0,0,0,0.5)] mb-6">
+          <h1 className="font-minecraft text-3xl md:text-4xl text-center font-bold text-[#90AD8F] text-shadow-[0px_3px_1px_rgba(0,0,0,0.5)] mb-6">
             Figma Designs
           </h1>
           <div className="mt-20 gap-4 flex flex-col justify-center items-center">
