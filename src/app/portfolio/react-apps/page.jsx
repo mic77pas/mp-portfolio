@@ -77,15 +77,18 @@ export default function Page() {
       <ProjectSection>
         <div className="font-minecraft">
           <AnimatedProjectSection delay={0.1}>
-            <CollapsibleProjectText title="What tools did I use?" defaultOpen>
+            <CollapsibleProjectText title="What tools did I use?">
               <p className="mt-1 text-[16px] leading-9">
                 I used <SkillBadge name="React" />{" "}
-                <SkillBadge name="TypeScript" />{" "}
-                <SkillBadge name="Tailwind CSS" /> for the frontend, and{" "}
-                <SkillBadge name="Next.js" /> <SkillBadge name="Node.js" /> for
-                the backend. I also used <SkillBadge name="Figma" /> to
-                prototype my design and layouts and deployed this site on{" "}
-                <SkillBadge name="Vercel" />
+                <SkillBadge name="JavaScript" /> <SkillBadge name="Next.js" />{" "}
+                <SkillBadge name="Redux" /> <SkillBadge name="Context API" />{" "}
+                and <SkillBadge name="React Query" /> to build interactive and
+                data-driven applications. I also worked with{" "}
+                <SkillBadge name="Supabase" /> <SkillBadge name="PostgreSQL" />{" "}
+                <SkillBadge name="Node.js" /> and deployed projects using{" "}
+                <SkillBadge name="Vercel" /> and <SkillBadge name="Netlify" />.
+                For styling, I used <SkillBadge name="Tailwind CSS" /> and{" "}
+                <SkillBadge name="Styled Components" />
               </p>
             </CollapsibleProjectText>
           </AnimatedProjectSection>
@@ -93,12 +96,13 @@ export default function Page() {
           <AnimatedProjectSection delay={0.2}>
             <CollapsibleProjectText title="What is it?">
               <p className="mt-1 text-[16px] leading-9">
-                This portfolio website is my personal space to showcase my
-                projects, experience, background, and interests in software
-                engineering, design, and creative technology. I built it to feel
-                more personal than a standard resume, with custom visuals,
-                interactive project pages, and a design style that reflects my
-                personality.
+                This project is a collection of 10+ React applications I built
+                as part of a 90+ hour Modern React Development course by Jonas
+                Schmedtmann. The apps range from small concept projects to
+                full-stack applications like a hotel booking platform,
+                management dashboard, and food ordering system, with each app
+                focused on a different set of real-world development patterns
+                and tools
               </p>
             </CollapsibleProjectText>
           </AnimatedProjectSection>
@@ -106,11 +110,10 @@ export default function Page() {
           <AnimatedProjectSection delay={0.3}>
             <CollapsibleProjectText title="Why this project?">
               <p className="mt-1 text-[16px] leading-9">
-                I wanted a place where I could present my work in a more
-                detailed and polished way than a resume or GitHub profile. Since
-                I am interested in frontend development, UI/UX, and product
-                design, this project let me combine technical implementation
-                with visual design, animation, and storytelling.
+                This was one of my first major software courses and a turning
+                point in how I approached development. I wanted to go beyond
+                tutorials and actually build complete, production-style
+                applications while learning how modern React systems work
               </p>
             </CollapsibleProjectText>
           </AnimatedProjectSection>
@@ -118,12 +121,15 @@ export default function Page() {
           <AnimatedProjectSection delay={0.4}>
             <CollapsibleProjectText title="What did I learn?">
               <p className="mt-1 text-[16px] leading-9">
-                I learned how to structure a scalable Next.js project, create
-                reusable components, manage dynamic project pages, and refine
-                small UI details like animations, hover states, responsive
-                layouts, and collapsible sections. I also got more comfortable
-                turning design ideas from Figma into my first ever polished,
-                deployed website!
+                I developed a strong foundation in React fundamentals and
+                advanced patterns such as state management with Redux and
+                Context API, data fetching with React Query, and building
+                scalable component architectures. I also learned how to work
+                with APIs, handle authentication, manage global state, and
+                structure full-stack applications using tools like Next.js and
+                Supabase. This course played a huge role in shaping how I now
+                build modern web applications and I use all and any fundamentals
+                I learned to this day
               </p>
             </CollapsibleProjectText>
           </AnimatedProjectSection>

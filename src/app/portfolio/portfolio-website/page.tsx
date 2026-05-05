@@ -74,7 +74,7 @@ export default function Page() {
       <ProjectSection>
         <div className="font-minecraft">
           <AnimatedProjectSection delay={0.1}>
-            <CollapsibleProjectText title="What tools did I use?" defaultOpen>
+            <CollapsibleProjectText title="What tools did I use?">
               <p className="mt-1 text-[16px] leading-9">
                 I used <SkillBadge name="React" />{" "}
                 <SkillBadge name="TypeScript" />{" "}

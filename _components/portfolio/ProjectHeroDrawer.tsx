@@ -15,7 +15,7 @@ export function ProjectHeroDrawer({
   const [open, setOpen] = useState(false);
 
   return (
-    <section className="overflow-hidden rounded-xl border-2 border-[#6a8366] bg-[#101310] shadow-[0_0_20px_rgba(0,0,0,0.8)]">
+    <section className="overflow-hidden rounded-xl  bg-[#101310] shadow-[0_0_20px_rgba(0,0,0,0.8)]">
       {/* Image / GIF preview */}
       <button
         onClick={() => setOpen((prev) => !prev)}

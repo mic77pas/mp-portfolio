@@ -43,6 +43,7 @@ const projects = [
   {
     title: "CS50 Web",
     image: "/projects/images/cs50.jpg",
+    gif: "/projects/videos/cs50.mp4",
     skills: ["Python", "JavaScript", "Django", "MySQL", "HTML5", "CSS3"],
     slug: "cs50-web",
     description:
@@ -52,6 +53,7 @@ const projects = [
   {
     title: "Client Sites",
     image: "/projects/images/clientsite.jpg",
+    gif: "/projects/videos/clientsites.mp4",
     skills: [
       "React",
       "Next.js",

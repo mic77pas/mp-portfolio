@@ -1,153 +1,136 @@
 "use client";
+import Link from "next/link";
+import { projects } from "../../../../data/projects";
+import SkillBadge from "../../../../_components/SkillBadge";
 import Image from "next/image";
-import { FaCode, FaFigma, FaGithub } from "react-icons/fa";
-import { IoIosCloseCircle } from "react-icons/io";
+import { FaGithub } from "react-icons/fa";
+import { FaRegHandPointer } from "react-icons/fa6";
 import { motion } from "motion/react";
 import { useState } from "react";
-import { cs50Apps } from "../../../../data/projects";
-import { Square } from "ldrs/react";
-import "ldrs/react/Square.css";
+import {
+  AnimatedProjectSection,
+  ProjectHeroDrawer,
+  ProjectSection,
+  CollapsibleProjectText,
+} from "../../../../_components/portfolio/index";
+import { ProjectGrid } from "./ProjectGrid";
 
 export default function Page() {
-  const [selected, setSelected] = useState(null);
-  const [loadingGif, setLoadingGif] = useState(true);
-  const [search, setSearch] = useState("");
-  const [mode, setMode] = useState("code"); // "code" | "figma" | "framer" | "other"
+  const project = projects.find((p) => p.slug === "cs50-web");
+  const currentIndex = projects.findIndex((p) => p.slug === "cs50-web");
+
+  const prevProject = currentIndex > 0 ? projects[currentIndex - 1] : null;
+
+  const nextProject =
+    currentIndex < projects.length - 1 ? projects[currentIndex + 1] : null;
+
+  if (!project) {
+    return <div>Project not found.</div>;
+  }
 
   return (
-    <motion.div
-      initial={{ opacity: 0, scale: 1 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 1, ease: "easeOut" }}
-      className="min-h-screen text-foreground flex flex-col justify-start"
-    >
-      <h1 className="font-minecraft text-4xl text-center font-bold text-[#90AD8F] text-shadow-[0px_3px_1px_rgba(0,0,0,0.5)] mb-6">
-        My Projects
-      </h1>
-      {/* Grid of project cards */}
-      <div
-        // baseOpacity={0}
-        // enableBlur={true}
-        // baseRotation={2}
-        // blurStrength={8}
-        className="grid grid-cols-1 lg:grid-cols-2 gap-8 gap-y-16 w-full mb-14"
-      >
-        {cs50Apps.map((project) => (
-          <div
-            key={project.title}
-            className="group relative rounded-xl overflow-visible shadow-lg cursor-pointer"
-            onClick={() => {
-              setSelected(project);
-              setLoadingGif(true);
-            }}
-            // hover:border-4 hover:border-[#aabeaa]
-          >
-            {/* Inner content scales on hover */}
-            <Image
-              src={project.image}
-              alt={project.title}
-              width={500}
-              height={300}
-              className="
-    w-full aspect-4/2 object-cover rounded-xl
-    ring-0 ring-transparent
-    transition-all duration-300 ease-out
-    group-hover:ring-4
-    group-hover:ring-[#aabeaa]
-    group-hover:scale-[1.02]
-  "
-            />
-            <div
-              className="
-    absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-6
-    w-4/5 h-14 rounded-xl
-    flex items-center justify-center
-    bg-[#738d73]/90 backdrop-blur-sm
-    text-[#262b26]
-    border-3 border-transparent
-    transition-all duration-300 ease-out
-    group-hover:bg-[#2c332c]/70
-    group-hover:text-white
-    group-hover:border-[#aabeaa]
-    shadow-[0px_3px_4px_rgba(0,0,0,0.5)]
-  "
-            >
-              <h2 className="font-minecraft text-center font-black text-[22px] mb-1">
-                {project.title}
-              </h2>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Modal */}
-      {selected && (
-        <div
-          className="fixed inset-0 bg-black/70 flex items-center justify-center z-50"
-          onClick={() => setSelected(null)}
-        >
-          <div
-            className="bg-neutral-900 p-6 rounded-2xl max-w-2xl w-full relative shadow-xl"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Close button */}
-            <button
-              onClick={() => setSelected(null)}
-              className="absolute top-4 right-4 z-50 text-[#3c493a] hover:text-[#72916d]"
-            >
-              <div className="relative inline-flex items-center justify-center cursor-pointer">
-                <div className="w-8 h-8 rounded-full bg-[#3c493a]" />
-                <IoIosCloseCircle
-                  size={32}
-                  className="absolute text-[#b6cab3]"
-                />
-              </div>
-            </button>
-
-            {/* Loader overlay */}
-            <div className="relative w-full">
-              {loadingGif && (
-                <div className="absolute inset-0 flex justify-center items-center bg-black/40 rounded-lg">
-                  <Square
-                    size="35"
-                    stroke="5"
-                    strokeLength="0.25"
-                    bgOpacity="0.1"
-                    speed="1.2"
-                    color="#95ad94"
-                  />
-                </div>
-              )}
-
-              <Image
-                src={selected.gif || selected.image}
-                alt={selected.title}
-                className="rounded-lg mb-2 object-cover w-full"
-                width={800}
-                height={400}
-                unoptimized={true}
-                onLoad={() => setLoadingGif(false)}
-              />
-            </div>
-
-            <h2 className="text-2xl text-gray-300 mb-2 font-bold">
-              {selected.title}
-            </h2>
-            <p className="text-gray-300 mb-4">{selected.description}</p>
-
-            {selected.github && (
-              <a
-                href={selected.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="button-hover"
+    <main className="flex flex-col gap-8 text-[#c7d3b4]">
+      <AnimatedProjectSection delay={0}>
+        <ProjectHeroDrawer project={project} />
+      </AnimatedProjectSection>
+      <AnimatedProjectSection delay={0.1}>
+        <div className="grid grid-cols-3 items-center -mt-5 w-full text-shadow-[0px_3px_1px_rgba(0,0,0,0.5)] text-[12px] md:text-[16px]">
+          {/* LEFT */}
+          <div className="justify-self-start">
+            {prevProject ? (
+              <Link
+                href={`/portfolio/${prevProject.slug}`}
+                className="font-bold font-minecraft text-[#90AD8F] hover:text-[#b7d4b3]"
               >
-                <FaGithub size={20} /> View on GitHub
-              </a>
-            )}
+                &lt; {prevProject.title}
+              </Link>
+            ) : null}
+          </div>
+
+          {/* CENTER */}
+          <div className="justify-self-center">
+            <Link
+              href="/portfolio"
+              className="text-shadow-none px-3 shadow-[0px_3px_1px_rgba(0,0,0,0.4)] rounded-full bg-[#90AD8F] flex w-fit items-center gap-2 font-minecraft text-[#252723] hover:text-[#e2ece0] transition duration-200"
+            >
+              All Projects
+            </Link>
+          </div>
+
+          {/* RIGHT */}
+          <div className="justify-self-end">
+            {nextProject ? (
+              <Link
+                href={`/portfolio/${nextProject.slug}`}
+                className="font-minecraft font-bold text-[#90AD8F] hover:text-[#b7d4b3]"
+              >
+                {nextProject.title} &gt;
+              </Link>
+            ) : null}
           </div>
         </div>
-      )}
-    </motion.div>
+      </AnimatedProjectSection>
+      {/* <span className="font-minecraft text-3xl text-center font-bold text-[#90AD8F] bg-[#161616] py-2 rounded-lg text-shadow-[0px_3px_1px_rgba(0,0,0,0.5)]">
+        Course Projects
+      </span> */}
+      <ProjectGrid />
+      <ProjectSection>
+        <div className="font-minecraft">
+          <AnimatedProjectSection delay={0.1}>
+            <CollapsibleProjectText title="What tools did I use?">
+              <p className="mt-1 text-[16px] leading-9">
+                I used <SkillBadge name="Python" /> <SkillBadge name="Django" />{" "}
+                <SkillBadge name="JavaScript" /> <SkillBadge name="HTML5" />{" "}
+                <SkillBadge name="CSS3" /> and <SkillBadge name="MySQL" /> to
+                build full-stack web applications. I worked extensively with
+                Django’s ORM, authentication system, and templating engine,
+                while also using the fetch API for asynchronous front-end
+                interactions and dynamic updates
+              </p>
+            </CollapsibleProjectText>
+          </AnimatedProjectSection>
+
+          <AnimatedProjectSection delay={0.2}>
+            <CollapsibleProjectText title="What is it?">
+              <p className="mt-1 text-[16px] leading-9">
+                This project is a collection of full-stack web applications I
+                built as part of Harvard’s CS50 Web Programming with Python and
+                JavaScript course. The projects range from front-end replicas to
+                fully functional applications like an email client, social
+                network, and e-commerce auction platform, all designed to mirror
+                real-world web systems
+              </p>
+            </CollapsibleProjectText>
+          </AnimatedProjectSection>
+
+          <AnimatedProjectSection delay={0.3}>
+            <CollapsibleProjectText title="Why this project?">
+              <p className="mt-1 text-[16px] leading-9">
+                I wanted to strengthen my understanding of how full-stack web
+                applications actually work under the hood. This course pushed me
+                to go beyond frontend development and learn how to build
+                complete systems, handling routing, databases, authentication,
+                and server-side logic using Django
+              </p>
+            </CollapsibleProjectText>
+          </AnimatedProjectSection>
+
+          <AnimatedProjectSection delay={0.4}>
+            <CollapsibleProjectText title="What did I learn?">
+              <p className="mt-1 text-[16px] leading-9">
+                I learned how to build full-stack applications from scratch,
+                including designing database models, implementing authentication
+                systems, and connecting front-end interfaces with back-end
+                logic. I also gained experience with asynchronous JavaScript
+                using the fetch API, creating single-page application behaviors,
+                and structuring scalable Django applications. This course gave
+                me a strong foundation in how modern web apps function
+                end-to-end
+              </p>
+            </CollapsibleProjectText>
+          </AnimatedProjectSection>
+        </div>
+      </ProjectSection>
+    </main>
   );
 }

@@ -30,7 +30,7 @@ export function ProjectGrid() {
         // enableBlur={true}
         // baseRotation={2}
         // blurStrength={8}
-        className="grid grid-cols-1 lg:grid-cols-2 gap-8 gap-y-16 w-full mb-14"
+        className="grid grid-cols-1 lg:grid-cols-2 gap-8 gap-y-16 w-full my-8"
       >
         {reactApps.map((project) => (
           <div
@@ -140,7 +140,7 @@ export function ProjectGrid() {
                 href={selected.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="button-hover"
+                className="button-hover font-minecraft"
               >
                 <FaGithub size={20} /> View on GitHub
               </a>
