@@ -38,7 +38,7 @@ export default function MobileHeader() {
           "bg-[url('/comps/mobileHeader.png')] bg-size-[100%_100%] bg-no-repeat bg-center",
         ].join(" ")}
       >
-        <div className="flex flex-row items-center justify-between w-full px-10">
+        <div className="flex flex-row items-center justify-between w-full px-7">
           <nav className="flex-1">
             <ul className="font-minecraft flex items-center justify-between font-bold text-sm">
               <li>
@@ -46,9 +46,9 @@ export default function MobileHeader() {
                   <Image
                     src="/logos/pixelnew.png"
                     alt="Logo"
-                    width={55}
-                    height={55}
-                    className="transition-transform drop-shadow-[0_4px_0px_rgba(0,0,0,0.8)] duration-300 hover:scale-105 hover:brightness-120 saturate-50"
+                    width={54}
+                    height={54}
+                    className="-translate-y-0.5 transition-transform drop-shadow-[0_4px_0px_rgba(0,0,0,0.8)] duration-300 hover:scale-105 hover:brightness-120 saturate-50"
                   />
                 </Link>
               </li>

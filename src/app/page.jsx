@@ -106,7 +106,7 @@ export default function Home() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1, ease: "easeOut" }}
-      className="w-full h-full flex items-center justify-center mt-14 px-8"
+      className="w-full h-full flex items-center justify-center md:mt-14 px-8"
     >
       <div className="flex flex-col items-center text-center gap-2 ">
         <div className="relative inline-block group cursor-pointer pointer-events-none md:pointer-events-auto">

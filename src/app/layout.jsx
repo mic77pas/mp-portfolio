@@ -63,7 +63,7 @@ export default function RootLayout({ children }) {
             <Header />
           </div>
 
-          <main className="w-full flex-1 flex justify-center md:px-4 md:pt-26 pb-24 md:pb-0">
+          <main className="w-full flex-1 flex justify-center md:px-4 md:pt-26">
             <ClientLayout>{children}</ClientLayout>
           </main>
 
