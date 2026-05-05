@@ -333,8 +333,8 @@ function StatusCard({
   pingColor: string;
 }) {
   return (
-    <div className="flex h-full lg:h-fit w-full pl-7 lg:pl-2 shrink-0 items-center justify-start gap-5 lg:gap-3 rounded-lg border-2 border-[#87a082] bg-[#121412] px-3 py-2">
-      <span className="relative flex h-7 w-7 lg:h-3 lg:w-3">
+    <div className="flex h-full lg:h-fit w-full pl-4 lg:pl-2 shrink-0 items-center justify-start gap-5 lg:gap-3 rounded-lg border-2 border-[#87a082] bg-[#121412] px-3 py-2">
+      <span className="relative flex shrink-0 h-[0.9em] w-[0.9em]">
         <span
           className={`absolute inline-flex h-full w-full rounded-full animate-ping opacity-75 ${pingColor}`}
         />
@@ -344,7 +344,7 @@ function StatusCard({
       </span>
 
       <p
-        className={`font-minecraft text-3xl lg:text-[16px] font-bold tracking-wide ${statusColor}`}
+        className={`font-minecraft text-[clamp(18px,6vw,26px)] md:text-[18px] font-bold tracking-wide ${statusColor}`}
       >
         {statusText}
       </p>
@@ -352,14 +352,14 @@ function StatusCard({
   );
 }
 
-function LevelCard() {
+function LevelCard({ age }: { age: number }) {
   return (
     <div className="flex h-fit w-full flex-col items-center justify-center rounded-lg border-2 border-[#87a082] bg-[#262D26] px-4 py-2 text-[#C7D8C0]">
       <p className="font-minecraft font-bold tracking-[4px] drop-shadow-[0_3px_0_rgba(0,0,0,0.8)]">
         LEVEL
       </p>
       <p className="font-minecraft text-[30px] font-bold drop-shadow-[0_3px_0_rgba(0,0,0,0.8)]">
-        19
+        {age}
       </p>
     </div>
   );
@@ -428,8 +428,6 @@ export default function AboutHeader() {
     return years;
   }, []);
 
-  
-
   useEffect(() => {
     const FORCE_TEST_HOUR = null;
 
@@ -473,8 +471,8 @@ export default function AboutHeader() {
       />
 
       <div className="flex w-full flex-col gap-4 rounded-xl border-2 border-[#87a082] bg-[#181B18]/90 p-4 sm:p-6 lg:flex-row lg:p-8">
-        <div className="flex gap-3 lg:hidden">
-          <div className="flex-1">
+        <div className="flex w-full min-w-0 gap-3 lg:hidden">
+          <div className="min-w-0 flex-1">
             <StatusCard
               statusText={statusText}
               statusColor={statusColor}
@@ -483,8 +481,8 @@ export default function AboutHeader() {
             />
           </div>
 
-          <div className="min-w-[120px]">
-            <LevelCard />
+          <div className="w-[110px] shrink-0 sm:w-[120px]">
+            <LevelCard age={age} />
           </div>
         </div>
 
@@ -522,7 +520,7 @@ export default function AboutHeader() {
                 dotColor={dotColor}
                 pingColor={pingColor}
               />
-              <LevelCard />
+              <LevelCard age={age} />
             </div>
 
             <div className="hidden w-full rounded-lg border-2 border-[#87a082] bg-[#121412] p-4 lg:block">
@@ -530,8 +528,8 @@ export default function AboutHeader() {
                 <Bar label="HP" pct={82} icon={<FaHeart />} />
                 <Bar
                   label="EXP"
-  pct={birthdayProgress}
-  icon={<FaArrowAltCircleUp />}
+                  pct={birthdayProgress}
+                  icon={<FaArrowAltCircleUp />}
                   valueText={"Lvl. up on July 30th!"}
                 />
               </div>
