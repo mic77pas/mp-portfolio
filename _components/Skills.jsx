@@ -65,7 +65,7 @@ export default function Skills() {
       //   whileInView={{ opacity: 1, y: 0 }} // fades & slides up
       //   transition={{ duration: 0.7, ease: "easeOut" }} // smooth timing
       //   viewport={{ once: true, amount: 0.2 }} // triggers only once when 20% is visible
-      className="flex flex-col pb-5 justify-center items-center"
+      className="flex flex-col pb-12 md:pb-4 justify-center items-center"
     >
       {/* <h2 className="font-minecraft text-4xl font-bold text-[#90AD8F] text-shadow-[0px_3px_1px_rgba(0,0,0,0.5)] mb-6">
         Tech Stack
