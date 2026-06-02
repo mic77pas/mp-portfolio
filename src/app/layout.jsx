@@ -49,6 +49,7 @@ export const metadata = {
   title: {
     default: "Michael Pasyechnyk",
     template: "Michael Pasyechnyk / %s",
+    description: "Enter the world of Michael Pasyechnyk",
   },
 };
 
