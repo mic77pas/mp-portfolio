@@ -2,8 +2,6 @@ const projects = [
   {
     title: "Portfolio Website",
     slug: "portfolio-website",
-
-    caption: "Full-stack Next.js portfolio",
     description:
       "Full-stack Next.js portfolio displaying my background and experience (you're in it right now!)",
 

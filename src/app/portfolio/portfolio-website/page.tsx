@@ -12,6 +12,7 @@ import {
   ProjectHeroDrawer,
   ProjectSection,
   CollapsibleProjectText,
+  LaptopFrame,
 } from "../../../../_components/portfolio/index";
 
 export default function Page() {
