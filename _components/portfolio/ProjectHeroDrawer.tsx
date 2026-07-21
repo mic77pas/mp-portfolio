@@ -83,12 +83,9 @@ export function ProjectHeroDrawer({
               <h1 className="font-minecraft text-4xl text-[#90AD8F] ">
                 {project.title}
               </h1>
-              <p className="mt-1 font-minecraft text-sm text-[#90AD8F]">
-                {project.caption}
-              </p>
 
               <p className="mt-4 max-w-3xl font-minecraft text-sm leading-7 text-[#c7d3b4]">
-                {project.description}
+                {project?.description}
               </p>
             </div>
 
