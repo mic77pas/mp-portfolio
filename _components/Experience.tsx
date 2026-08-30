@@ -37,6 +37,13 @@ type EducationGroup = {
 
 const workData: WorkItem[] = [
   {
+    title: "Forward Deployed Engineer",
+    org: "Avante IO",
+    date: "Aug 2026 – Present",
+    iconSrc: "/logos/experience/avante.png",
+    href: "https://www.avante.io/",
+  },
+  {
     title: "Software Engineer Intern",
     org: "ParkUsher",
     date: "Jan 2026 – Apr 2026",
@@ -194,7 +201,7 @@ function UWTimelineChips({
   return (
     <div className="hidden lg:flex flex-row justify-start mt-4 w-fit rounded-full shadow-[0px_4px_6px_rgba(0,0,0,0.5)] overflow-hidden">
       {labels.map((label, i) => {
-        const isActive = activeIndex != null ? i === activeIndex : i < 3; // default: first two like your old example
+        const isActive = activeIndex != null ? i === activeIndex : i <= 3; // default: first two like your old example
         const isFirst = i === 0;
         const isLast = i === labels.length - 1;
 
