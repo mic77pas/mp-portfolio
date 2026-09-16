@@ -1,51 +1,48 @@
 // data/skillsData.js
-const OLIVE_GREEN = "90AD8F";
-
-export const CATEGORY_COLORS = {
-  Language: "#cf9182", // Example Color 1 (Choose your own)
-  Frontend: "#abcddb", // Olive Green (Matching your palette)
-  Backend: "#abcf82",
-  Database: "#cfbe82",
-  "DevOps/Tool": "#b888ba",
-  // Design: "#b888ba",
-};
+export const CATEGORY_ORDER = [
+  "Language",
+  "Frontend",
+  "Backend",
+  "Database",
+  "DevOps/Tool",
+];
 
 export const skills = [
   // --- Languages ---
   {
     name: "JavaScript",
     category: "Language",
-    icon: `https://cdn.simpleicons.org/javascript/${OLIVE_GREEN}`, // Using a placeholder color in the link
+    icon: "javascript",
     link: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
   },
   {
     name: "TypeScript",
     category: "Language",
-    icon: `https://cdn.simpleicons.org/typescript/${OLIVE_GREEN}`,
+    icon: "typescript",
     link: "https://www.typescriptlang.org/",
   },
   {
     name: "Python",
     category: "Language",
-    icon: `https://cdn.simpleicons.org/python/${OLIVE_GREEN}`,
+    icon: "python",
     link: "https://www.python.org/",
   },
   {
     name: "C++",
     category: "Language",
-    icon: `https://cdn.simpleicons.org/cplusplus/${OLIVE_GREEN}`,
+    icon: "cplusplus",
     link: "https://isocpp.org/",
   },
   {
     name: "HTML5",
     category: "Language",
-    icon: `https://cdn.simpleicons.org/html5/${OLIVE_GREEN}`,
+    icon: "html5",
     link: "https://developer.mozilla.org/en-US/docs/Web/HTML",
   },
   {
     name: "CSS3",
     category: "Language",
-    icon: `https://cdn.simpleicons.org/css/${OLIVE_GREEN}`,
+    icon: "css",
     link: "https://developer.mozilla.org/en-US/docs/Web/CSS",
   },
 
@@ -53,32 +50,32 @@ export const skills = [
   {
     name: "React",
     category: "Frontend",
-    icon: `https://cdn.simpleicons.org/react/${OLIVE_GREEN}`,
+    icon: "react",
     link: "https://react.dev/",
   },
   {
     name: "Next.js",
     category: "Frontend",
-    icon: `https://cdn.simpleicons.org/nextdotjs/${OLIVE_GREEN}`,
+    icon: "nextdotjs",
     link: "https://nextjs.org/",
   },
   {
     name: "Redux",
     category: "Frontend",
-    icon: `https://cdn.simpleicons.org/redux/${OLIVE_GREEN}`,
+    icon: "redux",
     link: "https://redux.js.org/",
   },
   // --- Styling ---
   {
     name: "Tailwind CSS",
     category: "Frontend",
-    icon: `https://cdn.simpleicons.org/tailwindcss/${OLIVE_GREEN}`,
+    icon: "tailwindcss",
     link: "https://tailwindcss.com/",
   },
   {
     name: "Styled Components",
     category: "Frontend",
-    icon: `https://cdn.simpleicons.org/styledcomponents/${OLIVE_GREEN}`,
+    icon: "styledcomponents",
     link: "https://styled-components.com/",
   },
 
@@ -86,31 +83,31 @@ export const skills = [
   {
     name: "Node.js",
     category: "Backend",
-    icon: `https://cdn.simpleicons.org/nodedotjs/${OLIVE_GREEN}`,
+    icon: "nodedotjs",
     link: "https://nodejs.org/en",
   },
   {
     name: "Supabase",
     category: "Backend",
-    icon: `https://cdn.simpleicons.org/supabase/${OLIVE_GREEN}`,
+    icon: "supabase",
     link: "https://supabase.com/",
   },
   {
     name: "PostgreSQL",
     category: "Database",
-    icon: `https://cdn.simpleicons.org/postgresql/${OLIVE_GREEN}`,
+    icon: "postgresql",
     link: "https://www.postgresql.org/",
   },
   {
     name: "MySQL",
     category: "Database",
-    icon: `https://cdn.simpleicons.org/mysql/${OLIVE_GREEN}`,
+    icon: "mysql",
     link: "https://www.mysql.com/",
   },
   {
     name: "Django",
     category: "Backend",
-    icon: `https://cdn.simpleicons.org/django/${OLIVE_GREEN}`,
+    icon: "django",
     link: "https://www.djangoproject.com/",
   },
 
@@ -118,43 +115,43 @@ export const skills = [
   {
     name: "Git",
     category: "DevOps/Tool",
-    icon: `https://cdn.simpleicons.org/git/${OLIVE_GREEN}`,
+    icon: "git",
     link: "https://git-scm.com/",
   },
   {
     name: "GitHub",
     category: "DevOps/Tool",
-    icon: `https://cdn.simpleicons.org/github/${OLIVE_GREEN}`,
+    icon: "github",
     link: "https://github.com/",
   },
   {
     name: "Vercel",
     category: "DevOps/Tool",
-    icon: `https://cdn.simpleicons.org/vercel/${OLIVE_GREEN}`,
+    icon: "vercel",
     link: "https://vercel.com/",
   },
   {
     name: "Docker",
     category: "DevOps/Tool",
-    icon: `https://cdn.simpleicons.org/docker/${OLIVE_GREEN}`,
+    icon: "docker",
     link: "https://www.docker.com/",
   },
   {
     name: "Netlify",
     category: "DevOps/Tool",
-    icon: `https://cdn.simpleicons.org/netlify/${OLIVE_GREEN}`,
+    icon: "netlify",
     link: "https://www.netlify.com/",
   },
   {
     name: "Vite",
     category: "DevOps/Tool",
-    icon: `https://cdn.simpleicons.org/vite/${OLIVE_GREEN}`,
+    icon: "vite",
     link: "https://vite.dev/",
   },
   {
     name: "MCP",
     category: "DevOps/Tool",
-    icon: `https://cdn.simpleicons.org/modelcontextprotocol/${OLIVE_GREEN}`,
+    icon: "modelcontextprotocol",
     link: "https://modelcontextprotocol.io/",
   },
 
@@ -162,13 +159,13 @@ export const skills = [
   // {
   //   name: "Figma",
   //   category: "Design",
-  //   icon: `https://cdn.simpleicons.org/figma/${OLIVE_GREEN}`,
+  //   icon: "figma",
   //   link: "https://www.figma.com/",
   // },
   // {
   //   name: "Notion",
   //   category: "Design",
-  //   icon: `https://cdn.simpleicons.org/notion/${OLIVE_GREEN}`,
+  //   icon: "notion",
   //   link: "https://www.notion.so/",
   // },
 ];

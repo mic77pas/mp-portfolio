@@ -17,7 +17,7 @@ export function ProjectHeroDrawer({
   const [loadingMedia, setLoadingMedia] = useState(true);
 
   return (
-    <section className="overflow-hidden rounded-xl  bg-[#101310] shadow-[0_0_20px_rgba(0,0,0,0.8)]">
+    <section className="overflow-hidden rounded-xl bg-surface-1 shadow-lg">
       {/* Image / GIF preview */}
       <button
         onClick={() => setOpen((prev) => !prev)}
@@ -33,7 +33,7 @@ export function ProjectHeroDrawer({
                 strokeLength="0.25"
                 bgOpacity="0.1"
                 speed="1.2"
-                color="#95ad94"
+                color="var(--accent)"
               />
             </div>
           )}
@@ -61,7 +61,7 @@ export function ProjectHeroDrawer({
         </div>
 
         <div
-          className={`absolute -rotate-12 bottom-4 right-4 z-40 flex items-center justify-center rounded-full border-2 border-[#6a8366] bg-[#1d201d]/80 p-3 font-minecraft text-lg text-[#c7d3b4] backdrop-blur-sm transition-all duration-300 ${
+          className={`absolute -rotate-12 bottom-4 right-4 z-40 flex items-center justify-center rounded-full border-2 border-border-subtle bg-surface-2/80 p-3 font-minecraft text-lg text-text-secondary backdrop-blur-sm transition-all duration-300 ${
             open
               ? "opacity-0 scale-90 pointer-events-none"
               : "opacity-100 scale-100"
@@ -78,13 +78,13 @@ export function ProjectHeroDrawer({
         }`}
       >
         <div className="overflow-hidden">
-          <div className="flex flex-row justify-between rounded-b-lg  border-t-2 border-[#6a8366] bg-[#1a1b1a] p-6 shadow-[inset_12px_12px_12px_rgba(0,0,0,0.2),inset_-12px_-12px_12px_rgba(0,0,0,0.2)]">
-            <div className="text-shadow-[0px_3px_0px_rgba(0,0,0,0.6)]">
-              <h1 className="font-minecraft text-4xl text-[#90AD8F] ">
+          <div className="flex flex-row justify-between rounded-b-lg border-t-2 border-border-subtle bg-surface-1 p-6 shadow-sm">
+            <div className="[text-shadow:var(--shadow-text-strong)]">
+              <h1 className="font-minecraft text-4xl text-accent">
                 {project.title}
               </h1>
 
-              <p className="mt-4 max-w-3xl font-minecraft text-sm leading-7 text-[#c7d3b4]">
+              <p className="mt-4 max-w-3xl font-minecraft text-sm leading-7 text-text-secondary">
                 {project?.description}
               </p>
             </div>
@@ -100,7 +100,7 @@ export function ProjectHeroDrawer({
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex h-fit items-center gap-2 rounded-lg border-2 border-[#6a8366] bg-[#252725] px-4 py-2 font-minecraft text-[#c7d3b4] hover:bg-[#6a8366] hover:text-[#101310] transition duration-200"
+                className="inline-flex h-fit items-center gap-2 rounded-lg border-2 border-border-subtle bg-surface-2 px-4 py-2 font-minecraft text-text-secondary hover:bg-accent hover:text-accent-contrast transition duration-200"
               >
                 <FaGithub size={20} />
                 <p className="hidden lg:block">View GitHub</p>

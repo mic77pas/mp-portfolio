@@ -112,8 +112,8 @@ const educationGroups: EducationGroup[] = [
 function PlusBullet({ children }: { children: React.ReactNode }) {
   return (
     <li className="flex gap-3">
-      <span className="font-minecraft text-[#80967d]">⯀</span>
-      <span className="text-[#D9DED8] leading-6">{children}</span>
+      <span className="font-minecraft text-text-secondary">⯀</span>
+      <span className="text-text-primary leading-6">{children}</span>
     </li>
   );
 }
@@ -161,21 +161,21 @@ function WorkRow({ item }: { item: WorkItem }) {
         <Icon src={item.iconSrc} alt={item.iconAlt ?? item.org} />
 
         <div className="min-w-0">
-          <p className="font-minecraft text-[18px] text-white truncate">
+          <p className="font-minecraft text-[18px] text-text-primary truncate">
             {item.org}
           </p>
-          <p className="font-minecraft text-[#C9D1C8] text-sm truncate">
+          <p className="font-minecraft text-text-secondary text-sm truncate">
             {item.title}
           </p>
         </div>
 
         <div className="ml-auto flex items-center gap-4 shrink-0">
           {item.date ? (
-            <p className="font-minecraft text-[#93A093] text-sm">{item.date}</p>
+            <p className="font-minecraft text-text-muted text-sm">{item.date}</p>
           ) : null}
           {item.href ? (
             <ArrowUpRight
-              className="hidden sm:block text-[#cfe0c9] opacity-80"
+              className="hidden sm:block text-accent opacity-80"
               size={18}
             />
           ) : null}
@@ -241,11 +241,11 @@ function EducationGroupCard({ group }: { group: EducationGroup }) {
         <div className="min-w-0 flex-1">
           <div className="flex items-start justify-between gap-4">
             <div className="min-w-0">
-              <h3 className="font-minecraft text-[14px] md:text-[20px] text-white drop-shadow-[0px_2px_0px_rgba(0,0,0,0.6)] truncate">
+              <h3 className="font-minecraft text-[14px] md:text-[20px] text-text-primary drop-shadow-[var(--shadow-name)] truncate">
                 {group.org}
               </h3>
               {group.description ? (
-                <p className="font-minecraft text-[#C9D1C8] text-sm mt-1">
+                <p className="font-minecraft text-text-secondary text-sm mt-1">
                   {group.description}
                 </p>
               ) : null}
@@ -253,12 +253,12 @@ function EducationGroupCard({ group }: { group: EducationGroup }) {
 
             <div className="flex items-center gap-3 shrink-0">
               {group.date ? (
-                <p className="font-minecraft text-[#93A093] text-sm">
+                <p className="font-minecraft text-text-muted text-sm">
                   {group.date}
                 </p>
               ) : null}
               {group.href ? (
-                <ArrowUpRight className="text-[#cfe0c9] opacity-80" size={18} />
+                <ArrowUpRight className="text-accent opacity-80" size={18} />
               ) : null}
             </div>
           </div>
@@ -279,7 +279,7 @@ function EducationGroupCard({ group }: { group: EducationGroup }) {
                       href={c.href}
                       target="_blank"
                       rel="noreferrer"
-                      className="font-minecraft text-sm no-underline decoration-white/20 hover:decoration-white/60 transition"
+                      className="font-minecraft text-sm no-underline decoration-text-secondary/40 hover:decoration-accent transition"
                     >
                       {c.title}
                     </Link>
@@ -325,11 +325,11 @@ export default function ExperienceSection() {
   return (
     <section className="w-full flex flex-col items-center mb-16">
       {/* Tabs */}
-      <div className="relative w-full rounded-2xl border-2 border-[#87a082] bg-[#0E120E]/70 shadow-[0px_10px_30px_rgba(0,0,0,0.55)]">
+      <div className="relative w-full rounded-2xl border-2 border-border-strong bg-surface-0/70 shadow-[0px_10px_30px_rgba(0,0,0,0.55)]">
         <div className="relative p-2">
           <div
             className={[
-              "absolute inset-y-2 left-2 w-[calc(50%-0.5rem)] rounded-xl bg-[#a4bd94] shadow-[0px_4px_10px_rgba(0,0,0,0.4)]",
+              "absolute inset-y-2 left-2 w-[calc(50%-0.5rem)] rounded-xl bg-accent shadow-[0px_4px_10px_rgba(0,0,0,0.4)]",
               "transition-transform duration-300",
               tab === "work" ? "translate-x-0" : "translate-x-full",
             ].join(" ")}
@@ -342,8 +342,8 @@ export default function ExperienceSection() {
               className={[
                 "py-3 cursor-pointer font-minecraft font-bold text-[20px] rounded-xl transition-colors",
                 tab === "work"
-                  ? "text-[#202520]"
-                  : "text-[#E6EDE5] hover:text-white",
+                  ? "text-accent-contrast"
+                  : "text-text-secondary hover:text-text-primary",
               ].join(" ")}
             >
               Work
@@ -354,8 +354,8 @@ export default function ExperienceSection() {
               className={[
                 "py-3 cursor-pointer font-minecraft font-bold text-[20px] rounded-xl transition-colors",
                 tab === "education"
-                  ? "text-[#202520]"
-                  : "text-[#E6EDE5] hover:text-white",
+                  ? "text-accent-contrast"
+                  : "text-text-secondary hover:text-text-primary",
               ].join(" ")}
             >
               Education
@@ -365,7 +365,7 @@ export default function ExperienceSection() {
       </div>
 
       {/* Card */}
-      <div className="mt-6 w-full rounded-2xl border-2 border-[#87a082] bg-[#0E120E]/75 shadow-[0px_18px_40px_rgba(0,0,0,0.6)] overflow-hidden">
+      <div className="mt-6 w-full rounded-2xl border-2 border-border-strong bg-surface-0/75 shadow-[0px_18px_40px_rgba(0,0,0,0.6)] overflow-hidden">
         {tab === "work"
           ? (items as WorkItem[]).map((item, idx) => (
               <WorkRow key={`${item.org}-${idx}`} item={item} />

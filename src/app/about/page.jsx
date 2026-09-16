@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import AboutHeader from "../../../_components/AboutHeader";
 import ExperienceSection from "../../../_components/Experience";
 

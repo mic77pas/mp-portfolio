@@ -12,29 +12,149 @@ body {
   overflow-x: hidden;
 }
 
+/*
+ * Semantic design tokens. Raw values live here (not inside @theme) so they
+ * can change at runtime via the [data-theme] attribute set by ThemeScript;
+ * @theme inline below re-exposes each one as a Tailwind utility (bg-surface-0,
+ * text-text-primary, border-accent, etc.) that always resolves through var(),
+ * never a baked-in build-time value.
+ *
+ * Default (no [data-theme] yet, e.g. no-JS) mirrors the dark theme, with a
+ * prefers-color-scheme fallback for light so the site is never mis-themed.
+ */
 :root {
-  --background: #242524;
-  --foreground: #171717;
+  --surface-0: #1c1d1a;
+  --surface-1: #23251f;
+  --surface-2: #2e3128;
+  --border-subtle: #3a3f35;
+  --border-strong: #55604c;
+  --text-primary: #e9ede2;
+  --text-secondary: #b9c4ac;
+  --text-muted: #8a9480;
+  --accent: #8fae7c;
+  --accent-hover: #a3c28f;
+  --accent-contrast: #14200f;
+  --accent-muted: #3a4a32;
+  --status-available: #7fbf6a;
+  --status-busy: #c98a4b;
+  --focus-ring: #b7d19f;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 4px 10px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.5);
+
+  /* Decorative text/icon shadows. These were tuned for light text on dark
+     pixel-art chrome, so they only make sense in dark mode — the light
+     theme below turns them off (or softens them) so dark text on a light
+     background never gets a muddy black shadow. */
+  --shadow-text-soft: 1px 2px 2px rgba(0, 0, 0, 0.8);
+  --shadow-text-strong: 0px 3px 1px rgba(0, 0, 0, 0.5);
+  --shadow-name: 0px 6px 0px rgba(0, 0, 0, 0.5);
+  /* Full `filter` value (not just a drop-shadow() argument) so it can be
+     switched to a bare `none` in light mode — `drop-shadow(none)` is not
+     valid CSS, but `filter: none` is. Apply with [filter:var(--shadow-icon)]. */
+  --shadow-icon: drop-shadow(0px 4px 0px rgba(0, 0, 0, 0.8));
+
+  /* Decorative pixel-art chrome backgrounds — dark-mode only image assets;
+     the light theme swaps these to `none` and relies on the surface-*
+     tokens instead. */
+  --chrome-bg-mobilenav: url("/comps/mobileHeader.png");
+  --chrome-bg-sentence: url("/comps/sentence.png");
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+:root[data-theme="light"] {
+  --surface-0: #ffffff;
+  --surface-1: #f4f4f4;
+  --surface-2: #e8e8e8;
+  --border-subtle: #dcdcdc;
+  --border-strong: #9a9a9a;
+  --text-primary: #0a0a0a;
+  --text-secondary: #404040;
+  --text-muted: #6e6e6e;
+  --accent: #111111;
+  --accent-hover: #000000;
+  --accent-contrast: #ffffff;
+  --accent-muted: #e8e8e8;
+  --status-available: #15803d;
+  --status-busy: #b45309;
+  --focus-ring: #111111;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 10px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.14);
+
+  --shadow-text-soft: none;
+  --shadow-text-strong: none;
+  --shadow-name: 0px 0px 0px rgba(0, 0, 0, 0);
+  --shadow-icon: none;
+
+  --chrome-bg-mobilenav: none;
+  --chrome-bg-sentence: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #242524;
-    --foreground: #ededed;
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --surface-0: #ffffff;
+    --surface-1: #f4f4f4;
+    --surface-2: #e8e8e8;
+    --border-subtle: #dcdcdc;
+    --border-strong: #9a9a9a;
+    --text-primary: #0a0a0a;
+    --text-secondary: #404040;
+    --text-muted: #6e6e6e;
+    --accent: #111111;
+    --accent-hover: #000000;
+    --accent-contrast: #ffffff;
+    --accent-muted: #e8e8e8;
+    --status-available: #15803d;
+    --status-busy: #b45309;
+    --focus-ring: #111111;
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 4px 10px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.14);
+
+    --shadow-text-soft: none;
+    --shadow-text-strong: none;
+    --shadow-name: 0px 0px 0px rgba(0, 0, 0, 0);
+    --shadow-icon: none;
+
+    --chrome-bg-mobilenav: none;
+    --chrome-bg-sentence: none;
   }
 }
 
+@theme inline {
+  --color-surface-0: var(--surface-0);
+  --color-surface-1: var(--surface-1);
+  --color-surface-2: var(--surface-2);
+  --color-border-subtle: var(--border-subtle);
+  --color-border-strong: var(--border-strong);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-contrast: var(--accent-contrast);
+  --color-accent-muted: var(--accent-muted);
+  --color-status-available: var(--status-available);
+  --color-status-busy: var(--status-busy);
+  --color-focus-ring: var(--focus-ring);
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+
+  /* Back-compat aliases for the handful of remaining --color-background/
+     --color-foreground consumers until every component migrates to the
+     semantic tokens above. */
+  --color-background: var(--surface-0);
+  --color-foreground: var(--text-primary);
+}
+
 body {
-  background-color: var(--background);
-  color: var(--foreground);
+  background-color: var(--surface-0);
+  color: var(--text-primary);
   font-family: var(--font-montserrat), sans-serif;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 }
 
 .poetsen-one-regular {
@@ -48,22 +168,22 @@ body {
 }
 
 .nav-link {
-  @apply inline-block text-[#8fa783] md:text-[#AABF9F] 
-         hover:text-[#d6e0d3] hover:scale-105
+  @apply inline-block text-text-secondary
+         hover:text-accent hover:scale-105
          transition-transform transition-colors duration-200 ease-out
-         [text-shadow:1px_2px_2px_rgba(0,0,0,0.8)];
+         [text-shadow:var(--shadow-text-soft)];
 }
 
 .green-div {
-  @apply bg-[#393D39];
+  @apply bg-surface-2;
 }
 
 .skill-blob {
-  @apply text-[#ddd8d8] text-[16px] px-3 py-1 w-auto rounded-full font-medium border shadow-[0px_2px_4px_rgba(0,0,0,0.5)] transition-transform cursor-pointer hover:brightness-120 hover:scale-110 hover:text-[#292929] duration-300;
+  @apply text-text-primary text-[16px] px-3 py-1 w-auto rounded-full font-medium border border-border-subtle shadow-sm transition-transform cursor-pointer hover:brightness-120 hover:scale-110 hover:text-accent-contrast hover:bg-accent duration-300;
 }
 
 .button-view {
-  @apply bg-[#92A38A] text-[#343C30] text-[16px] px-6 py-2 font-bold rounded-2xl shadow-md hover:bg-[#bbcdb3] transition-all duration-150;
+  @apply bg-accent text-accent-contrast text-[16px] px-6 py-2 font-bold rounded-2xl shadow-md hover:bg-accent-hover transition-all duration-150;
 }
 
 @layer components {
@@ -73,13 +193,22 @@ body {
     gap: 0.5rem; /* 2 = 0.5rem */
     padding: 0.5rem 1rem; /* py-2 px-4 */
     border-radius: 0.5rem; /* rounded-lg */
-    background-color: #638b5c;
+    background-color: var(--accent);
+    color: var(--accent-contrast);
     transition: background-color 0.3s ease;
   }
 
   .button-hover:hover {
-    background-color: #98b493;
+    background-color: var(--accent-hover);
   }
+}
+
+.scrollbar-none {
+  scrollbar-width: none;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
 }
 
 .fit-text {
@@ -92,7 +221,7 @@ body {
 .pixel-banner {
   position: relative;
   border-radius: 10px;
-  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.5);
+  box-shadow: var(--shadow-lg);
 }
 
 .pixel-banner::before,
@@ -102,7 +231,7 @@ body {
   bottom: 0;
   width: 26px;
   height: 22px;
-  background: #aabf9f;
+  background: var(--accent);
 }
 
 .pixel-banner::before {
@@ -130,24 +259,24 @@ body {
 }
 
 .inventory-scroll::-webkit-scrollbar-track {
-  background: #0b0e0b;
-  border-left: 2px solid #2a342a;
+  background: var(--surface-0);
+  border-left: 2px solid var(--border-subtle);
 }
 
 .inventory-scroll::-webkit-scrollbar-thumb {
-  background: #2a342a;
-  border: 2px solid #0b0e0b;
-  box-shadow: 0 2px 0 #070907;
+  background: var(--border-subtle);
+  border: 2px solid var(--surface-0);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.4);
 }
 
 .inventory-scroll::-webkit-scrollbar-thumb:hover {
-  background: #98b493;
+  background: var(--accent-hover);
 }
 
 /* Firefox */
 .inventory-scroll {
   scrollbar-width: thin;
-  scrollbar-color: #2a342a #0b0e0b;
+  scrollbar-color: var(--border-subtle) var(--surface-0);
 }
 
 .inventory-scroll::-webkit-scrollbar-thumb {
@@ -161,7 +290,7 @@ body {
 .modal-scroll {
   /* Firefox + modern Chrome */
   scrollbar-width: thin;
-  scrollbar-color: #60755d #1a1f1a;
+  scrollbar-color: var(--border-strong) var(--surface-1);
 }
 
 /* WebKit (Chrome, Safari, Edge) */
@@ -170,16 +299,16 @@ body {
 }
 
 .modal-scroll::-webkit-scrollbar-track {
-  background: #1a1f1a;
+  background: var(--surface-1);
   border-radius: 8px;
 }
 
 .modal-scroll::-webkit-scrollbar-thumb {
-  background-color: #60755d;
+  background-color: var(--border-strong);
   border-radius: 8px;
-  border: 2px solid #1a1f1a; /* creates padding effect around thumb */
+  border: 2px solid var(--surface-1); /* creates padding effect around thumb */
 }
 
 .modal-scroll::-webkit-scrollbar-thumb:hover {
-  background-color: #87a082;
+  background-color: var(--accent-hover);
 }
