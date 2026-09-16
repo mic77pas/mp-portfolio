@@ -1,7 +1,10 @@
+"use client";
+
 import LogoLoop from "../src/components/LogoLoop";
-import { skills, CATEGORY_COLORS } from "../data/skills";
+import { skills, CATEGORY_ORDER } from "../data/skills";
 import { useMemo, useState, useCallback } from "react";
 import { motion } from "motion/react";
+import { useTheme } from "../src/lib/theme/ThemeProvider";
 
 const hexToRgba = (hex, alpha = 0.3) => {
   if (!hex) return "transparent";
@@ -13,6 +16,8 @@ const hexToRgba = (hex, alpha = 0.3) => {
 };
 
 export default function Skills() {
+  const { resolvedTheme } = useTheme();
+  const iconColor = resolvedTheme === "light" ? "0a0a0a" : "90AD8F";
   const [counter, setCounter] = useState(0);
 
   const handleClick = useCallback(() => {
@@ -35,7 +40,7 @@ export default function Skills() {
     const allSkills = Object.values(skillsByCategory).flat();
 
     // 2. Sort the skills based on their category (for visual grouping by color)
-    const categoryOrder = Object.keys(CATEGORY_COLORS);
+    const categoryOrder = CATEGORY_ORDER;
 
     allSkills.sort((a, b) => {
       const indexA = categoryOrder.indexOf(a.category);
@@ -49,14 +54,14 @@ export default function Skills() {
   const logoProps = useMemo(
     () =>
       skills.map((skill) => ({
-        src: skill.icon,
+        src: `https://cdn.simpleicons.org/${skill.icon}/${iconColor}`,
         alt: skill.name,
         title: skill.name,
         href: skill.link,
         width: 48,
         height: 48,
       })),
-    [],
+    [iconColor],
   );
 
   return (
@@ -65,7 +70,7 @@ export default function Skills() {
       //   whileInView={{ opacity: 1, y: 0 }} // fades & slides up
       //   transition={{ duration: 0.7, ease: "easeOut" }} // smooth timing
       //   viewport={{ once: true, amount: 0.2 }} // triggers only once when 20% is visible
-      className="flex flex-col pb-12 md:pb-4 justify-center items-center"
+      className="flex w-full flex-col pb-12 md:pb-4 justify-center items-center"
     >
       {/* <h2 className="font-minecraft text-4xl font-bold text-[#90AD8F] text-shadow-[0px_3px_1px_rgba(0,0,0,0.5)] mb-6">
         Tech Stack
@@ -80,9 +85,9 @@ export default function Skills() {
           gap={30}
           pauseOnHover={true}
           fadeOut={true}
-          fadeOutColor="#1a1d1a"
+          fadeOutColor="var(--surface-1)"
           scaleOnHover={true}
-          className="border-2 border-[#6a8366] bg-[#141614]/75 pt-3 rounded-2xl"
+          className="border-2 border-border-strong bg-surface-1/75 pt-3 rounded-2xl"
           // style={{ boxShadow: "0px 4px 4px rgba(0,0,0,0.5)" }}
         />
       </div>

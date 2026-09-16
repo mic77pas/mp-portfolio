@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import {
   FaGithub,
   FaLinkedin,
@@ -76,19 +76,19 @@ function Bar({
 
   return (
     <div className="w-full">
-      <div className="flex items-center justify-between text-[#cfe0c9]">
+      <div className="flex items-center justify-between text-text-primary">
         <div className="flex flex-row items-center gap-2">
           {icon}
           <p className="font-minecraft text-md font-bold">{label}</p>
         </div>
 
-        <p className="font-minecraft text-xs tracking-wide text-[#98a198]">
+        <p className="font-minecraft text-xs tracking-wide text-text-muted">
           {valueText}
         </p>
       </div>
 
-      <div className="mt-2 h-3 w-full rounded-full border border-[#2a342a] bg-[#101310]">
-        <div className="h-full rounded-full bg-[#9cb498]" style={{ width }} />
+      <div className="mt-2 h-3 w-full rounded-full border border-border-subtle bg-surface-1">
+        <div className="h-full rounded-full bg-accent" style={{ width }} />
       </div>
     </div>
   );
@@ -96,8 +96,8 @@ function Bar({
 
 function StatPill({ k, v, icon }: { k: string; v: string; icon?: ReactNode }) {
   return (
-    <div className="flex items-center justify-between rounded border-2 border-[#617261]  bg-[#101310] px-2 py-3 text-md lg:text-xs lg:px-3 lg:py-2">
-      <div className="flex items-center gap-1 text-[#a6b2a3]">
+    <div className="flex items-center justify-between rounded border-2 border-border-subtle bg-surface-1 px-2 py-3 text-md lg:text-xs lg:px-3 lg:py-2">
+      <div className="flex items-center gap-1 text-text-secondary">
         {icon && (
           <span className="flex items-center text-lg sm:text-base lg:text-sm">
             {icon}
@@ -106,7 +106,7 @@ function StatPill({ k, v, icon }: { k: string; v: string; icon?: ReactNode }) {
         <span className="font-minecraft text-md lg:text-xs font-bold">{k}</span>
       </div>
 
-      <span className="font-semibold text-[#cfe0c9]">{v}</span>
+      <span className="font-semibold text-text-primary">{v}</span>
     </div>
   );
 }
@@ -208,20 +208,20 @@ function SlideshowModal({
         if (e.target === e.currentTarget) onClose();
       }}
     >
-      <div className="w-full max-w-3xl overflow-hidden rounded-xl border-2 border-[#2a342a] bg-[#0f130f]/90 shadow-[0_12px_0_#0b0d0b]">
-        <div className="flex items-center justify-between border-b border-[#2a342a] px-4 py-3">
-          <p className="font-minecraft text-md uppercase text-[#a6b2a3]">
+      <div className="w-full max-w-3xl overflow-hidden rounded-xl border-2 border-border-subtle bg-surface-1/90 shadow-lg">
+        <div className="flex items-center justify-between border-b border-border-subtle px-4 py-3">
+          <p className="font-minecraft text-md uppercase text-text-secondary">
             INVENTORY
           </p>
           <button
             onClick={onClose}
-            className="rounded border border-[#2a342a] bg-[#0b0e0b] px-3 py-1 text-sm text-[#cfe0c9] transition hover:bg-[#141a14]"
+            className="rounded border border-border-subtle bg-surface-0 px-3 py-1 text-sm text-text-primary transition hover:bg-surface-2"
           >
             ✕
           </button>
         </div>
 
-        <div className="relative aspect-[16/9] w-full overflow-hidden bg-[#0b0e0b]">
+        <div className="relative aspect-[16/9] w-full overflow-hidden bg-surface-0">
           <Image
             src={img.src}
             alt=""
@@ -246,7 +246,7 @@ function SlideshowModal({
           <button
             onClick={prev}
             aria-label="Previous image"
-            className="absolute left-3 top-1/2 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-md border-2 border-[#2a342a] bg-[#0b0e0b]/80 text-[#cfe0c9] shadow-[0_6px_0_#070907] transition hover:bg-[#141a14] active:shadow-[0_4px_0_#070907]"
+            className="absolute left-3 top-1/2 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-md border-2 border-border-subtle bg-surface-0/80 text-text-primary shadow-md transition hover:bg-surface-2"
           >
             ←
           </button>
@@ -254,21 +254,21 @@ function SlideshowModal({
           <button
             onClick={next}
             aria-label="Next image"
-            className="absolute right-3 top-1/2 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-md border-2 border-[#2a342a] bg-[#0b0e0b]/80 text-[#cfe0c9] shadow-[0_6px_0_#070907] transition hover:bg-[#141a14] active:shadow-[0_4px_0_#070907]"
+            className="absolute right-3 top-1/2 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-md border-2 border-border-subtle bg-surface-0/80 text-text-primary shadow-md transition hover:bg-surface-2"
           >
             →
           </button>
         </div>
 
-        <div className="border-t border-[#2a342a] bg-[#0f130f]/60 p-3">
+        <div className="border-t border-border-subtle bg-surface-1/60 p-3">
           <div className="flex gap-2 overflow-x-auto pb-3">
             {images.map((im, i) => (
               <button
                 key={im.src + i}
                 onClick={() => onChangeIndex(i)}
                 className={`relative h-12 w-20 shrink-0 rounded border-2 ${
-                  i === index ? "border-[#98B493]" : "border-[#2a342a]"
-                } bg-[#0b0e0b]`}
+                  i === index ? "border-accent" : "border-border-subtle"
+                } bg-surface-0`}
                 title={`Go to ${i + 1}`}
               >
                 <Image
@@ -333,7 +333,7 @@ function StatusCard({
   pingColor: string;
 }) {
   return (
-    <div className="flex h-full lg:h-fit w-full pl-4 lg:pl-2 shrink-0 items-center justify-start gap-5 lg:gap-3 rounded-lg border-2 border-[#87a082] bg-[#121412] px-3 py-2">
+    <div className="flex h-full lg:h-fit w-full pl-4 lg:pl-2 shrink-0 items-center justify-start gap-5 lg:gap-3 rounded-lg border-2 border-border-strong bg-surface-1 px-3 py-2">
       <span className="relative flex shrink-0 h-[0.9em] w-[0.9em]">
         <span
           className={`absolute inline-flex h-full w-full rounded-full animate-ping opacity-75 ${pingColor}`}
@@ -354,7 +354,7 @@ function StatusCard({
 
 function LevelCard({ age }: { age: number }) {
   return (
-    <div className="flex h-fit w-full flex-col items-center justify-center rounded-lg border-2 border-[#87a082] bg-[#262D26] px-4 py-2 text-[#C7D8C0]">
+    <div className="flex h-fit w-full flex-col items-center justify-center rounded-lg border-2 border-border-strong bg-surface-2 px-4 py-2 text-text-primary">
       <p className="font-minecraft font-bold tracking-[4px] drop-shadow-[0_3px_0_rgba(0,0,0,0.8)]">
         LEVEL
       </p>
@@ -451,9 +451,13 @@ export default function AboutHeader() {
   }, []);
 
   const statusText = isOfflineHours ? "Offline" : "Online";
-  const statusColor = isOfflineHours ? "text-[#dfc241]" : "text-[#cfe0c9]";
-  const dotColor = isOfflineHours ? "bg-[#d6b72f]" : "bg-[#98B493]";
-  const pingColor = isOfflineHours ? "bg-[#d6b72f]/70" : "bg-[#98B493]/70";
+  const statusColor = isOfflineHours
+    ? "text-status-busy"
+    : "text-status-available";
+  const dotColor = isOfflineHours ? "bg-status-busy" : "bg-status-available";
+  const pingColor = isOfflineHours
+    ? "bg-status-busy/70"
+    : "bg-status-available/70";
 
   return (
     <motion.section
@@ -470,7 +474,7 @@ export default function AboutHeader() {
         onChangeIndex={setGalleryIndex}
       />
 
-      <div className="flex w-full flex-col gap-4 rounded-xl border-2 border-[#87a082] bg-[#181B18]/90 p-4 sm:p-6 lg:flex-row lg:p-8">
+      <div className="flex w-full flex-col gap-4 rounded-xl border-2 border-border-strong bg-surface-1/90 p-4 sm:p-6 lg:flex-row lg:p-8">
         <div className="flex w-full min-w-0 gap-3 lg:hidden">
           <div className="min-w-0 flex-1">
             <StatusCard
@@ -488,7 +492,7 @@ export default function AboutHeader() {
 
         <div
           className="
-            relative h-[320px] w-full shrink-0 overflow-hidden rounded-lg border-2 border-[#87a082]
+            relative h-[320px] w-full shrink-0 overflow-hidden rounded-lg border-2 border-border-strong
             after:pointer-events-none after:absolute after:inset-0 after:content-['']
             after:shadow-[inset_0_0_20px_rgba(0,0,0,0.6)]
             sm:h-[380px] lg:h-[400px] lg:w-[280px]
@@ -502,7 +506,7 @@ export default function AboutHeader() {
           />
         </div>
 
-        <div className="block w-full rounded-lg border-2 border-[#87a082] bg-[#121412] p-4 lg:hidden">
+        <div className="block w-full rounded-lg border-2 border-border-strong bg-surface-1 p-4 lg:hidden">
           <div className="grid grid-cols-2 gap-2">
             <StatPill k="STR" v="09" icon={<LuSwords />} />
             <StatPill k="DEX" v="17" icon={<FaShieldAlt />} />
@@ -523,7 +527,7 @@ export default function AboutHeader() {
               <LevelCard age={age} />
             </div>
 
-            <div className="hidden w-full rounded-lg border-2 border-[#87a082] bg-[#121412] p-4 lg:block">
+            <div className="hidden w-full rounded-lg border-2 border-border-strong bg-surface-1 p-4 lg:block">
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <Bar label="HP" pct={82} icon={<FaHeart />} />
                 <Bar
@@ -543,19 +547,19 @@ export default function AboutHeader() {
             </div>
           </div>
 
-          <div className="flex flex-col lg:flex-1 h-fit p-3 rounded-lg border-2 border-[#87a082] bg-[#121412]">
-            <p className="text-[#ccd8c2] font-minecraft">
+          <div className="flex flex-col lg:flex-1 h-fit p-3 rounded-lg border-2 border-border-strong bg-surface-1">
+            <p className="text-text-secondary font-minecraft">
               Hey! My name is Michael, and I&apos;m a{" "}
               <Link
                 href="https://uwaterloo.ca/systems-design-engineering/"
-                className="inline-flex items-center gap-1 hover:text-[#eef1eb] hover:scale-102 transition duration-200"
+                className="inline-flex items-center gap-1 hover:text-accent hover:scale-102 transition duration-200"
               >
                 SYDE
               </Link>{" "}
               student at the{" "}
               <Link
                 href="https://uwaterloo.ca"
-                className="inline-flex items-center gap-1 hover:text-[#eef1eb] hover:scale-102 transition duration-200"
+                className="inline-flex items-center gap-1 hover:text-accent hover:scale-102 transition duration-200"
               >
                 University of Waterloo
                 <Image

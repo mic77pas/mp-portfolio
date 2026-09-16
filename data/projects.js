@@ -2,6 +2,8 @@ const projects = [
   {
     title: "Portfolio Website",
     slug: "portfolio-website",
+    category: "software",
+    year: 2025,
     description:
       "Full-stack Next.js portfolio displaying my background and experience (you're in it right now!)",
 
@@ -18,11 +20,21 @@ const projects = [
       "Node.js",
       "Vercel",
     ],
+
+    toolsUsed:
+      "I used React, TypeScript, and Tailwind CSS for the frontend, and Next.js and Node.js for the backend. I also used Figma to prototype my design and create assets such as my logo and other custom components, and deployed this site on Vercel.",
+    whatIsIt:
+      "This portfolio website is my personal space to showcase my projects, experience, background, and interests in software engineering, design, and creative technology. I built it to feel more personal than a standard resume, with custom visuals, interactive project pages, and a design style that reflects my personality.",
+    why: "I wanted a place where I could present my work in a more detailed and polished way than a resume or GitHub profile. Since I am interested in frontend development, UI/UX, and product design, this project let me combine technical implementation with visual design, animation, and storytelling.",
+    learnings:
+      "I learned how to structure a scalable Next.js project, create reusable components, manage dynamic project pages, and refine small UI details like animations, hover states, responsive layouts, and collapsible sections. I also got more comfortable turning design ideas from Figma into my first ever polished, deployed website!",
   },
   {
     title: "React Apps",
     image: "/projects/images/react.jpg",
     gif: "/projects/videos/ReactApps.mp4", // optional but highly recommended
+    category: "software",
+    year: 2025,
     skills: [
       "JavaScript",
       "React",
@@ -37,21 +49,43 @@ const projects = [
     description:
       "A collection of modern React and Next.js apps showcasing full-stack development skills",
     github: "https://github.com/mic77pas/mp-portfolio",
+
+    toolsUsed:
+      "I used React, JavaScript, Next.js, Redux, Context API, and React Query to build interactive and data-driven applications. I also worked with Supabase, PostgreSQL, and Node.js, and deployed projects using Vercel and Netlify. For styling, I used Tailwind CSS and Styled Components.",
+    whatIsIt:
+      "This project is a collection of 10+ React applications I built as part of a 90+ hour Modern React Development course by Jonas Schmedtmann. The apps range from small concept projects to full-stack applications like a hotel booking platform, management dashboard, and food ordering system, with each app focused on a different set of real-world development patterns and tools.",
+    why: "This was one of my first major software courses and a turning point in how I approached development. I wanted to go beyond tutorials and actually build complete, production-style applications while learning how modern React systems work.",
+    learnings:
+      "I developed a strong foundation in React fundamentals and advanced patterns such as state management with Redux and Context API, data fetching with React Query, and building scalable component architectures. I also learned how to work with APIs, handle authentication, manage global state, and structure full-stack applications using tools like Next.js and Supabase. This course played a huge role in shaping how I now build modern web applications and I use all and any fundamentals I learned to this day.",
+    subItemsKey: "reactApps",
   },
   {
     title: "CS50 Web",
     image: "/projects/images/cs50.jpg",
     gif: "/projects/videos/cs50.mp4",
+    category: "software",
+    year: 2024,
     skills: ["Python", "JavaScript", "Django", "MySQL", "HTML5", "CSS3"],
     slug: "cs50-web",
     description:
       "A collection of full-stack Django web applications showcasing authentication, APIs, and dynamic, interactive user experiences",
     github: "https://github.com/mic77pas/mp-portfolio",
+
+    toolsUsed:
+      "I used Python, Django, JavaScript, HTML5, CSS3, and MySQL to build full-stack web applications. I worked extensively with Django's ORM, authentication system, and templating engine, while also using the fetch API for asynchronous front-end interactions and dynamic updates.",
+    whatIsIt:
+      "This project is a collection of full-stack web applications I built as part of Harvard's CS50 Web Programming with Python and JavaScript course. The projects range from front-end replicas to fully functional applications like an email client, social network, and e-commerce auction platform, all designed to mirror real-world web systems.",
+    why: "I wanted to strengthen my understanding of how full-stack web applications actually work under the hood. This course pushed me to go beyond frontend development and learn how to build complete systems, handling routing, databases, authentication, and server-side logic using Django.",
+    learnings:
+      "I learned how to build full-stack applications from scratch, including designing database models, implementing authentication systems, and connecting front-end interfaces with back-end logic. I also gained experience with asynchronous JavaScript using the fetch API, creating single-page application behaviors, and structuring scalable Django applications. This course gave me a strong foundation in how modern web apps function end-to-end.",
+    subItemsKey: "cs50Apps",
   },
   {
     title: "Client Sites",
     image: "/projects/images/clientsite.jpg",
     gif: "/projects/videos/clientsites.mp4",
+    category: "software",
+    year: 2025,
     skills: [
       "React",
       "Next.js",
@@ -63,6 +97,14 @@ const projects = [
     slug: "client-sites",
     description: "Portfolio websites made for various clientele",
     github: "https://github.com/mic77pas/client-sites",
+
+    toolsUsed:
+      "I used React, JavaScript, Next.js, Node.js, and Tailwind CSS to build responsive, polished websites for different clients. I also used Figma for planning layouts, visual direction, and quick design mockups, with deployment handled through Vercel.",
+    whatIsIt:
+      "This is a collection of portfolio and landing websites I created for different clients, including friends, student groups, and small companies. Each site was built around the client's goals, personality, and audience, whether they needed a personal portfolio, professional web presence, or a clean way to showcase their work.",
+    why: "I wanted to practice my frontend and design skills in a more realistic setting by working with real people instead of only building personal projects. These client sites gave me the chance to understand someone else's needs, translate vague ideas into polished interfaces, and deliver websites that were actually useful to them.",
+    learnings:
+      "I learned how to communicate with clients, gather requirements, iterate on feedback, and balance visual design with usability. I also improved at building reusable frontend components, creating responsive layouts, and making small design decisions that help a website feel more professional, personal, and easy to navigate.",
   },
   // add more projects...
 ];
@@ -204,4 +246,13 @@ const cs50Apps = [
   },
 ];
 
-export { projects, reactApps, cs50Apps };
+// Maps a top-level project's optional `subItemsKey` to the actual sub-item
+// array, so /portfolio/[slug] can render a ProjectSubGrid without branching
+// on slug strings.
+const subItemsByKey = { reactApps, cs50Apps };
+
+function getSubItems(project) {
+  return project.subItemsKey ? subItemsByKey[project.subItemsKey] : undefined;
+}
+
+export { projects, reactApps, cs50Apps, getSubItems };

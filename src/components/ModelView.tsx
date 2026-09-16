@@ -13,16 +13,17 @@ import {
   useLayoutEffect,
   useState,
   useEffect,
-  useCallback,
   useMemo,
 } from "react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { models } from "../../data/models";
 
 interface ModelEntry {
-  src: string;
+  slug: string;
   title: string;
   description: string;
-  images: string[];
+  glbPath: string;
+  referenceImages: string[];
 }
 
 const PLA_WHITE: THREE.MeshStandardMaterialParameters = {
@@ -37,8 +38,8 @@ function ModelLoaderOverlay() {
 
   return (
     <div className="absolute inset-0 z-10 flex flex-col items-center justify-center">
-      <div className="h-8 w-8 animate-spin rounded-full border-4 border-[#87a082] border-t-transparent" />
-      <p className="mt-3 font-minecraft text-sm text-[#ccd8c2]">
+      <div className="h-8 w-8 animate-spin rounded-full border-4 border-accent border-t-transparent" />
+      <p className="mt-3 font-minecraft text-sm text-text-secondary">
         {Math.round(progress)}%
       </p>
     </div>
@@ -161,7 +162,7 @@ function ImageSlideshow({
 
   return (
     <div className="w-full">
-      <div className="relative aspect-video w-full overflow-hidden rounded-md border border-[#3d4a3a] bg-black/20">
+      <div className="relative aspect-video w-full overflow-hidden rounded-md border border-border-subtle bg-black/20">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={images[index]}
@@ -175,7 +176,7 @@ function ImageSlideshow({
               type="button"
               onClick={prev}
               aria-label="Previous image"
-              className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-black/50 p-1.5 text-[#ccd8c2] transition hover:bg-black/70"
+              className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-black/50 p-1.5 text-white transition hover:bg-black/70"
             >
               <ChevronLeft size={18} />
             </button>
@@ -183,7 +184,7 @@ function ImageSlideshow({
               type="button"
               onClick={next}
               aria-label="Next image"
-              className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-black/50 p-1.5 text-[#ccd8c2] transition hover:bg-black/70"
+              className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-black/50 p-1.5 text-white transition hover:bg-black/70"
             >
               <ChevronRight size={18} />
             </button>
@@ -200,7 +201,7 @@ function ImageSlideshow({
               aria-label={`Go to image ${i + 1}`}
               onClick={() => setIndex(i)}
               className={`h-1.5 rounded-full transition-all ${
-                i === index ? "w-4 bg-[#87a082]" : "w-1.5 bg-[#3d4a3a]"
+                i === index ? "w-4 bg-accent" : "w-1.5 bg-border-subtle"
               }`}
             />
           ))}
@@ -239,29 +240,29 @@ function ModelModal({
       onClick={onClose}
     >
       <div
-        className="modal-scroll relative flex max-h-[90vh] w-full max-w-5xl flex-col overflow-y-auto rounded-lg border-2 border-[#60755d] bg-[#1a1f1a] p-6 shadow-[0_8px_24px_rgba(0,0,0,0.6)]"
+        className="modal-scroll relative flex max-h-[90vh] w-full max-w-5xl flex-col overflow-y-auto rounded-lg border-2 border-border-strong bg-surface-1 p-6 shadow-[0_8px_24px_rgba(0,0,0,0.6)]"
         onClick={(e) => e.stopPropagation()}
       >
         <button
           type="button"
           onClick={onClose}
           aria-label="Close"
-          className="absolute right-4 top-4 z-20 rounded-full bg-black/40 p-1.5 text-[#ccd8c2] transition hover:bg-black/60"
+          className="absolute right-4 top-4 z-20 rounded-full bg-black/40 p-1.5 text-white transition hover:bg-black/60"
         >
           <X size={20} />
         </button>
 
         <div className="mb-4 w-full">
-          <ModelViewer src={model.src} dark aspectClass="aspect-video" />
+          <ModelViewer src={model.glbPath} dark aspectClass="aspect-video" />
         </div>
 
-        <h2 className="font-minecraft text-lg text-[#ccd8c2]">{model.title}</h2>
-        <p className="mt-2 w-full text-sm leading-relaxed text-[#a8b3a0]">
+        <h2 className="font-minecraft text-lg text-text-primary">{model.title}</h2>
+        <p className="mt-2 w-full text-sm leading-relaxed text-text-secondary">
           {model.description}
         </p>
 
         <div className="mt-4 w-full">
-          <ImageSlideshow images={model.images} title={model.title} />
+          <ImageSlideshow images={model.referenceImages} title={model.title} />
         </div>
       </div>
     </div>
@@ -271,50 +272,18 @@ function ModelModal({
 export default function ModelGrid() {
   const [activeModel, setActiveModel] = useState<ModelEntry | null>(null);
 
-  const models: ModelEntry[] = [
-    {
-      src: "/models/Donut/FinalDonut.glb",
-      title: "Donut",
-      description:
-        "A classic frosted donut, modeled, textured, and rendered in Blender. This model and scene was part of my first ever course in blender!",
-      images: [
-        "/models/Donut/Donut&Coffee1.png",
-        "/models/Donut/DonutViewport.png",
-        "/models/Donut/Shading.png",
-        "/models/Donut/Scene.png",
-      ],
-    },
-    {
-      src: "/models/Car/CarFinal.glb",
-      title: "Cyber Truck",
-      description:
-        "A low-poly version of the Cybertruck, built with modeling techniques taught in SYDE101L as a final project at the University of Waterloo",
-      images: ["/models/Car/CarFinal.JPG", "/models/Car/CarExploded.png"],
-    },
-    {
-      src: "/models/Beaver.glb",
-      title: "Nutcracker",
-      description:
-        "A nutcracker beaver figure, built with modeling techniques taught in SYDE101L as a final project at the University of Waterloo",
-      images: [
-        "/models/Beaver/FinalModel.jpg",
-        "/models/Beaver/BeaverExploded.png",
-      ],
-    },
-  ];
-
   return (
     <>
-      <div className="grid grid-cols-1 gap-4 bg-[#1a1f1aa9] border-2 border-[#60755d] rounded-lg p-4 shadow-[0_4px_6px_rgba(0,0,0,0.5)] sm:grid-cols-3">
+      <div className="grid grid-cols-1 gap-4 bg-surface-1/90 border-2 border-border-subtle rounded-lg p-4 shadow-lg sm:grid-cols-3">
         {models.map((m) => (
           <button
-            key={m.src}
+            key={m.slug}
             type="button"
             onClick={() => setActiveModel(m)}
             className="group text-left"
             aria-label={`View ${m.title}`}
           >
-            <ModelViewer src={m.src} interactive={false} />
+            <ModelViewer src={m.glbPath} interactive={false} />
           </button>
         ))}
       </div>

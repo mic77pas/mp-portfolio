@@ -18,17 +18,17 @@ export default function TypingSentence() {
       transition={{ duration: 1, ease: "easeOut", delay: 0.3 }} // <- grow from left
       className={`
         ${montserrat.className}
-        relative flex flex-row items-center text-[#A1BD98]
+        relative flex flex-row items-center text-accent
        w-full max-w-[540px] h-[52px]
         md:w-[540px] md:h-[54px]
         px-3 py-2 gap-1 md:gap-3 z-20
+        rounded-full border border-border-subtle bg-surface-1
         hover:brightness-120 transition-all duration-200
       `}
     >
       <div
-        className="absolute inset-0 -z-10"
+        className="absolute inset-0 -z-10 rounded-full [background-image:var(--chrome-bg-sentence)]"
         style={{
-          backgroundImage: "url('/comps/sentence.png')",
           backgroundSize: "100% 100%",
         }}
       />
@@ -36,7 +36,7 @@ export default function TypingSentence() {
       <SearchIcon
         className="mb-1"
         size={40}
-        color="A1BD98"
+        color="var(--accent)"
         strokeWidth={1}
         radius={4}
       />

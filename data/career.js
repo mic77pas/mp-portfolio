@@ -12,6 +12,7 @@ const careers = [
     name: "geomatics",
     title: "First Year Geomatics Student",
     date: "Sep 2024 - May 2025",
+    location: "[Add location]",
     logo: "/logos/uwaterloo.png",
     about:
       "The University of Waterloo is a leading Canadian research university known for its innovation, co-op programs, and strong emphasis on STEM and technology. With over 100 undergraduate programs across faculties like Engineering, Mathematics, Science, and Environment, Waterloo combines rigorous academics with hands-on experiential learning. It is widely recognized for its co-op program, which integrates paid work terms into students’ studies, fostering industry-ready graduates and strong connections with global employers. The university’s culture encourages entrepreneurship, research, and interdisciplinary collaboration, making it a hub for students passionate about problem-solving, technology, and innovation.",
@@ -23,6 +24,8 @@ const careers = [
     name: "ipserlab",
     title: "Software Engineer Intern",
     date: "May 2025 - Aug 2025",
+    location: "[Add location]",
+    tech: ["React", "TypeScript", "Java", "APIs"],
     logo: "/logos/experience/ipserlab.jpg",
     about:
       "IpserLab is an early-stage startup focused on building innovative software solutions that solve real-world problems. As a small but fast-moving team, the company emphasizes rapid iteration, collaboration between engineers and founders, and a strong product-driven approach. It provides interns and employees with hands-on exposure to both front-end and back-end development, fostering a practical understanding of software engineering workflows, Agile practices, and startup culture.",
@@ -34,6 +37,7 @@ const careers = [
     name: "SYDE",
     title: "1A SYDE Student",
     date: "Sep 2025 - Present",
+    location: "[Add location]",
     logo: "/logos/uwaterloo.png",
     about:
       "The Systems Design Engineering (SYDE) program at the University of Waterloo combines engineering, design, and human-centered problem solving to prepare students for interdisciplinary technical challenges. The curriculum emphasizes systems thinking, collaboration, and both software and hardware development, equipping students with the skills to design complex systems that integrate technology, user experience, and business considerations. SYDE students gain hands-on experience through projects, labs, and co-op opportunities, fostering a strong foundation in both technical and design-oriented skills.",

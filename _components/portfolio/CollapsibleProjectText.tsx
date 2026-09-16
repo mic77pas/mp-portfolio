@@ -12,17 +12,17 @@ export function CollapsibleProjectText({
   const [open, setOpen] = useState<boolean>(defaultOpen);
 
   return (
-    <div className="border-b-2 border-[#6a8366]/40 py-3 last:border-b-0">
+    <div className="border-b-2 border-border-subtle py-3 last:border-b-0">
       <button
         onClick={() => setOpen((prev) => !prev)}
         className="flex w-full items-center justify-between gap-4 text-left cursor-pointer"
       >
-        <p className="text-2xl text-shadow-[0px_3px_1px_rgba(0,0,0,0.5)]">
+        <p className="text-2xl text-text-primary [text-shadow:var(--shadow-text-strong)]">
           {title}
         </p>
 
         <span
-          className={`text-xl text-[#90AD8F] transition-transform duration-300 ${
+          className={`text-xl text-accent transition-transform duration-300 ${
             open ? "rotate-90" : "rotate-0"
           }`}
         >
@@ -36,7 +36,7 @@ export function CollapsibleProjectText({
         }`}
       >
         <div className="overflow-hidden">
-          <div className="pt-1 text-[#c4c4c4]">{children}</div>
+          <div className="pt-1 text-text-secondary">{children}</div>
         </div>
       </div>
     </div>

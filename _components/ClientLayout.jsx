@@ -27,12 +27,10 @@ export default function ClientLayout({ children }) {
   }, [title]);
 
   if (isHome) {
-    // fills available main height and centers both ways
-    return (
-      <div className="w-full flex-1 flex items-center justify-center">
-        {children}
-      </div>
-    );
+    // The home page is now a full scrollable page (hero + projects +
+    // about-cards), not a single centered hero, so it no longer force-centers
+    // vertically — the hero section handles its own viewport-height framing.
+    return <div className="w-full flex-1">{children}</div>;
   }
 
   // all other pages: centered horizontally, max width 5xl
