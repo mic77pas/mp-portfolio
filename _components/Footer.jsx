@@ -40,7 +40,7 @@ export default function Footer() {
           {/* <IoDocumentTextOutline className="w-6 h-6 nav-link" /> */}
         </nav>
 
-        <span className="text-[#70796c] text-sm">
+        <span className="text-[#8ea48c] text-sm">
           &copy; {new Date().getFullYear()} | MICHAEL PASYECHNYK
         </span>
       </footer>
@@ -96,7 +96,7 @@ export default function Footer() {
 //           </a>
 //         </nav>
 
-//         <span className="text-[#70796c] text-sm">
+//         <span className="text-[#8ea48c] text-sm">
 //           &copy; {new Date().getFullYear()} | MICHAEL PASYECHNYK
 //         </span>
 //       </div>

@@ -17,6 +17,7 @@ import {
   useMemo,
 } from "react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { models } from "../../data/models";
 
 interface ModelEntry {
   src: string;
@@ -92,7 +93,7 @@ function CenteredModel({ src }: { src: string }) {
   );
 }
 
-function ModelViewer({
+export function ModelViewer({
   src,
   interactive = true,
   dark = false,
@@ -145,7 +146,7 @@ function ModelViewer({
   );
 }
 
-function ImageSlideshow({
+export function ImageSlideshow({
   images,
   title,
 }: {
@@ -271,37 +272,6 @@ function ModelModal({
 export default function ModelGrid() {
   const [activeModel, setActiveModel] = useState<ModelEntry | null>(null);
 
-  const models: ModelEntry[] = [
-    {
-      src: "/models/Donut/FinalDonut.glb",
-      title: "Donut",
-      description:
-        "A classic frosted donut, modeled, textured, and rendered in Blender. This model and scene was part of my first ever course in blender!",
-      images: [
-        "/models/Donut/Donut&Coffee1.png",
-        "/models/Donut/DonutViewport.png",
-        "/models/Donut/Shading.png",
-        "/models/Donut/Scene.png",
-      ],
-    },
-    {
-      src: "/models/Car/CarFinal.glb",
-      title: "Cyber Truck",
-      description:
-        "A low-poly version of the Cybertruck, built with modeling techniques taught in SYDE101L as a final project at the University of Waterloo",
-      images: ["/models/Car/CarFinal.JPG", "/models/Car/CarExploded.png"],
-    },
-    {
-      src: "/models/Beaver.glb",
-      title: "Nutcracker",
-      description:
-        "A nutcracker beaver figure, built with modeling techniques taught in SYDE101L as a final project at the University of Waterloo",
-      images: [
-        "/models/Beaver/FinalModel.jpg",
-        "/models/Beaver/BeaverExploded.png",
-      ],
-    },
-  ];
 
   return (
     <>

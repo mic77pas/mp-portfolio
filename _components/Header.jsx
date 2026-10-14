@@ -6,6 +6,7 @@ import { useEffect, useState, useRef } from "react";
 import { usePathname } from "next/navigation";
 import MobileHeader from "./MobileHeader";
 import AnimatedLogo from "./AnimatedLogo";
+import AboutLink from "./AboutLink";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -52,30 +53,29 @@ export default function Header() {
     <>
       <header
         className={[
-          "fixed top-0 z-100 w-full max-w-5xl h-22 hidden sm:flex",
+          "fixed top-0 z-100 w-[calc(100%-2rem)] max-w-[1038px] h-22 hidden sm:flex",
           "justify-center items-center",
           "transform-gpu transition-transform duration-300 ease-out",
-          "bg-[url('/comps/header.png')] bg-size-[100%_100%] bg-no-repeat bg-center",
+          "bg-[url('/comps/header-solid.png')] bg-size-[100%_100%] bg-no-repeat bg-center",
           hidden ? "-translate-y-full" : "translate-y-0",
         ].join(" ")}
       >
         <div className="flex flex-row items-center justify-between w-full px-12">
+          {/* the logo is an ambigram: flipping it on hover shows it reads the same */}
           <Link href="/">
             <Image
-              src="/logos/pixelnew.png"
+              src="/logos/mp-logo.svg"
               alt="Logo"
-              width={60}
-              height={60}
-              className="transition-transform duration-300 hover:scale-105 hover:brightness-120 saturate-50 mr-8"
+              width={72}
+              height={37}
+              className="transition-transform duration-500 ease-in-out hover:rotate-180 hover:brightness-120 mr-8"
             />
           </Link>
 
           <nav>
             <ul className="font-minecraft flex gap-8 font-bold">
               <li>
-                <Link href="/about" className="nav-link">
-                  about
-                </Link>
+                <AboutLink className="nav-link">about</AboutLink>
               </li>
               <li>
                 <Link href="/portfolio" className="nav-link">

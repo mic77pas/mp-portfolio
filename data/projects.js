@@ -2,6 +2,21 @@ const projects = [
   {
     title: "Portfolio Website",
     slug: "portfolio-website",
+    // shown in the project popup
+    sections: [
+      {
+        title: "What is it?",
+        body: "This portfolio website is my personal space to showcase my projects, experience, background, and interests in software engineering, design, and creative technology. I built it to feel more personal than a standard resume, with custom visuals, interactive project pages, and a design style that reflects my personality.",
+      },
+      {
+        title: "Why this project?",
+        body: "I wanted a place where I could present my work in a more detailed and polished way than a resume or GitHub profile. Since I am interested in frontend development, UI/UX, and product design, this project let me combine technical implementation with visual design, animation, and storytelling.",
+      },
+      {
+        title: "What did I learn?",
+        body: "I learned how to structure a scalable Next.js project, create reusable components, manage dynamic project pages, and refine small UI details like animations, hover states, responsive layouts, and collapsible sections. I also got more comfortable turning design ideas from Figma into my first ever polished, deployed website!",
+      },
+    ],
     description:
       "Full-stack Next.js portfolio displaying my background and experience (you're in it right now!)",
 
@@ -34,6 +49,22 @@ const projects = [
       "PostgreSQL",
     ],
     slug: "react-apps",
+    // shown in the project popup
+    sections: [
+      {
+        title: "What is it?",
+        body: "This project is a collection of 10+ React applications I built as part of a 90+ hour Modern React Development course by Jonas Schmedtmann. The apps range from small concept projects to full-stack applications like a hotel booking platform, management dashboard, and food ordering system, with each app focused on a different set of real-world development patterns and tools",
+      },
+      {
+        title: "Why this project?",
+        body: "This was one of my first major software courses and a turning point in how I approached development. I wanted to go beyond tutorials and actually build complete, production-style applications while learning how modern React systems work",
+      },
+      {
+        title: "What did I learn?",
+        body: "I developed a strong foundation in React fundamentals and advanced patterns such as state management with Redux and Context API, data fetching with React Query, and building scalable component architectures. I also learned how to work with APIs, handle authentication, manage global state, and structure full-stack applications using tools like Next.js and Supabase. This course played a huge role in shaping how I now build modern web applications and I use all and any fundamentals I learned to this day",
+      },
+    ],
+    subprojects: "reactApps", // key into subprojectLists below
     description:
       "A collection of modern React and Next.js apps showcasing full-stack development skills",
     github: "https://github.com/mic77pas/mp-portfolio",
@@ -44,6 +75,22 @@ const projects = [
     gif: "/projects/videos/cs50.mp4",
     skills: ["Python", "JavaScript", "Django", "MySQL", "HTML5", "CSS3"],
     slug: "cs50-web",
+    // shown in the project popup
+    sections: [
+      {
+        title: "What is it?",
+        body: "This project is a collection of full-stack web applications I built as part of Harvard’s CS50 Web Programming with Python and JavaScript course. The projects range from front-end replicas to fully functional applications like an email client, social network, and e-commerce auction platform, all designed to mirror real-world web systems",
+      },
+      {
+        title: "Why this project?",
+        body: "I wanted to strengthen my understanding of how full-stack web applications actually work under the hood. This course pushed me to go beyond frontend development and learn how to build complete systems, handling routing, databases, authentication, and server-side logic using Django",
+      },
+      {
+        title: "What did I learn?",
+        body: "I learned how to build full-stack applications from scratch, including designing database models, implementing authentication systems, and connecting front-end interfaces with back-end logic. I also gained experience with asynchronous JavaScript using the fetch API, creating single-page application behaviors, and structuring scalable Django applications. This course gave me a strong foundation in how modern web apps function end-to-end",
+      },
+    ],
+    subprojects: "cs50Apps", // key into subprojectLists below
     description:
       "A collection of full-stack Django web applications showcasing authentication, APIs, and dynamic, interactive user experiences",
     github: "https://github.com/mic77pas/mp-portfolio",
@@ -61,6 +108,21 @@ const projects = [
       "Vercel",
     ],
     slug: "client-sites",
+    // shown in the project popup
+    sections: [
+      {
+        title: "What is it?",
+        body: "This is a collection of portfolio and landing websites I created for different clients, including friends, student groups, and small companies. Each site was built around the client’s goals, personality, and audience, whether they needed a personal portfolio, professional web presence, or a clean way to showcase their work",
+      },
+      {
+        title: "Why this project?",
+        body: "I wanted to practice my frontend and design skills in a more realistic setting by working with real people instead of only building personal projects. These client sites gave me the chance to understand someone else’s needs, translate vague ideas into polished interfaces, and deliver websites that were actually useful to them",
+      },
+      {
+        title: "What did I learn?",
+        body: "I learned how to communicate with clients, gather requirements, iterate on feedback, and balance visual design with usability. I also improved at building reusable frontend components, creating responsive layouts, and making small design decisions that help a website feel more professional, personal, and easy to navigate",
+      },
+    ],
     description: "Portfolio websites made for various clientele",
     github: "https://github.com/mic77pas/client-sites",
   },
@@ -204,4 +266,7 @@ const cs50Apps = [
   },
 ];
 
-export { projects, reactApps, cs50Apps };
+// Sub-app grids shown inside a project's popup (referenced by `subprojects`)
+const subprojectLists = { reactApps, cs50Apps };
+
+export { projects, reactApps, cs50Apps, subprojectLists };

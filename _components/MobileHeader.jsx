@@ -9,6 +9,7 @@ import { MdAccountCircle } from "react-icons/md";
 import { IoIosDocument } from "react-icons/io";
 import { BiSolidMessageSquareDetail } from "react-icons/bi";
 import { useState } from "react";
+import AboutLink from "./AboutLink";
 import { HiMail } from "react-icons/hi";
 import { IoMailOutline } from "react-icons/io5";
 
@@ -53,12 +54,9 @@ export default function MobileHeader() {
                 </Link>
               </li>
               <li className="-ml-5 drop-shadow-[0_4px_0px_rgba(0,0,0,0.8)]">
-                <Link
-                  href="/about"
-                  className="nav-link text-[14px] md:text-lg "
-                >
+                <AboutLink className="nav-link text-[14px] md:text-lg ">
                   <MdAccountCircle size={40} className="" />
-                </Link>
+                </AboutLink>
               </li>
               <li className="drop-shadow-[0_4px_0px_rgba(0,0,0,0.8)]">
                 <Link href="/portfolio" className="nav-link">
