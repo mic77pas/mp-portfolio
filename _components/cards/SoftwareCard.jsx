@@ -8,7 +8,7 @@ export default function SoftwareCard({ project, onClick, className = "" }) {
     <button
       type="button"
       onClick={onClick}
-      className={`group relative flex flex-col shrink-0 text-left overflow-visible rounded-xl border-2 border-[#6a8366] bg-[#1a1b1a] shadow-lg cursor-pointer ${className}`}
+      className={`group relative flex flex-col shrink-0 text-left overflow-visible rounded-xl border-2 border-[#6a8366] bg-[#1a1b1a] shadow-lg cursor-pointer transition-colors duration-300 hover:border-[#8dad8c] ${className}`}
     >
       <div className="absolute left-4 right-4 top-4 bottom-[calc(100%-6rem)] overflow-hidden rounded-xl border-2 border-[#6a8366] transition-[bottom] duration-500 ease-out group-hover:bottom-4 z-40">
         <Image

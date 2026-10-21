@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { FiChevronDown } from "react-icons/fi";
 import { ArrowUpRight } from "lucide-react";
 import { workExperience } from "../../data/profile";
+import Reveal from "../Reveal";
 
 function Job({ job, open, onToggle }) {
   const { title, company, date, logo, logoNeedsCrop, href, bullets = [] } = job;
@@ -111,19 +112,23 @@ export default function WorkExperience() {
 
   return (
     <section className="flex flex-col gap-5 w-full">
-      <h2 className="font-minecraft font-bold text-[20px] text-[#c1dab6]">
+      <Reveal
+        as="h2"
+        className="font-minecraft font-bold text-[20px] text-[#c1dab6]"
+      >
         Work Experience
-      </h2>
+      </Reveal>
       <div className="flex flex-col gap-4 w-full">
-        {workExperience.map((job) => (
-          <Job
-            key={job.company}
-            job={job}
-            open={openCompany === job.company}
-            onToggle={() =>
-              setOpenCompany((c) => (c === job.company ? null : job.company))
-            }
-          />
+        {workExperience.map((job, i) => (
+          <Reveal key={job.company} delay={0.08 * (i + 1)} y={16}>
+            <Job
+              job={job}
+              open={openCompany === job.company}
+              onToggle={() =>
+                setOpenCompany((c) => (c === job.company ? null : job.company))
+              }
+            />
+          </Reveal>
         ))}
       </div>
     </section>

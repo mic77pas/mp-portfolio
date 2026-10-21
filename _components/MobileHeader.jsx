@@ -43,13 +43,17 @@ export default function MobileHeader() {
           <nav className="flex-1">
             <ul className="font-minecraft flex items-center justify-between font-bold text-sm">
               <li>
-                <Link href="/">
+                {/* same ambigram + non-rotating shadow trick as the desktop header */}
+                <Link
+                  href="/"
+                  className="group block filter-[drop-shadow(0_4px_0px_rgba(0,0,0,0.8))]"
+                >
                   <Image
-                    src="/logos/pixelnew.png"
+                    src="/logos/mp-logo.svg"
                     alt="Logo"
-                    width={54}
-                    height={54}
-                    className="-translate-y-0.5 transition-transform drop-shadow-[0_4px_0px_rgba(0,0,0,0.8)] duration-300 hover:scale-105 hover:brightness-120 saturate-50"
+                    width={58}
+                    height={30}
+                    className="-translate-y-0.5 transition-transform duration-500 ease-in-out group-hover:rotate-180 group-hover:brightness-120"
                   />
                 </Link>
               </li>

@@ -16,11 +16,13 @@ const montserrat = Montserrat({
 
 export default function Header() {
   const [hidden, setHidden] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const lastY = useRef(0);
   const ticking = useRef(false);
 
   useEffect(() => {
     lastY.current = window.scrollY;
+    setScrolled(window.scrollY > 10);
 
     const onScroll = () => {
       if (ticking.current) return;
@@ -29,6 +31,7 @@ export default function Header() {
       requestAnimationFrame(() => {
         const y = window.scrollY;
         const delta = y - lastY.current;
+        setScrolled(y > 10);
 
         // Ignore tiny scroll movements (prevents flicker)
         const THRESHOLD = 8;
@@ -48,27 +51,42 @@ export default function Header() {
   }, []);
 
   return (
-    // bg-[#1b1d1b]/85 backdrop-blur-sm shadow-[0px_4px_2px_rgba(0,0,0,0.6)]
-
     <>
       <header
         className={[
-          "fixed top-0 z-100 w-[calc(100%-2rem)] max-w-[1038px] h-22 hidden sm:flex",
-          "justify-center items-center",
-          "transform-gpu transition-transform duration-300 ease-out",
-          "bg-[url('/comps/header-solid.png')] bg-size-[100%_100%] bg-no-repeat bg-center",
+          "fixed inset-x-0 top-0 z-100 w-full h-20 hidden sm:flex items-center",
+          "transform-gpu transition-[translate,background-color,box-shadow] duration-300 ease-out rounded-b-2xl",
+          // transparent over the hero; solid bar once the page scrolls
+          scrolled
+            ? "bg-[#1b1d1b]/85 backdrop-blur-sm shadow-[0px_4px_12px_rgba(0,0,0,0.45)]"
+            : "bg-transparent",
           hidden ? "-translate-y-full" : "translate-y-0",
         ].join(" ")}
       >
-        <div className="flex flex-row items-center justify-between w-full px-12">
-          {/* the logo is an ambigram: flipping it on hover shows it reads the same */}
-          <Link href="/">
+        {/* soft shade along the top edge while the bar is transparent; fades
+            out as the solid background fades in */}
+        <div
+          aria-hidden
+          className={[
+            "pointer-events-none absolute inset-0 -z-10 bg-linear-to-b from-black/40 to-transparent transition-opacity duration-300",
+            scrolled ? "opacity-0" : "opacity-100",
+          ].join(" ")}
+        />
+
+        <div className="flex flex-row items-center justify-between w-full px-4 lg:px-8">
+          {/* the logo is an ambigram: flipping it on hover shows it reads the
+              same. The shadow lives on the non-rotating link, so it's cast
+              from the rotated logo and always falls below it. */}
+          <Link
+            href="/"
+            className="group block filter-[drop-shadow(1px_2px_2px_rgba(0,0,0,0.8))]"
+          >
             <Image
               src="/logos/mp-logo.svg"
               alt="Logo"
               width={72}
               height={37}
-              className="transition-transform duration-500 ease-in-out hover:rotate-180 hover:brightness-120 mr-8"
+              className="transition-transform duration-500 ease-in-out group-hover:rotate-180 group-hover:brightness-120"
             />
           </Link>
 

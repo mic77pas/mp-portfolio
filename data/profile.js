@@ -6,12 +6,20 @@ export const profile = {
 
   // Online pill + HP bar are driven by local time in this timezone.
   // HP drains from 100% at wake time to 0% at sleep time; Online while awake.
-  timezone: "America/Toronto",
+  // `location` is the place named in the Offline hover note.
+  timezone: "America/Los_Angeles",
+  location: "California",
+  // timezone: "America/Toronto",
+  // location: "Toronto",
   wakeHour: 8,
   sleepHour: 23,
 
   photo: "/profile-climbing.jpg",
   photoCaption: "Outdoor climbing at Niagara Glen!",
+
+  // mobile social-profile header: "@handle · tagline"
+  handle: "mic77_pas",
+  tagline: "SYDE @ UWaterloo",
 
   // [label](url) markers render as links
   bio: [

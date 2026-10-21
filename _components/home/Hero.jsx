@@ -42,7 +42,7 @@ function IconLink({ href, img, hoverImg, label, imgClassName = "" }) {
       className="relative flex flex-col items-center w-24 md:w-[127px] group"
       variants={iconItem}
     >
-      <div className="relative size-[70px] md:size-[84px] rounded-full shadow-[0px_4px_4px_rgba(0,0,0,0.5)]">
+      <div className="relative size-[70px] md:size-[84px] rounded-full shadow-[0px_4px_4px_rgba(0,0,0,0.5)] transition-transform duration-200 ease-out group-hover:-translate-y-1 group-hover:scale-105">
         <Link href={href} target="_blank" rel="noopener noreferrer">
           <Image
             src={img}
@@ -94,8 +94,9 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, ease: "easeOut" }}
-        className="relative flex flex-col items-center text-center gap-6 pb-16 md:pb-0"
+        className="relative flex flex-col items-center text-center gap-3 md:gap-4 pb-16 md:pb-0"
       >
+
         <div className="relative inline-block group cursor-pointer pointer-events-none md:pointer-events-auto">
           <SplitText
             text="Michael Pasyechnyk"
@@ -134,7 +135,7 @@ export default function Hero() {
         <TypingSentence />
 
         <motion.div
-          className="flex flex-row justify-center items-start md:gap-[0px]"
+          className="flex flex-row justify-center items-start mt-1"
           variants={iconContainer}
           initial="hidden"
           animate="show"

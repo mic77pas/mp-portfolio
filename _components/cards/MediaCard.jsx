@@ -32,7 +32,7 @@ export default function MediaCard({ item, onClick, className = "" }) {
     <button
       type="button"
       onClick={onClick}
-      className={`group relative flex shrink-0 min-h-[275px] p-4 text-left overflow-visible rounded-xl border-2 border-[#6a8366] bg-[#1a1b1a] shadow-lg cursor-pointer ${className}`}
+      className={`group relative flex shrink-0 min-h-[275px] p-4 text-left overflow-visible rounded-xl border-2 border-[#6a8366] bg-[#1a1b1a] shadow-lg cursor-pointer transition-colors duration-300 hover:border-[#8dad8c] ${className}`}
     >
       {/* image fills the card down to the same padding as the other sides;
           the title plaque overlaps its bottom edge */}

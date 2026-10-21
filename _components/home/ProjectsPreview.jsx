@@ -1,11 +1,12 @@
 import Link from "next/link";
 import PortfolioRail from "../cards/PortfolioRail";
+import Reveal from "../Reveal";
 import { allPortfolioItems } from "../../data/portfolioGroups";
 
 export default function ProjectsPreview() {
   return (
     <section className="flex flex-col gap-5 w-full">
-      <div className="flex items-end justify-between font-minecraft font-bold">
+      <Reveal className="flex items-end justify-between font-minecraft font-bold">
         <h2 className="text-[20px] text-[#c1dab6]">Projects</h2>
         <Link
           href="/portfolio"
@@ -13,9 +14,11 @@ export default function ProjectsPreview() {
         >
           View All
         </Link>
-      </div>
+      </Reveal>
 
-      <PortfolioRail items={allPortfolioItems} />
+      <Reveal delay={0.1}>
+        <PortfolioRail items={allPortfolioItems} />
+      </Reveal>
     </section>
   );
 }
