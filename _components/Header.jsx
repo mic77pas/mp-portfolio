@@ -21,8 +21,15 @@ export default function Header() {
   const ticking = useRef(false);
 
   useEffect(() => {
+    // On the home page the bar stays transparent while the hero is lifting
+    // away and only fills in once the hero's bottom edge has passed under it
+    const solidFrom = () => {
+      const heroSpacer = document.querySelector("[data-hero-spacer]");
+      return heroSpacer ? heroSpacer.offsetHeight - 80 : 10;
+    };
+
     lastY.current = window.scrollY;
-    setScrolled(window.scrollY > 10);
+    setScrolled(window.scrollY > solidFrom());
 
     const onScroll = () => {
       if (ticking.current) return;
@@ -31,7 +38,7 @@ export default function Header() {
       requestAnimationFrame(() => {
         const y = window.scrollY;
         const delta = y - lastY.current;
-        setScrolled(y > 10);
+        setScrolled(y > solidFrom());
 
         // Ignore tiny scroll movements (prevents flicker)
         const THRESHOLD = 8;
@@ -93,15 +100,15 @@ export default function Header() {
           <nav>
             <ul className="font-minecraft flex gap-8 font-bold">
               <li>
-                <AboutLink className="nav-link">about</AboutLink>
+                <AboutLink className="nav-link nav-link-bright">about</AboutLink>
               </li>
               <li>
-                <Link href="/portfolio" className="nav-link">
+                <Link href="/portfolio" className="nav-link nav-link-bright">
                   portfolio
                 </Link>
               </li>
               {/* <li>
-                <Link href="/posts" className="nav-link">
+                <Link href="/posts" className="nav-link nav-link-bright">
                   posts
                 </Link>
               </li> */}
@@ -110,7 +117,7 @@ export default function Header() {
                   href="https://drive.google.com/file/d/12K4VSG5kEep4KhuxYuXZ6ek6-4BCrV2P/view?usp=sharing"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="nav-link"
+                  className="nav-link nav-link-bright"
                 >
                   resume
                 </Link>

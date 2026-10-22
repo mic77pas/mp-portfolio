@@ -8,6 +8,7 @@ import { Caveat_Brush } from "next/font/google";
 import TypingSentence from "../TypingSentence";
 import SplitText from "../../src/components/SplitText";
 import { heroIcons } from "../../data/profile";
+import { scrollToAbout } from "../AboutLink";
 
 const caveat = Caveat_Brush({
   subsets: ["latin"],
@@ -77,6 +78,7 @@ export default function Hero() {
     offset: ["start start", "end start"],
   });
   const radius = useTransform(scrollYProgress, [0, 0.35], [0, 40]);
+  const arrowOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
 
   return (
     <motion.section
@@ -144,6 +146,40 @@ export default function Hero() {
             <IconLink key={item.label} {...item} />
           ))}
         </motion.div>
+      </motion.div>
+
+      {/* scroll hint: bounces at the bottom of the hero, fades out as the
+          hero starts lifting. Sits above the mobile bottom nav bar. */}
+      <motion.div
+        style={{ opacity: arrowOpacity }}
+        className="absolute bottom-24 md:bottom-8 left-1/2 -translate-x-1/2"
+      >
+        <motion.button
+          type="button"
+          aria-label="Scroll to about"
+          onClick={scrollToAbout}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1, y: [0, 5, 0] }}
+          transition={{
+            opacity: { duration: 1, delay: 1.5 },
+            y: { duration: 2.6, ease: "easeInOut", repeat: Infinity },
+          }}
+          className="block p-2 text-[#6a8366] hover:text-[#8dad8c] transition-colors duration-200 filter-[drop-shadow(1px_2px_2px_rgba(0,0,0,0.8))] cursor-pointer"
+        >
+          {/* a wide, shallow chevron */}
+          <svg
+            viewBox="0 0 48 20"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={2}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="w-12 md:w-14 h-auto"
+            aria-hidden
+          >
+            <polyline points="4 5 24 15 44 5" />
+          </svg>
+        </motion.button>
       </motion.div>
     </motion.section>
   );

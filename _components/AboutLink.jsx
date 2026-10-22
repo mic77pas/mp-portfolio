@@ -4,9 +4,26 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 export function scrollToAbout() {
-  document
-    .getElementById("about")
-    ?.scrollIntoView({ behavior: "smooth", block: "start" });
+  const about = document.getElementById("about");
+  if (!about) return;
+
+  // On the home page the content sits pinned under the hero until the hero
+  // has been scrolled away, so scrollIntoView sees #about as already in view.
+  // Its resting position is the hero's height plus its offset in the content.
+  const content = about.closest("[data-hero-content]");
+  const spacer = document.querySelector("[data-hero-spacer]");
+  if (!content || !spacer) {
+    about.scrollIntoView({ behavior: "smooth", block: "start" });
+    return;
+  }
+
+  const offset =
+    about.getBoundingClientRect().top - content.getBoundingClientRect().top;
+  const margin = parseFloat(getComputedStyle(about).scrollMarginTop) || 0;
+  window.scrollTo({
+    top: spacer.offsetHeight + offset - margin,
+    behavior: "smooth",
+  });
 }
 
 // Links to the About section on the home page. Next's router doesn't

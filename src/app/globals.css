@@ -5,11 +5,13 @@ html {
   scroll-behavior: smooth;
 }
 
+/* clip rather than hidden: hidden turns body into a scroll container, which
+   breaks position: sticky (the home page content pinned under the hero) */
 html,
 body {
   width: 100%;
   max-width: 100%;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 :root {
@@ -53,6 +55,11 @@ body {
          hover:text-[#d6e0d3] hover:scale-105
          transition-transform transition-colors duration-200 ease-out
          [text-shadow:1px_2px_2px_rgba(0,0,0,0.8)];
+}
+
+/* desktop header links: same green as the hero title */
+.nav-link-bright {
+  @apply text-[#b9ddb2] hover:text-[#d3ecce];
 }
 
 /* Shared page width: 1038px of content (matches the header) + 16px gutters */
