@@ -2,11 +2,11 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { AnimatePresence, motion } from "motion/react";
 import { FiChevronDown } from "react-icons/fi";
 import { ArrowUpRight } from "lucide-react";
 import { workExperience } from "../../data/profile";
 import Reveal from "../Reveal";
+import ScrambleText from "../../src/components/ScrambleText";
 
 function Job({ job, open, onToggle }) {
   const { title, company, date, logo, logoNeedsCrop, href, bullets = [] } = job;
@@ -59,50 +59,51 @@ function Job({ job, open, onToggle }) {
         </button>
       </div>
 
-      <AnimatePresence initial={false}>
-        {open && (
-          <motion.div
-            id={panelId}
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{
-              height: { duration: 0.45, ease: [0.65, 0, 0.35, 1] },
-              opacity: { duration: 0.3, ease: "easeInOut" },
-            }}
-            className="overflow-hidden"
-          >
-            <div className="ml-[54px] mt-3 flex flex-col gap-3 rounded-[10px] border-2 border-[#a2be9c] bg-[#121412] px-4 py-3">
-              {bullets.length > 0 ? (
-                <ul className="flex flex-col gap-2">
-                  {bullets.map((b) => (
-                    <li
-                      key={b}
-                      className="flex gap-3 font-minecraft text-[14px] leading-snug text-[#c7dac3]"
-                    >
-                      <span className="text-[#80967d] leading-snug">⯀</span>
-                      <span>{b}</span>
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <p className="font-minecraft text-[14px] text-[#93a093]">
-                  More details coming soon!
-                </p>
-              )}
-              <a
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex w-fit items-center gap-1 font-minecraft text-[13px] leading-none text-[#c1dab6] transition-colors hover:text-white"
-              >
-                Visit {company}
-                <ArrowUpRight size={14} />
-              </a>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Opens/closes by transitioning the grid row between 0fr and 1fr, so
+          the browser handles the height. (Animating height to "auto" with
+          motion measures the panel by briefly collapsing it, which at the
+          bottom of the page snapped the scroll position up.) The panel stays
+          mounted; inert keeps its link out of the tab order while closed. */}
+      <div
+        id={panelId}
+        inert={!open}
+        className={`grid ${open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}
+        style={{
+          transition:
+            "grid-template-rows 450ms cubic-bezier(0.65, 0, 0.35, 1), opacity 300ms ease-in-out",
+        }}
+      >
+        <div className="min-h-0 overflow-hidden">
+          <div className="ml-[54px] mt-3 flex flex-col gap-3 rounded-[10px] border-2 border-[#a2be9c] bg-[#1a1e1a] px-4 py-3">
+            {bullets.length > 0 ? (
+              <ul className="flex flex-col gap-2">
+                {bullets.map((b) => (
+                  <li
+                    key={b}
+                    className="flex gap-3 font-minecraft text-[14px] leading-snug text-[#c7dac3]"
+                  >
+                    <span className="text-[#80967d] leading-snug">⯀</span>
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p className="font-minecraft text-[14px] text-[#93a093]">
+                More details coming soon!
+              </p>
+            )}
+            <a
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex w-fit items-center gap-1 font-minecraft text-[13px] leading-none text-[#c1dab6] transition-colors hover:text-white"
+            >
+              Visit {company}
+              <ArrowUpRight size={14} />
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
@@ -112,12 +113,11 @@ export default function WorkExperience() {
 
   return (
     <section className="flex flex-col gap-5 w-full">
-      <Reveal
+      <ScrambleText
         as="h2"
+        text="Work Experience"
         className="font-minecraft font-bold text-[20px] text-[#c1dab6]"
-      >
-        Work Experience
-      </Reveal>
+      />
       <div className="flex flex-col gap-4 w-full">
         {workExperience.map((job, i) => (
           <Reveal key={job.company} delay={0.08 * (i + 1)} y={16}>

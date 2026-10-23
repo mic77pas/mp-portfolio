@@ -117,7 +117,7 @@ function SoftwareBody({ item }) {
 
       {item.sections?.map((section) => (
         <section key={section.title} className="flex flex-col gap-2">
-          <h3 className="font-bold text-[20px] text-[#c1dab6]">
+          <h3 className="font-bold text-[20px] text-(--pal-heading)">
             {section.title}
           </h3>
           <p>{section.body}</p>
@@ -126,7 +126,7 @@ function SoftwareBody({ item }) {
 
       {subprojects.length > 0 && (
         <section className="flex flex-col gap-4">
-          <h3 className="font-bold text-[20px] text-[#c1dab6]">
+          <h3 className="font-bold text-[20px] text-(--pal-heading)">
             What&apos;s inside
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
@@ -136,7 +136,7 @@ function SoftwareBody({ item }) {
                 href={sub.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex flex-col overflow-hidden rounded-xl border-2 border-[#6a8366] bg-[#1a1b1a] transition hover:border-[#a2be9c]"
+                className="group flex flex-col overflow-hidden rounded-xl border-2 border-(--pal-border) bg-(--pal-surface) transition hover:border-(--pal-accent)"
               >
                 <div className="relative aspect-2/1 overflow-hidden">
                   <Image
@@ -151,7 +151,7 @@ function SoftwareBody({ item }) {
                   <span className="font-bold text-[16px] text-[#e4ecd9]">
                     {sub.title}
                   </span>
-                  <span className="text-[13px] text-[#c7d3b4] line-clamp-3">
+                  <span className="text-[13px] text-(--pal-text) line-clamp-3">
                     {sub.description}
                   </span>
                 </div>
@@ -252,6 +252,7 @@ export default function ProjectModal({ item, onClose }) {
 
   return (
     <motion.div
+      data-lenis-prevent
       className="fixed inset-0 z-[200] overflow-y-auto overscroll-contain bg-black/60 backdrop-blur-[10px]"
       onClick={onClose}
       initial={{ opacity: 0 }}
@@ -266,8 +267,8 @@ export default function ProjectModal({ item, onClose }) {
         className="fixed top-4 right-4 md:top-6 md:right-6 z-10 cursor-pointer transition hover:scale-110"
       >
         <span className="relative inline-flex items-center justify-center">
-          <span className="w-8 h-8 rounded-full bg-[#3c493a]" />
-          <IoIosCloseCircle size={36} className="absolute text-[#b6cab3]" />
+          <span className="w-8 h-8 rounded-full bg-(--pal-close)" />
+          <IoIosCloseCircle size={36} className="absolute text-(--pal-close-icon)" />
         </span>
       </button>
 
@@ -280,7 +281,7 @@ export default function ProjectModal({ item, onClose }) {
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: 12, scale: 0.98 }}
         transition={{ duration: 0.25, ease: "easeOut" }}
-        className="page-container flex flex-col gap-10 pb-16 md:pb-[100px] font-minecraft text-[16px] md:text-[18px] text-[#c7dac3]"
+        className="page-container flex flex-col gap-10 pb-16 md:pb-[100px] font-minecraft text-[16px] md:text-[18px] text-(--pal-text)"
       >
         {/* first screenful: just the media, dead-centre in the viewport;
             everything else sits below the fold */}
@@ -290,7 +291,7 @@ export default function ProjectModal({ item, onClose }) {
           </div>
           <motion.div
             aria-hidden
-            className="pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2 text-[#a2be9c]"
+            className="pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2 text-(--pal-accent)"
             initial={{ opacity: 0 }}
             animate={{ opacity: [0, 1, 1], y: [0, 6, 0] }}
             transition={{
@@ -301,7 +302,7 @@ export default function ProjectModal({ item, onClose }) {
             <FiChevronDown size={28} />
           </motion.div>
         </div>
-        <h2 className="font-bold text-[28px] md:text-[36px] leading-none text-[#b9ddb2] [text-shadow:0px_4px_0px_#040404]">
+        <h2 className="font-bold text-[28px] md:text-[36px] leading-none text-(--pal-title) [text-shadow:0px_4px_0px_#040404]">
           {item.title}
         </h2>
         <Body item={item} />

@@ -1,10 +1,6 @@
 @import "tailwindcss";
 @custom-variant hover (&:hover);
 
-html {
-  scroll-behavior: smooth;
-}
-
 /* clip rather than hidden: hidden turns body into a scroll container, which
    breaks position: sticky (the home page content pinned under the hero) */
 html,
@@ -14,9 +10,17 @@ body {
   overflow-x: clip;
 }
 
+/* No browser scroll anchoring: when a dropdown opens or closes it would
+   shift the scroll position to hold some other element still, making the
+   page jump (and Lenis then drag it back). Content should just grow or
+   shrink below. */
+html {
+  overflow-anchor: none;
+}
+
 :root {
   /* page base from the Figma redesign; un-redesigned pages layer the waterfall over it */
-  --background: #111211;
+  --background: #1c1f1c;
   --foreground: #171717;
 }
 
@@ -29,13 +33,182 @@ body {
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #111211;
+    --background: #141814;
     --foreground: #ededed;
   }
 }
 
+/* the green page background is whichever --background the colour scheme
+   picked above; the palettes below swap in their own */
+:root {
+  --pal-bg: var(--background);
+}
+
+/* Site palette. Green everywhere; the /portfolio page swaps it per project
+   type by setting data-palette on <html>. The properties are registered so
+   the browser can animate them: every colour built from them fades along
+   with the swap (see the transition on body below). Any element can also
+   carry data-palette to pin its own colours: it then skips the fade. */
+@property --pal-bg {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #141814;
+}
+@property --pal-surface {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #1a1b1a;
+}
+@property --pal-deep {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #101310;
+}
+@property --pal-border {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #6a8366;
+}
+@property --pal-accent {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #8dad8c;
+}
+@property --pal-heading {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #c1dab6;
+}
+@property --pal-text {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #c7d3b4;
+}
+@property --pal-title {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #b9ddb2;
+}
+@property --pal-link {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #aabf9f;
+}
+@property --pal-muted {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #8ea48c;
+}
+@property --pal-plaque {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #738d73;
+}
+@property --pal-header {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #292c29;
+}
+@property --pal-button {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #638b5c;
+}
+@property --pal-button-hover {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #98b493;
+}
+@property --pal-close {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #3c493a;
+}
+@property --pal-close-icon {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #b6cab3;
+}
+/* how far a palette turns the site's hue, for green artwork that can't take a
+   flat palette colour (e.g. the two-tone mobile header image) */
+@property --pal-hue {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0deg;
+}
+
+/* on body, not html: Lenis's autoToggle puts its own transition on html */
 body {
-  background-color: var(--background);
+  transition-property: --pal-bg, --pal-surface, --pal-deep, --pal-border, --pal-accent, --pal-heading, --pal-text, --pal-title, --pal-link, --pal-muted, --pal-plaque, --pal-header, --pal-button, --pal-button-hover, --pal-close, --pal-close-icon, --pal-hue;
+  transition-duration: 0.7s;
+  transition-timing-function: ease;
+}
+
+/* blue */
+[data-palette="software"] {
+  --pal-bg: #0f161d;
+  --pal-surface: #151a20;
+  --pal-deep: #0c1117;
+  --pal-border: #637386;
+  --pal-accent: #899bb0;
+  --pal-heading: #b2c7de;
+  --pal-text: #b1c2d6;
+  --pal-title: #aec6e1;
+  --pal-link: #9caec2;
+  --pal-muted: #8a97a6;
+  --pal-plaque: #707f90;
+  --pal-header: #242a31;
+  --pal-button: #577290;
+  --pal-button-hover: #90a2b7;
+  --pal-close: #38414a;
+  --pal-close-icon: #b1becc;
+  --pal-hue: 95deg;
+}
+
+/* purple */
+[data-palette="design"] {
+  --pal-bg: #160f1d;
+  --pal-surface: #1b1520;
+  --pal-deep: #120c17;
+  --pal-border: #766386;
+  --pal-accent: #9e89b0;
+  --pal-heading: #c9b2de;
+  --pal-text: #c5b1d6;
+  --pal-title: #c9aee1;
+  --pal-link: #b09cc2;
+  --pal-muted: #998aa6;
+  --pal-plaque: #817090;
+  --pal-header: #2b2431;
+  --pal-button: #755790;
+  --pal-button-hover: #a590b7;
+  --pal-close: #42384a;
+  --pal-close-icon: #bfb1cc;
+  --pal-hue: 155deg;
+}
+
+/* orange */
+[data-palette="model"] {
+  --pal-bg: #1d140f;
+  --pal-surface: #201915;
+  --pal-deep: #17100c;
+  --pal-border: #8a6d5f;
+  --pal-accent: #b49585;
+  --pal-heading: #e2bfae;
+  --pal-text: #dabcad;
+  --pal-title: #e7bda8;
+  --pal-link: #c6a798;
+  --pal-muted: #a99287;
+  --pal-plaque: #937a6d;
+  --pal-header: #312824;
+  --pal-button: #966851;
+  --pal-button-hover: #bb9c8c;
+  --pal-close: #4c3e37;
+  --pal-close-icon: #cfb9ae;
+  --pal-hue: -95deg;
+}
+
+body {
+  background-color: var(--pal-bg);
   color: var(--foreground);
   font-family: var(--font-montserrat), sans-serif;
 }
@@ -50,16 +223,21 @@ body {
   font-family: var(--font-minecraft), monospace;
 }
 
+/* From md up a nav link takes its palette colour from its (non-link) parent:
+   Chrome paints visited links from a separate style that loses an animating
+   palette variable, so a link coloured with var(--pal-*) itself flashes the
+   page's text colour mid palette fade. */
 .nav-link {
-  @apply inline-block text-[#8fa783] md:text-[#AABF9F] 
+  @apply inline-block text-[#8fa783] md:text-inherit 
          hover:text-[#d6e0d3] hover:scale-105
          transition-transform transition-colors duration-200 ease-out
          [text-shadow:1px_2px_2px_rgba(0,0,0,0.8)];
 }
 
-/* desktop header links: same green as the hero title */
+/* desktop header links: same green as the hero title (set on their list,
+   see .nav-link above) */
 .nav-link-bright {
-  @apply text-[#b9ddb2] hover:text-[#d3ecce];
+  @apply hover:text-[color-mix(in_oklab,var(--pal-title),white_30%)];
 }
 
 /* Shared page width: 1038px of content (matches the header) + 16px gutters */
@@ -86,12 +264,12 @@ body {
     gap: 0.5rem; /* 2 = 0.5rem */
     padding: 0.5rem 1rem; /* py-2 px-4 */
     border-radius: 0.5rem; /* rounded-lg */
-    background-color: #638b5c;
+    background-color: var(--pal-button);
     transition: background-color 0.3s ease;
   }
 
   .button-hover:hover {
-    background-color: #98b493;
+    background-color: var(--pal-button-hover);
   }
 }
 

@@ -19,7 +19,7 @@ export default function Footer() {
         //   backgroundSize: "100% 100%",
         // }}
       >
-        <nav className="flex gap-6 font-bold items-center">
+        <nav className="flex gap-6 font-bold items-center text-(--pal-link)">
           <Link
             href="https://linkedin.com/in/michaelpasyechnyk"
             target="_blank"
@@ -40,7 +40,7 @@ export default function Footer() {
           {/* <IoDocumentTextOutline className="w-6 h-6 nav-link" /> */}
         </nav>
 
-        <span className="text-[#8ea48c] text-sm">
+        <span className="text-(--pal-muted) text-sm">
           &copy; {new Date().getFullYear()} | MICHAEL PASYECHNYK
         </span>
       </footer>
@@ -96,7 +96,7 @@ export default function Footer() {
 //           </a>
 //         </nav>
 
-//         <span className="text-[#8ea48c] text-sm">
+//         <span className="text-(--pal-muted) text-sm">
 //           &copy; {new Date().getFullYear()} | MICHAEL PASYECHNYK
 //         </span>
 //       </div>

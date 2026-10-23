@@ -2,7 +2,7 @@
 export const models = [
   {
     slug: "donut",
-    tool: "blender", // badge on the card
+    skills: ["Blender"],
     src: "/models/Donut/FinalDonut.glb",
     title: "Donut",
     description:
@@ -16,7 +16,7 @@ export const models = [
   },
   {
     slug: "cyber-truck",
-    tool: "solidworks", // badge on the card
+    skills: ["SolidWorks"],
     src: "/models/Car/CarFinal.glb",
     title: "Cyber Truck",
     description:
@@ -25,7 +25,7 @@ export const models = [
   },
   {
     slug: "nutcracker",
-    tool: "solidworks", // badge on the card
+    skills: ["SolidWorks"],
     src: "/models/Beaver.glb",
     title: "Nutcracker",
     description:

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { scrollToY } from "../src/lib/lenis";
 
 export function scrollToAbout() {
   const about = document.getElementById("about");
@@ -13,17 +14,18 @@ export function scrollToAbout() {
   const content = about.closest("[data-hero-content]");
   const spacer = document.querySelector("[data-hero-spacer]");
   if (!content || !spacer) {
-    about.scrollIntoView({ behavior: "smooth", block: "start" });
+    const margin = parseFloat(getComputedStyle(about).scrollMarginTop) || 0;
+    scrollToY(about.getBoundingClientRect().top + window.scrollY - margin);
     return;
   }
 
-  const offset =
-    about.getBoundingClientRect().top - content.getBoundingClientRect().top;
+  // the content is scaled down (from its top edge) while the hero is up, so
+  // undo that to get the at-rest offset
+  const contentRect = content.getBoundingClientRect();
+  const scale = contentRect.width / content.offsetWidth || 1;
+  const offset = (about.getBoundingClientRect().top - contentRect.top) / scale;
   const margin = parseFloat(getComputedStyle(about).scrollMarginTop) || 0;
-  window.scrollTo({
-    top: spacer.offsetHeight + offset - margin,
-    behavior: "smooth",
-  });
+  scrollToY(spacer.offsetHeight + offset - margin);
 }
 
 // Links to the About section on the home page. Next's router doesn't

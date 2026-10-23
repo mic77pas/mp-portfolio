@@ -4,11 +4,16 @@ import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useScroll, useTransform } from "motion/react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 import { Caveat_Brush } from "next/font/google";
 import TypingSentence from "../TypingSentence";
 import SplitText from "../../src/components/SplitText";
 import { heroIcons } from "../../data/profile";
 import { scrollToAbout } from "../AboutLink";
+
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const caveat = Caveat_Brush({
   subsets: ["latin"],
@@ -70,6 +75,8 @@ function IconLink({ href, img, hoverImg, label, imgClassName = "" }) {
 
 export default function Hero() {
   const ref = useRef(null);
+  const bgRef = useRef(null);
+  const contentRef = useRef(null);
 
   // Square edge-to-edge at the top of the page; bottom corners round as the
   // hero scrolls away.
@@ -80,73 +87,128 @@ export default function Hero() {
   const radius = useTransform(scrollYProgress, [0, 0.35], [0, 40]);
   const arrowOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
 
+  // Scroll-scrubbed depth while the hero lifts away: the waterfall drifts
+  // slower than the hero, the title block sinks back and fades, and the page
+  // content pinned underneath (see src/app/page.jsx) grows up to full size
+  // as it's uncovered.
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia();
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        const section = ref.current;
+        const lift = (end = "bottom top") => ({
+          trigger: section,
+          start: "top top",
+          end,
+          scrub: true,
+          invalidateOnRefresh: true,
+        });
+
+        gsap.to(bgRef.current, {
+          y: () => section.offsetHeight * 0.2,
+          ease: "none",
+          scrollTrigger: lift(),
+        });
+
+        gsap.to(contentRef.current, {
+          y: () => section.offsetHeight * 0.3,
+          scale: 0.92,
+          opacity: 0,
+          ease: "none",
+          scrollTrigger: lift("70% top"),
+        });
+
+        const pageContent = document.querySelector("[data-hero-content]");
+        if (pageContent) {
+          gsap.fromTo(
+            pageContent,
+            { scale: 0.94, opacity: 0.4, transformOrigin: "50% 0%" },
+            { scale: 1, opacity: 1, ease: "none", scrollTrigger: lift() },
+          );
+        }
+      });
+      return () => mm.revert();
+    },
+    { scope: ref },
+  );
+
   return (
     <motion.section
       ref={ref}
+      data-hero
       style={{
         borderBottomLeftRadius: radius,
         borderBottomRightRadius: radius,
       }}
-      className="relative w-full h-svh min-h-[600px] overflow-hidden flex items-center justify-center px-6 md:px-[110px] shadow-[0px_11px_11.3px_0px_rgba(0,0,0,0.45)] bg-[url('/bg/waterfall.gif')] bg-cover bg-center"
+      className="relative w-full h-svh min-h-[600px] overflow-hidden flex items-center justify-center px-6 md:px-[110px] shadow-[0px_11px_11.3px_0px_rgba(0,0,0,0.45)] bg-[#242524]"
     >
+      {/* the waterfall sits on its own layer, 20% taller than the hero
+          (extending above it), so it can drift down as the hero lifts
+          without exposing an edge */}
+      <div
+        ref={bgRef}
+        className="absolute inset-x-0 -top-[20%] h-[120%] bg-[url('/bg/waterfall.gif')] bg-cover bg-center pointer-events-none will-change-transform"
+      />
       <div className="absolute inset-0 bg-[#242524]/90 pointer-events-none" />
       <div className="absolute inset-0 pointer-events-none shadow-[inset_0px_-30px_33.4px_0px_rgba(0,0,0,0.31)]" />
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, ease: "easeOut" }}
-        className="relative flex flex-col items-center text-center gap-3 md:gap-4 pb-16 md:pb-0"
-      >
-
-        <div className="relative inline-block group cursor-pointer pointer-events-none md:pointer-events-auto">
-          <SplitText
-            text="Michael Pasyechnyk"
-            className="font-minecraft font-bold text-[50px] md:text-[64px] lg:text-[76px] leading-[1.1] text-[#b9ddb2] hover:text-[#d3ecce] transition duration-200 [text-shadow:0px_6px_0px_#040404]"
-            delay={50}
-            duration={1}
-            ease="power3.out"
-            splitType="chars"
-            from={{ opacity: 0, y: 40 }}
-            to={{ opacity: 1, y: 0 }}
-            threshold={0.1}
-            rootMargin="-100px"
-            textAlign="center"
-          />
-          <div className="pointer-events-none absolute right-0 -top-10 md:-top-18 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out text-[#dbe0db] text-sm md:text-base flex items-center">
-            <Image
-              src="/arrowright.png"
-              alt=""
-              width="70"
-              height="70"
-              className="-rotate-1 mr-1 mt-7"
-            />
-            <span className={`${caveat.className} text-[40px] ml-1 mr-3`}>
-              “pass-itch-nick”!
-            </span>
-            <Image
-              src="/ukraine.png"
-              alt="UA"
-              width="30"
-              height="30"
-              className="rotate-2"
-            />
-          </div>
-        </div>
-
-        <TypingSentence />
-
+      <div ref={contentRef} className="relative will-change-transform">
         <motion.div
-          className="flex flex-row justify-center items-start mt-1"
-          variants={iconContainer}
-          initial="hidden"
-          animate="show"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+          className="relative flex flex-col items-center text-center gap-3 md:gap-4 pb-16 md:pb-0"
         >
-          {heroIcons.map((item) => (
-            <IconLink key={item.label} {...item} />
-          ))}
+
+          <div className="relative inline-block group cursor-pointer pointer-events-none md:pointer-events-auto">
+            <SplitText
+              text="Michael Pasyechnyk"
+              className="font-minecraft font-bold text-[50px] md:text-[64px] lg:text-[76px] leading-[1.1] text-[#b9ddb2] hover:text-[#d3ecce] transition duration-200 [text-shadow:0px_6px_0px_#040404]"
+              delay={50}
+              duration={1}
+              ease="power3.out"
+              splitType="chars"
+              from={{ opacity: 0, y: 40 }}
+              to={{ opacity: 1, y: 0 }}
+              threshold={0.1}
+              rootMargin="-100px"
+              textAlign="center"
+            />
+            <div className="pointer-events-none absolute right-0 -top-10 md:-top-18 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-out text-[#dbe0db] text-sm md:text-base flex items-center">
+              <Image
+                src="/arrowright.png"
+                alt=""
+                width="70"
+                height="70"
+                className="-rotate-1 mr-1 mt-7"
+              />
+              <span className={`${caveat.className} text-[40px] ml-1 mr-3`}>
+                “pass-itch-nick”!
+              </span>
+              <Image
+                src="/ukraine.png"
+                alt="UA"
+                width="30"
+                height="30"
+                className="rotate-2"
+              />
+            </div>
+          </div>
+
+          <TypingSentence />
+
+          <motion.div
+            className="flex flex-row justify-center items-start mt-1"
+            variants={iconContainer}
+            initial="hidden"
+            animate="show"
+          >
+            {heroIcons.map((item) => (
+              <IconLink key={item.label} {...item} />
+            ))}
+          </motion.div>
         </motion.div>
-      </motion.div>
+      </div>
 
       {/* scroll hint: bounces at the bottom of the hero, fades out as the
           hero starts lifting. Sits above the mobile bottom nav bar. */}

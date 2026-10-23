@@ -7,6 +7,7 @@ import localFont from "next/font/local";
 import ClientLayout from "../../_components/ClientLayout";
 import MobileHeader from "../../_components/MobileHeader";
 import { Analytics } from "@vercel/analytics/next";
+import SmoothScroll from "@/components/SmoothScroll";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -56,7 +57,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${montserrat.variable} ${minecraft.variable}`}>
-      <body className="relative min-h-screen flex flex-col items-center antialiased bg-[#111211]">
+      <body className="relative min-h-screen flex flex-col items-center antialiased">
         <div className="relative w-full min-h-screen flex flex-col items-center">
           <div className="hidden md:flex w-full justify-center">
             <Header />
@@ -70,6 +71,7 @@ export default function RootLayout({ children }) {
 
           <MobileHeader />
         </div>
+        <SmoothScroll />
         <Analytics />
       </body>
     </html>

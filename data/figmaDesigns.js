@@ -6,6 +6,7 @@ export const figmaDesigns = [
       "Web layout of my current portfolio websites (includes past versions).",
     image: "/projects/figma/website.png",
     category: "Web",
+    skills: ["Figma"],
     figmaUrl:
       "https://www.figma.com/design/30To8JEteODVtAxppAilUy/Portfolio?node-id=329-2&t=MTWCMn280voxMc7C-1",
   },
@@ -15,6 +16,7 @@ export const figmaDesigns = [
     description: "Logo created for clients and personal projects.",
     image: "/projects/figma/podcast3.png",
     category: "Web",
+    skills: ["Figma"],
     figmaUrl:
       "https://www.figma.com/design/4HL0PMISdyujo5ShunxHwW/Logos?node-id=75-29&t=gsZNHDn9Kr5JhLA7-1",
   },

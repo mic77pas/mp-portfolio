@@ -7,12 +7,8 @@ import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import PortfolioCard from "./PortfolioCard";
 import ProjectModal from "../ProjectModal";
 
-// Software cards keep the Figma width; image-led cards get more room
-const CARD_WIDTH = {
-  software: "w-[85vw] max-w-[410px]",
-  design: "w-[85vw] max-w-[540px]",
-  model: "w-[85vw] max-w-[540px]",
-};
+// every card kind shares the Figma width
+const CARD_WIDTH = "w-[85vw] max-w-[410px]";
 
 const FADE = 96; // px of edge fade when more cards are hidden that way
 const DRAG_THRESHOLD = 6; // px before a press counts as a drag, not a click
@@ -30,7 +26,7 @@ function RailButton({ dir, show, onClick }) {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.8 }}
           transition={{ duration: 0.2 }}
-          className={`absolute top-[calc(50%-20px)] z-70 hidden md:flex size-11 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border-2 border-[#a2be9c] bg-[#121412]/95 text-[#c1dab6] shadow-[0_4px_12px_rgba(0,0,0,0.6)] transition-colors hover:bg-[#262d26] hover:text-white ${dir === "left" ? "-left-5" : "-right-5"}`}
+          className={`absolute top-[calc(50%-20px)] z-70 hidden md:flex size-11 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border-2 border-[#a2be9c] bg-[#1a1e1a]/95 text-[#c1dab6] shadow-[0_4px_12px_rgba(0,0,0,0.6)] transition-colors hover:bg-[#262d26] hover:text-white ${dir === "left" ? "-left-5" : "-right-5"}`}
         >
           <Icon size={22} />
         </motion.button>
@@ -153,7 +149,7 @@ export default function PortfolioRail({ items }) {
               key={`${item.kind}-${item.slug}`}
               item={item}
               onClick={() => setSelected(item)}
-              className={`snap-start ${CARD_WIDTH[item.kind]}`}
+              className={`snap-start ${CARD_WIDTH}`}
             />
           ))}
         </div>

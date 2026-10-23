@@ -137,7 +137,7 @@ function StatusPill({ stats, compact = false }) {
           : "h-[42px] rounded-[12px] gap-[10px] px-[12px] self-start w-full",
         offline
           ? "border-[#d65c5c] bg-[#1c1212] cursor-help"
-          : "border-[#a2be9c] bg-[#121412]",
+          : "border-[#a2be9c] bg-[#1a1e1a]",
       ].join(" ")}
     >
       <span
@@ -196,12 +196,12 @@ function MobileProfile({ stats }) {
 
   return (
     <Reveal
-      className={`${panel} md:hidden bg-[#121412] p-4 flex flex-col gap-4`}
+      className={`${panel} md:hidden bg-[#1a1e1a] p-4 flex flex-col gap-4`}
     >
       <div className="flex items-center gap-4">
         <div className="relative shrink-0">
           <div className="rounded-full bg-linear-to-tr from-[#6a8366] via-[#a2be9c] to-[#dfe9d9] p-[3px]">
-            <div className="relative size-[88px] overflow-hidden rounded-full border-[3px] border-[#121412]">
+            <div className="relative size-[88px] overflow-hidden rounded-full border-[3px] border-[#1a1e1a]">
               <Image
                 src={profile.photo}
                 alt="Michael climbing at Niagara Glen"
@@ -356,7 +356,7 @@ export default function ProfileCard() {
           </div>
 
           <div
-            className={`${panel} bg-[#121412] p-[14px] flex flex-col justify-between gap-3 min-w-0`}
+            className={`${panel} bg-[#1a1e1a] p-[14px] flex flex-col justify-between gap-3 min-w-0`}
           >
             <div className="grid grid-cols-2 gap-[18px]">
               <div className="flex flex-col gap-[10px]">
@@ -404,7 +404,7 @@ export default function ProfileCard() {
 
         <Reveal
           delay={0.2}
-          className={`${panel} bg-[#121412] px-3 py-3 font-minecraft text-[16px] md:text-[18px] text-[#c7dac3] flex flex-col gap-[1.2em]`}
+          className={`${panel} bg-[#1a1e1a] px-3 py-3 font-minecraft text-[16px] md:text-[18px] text-[#c7dac3] flex flex-col gap-[1.2em]`}
         >
           {profile.bio.map((p) => (
             <p key={p}>

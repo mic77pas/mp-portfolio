@@ -1,6 +1,5 @@
 "use client";
 import Link from "next/link";
-import Image from "next/image";
 import { VscAccount, VscGithub } from "react-icons/vsc";
 import { TbBriefcase } from "react-icons/tb";
 import { PiLinkedinLogo, PiSuitcase } from "react-icons/pi";
@@ -10,6 +9,7 @@ import { IoIosDocument } from "react-icons/io";
 import { BiSolidMessageSquareDetail } from "react-icons/bi";
 import { useState } from "react";
 import AboutLink from "./AboutLink";
+import Logo from "./Logo";
 import { HiMail } from "react-icons/hi";
 import { IoMailOutline } from "react-icons/io5";
 
@@ -36,9 +36,14 @@ export default function MobileHeader() {
         className={[
           "fixed bottom-0 left-0 z-150 w-full h-20 flex md:hidden pt-2",
           "justify-center items-center",
-          "bg-[url('/comps/mobileHeader.png')] bg-size-[100%_100%] bg-no-repeat bg-center",
         ].join(" ")}
       >
+        {/* bar artwork on its own layer, so the palette's hue turn tints it
+            without also turning the (already palette-coloured) icons */}
+        <div
+          aria-hidden
+          className="absolute inset-0 -z-10 bg-[url('/comps/mobileHeader.png')] bg-size-[100%_100%] bg-no-repeat bg-center hue-rotate-(--pal-hue)"
+        />
         <div className="flex flex-row items-center justify-between w-full px-7">
           <nav className="flex-1">
             <ul className="font-minecraft flex items-center justify-between font-bold text-sm">
@@ -48,13 +53,7 @@ export default function MobileHeader() {
                   href="/"
                   className="group block filter-[drop-shadow(0_4px_0px_rgba(0,0,0,0.8))]"
                 >
-                  <Image
-                    src="/logos/mp-logo.svg"
-                    alt="Logo"
-                    width={58}
-                    height={30}
-                    className="-translate-y-0.5 transition-transform duration-500 ease-in-out group-hover:rotate-180 group-hover:brightness-120"
-                  />
+                  <Logo className="w-[58px] h-[30px] -translate-y-0.5 transition-transform duration-500 ease-in-out group-hover:rotate-180 group-hover:brightness-120" />
                 </Link>
               </li>
               <li className="-ml-5 drop-shadow-[0_4px_0px_rgba(0,0,0,0.8)]">
@@ -89,7 +88,7 @@ export default function MobileHeader() {
                       : "opacity-0 translate-y-30 pointer-events-none",
                   ].join(" ")}
                 >
-                  <div className="flex flex-col items-center gap-3 rounded-2xl border-2 border-[#8dad8c] bg-[#1a1b1a]/95 px-2 py-3 shadow-xl backdrop-blur-md">
+                  <div className="flex flex-col items-center gap-3 rounded-2xl border-2 border-(--pal-accent) bg-(--pal-surface)/95 px-2 py-3 shadow-xl backdrop-blur-md">
                     <Link
                       href="https://github.com/mic77pas"
                       target="_blank"

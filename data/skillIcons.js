@@ -28,11 +28,18 @@ import {
   SiJupyter,
   SiScikitlearn,
   SiFramer,
+  SiBlender,
   SiReactquery,
   SiReactrouter,
   SiExpo,
   SiFastify,
 } from "react-icons/si";
+
+// no react-icons glyph for SolidWorks; same props shape as one
+const SolidWorksIcon = ({ size }) => (
+  // eslint-disable-next-line @next/next/no-img-element
+  <img src="/logos/solidworks.png" alt="" width={size} height={size} />
+);
 
 export const skillIcons = {
   // 🧠 Languages
@@ -83,6 +90,10 @@ export const skillIcons = {
 
   Vite: { icon: SiVite, color: "#646CFF" },
   Figma: { icon: FiFigma, color: "#F24E1E" },
+
+  // 🧊 3D
+  Blender: { icon: SiBlender, color: "#E87D0D" },
+  SolidWorks: { icon: SolidWorksIcon },
 
   // 📊 Data / ML
   JupyterLab: { icon: SiJupyter, color: "#F37626" },
