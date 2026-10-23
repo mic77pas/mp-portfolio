@@ -10,6 +10,8 @@ import { BiSolidMessageSquareDetail } from "react-icons/bi";
 import { useState } from "react";
 import AboutLink from "./AboutLink";
 import Logo from "./Logo";
+import { motion } from "motion/react";
+import { navIntro } from "./headerIntro";
 import { HiMail } from "react-icons/hi";
 import { IoMailOutline } from "react-icons/io5";
 
@@ -46,7 +48,7 @@ export default function MobileHeader() {
         />
         <div className="flex flex-row items-center justify-between w-full px-7">
           <nav className="flex-1">
-            <ul className="font-minecraft flex items-center justify-between font-bold text-sm">
+            <ul className="font-minecraft flex items-center justify-between font-bold text-sm text-[#8fa783]">
               <li>
                 {/* same ambigram + non-rotating shadow trick as the desktop header */}
                 <Link
@@ -56,17 +58,17 @@ export default function MobileHeader() {
                   <Logo className="w-[58px] h-[30px] -translate-y-0.5 transition-transform duration-500 ease-in-out group-hover:rotate-180 group-hover:brightness-120" />
                 </Link>
               </li>
-              <li className="-ml-5 drop-shadow-[0_4px_0px_rgba(0,0,0,0.8)]">
+              <motion.li {...navIntro(0, 14)} className="-ml-5 drop-shadow-[0_4px_0px_rgba(0,0,0,0.8)]">
                 <AboutLink className="nav-link text-[14px] md:text-lg ">
                   <MdAccountCircle size={40} className="" />
                 </AboutLink>
-              </li>
-              <li className="drop-shadow-[0_4px_0px_rgba(0,0,0,0.8)]">
+              </motion.li>
+              <motion.li {...navIntro(1, 14)} className="drop-shadow-[0_4px_0px_rgba(0,0,0,0.8)]">
                 <Link href="/portfolio" className="nav-link">
                   <FaSuitcase size={34} />
                 </Link>
-              </li>
-              <li className="relative drop-shadow-[0_4px_0px_rgba(0,0,0,0.8)]">
+              </motion.li>
+              <motion.li {...navIntro(2, 14)} className="relative drop-shadow-[0_4px_0px_rgba(0,0,0,0.8)]">
                 <button
                   type="button"
                   onClick={toggleContact}
@@ -128,8 +130,8 @@ export default function MobileHeader() {
                     </Link>
                   </div>
                 </div>
-              </li>
-              <li className="drop-shadow-[0_4px_0px_rgba(0,0,0,0.8)]">
+              </motion.li>
+              <motion.li {...navIntro(3, 14)} className="drop-shadow-[0_4px_0px_rgba(0,0,0,0.8)]">
                 <Link
                   href="https://drive.google.com/file/d/12K4VSG5kEep4KhuxYuXZ6ek6-4BCrV2P/view?usp=sharing"
                   target="_blank"
@@ -139,7 +141,7 @@ export default function MobileHeader() {
                   <IoIosDocument size={37} />
                   
                 </Link>
-              </li>
+              </motion.li>
             </ul>
           </nav>
         </div>

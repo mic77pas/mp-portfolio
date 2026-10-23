@@ -20,9 +20,9 @@ export default function Home() {
         </div>
 
         <div data-hero-content className="sticky top-0 w-full flex flex-col items-center">
-          {/* top margin clears the fixed 80px desktop header once the hero
+          {/* top margin clears the fixed header (64px mobile, 80px desktop) once the hero
               has lifted off */}
-          <div className="page-container mt-[61px] md:mt-[112px] mb-[60px] md:mb-[90px] flex flex-col gap-[52px]">
+          <div className="page-container mt-[88px] md:mt-[112px] mb-[60px] md:mb-[90px] flex flex-col gap-[52px]">
             <ProfileCard />
             <WorkExperience />
             <ProjectsPreview />

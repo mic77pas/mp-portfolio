@@ -18,12 +18,11 @@ export default function PortfolioGrid({ items }) {
 
   return (
     <>
-      {/* equal rows, so a card that outgrows the rest stretches them all;
-          the row gap leaves room for each card's title plaque, which hangs
-          off its bottom edge */}
-      <div
-        className="grid grid-cols-1 md:grid-cols-2 auto-rows-fr gap-x-8 gap-y-14 pt-1 pb-10"
-      >
+      {/* two up at every size (the cards go compact on phones, see
+          SoftwareCard); equal rows, so a card that outgrows the rest
+          stretches them all; the row gap leaves room for each card's title
+          plaque, which hangs off its bottom edge */}
+      <div className="grid grid-cols-2 auto-rows-fr gap-x-3 gap-y-10 md:gap-x-8 md:gap-y-14 pt-1 pb-10">
         {items.map((item) => (
           <PortfolioCard
             key={`${item.kind}-${item.slug}`}

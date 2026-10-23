@@ -157,7 +157,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="relative flex flex-col items-center text-center gap-3 md:gap-4 pb-16 md:pb-0"
+          className="relative flex flex-col items-center text-center gap-3 md:gap-4"
         >
 
           <div className="relative inline-block group cursor-pointer pointer-events-none md:pointer-events-auto">
@@ -211,10 +211,10 @@ export default function Hero() {
       </div>
 
       {/* scroll hint: bounces at the bottom of the hero, fades out as the
-          hero starts lifting. Sits above the mobile bottom nav bar. */}
+          hero starts lifting. */}
       <motion.div
         style={{ opacity: arrowOpacity }}
-        className="absolute bottom-24 md:bottom-8 left-1/2 -translate-x-1/2"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2"
       >
         <motion.button
           type="button"

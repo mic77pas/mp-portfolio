@@ -23,11 +23,20 @@ const LOGOS = {
 // Dock pinned to the right edge of the screen, like a folder tab poking out
 // from behind it (rounded on the left, open on the right); picks which
 // portfolio group is shown. The hover label slides out to its left.
+// On phones the same tab drops to the bottom of the right edge, within thumb
+// reach; no hover labels there, since touch has no real hover.
 export default function PortfolioDock({ groups, active, onSelect }) {
   return (
     <nav
       aria-label="Portfolio categories"
-      className="fixed z-80 right-0 top-1/2 -translate-y-1/2 flex flex-col items-center justify-center gap-5 py-7 pl-5 pr-4 rounded-l-4xl border-2 border-r-0 border-(--pal-border) bg-(--pal-surface)/90 backdrop-blur-sm shadow-[-4px_4px_14px_rgba(0,0,0,0.4)]"
+      data-portfolio-dock
+      className={[
+        "fixed z-80 right-0 flex flex-col items-center justify-center rounded-l-4xl border-2 border-r-0 border-(--pal-border) bg-(--pal-surface)/90 backdrop-blur-sm shadow-[-4px_4px_14px_rgba(0,0,0,0.4)]",
+        // phones: a slightly tighter tab low on the edge, clear of the home
+        // indicator; md up: centred on the edge
+        "bottom-[calc(1.5rem+env(safe-area-inset-bottom))] gap-4 py-5 pl-4 pr-3",
+        "md:bottom-auto md:top-1/2 md:-translate-y-1/2 md:gap-5 md:py-7 md:pl-5 md:pr-4",
+      ].join(" ")}
     >
       {groups.map(({ kind, title }) => {
         const Glyph = GLYPHS[kind];
@@ -73,7 +82,7 @@ export default function PortfolioDock({ groups, active, onSelect }) {
               )
             )}
 
-            <span className="pointer-events-none absolute right-full mr-4 whitespace-nowrap rounded-md border-2 border-(--pal-accent) bg-(--pal-deep) px-2 py-1 font-minecraft text-[14px] leading-none text-(--pal-heading) opacity-0 translate-x-1 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0">
+            <span className="hidden md:block pointer-events-none absolute right-full mr-4 whitespace-nowrap rounded-md border-2 border-(--pal-accent) bg-(--pal-deep) px-2 py-1 font-minecraft text-[14px] leading-none text-(--pal-heading) opacity-0 translate-x-1 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0">
               {title}
             </span>
           </button>

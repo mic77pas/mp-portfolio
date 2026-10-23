@@ -223,12 +223,12 @@ body {
   font-family: var(--font-minecraft), monospace;
 }
 
-/* From md up a nav link takes its palette colour from its (non-link) parent:
+/* A nav link takes its palette colour from its (non-link) parent:
    Chrome paints visited links from a separate style that loses an animating
    palette variable, so a link coloured with var(--pal-*) itself flashes the
    page's text colour mid palette fade. */
 .nav-link {
-  @apply inline-block text-[#8fa783] md:text-inherit 
+  @apply inline-block text-inherit
          hover:text-[#d6e0d3] hover:scale-105
          transition-transform transition-colors duration-200 ease-out
          [text-shadow:1px_2px_2px_rgba(0,0,0,0.8)];
@@ -238,6 +238,15 @@ body {
    see .nav-link above) */
 .nav-link-bright {
   @apply hover:text-[color-mix(in_oklab,var(--pal-title),white_30%)];
+}
+
+/* On phones the portfolio dock sits low on the right edge (see
+   PortfolioDock), over where the footer ends up, so centre the footer in the
+   space left of it */
+@media (width < 48rem) {
+  body:has([data-portfolio-dock]) #site-footer {
+    padding-right: 5.5rem;
+  }
 }
 
 /* Shared page width: 1038px of content (matches the header) + 16px gutters */

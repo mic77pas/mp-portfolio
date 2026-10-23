@@ -30,7 +30,7 @@ export default function ClientLayout({ children }) {
   // own spacing (the home hero runs edge-to-edge underneath the fixed header)
   if (isHome || pathname === "/portfolio") {
     return (
-      <main className="w-full flex-1 flex flex-col items-center pb-12 md:pb-0">
+      <main className="w-full flex-1 flex flex-col items-center">
         {children}
       </main>
     );
@@ -42,7 +42,7 @@ export default function ClientLayout({ children }) {
       <div className="fixed inset-0 -z-10 bg-[url('/bg/waterfall.gif')] bg-cover bg-center bg-no-repeat pointer-events-none">
         <div className="absolute inset-0 bg-[#242524]/90" />
       </div>
-      <main className="w-full flex-1 flex justify-center md:pt-26 pb-12 md:pb-0">
+      <main className="w-full flex-1 flex justify-center pt-16 md:pt-26">
         <div className="page-container py-4 pt-5">{children}</div>
       </main>
     </>

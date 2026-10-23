@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "motion/react";
 import PortfolioGrid from "../../../_components/cards/PortfolioGrid";
 import PortfolioDock from "../../../_components/portfolio/PortfolioDock";
 import { portfolioGroups } from "../../../data/portfolioGroups";
+import Skills from "../../../_components/Skills";
 
 const STORAGE_KEY = "portfolioMode";
 
@@ -53,7 +54,7 @@ export default function Page() {
   const group = portfolioGroups.find((g) => g.kind === mode);
 
   return (
-    <div className="page-container pt-8 md:pt-28 pb-16">
+    <div className="page-container pt-24 md:pt-28 pb-16">
       <PortfolioDock
         groups={portfolioGroups}
         active={mode}
@@ -90,6 +91,7 @@ export default function Page() {
               {group.title}
             </h2>
             <PortfolioGrid items={group.items} />
+            {group.kind === "software" && <Skills />}
           </motion.section>
         )}
       </AnimatePresence>

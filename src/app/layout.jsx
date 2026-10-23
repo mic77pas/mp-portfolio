@@ -5,7 +5,6 @@ import "./globals.css";
 import { Montserrat } from "next/font/google";
 import localFont from "next/font/local";
 import ClientLayout from "../../_components/ClientLayout";
-import MobileHeader from "../../_components/MobileHeader";
 import { Analytics } from "@vercel/analytics/next";
 import SmoothScroll from "@/components/SmoothScroll";
 
@@ -59,17 +58,15 @@ export default function RootLayout({ children }) {
     <html lang="en" className={`${montserrat.variable} ${minecraft.variable}`}>
       <body className="relative min-h-screen flex flex-col items-center antialiased">
         <div className="relative w-full min-h-screen flex flex-col items-center">
-          <div className="hidden md:flex w-full justify-center">
+          <div className="flex w-full justify-center">
             <Header />
           </div>
 
           <ClientLayout>{children}</ClientLayout>
 
-          <div className="hidden md:block w-full">
+          <div className="w-full">
             <Footer />
           </div>
-
-          <MobileHeader />
         </div>
         <SmoothScroll />
         <Analytics />

@@ -46,15 +46,20 @@ export default function Skills() {
     return allSkills;
   }, [skillsByCategory]);
 
+  // Each icon is a mask over the page palette's accent colour (rather than
+  // an <img>), so the loop follows the palette like the rest of the page
   const logoProps = useMemo(
     () =>
       skills.map((skill) => ({
-        src: skill.icon,
-        alt: skill.name,
+        node: (
+          <span
+            style={{ maskImage: `url("${skill.icon}")` }}
+            className="block size-12 bg-(--pal-accent) mask-contain mask-no-repeat mask-center"
+          />
+        ),
         title: skill.name,
+        ariaLabel: skill.name,
         href: skill.link,
-        width: 48,
-        height: 48,
       })),
     [],
   );
@@ -80,9 +85,9 @@ export default function Skills() {
           gap={30}
           pauseOnHover={true}
           fadeOut={true}
-          fadeOutColor="#1a1d1a"
+          fadeOutColor="var(--pal-surface)"
           scaleOnHover={true}
-          className="border-2 border-[#6a8366] bg-[#141614]/75 pt-3 rounded-2xl"
+          className="border-2 border-(--pal-border) bg-(--pal-surface) shadow-lg pb-2 pt-3 rounded-xl"
           // style={{ boxShadow: "0px 4px 4px rgba(0,0,0,0.5)" }}
         />
       </div>
