@@ -12,6 +12,14 @@ const hexToRgba = (hex, alpha = 0.3) => {
   return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 };
 
+// LogoLoop sets its icon size and gap as inline CSS variables from number
+// props; pointing them at these instead lets them change with the breakpoint
+// (it re-measures on resize)
+const LOOP_SIZES = {
+  "--logoloop-logoHeight": "var(--skills-icon)",
+  "--logoloop-gap": "var(--skills-gap)",
+};
+
 export default function Skills() {
   const [counter, setCounter] = useState(0);
 
@@ -54,7 +62,7 @@ export default function Skills() {
         node: (
           <span
             style={{ maskImage: `url("${skill.icon}")` }}
-            className="block size-12 bg-(--pal-accent) mask-contain mask-no-repeat mask-center"
+            className="block size-(--logoloop-logoHeight) bg-(--pal-accent) mask-contain mask-no-repeat mask-center"
           />
         ),
         title: skill.name,
@@ -81,13 +89,12 @@ export default function Skills() {
           logos={logoProps}
           speed={60}
           direction="left"
-          logoHeight={48}
-          gap={30}
+          style={LOOP_SIZES}
           pauseOnHover={true}
           fadeOut={true}
           fadeOutColor="var(--pal-surface)"
           scaleOnHover={true}
-          className="border-2 border-(--pal-border) bg-(--pal-surface) shadow-lg pb-2 pt-3 rounded-xl"
+          className="[--skills-icon:34px] [--skills-gap:20px] md:[--skills-icon:48px] md:[--skills-gap:30px] border-2 border-(--pal-border) bg-(--pal-surface) shadow-lg pb-2 pt-3 rounded-xl"
           // style={{ boxShadow: "0px 4px 4px rgba(0,0,0,0.5)" }}
         />
       </div>

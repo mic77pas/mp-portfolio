@@ -240,12 +240,17 @@ body {
   @apply hover:text-[color-mix(in_oklab,var(--pal-title),white_30%)];
 }
 
-/* On phones the portfolio dock sits low on the right edge (see
-   PortfolioDock), over where the footer ends up, so centre the footer in the
-   space left of it */
-@media (width < 48rem) {
-  body:has([data-portfolio-dock]) #site-footer {
-    padding-right: 5.5rem;
+/* Portfolio card titles. The line box is trimmed to the letters (cap height
+   to baseline), so centring the box centres the glyphs themselves, whatever
+   the platform's font metrics. Browsers without text-box get the old nudge:
+   the Minecraft glyphs sit ~0.14em low in their line box. */
+.plaque-title {
+  translate: 0 -0.14em;
+}
+@supports (text-box: trim-both cap alphabetic) {
+  .plaque-title {
+    text-box: trim-both cap alphabetic;
+    translate: none;
   }
 }
 

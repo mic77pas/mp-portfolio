@@ -24,8 +24,9 @@ export default function TitlePlaque({ children }) {
         aria-hidden
         className="absolute inset-0 -z-10 bg-(--pal-plaque) mask-[url('/comps/title.png')] mask-size-[100%_100%] mask-no-repeat mask-center"
       />
-      {/* Minecraft glyphs sit ~0.14em low in their line box; nudge up to optically centre */}
-      <h2 className="font-minecraft text-center font-black text-[12px] leading-[1.1] px-2.5 line-clamp-2 @min-[280px]:text-[20px] @min-[400px]:text-[22px] @min-[280px]:leading-none @min-[280px]:px-4 @min-[280px]:line-clamp-1 -translate-y-[0.14em]">
+      {/* .plaque-title (globals.css) trims the line box to the letters so the
+          flex centring centres the glyphs themselves */}
+      <h2 className="font-minecraft text-center font-black text-[12px] leading-[1.1] px-2.5 line-clamp-2 @min-[280px]:text-[20px] @min-[400px]:text-[22px] @min-[280px]:leading-none @min-[280px]:px-4 @min-[280px]:line-clamp-1 plaque-title">
         {children}
       </h2>
     </div>

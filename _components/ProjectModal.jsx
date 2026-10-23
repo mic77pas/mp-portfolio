@@ -281,17 +281,19 @@ export default function ProjectModal({ item, onClose }) {
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: 12, scale: 0.98 }}
         transition={{ duration: 0.25, ease: "easeOut" }}
-        className="page-container flex flex-col gap-10 pb-16 md:pb-[100px] font-minecraft text-[16px] md:text-[18px] text-(--pal-text)"
+        className="page-container flex flex-col gap-6 md:gap-10 pb-16 md:pb-[100px] font-minecraft text-[16px] md:text-[18px] text-(--pal-text)"
       >
-        {/* first screenful: just the media, dead-centre in the viewport;
-            everything else sits below the fold */}
-        <div className="relative flex h-svh items-center justify-center">
+        {/* md up, the first screenful is just the media, dead-centre in the
+            viewport, with everything else below the fold. On phones the
+            media sits at the top (below the close button) with the text
+            straight after it */}
+        <div className="relative flex justify-center pt-16 md:pt-0 md:h-svh md:items-center">
           <div className="w-full">
             <Showcase item={item} />
           </div>
           <motion.div
             aria-hidden
-            className="pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2 text-(--pal-accent)"
+            className="pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2 hidden md:block text-(--pal-accent)"
             initial={{ opacity: 0 }}
             animate={{ opacity: [0, 1, 1], y: [0, 6, 0] }}
             transition={{

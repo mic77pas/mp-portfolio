@@ -32,9 +32,10 @@ export default function PortfolioDock({ groups, active, onSelect }) {
       data-portfolio-dock
       className={[
         "fixed z-80 right-0 flex flex-col items-center justify-center rounded-l-4xl border-2 border-r-0 border-(--pal-border) bg-(--pal-surface)/90 backdrop-blur-sm shadow-[-4px_4px_14px_rgba(0,0,0,0.4)]",
-        // phones: a slightly tighter tab low on the edge, clear of the home
-        // indicator; md up: centred on the edge
-        "bottom-[calc(1.5rem+env(safe-area-inset-bottom))] gap-4 py-5 pl-4 pr-3",
+        // phones: a slimmer tab low on the edge, clear of the home indicator
+        // (and narrow enough to leave the centred footer text uncovered);
+        // md up: centred on the edge
+        "bottom-[calc(1.5rem+env(safe-area-inset-bottom))] gap-3 py-4 pl-3 pr-2",
         "md:bottom-auto md:top-1/2 md:-translate-y-1/2 md:gap-5 md:py-7 md:pl-5 md:pr-4",
       ].join(" ")}
     >
@@ -50,7 +51,7 @@ export default function PortfolioDock({ groups, active, onSelect }) {
             onClick={() => onSelect(kind)}
             aria-label={title}
             aria-pressed={selected}
-            className={`group relative size-13 flex items-center justify-center rounded-full border-2 border-(--pal-accent) transition cursor-pointer ${
+            className={`group relative size-11 md:size-13 flex items-center justify-center rounded-full border-2 border-(--pal-accent) transition cursor-pointer ${
               selected
                 ? "bg-(--pal-accent)"
                 : "bg-(--pal-deep) hover:bg-(--pal-accent)"
@@ -60,7 +61,7 @@ export default function PortfolioDock({ groups, active, onSelect }) {
               <Glyph
                 aria-hidden
                 size={24}
-                className={`transition-colors duration-150 ${
+                className={`size-5 md:size-6 transition-colors duration-150 ${
                   selected
                     ? "text-(--pal-deep)"
                     : "text-(--pal-heading) group-hover:text-(--pal-deep)"

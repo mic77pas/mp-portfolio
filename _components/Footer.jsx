@@ -40,7 +40,9 @@ export default function Footer() {
           {/* <IoDocumentTextOutline className="w-6 h-6 nav-link" /> */}
         </nav>
 
-        <span className="text-(--pal-muted) text-sm text-center">
+        {/* a size smaller on phones, so it stays clear of the portfolio
+            dock that sits low on the right edge there */}
+        <span className="text-(--pal-muted) text-xs md:text-sm text-center">
           &copy; {new Date().getFullYear()} | MICHAEL PASYECHNYK
         </span>
       </footer>
