@@ -115,14 +115,7 @@ function SoftwareBody({ item }) {
         )}
       </div>
 
-      {item.sections?.map((section) => (
-        <section key={section.title} className="flex flex-col gap-2">
-          <h3 className="font-bold text-[20px] text-(--pal-heading)">
-            {section.title}
-          </h3>
-          <p>{section.body}</p>
-        </section>
-      ))}
+      <Sections sections={item.sections} />
 
       {subprojects.length > 0 && (
         <section className="flex flex-col gap-4">
@@ -164,17 +157,88 @@ function SoftwareBody({ item }) {
   );
 }
 
+function SectionHeading({ children }) {
+  return (
+    <h3 className="font-bold text-[20px] text-(--pal-heading)">{children}</h3>
+  );
+}
+
+// text sections ({ title, body }) shared by software and design popups
+function Sections({ sections = [] }) {
+  return sections.map((section) => (
+    <section key={section.title} className="flex flex-col gap-2">
+      <SectionHeading>{section.title}</SectionHeading>
+      <p>{section.body}</p>
+    </section>
+  ));
+}
+
+// client / role / year pills under a design's intro
+function MetaPills({ meta }) {
+  const pills = [meta.client, meta.role, meta.year].filter(Boolean);
+  return (
+    <ul className="flex flex-wrap gap-2">
+      {pills.map((p) => (
+        <li
+          key={p}
+          className="rounded-md border-2 border-(--pal-border) bg-(--pal-surface) px-2.5 py-1 text-[13px] md:text-[14px] leading-none text-(--pal-heading)"
+        >
+          {p}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+// iteration screenshots, numbered top to bottom
+function Process({ steps }) {
+  return (
+    <section className="flex flex-col gap-4">
+      <SectionHeading>Process</SectionHeading>
+      <ol className="flex flex-col gap-8">
+        {steps.map((step, i) => (
+          <li key={`${step.image}-${i}`} className="flex flex-col gap-3">
+            <div className="relative aspect-[1080/614] overflow-hidden rounded-xl border-2 border-(--pal-border) bg-[#161616]">
+              <Image
+                src={step.image}
+                alt={step.caption ?? `Step ${i + 1}`}
+                fill
+                sizes="(min-width: 1024px) 1000px, 92vw"
+                className="object-contain"
+              />
+            </div>
+            {step.caption && (
+              <p className="text-[14px] md:text-[16px]">
+                <span className="text-(--pal-accent)">
+                  {String(i + 1).padStart(2, "0")}
+                </span>{" "}
+                — {step.caption}
+              </p>
+            )}
+          </li>
+        ))}
+      </ol>
+    </section>
+  );
+}
+
+// Logos read as case studies: intro, meta, sections, process.
+// Each part only shows when the item has it.
 function DesignBody({ item }) {
   return (
     <>
       <div className="flex flex-col gap-4">
         <p>{item.description}</p>
+        {item.meta && <MetaPills meta={item.meta} />}
         {item.figmaUrl && (
           <ActionLink href={item.figmaUrl} icon={<IoLogoFigma size={18} />}>
             View in Figma
           </ActionLink>
         )}
       </div>
+
+      <Sections sections={item.sections} />
+      {item.process?.length > 0 && <Process steps={item.process} />}
     </>
   );
 }

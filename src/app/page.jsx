@@ -1,6 +1,6 @@
 import Hero from "../../_components/home/Hero";
 import ProfileCard from "../../_components/home/ProfileCard";
-import WorkExperience from "../../_components/home/WorkExperience";
+import Experience from "../../_components/home/Experience";
 import ProjectsPreview from "../../_components/home/ProjectsPreview";
 import ScrollTopOnLoad from "../../_components/home/ScrollTopOnLoad";
 
@@ -24,7 +24,7 @@ export default function Home() {
               has lifted off */}
           <div className="page-container mt-[88px] md:mt-[112px] mb-[60px] md:mb-[90px] flex flex-col gap-[52px]">
             <ProfileCard />
-            <WorkExperience />
+            <Experience />
             <ProjectsPreview />
           </div>
         </div>

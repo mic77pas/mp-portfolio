@@ -22,9 +22,9 @@ const LOGOS = {
 
 // Dock pinned to the right edge of the screen, like a folder tab poking out
 // from behind it (rounded on the left, open on the right); picks which
-// portfolio group is shown. The hover label slides out to its left.
+// portfolio group is shown.
 // On phones the same tab drops to the bottom of the right edge, within thumb
-// reach; no hover labels there, since touch has no real hover.
+// reach.
 export default function PortfolioDock({ groups, active, onSelect }) {
   return (
     <nav
@@ -82,10 +82,6 @@ export default function PortfolioDock({ groups, active, onSelect }) {
                 />
               )
             )}
-
-            <span className="hidden md:block pointer-events-none absolute right-full mr-4 whitespace-nowrap rounded-md border-2 border-(--pal-accent) bg-(--pal-deep) px-2 py-1 font-minecraft text-[14px] leading-none text-(--pal-heading) opacity-0 translate-x-1 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0">
-              {title}
-            </span>
           </button>
         );
       })}

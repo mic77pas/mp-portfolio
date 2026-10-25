@@ -3,7 +3,8 @@ import SkillBadge from "../SkillBadge";
 import TitlePlaque from "./TitlePlaque";
 import { skillIcons } from "../../data/skillIcons";
 
-// Image strip expands to fill the card (and zooms) on hover.
+// Image strip expands to fill the card (and zooms) on hover; logo covers zoom
+// much further than screenshots.
 //
 // The card sizes itself to its own width (container queries), not the
 // screen's: below 280px wide (the two-up grid on phones) it goes compact -
@@ -24,7 +25,13 @@ export default function SoftwareCard({ project, onClick, className = "" }) {
           alt={project.title}
           fill
           sizes="(min-width: 768px) 450px, 85vw"
-          className="object-cover brightness-85 @min-[280px]:brightness-70 transition duration-500 ease-out group-hover:scale-105 group-hover:brightness-100"
+          // logos sit small in their cover so the closed strip shows them
+          // whole; the open card zooms in further so they read large
+          className={`object-cover brightness-85 @min-[280px]:brightness-70 transition duration-500 ease-out group-hover:brightness-100 ${
+            project.category === "Logo"
+              ? "group-hover:scale-170"
+              : "group-hover:scale-105"
+          }`}
         />
       </div>
 

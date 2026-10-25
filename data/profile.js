@@ -60,7 +60,8 @@ export const heroIcons = [
   },
 ];
 
-// `href` is the company site (opened from the logo); `bullets` fill the dropdown
+// `href` is the company site (opened from the logo); `summary` is the one-line
+// statement shown under each row
 export const workExperience = [
   {
     title: "Forward Deployed Engineer",
@@ -68,7 +69,8 @@ export const workExperience = [
     date: "Aug 2026 - Dec 2026",
     logo: "/logos/experience/avante.png",
     href: "https://www.avante.io/",
-    bullets: [], // TODO: add what you're working on
+    summary:
+      "Designing client workflow architectures and building full-stack React, TypeScript & Django prototypes and automations, iterating with founders and clients.",
   },
   {
     title: "Software Engineer",
@@ -76,21 +78,58 @@ export const workExperience = [
     date: "Jan 2026 - Apr 2026",
     logo: "/logos/experience/parkusher.png",
     href: "https://www.parkusher.app/",
-    bullets: [], // TODO: add what you worked on
+    summary:
+      "Shipped React Native + TypeScript features and Node.js/Fastify APIs for 10k+ users, improving task completion by 18% and cutting load times by 30%.",
   },
   {
     title: "Software Engineer",
     company: "IpserLab",
     date: "May 2025 - Aug 2025",
     logo: "/logos/experience/ipserlab.jpg",
-    logoNeedsCrop: true, // square jpg; the pngs are already circular
     href: "https://ipserlab.com",
-    bullets: [
-      "Designed and implemented front-end features using React and TypeScript",
-      "Worked closely with founders and engineers to define requirements and align with the product vision",
-      "Gained exposure to Java-based backend systems, APIs, and deployment workflows",
-      "Took part in Agile sprints and code reviews",
-      "Helped reduce feature turnaround time by 15% while improving overall product quality",
+    summary:
+      "Built React + TypeScript features for early-stage MVPs and led Agile sprints as acting Product Manager, improving feature turnaround time by 15%.",
+  },
+];
+
+// `company` is the school / provider; `courses` are listed under the row by
+// name. `date` is optional.
+export const education = [
+  {
+    title: "Systems Design Engineering (BASc)",
+    company: "University of Waterloo",
+    logo: "/logos/uwaterloo.png",
+    href: "https://uwaterloo.ca/systems-design-engineering/",
+    courses: [],
+  },
+  {
+    title: "CS50 Courses",
+    company: "Harvard University",
+    logo: "/logos/harvardlogo.png",
+    href: "https://cs50.harvard.edu/",
+    courses: [
+      "CS50W: Web Programming with Python and JavaScript",
+      "CS50P: Introduction to Programming with Python",
+    ],
+  },
+  {
+    title: "Online Courses",
+    company: "Udemy",
+    logo: "/logos/udemy.png",
+    href: "https://www.udemy.com/",
+    courses: [
+      "TypeScript Fundamentals",
+      "Modern React & Front-End Development",
+    ],
+  },
+  {
+    title: "Claude Courses",
+    company: "Anthropic Academy",
+    logo: "/logos/anthropic.png",
+    href: "https://anthropic.skilljar.com/",
+    courses: [
+      "Claude 101",
+      "AI Fluency: Framework & Foundations",
     ],
   },
 ];

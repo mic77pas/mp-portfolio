@@ -236,7 +236,7 @@ export default function Hero() {
             strokeWidth={2}
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="w-12 md:w-14 h-auto"
+            className="w-9 md:w-11 h-auto"
             aria-hidden
           >
             <polyline points="4 5 24 15 44 5" />
