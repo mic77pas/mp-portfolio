@@ -7,6 +7,41 @@ import { VscGithub } from "react-icons/vsc";
 import { IoMailOutline } from "react-icons/io5";
 import { IoDocumentTextOutline } from "react-icons/io5";
 
+// The links and copyright line, also printed on the crash pad at the foot of
+// the /posts climbing wall (which shows them in place of this footer)
+export function FooterContent() {
+  return (
+    <>
+      <nav className="flex gap-6 font-bold items-center text-(--pal-link)">
+        <Link
+          href="https://linkedin.com/in/michaelpasyechnyk"
+          target="_blank"
+          className="nav-link"
+        >
+          <PiLinkedinLogo className="w-7 h-7" />
+        </Link>
+        <Link
+          href="https://github.com/mic77pas"
+          target="_blank"
+          className="nav-link"
+        >
+          <VscGithub className="w-6 h-6" />
+        </Link>
+        <a href="mailto:mic77p@gmail.com" className="group nav-link">
+          <IoMailOutline className="w-7 h-7 nav-link" />
+        </a>
+        {/* <IoDocumentTextOutline className="w-6 h-6 nav-link" /> */}
+      </nav>
+
+      {/* a size smaller on phones, so it stays clear of the portfolio
+          dock that sits low on the right edge there */}
+      <span className="text-(--pal-muted) text-xs md:text-sm text-center">
+        &copy; {new Date().getFullYear()} | MICHAEL PASYECHNYK
+      </span>
+    </>
+  );
+}
+
 export default function Footer() {
   return (
     // bg-[#2A2B2A]/70
@@ -19,32 +54,7 @@ export default function Footer() {
         //   backgroundSize: "100% 100%",
         // }}
       >
-        <nav className="flex gap-6 font-bold items-center text-(--pal-link)">
-          <Link
-            href="https://linkedin.com/in/michaelpasyechnyk"
-            target="_blank"
-            className="nav-link"
-          >
-            <PiLinkedinLogo className="w-7 h-7" />
-          </Link>
-          <Link
-            href="https://github.com/mic77pas"
-            target="_blank"
-            className="nav-link"
-          >
-            <VscGithub className="w-6 h-6" />
-          </Link>
-          <a href="mailto:mic77p@gmail.com" className="group nav-link">
-            <IoMailOutline className="w-7 h-7 nav-link" />
-          </a>
-          {/* <IoDocumentTextOutline className="w-6 h-6 nav-link" /> */}
-        </nav>
-
-        {/* a size smaller on phones, so it stays clear of the portfolio
-            dock that sits low on the right edge there */}
-        <span className="text-(--pal-muted) text-xs md:text-sm text-center">
-          &copy; {new Date().getFullYear()} | MICHAEL PASYECHNYK
-        </span>
+        <FooterContent />
       </footer>
 
       {/* <footer className="md:hidden">

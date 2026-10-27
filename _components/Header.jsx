@@ -15,16 +15,6 @@ const montserrat = Montserrat({
   display: "swap",
 });
 
-// On the home page the bar stays transparent while the hero is lifting away
-// and only fills in once the hero's bottom edge has passed under it
-const solidFrom = () => {
-  const heroSpacer = document.querySelector("[data-hero-spacer]");
-  return heroSpacer ? heroSpacer.offsetHeight - 80 : 10;
-};
-
-const RESUME_URL =
-  "https://drive.google.com/file/d/12K4VSG5kEep4KhuxYuXZ6ek6-4BCrV2P/view?usp=sharing";
-
 // The nav links, shared by the inline desktop list and the mobile menu panel
 const navItems = (className) => [
   <AboutLink key="about" className={className}>
@@ -33,15 +23,8 @@ const navItems = (className) => [
   <Link key="portfolio" href="/portfolio" className={className}>
     portfolio
   </Link>,
-  // <Link key="posts" href="/posts" className={className}>posts</Link>,
-  <Link
-    key="resume"
-    href={RESUME_URL}
-    target="_blank"
-    rel="noopener noreferrer"
-    className={className}
-  >
-    resume
+  <Link key="posts" href="/posts" className={className}>
+    posts
   </Link>,
 ];
 
@@ -61,7 +44,6 @@ function MenuIcon({ open }) {
 export default function Header() {
   const pathname = usePathname();
   const [hidden, setHidden] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const headerRef = useRef(null);
   const menuButtonRef = useRef(null);
@@ -76,7 +58,6 @@ export default function Header() {
   useEffect(() => {
     setHidden(false);
     setMenuOpen(false);
-    setScrolled(window.scrollY > solidFrom());
     lastY.current = window.scrollY;
     lastHeight.current = document.documentElement.scrollHeight;
   }, [pathname]);
@@ -89,7 +70,6 @@ export default function Header() {
       requestAnimationFrame(() => {
         const y = window.scrollY;
         const delta = y - lastY.current;
-        setScrolled(y > solidFrom());
 
         // The page changed height (e.g. a dropdown closing at the bottom
         // pulls the scroll position up): not the visitor scrolling, so
@@ -151,21 +131,21 @@ export default function Header() {
         className={[
           "fixed inset-x-0 top-0 z-100 w-full flex flex-col",
           "transform-gpu transition-[translate,background-color,box-shadow] duration-300 ease-out rounded-b-2xl",
-          // transparent over the hero; solid bar once the page scrolls, or
-          // while the mobile menu has it opened out into a panel
-          scrolled || menuOpen
+          // always transparent over the page, except while the mobile menu
+          // has it opened out into a panel (its links need a backing)
+          menuOpen
             ? "bg-(--pal-header)/85 backdrop-blur-sm shadow-[0px_4px_12px_rgba(0,0,0,0.45)]"
             : "bg-transparent",
           hidden ? "-translate-y-full" : "translate-y-0",
         ].join(" ")}
       >
         {/* soft shade along the top edge while the bar is transparent; fades
-            out as the solid background fades in */}
+            out while the menu panel's solid background is in */}
         <div
           aria-hidden
           className={[
-            "pointer-events-none absolute inset-0 -z-10 bg-linear-to-b from-black/40 to-transparent transition-opacity duration-300",
-            scrolled || menuOpen ? "opacity-0" : "opacity-100",
+            "pointer-events-none absolute inset-x-0 top-0 -bottom-6 -z-10 bg-linear-to-b from-black/75 via-black/45 to-transparent transition-opacity duration-300",
+            menuOpen ? "opacity-0" : "opacity-100",
           ].join(" ")}
         />
 

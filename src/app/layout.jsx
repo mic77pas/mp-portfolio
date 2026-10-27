@@ -5,6 +5,7 @@ import "./globals.css";
 import { Montserrat } from "next/font/google";
 import localFont from "next/font/local";
 import ClientLayout from "../../_components/ClientLayout";
+import HideOnPaths from "../../_components/HideOnPaths";
 import { Analytics } from "@vercel/analytics/next";
 import SmoothScroll from "@/components/SmoothScroll";
 
@@ -64,9 +65,11 @@ export default function RootLayout({ children }) {
 
           <ClientLayout>{children}</ClientLayout>
 
-          <div className="w-full">
-            <Footer />
-          </div>
+          <HideOnPaths paths={["/posts"]}>
+            <div className="w-full">
+              <Footer />
+            </div>
+          </HideOnPaths>
         </div>
         <SmoothScroll />
         <Analytics />

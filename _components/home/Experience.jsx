@@ -81,7 +81,7 @@ export default function Experience() {
         <div
           role="tablist"
           aria-label="Experience type"
-          className="relative grid grid-cols-2 rounded-[12px] border-2 border-[#a2be9c] bg-[#262d26] p-1"
+          className="relative grid grid-cols-2 rounded-[12px] border-2 border-[#a2be9c] bg-[#262d26] p-1 shadow-[0px_4px_0px_rgba(0,0,0,0.45)]"
         >
           <span
             aria-hidden
@@ -103,7 +103,7 @@ export default function Experience() {
 
         <div
           role="tabpanel"
-          className="flex flex-col gap-5 w-full rounded-[12px] border-2 border-[#a2be9c] bg-[#1a1e1a] p-3 md:p-4"
+          className="flex flex-col gap-5 w-full rounded-[12px] border-2 border-[#a2be9c] bg-[#1a1e1a] p-3 md:p-4 shadow-[0px_4px_0px_rgba(0,0,0,0.45)]"
         >
           {active.items.map((entry, i) => (
             <Reveal key={`${tab}-${entry.company}`} delay={0.08 * (i + 1)} y={16}>

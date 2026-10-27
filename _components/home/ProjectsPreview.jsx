@@ -304,7 +304,7 @@ function TypeCard({ kind, Stage, tagline, noun }) {
       onClick={remember}
       // pins this card to its type's palette (see globals.css)
       data-palette={kind}
-      className="group flex h-full flex-col overflow-hidden rounded-[12px] border-2 border-(--pal-border) bg-(--pal-surface) transition-all duration-300 ease-out hover:-translate-y-1 hover:border-(--pal-accent) hover:shadow-[0px_6px_0px_rgba(0,0,0,0.5)]"
+      className="group flex h-full flex-col overflow-hidden rounded-[12px] border-2 border-(--pal-border) bg-(--pal-surface) shadow-[0px_4px_0px_rgba(0,0,0,0.45)] transition-all duration-300 ease-out hover:-translate-y-1 hover:border-(--pal-accent) hover:shadow-[0px_6px_0px_rgba(0,0,0,0.5)]"
     >
       <div className="relative aspect-[16/11] overflow-hidden border-b-2 border-(--pal-border)">
         <Stage />

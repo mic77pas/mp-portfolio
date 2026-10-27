@@ -100,7 +100,7 @@ function Bar({ value }) {
   );
 }
 
-const panel = "border-2 border-[#a2be9c] rounded-[12px]";
+const panel = "border-2 border-[#a2be9c] rounded-[12px] shadow-[0px_4px_0px_rgba(0,0,0,0.45)]";
 
 // Renders [label](url) markers in bio text as links
 function BioText({ text }) {
