@@ -15,6 +15,7 @@ import {
   useEffect,
   useCallback,
   useMemo,
+  useRef,
 } from "react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { models } from "../../data/models";
@@ -93,6 +94,36 @@ function CenteredModel({ src }: { src: string }) {
   );
 }
 
+// R3F frees the WebGL context 500ms after <Canvas> unmounts. In dev,
+// StrictMode unmounts and remounts every component once, and the remount
+// reuses the same renderer, so that delayed cleanup kills a live viewer
+// ("Context Lost", blank canvas). We free the context ourselves instead, and
+// only once the viewer is really gone.
+function useRenderer() {
+  const mounted = useRef(false);
+  const loseContext = useRef<(() => void) | null>(null);
+
+  useEffect(() => {
+    mounted.current = true;
+    return () => {
+      mounted.current = false;
+      setTimeout(() => {
+        if (!mounted.current) loseContext.current?.();
+      }, 600);
+    };
+  }, []);
+
+  return (defaults: THREE.WebGLRendererParameters) => {
+    const renderer = new THREE.WebGLRenderer(defaults);
+    const lose = renderer.forceContextLoss.bind(renderer);
+    loseContext.current = () => {
+      if (!renderer.getContext().isContextLost()) lose();
+    };
+    renderer.forceContextLoss = () => {};
+    return renderer;
+  };
+}
+
 export function ModelViewer({
   src,
   interactive = true,
@@ -104,6 +135,8 @@ export function ModelViewer({
   dark?: boolean;
   aspectClass?: string;
 }) {
+  const createRenderer = useRenderer();
+
   return (
     <div
       className={`relative w-full overflow-hidden rounded-md ${aspectClass} ${
@@ -123,15 +156,16 @@ export function ModelViewer({
       <ModelLoaderOverlay />
       <Canvas
         shadows
-        gl={{ alpha: true }}
+        gl={(defaults) => createRenderer({ ...defaults, alpha: true })}
         style={{ background: "transparent" }}
         camera={{ fov: 25 }}
       >
         <ambientLight intensity={0.4} />
         <directionalLight position={[0, 5, 0]} intensity={1} />
-        <Environment preset="studio" />
 
         <Suspense fallback={null}>
+          {/* drei's "studio" preset, served locally rather than from its CDN */}
+          <Environment files="/models/hdri/studio_small_03_1k.hdr" />
           <CenteredModel src={src} />
         </Suspense>
 

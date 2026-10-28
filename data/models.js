@@ -1,4 +1,7 @@
 // 3D models shown in the Models row and popup (rendered by src/components/ModelView.tsx)
+// Optional popup fields:
+//   sections    [{ title, body }] text sections (same shape as software projects)
+//   parts       [{ image, name }] pieces of the model, shown five to a row
 export const models = [
   {
     slug: "donut",

@@ -2,11 +2,18 @@ const PLACEHOLDER = "/projects/figma/placeholder.png";
 const LOGOS_FIGMA =
   "https://www.figma.com/design/4HL0PMISdyujo5ShunxHwW/Logos?node-id=75-29&t=gsZNHDn9Kr5JhLA7-1";
 
-// Design items. Logos are written up as case studies; every case-study field
-// is optional and the popup skips any section that's missing:
+// Design items. category "Logo" uses the logo popup (square logo beside the
+// header); anything else uses the layout popup (panel of screens up top).
+// Logos are written up as case studies; every case-study field is optional
+// and the popup skips any section that's missing:
 //   meta        { client, role, year } pills under the intro
 //   sections    [{ title, body }] text sections (same shape as software projects)
-//   process     [{ image, caption }] iteration screenshots, in order
+//   process     [{ image, caption }] iteration screenshots, in order; logos
+//               show them just before the last section
+//   popupImage  what the popup shows instead of `image`: a tight square crop
+//               for logos, or a trimmed screenshot for layouts
+//   gallery     [left top, left bottom, right] screens for the layout popup's
+//               panel; without 3 of them the popup image shows on its own
 // Put each logo's images in public/projects/figma/<slug>/.
 export const figmaDesigns = [
   {
@@ -15,6 +22,7 @@ export const figmaDesigns = [
     description:
       "Web layout of my current portfolio websites (includes past versions).",
     image: "/projects/figma/website.png",
+    popupImage: "/projects/figma/website-wide.png",
     category: "Web",
     skills: ["Figma"],
     figmaUrl:
@@ -27,17 +35,18 @@ export const figmaDesigns = [
     description:
       "Wordmark for Man Made Media, a podcast, built around a stacked title and a vintage microphone.",
     image: "/projects/figma/podcast3.png",
+    popupImage: "/projects/figma/man-made-media/logo.png",
     category: "Logo",
     skills: ["Figma"],
     figmaUrl: LOGOS_FIGMA,
     meta: { client: "Man Made Media (podcast)", role: "Logo design", year: "2025" },
     sections: [
       {
-        title: "The brief",
+        title: "Why this design?",
         body: "Man Made Media needed a logo that felt bold and handmade, something that would read clearly as a tiny podcast thumbnail but still have personality on banners and merch.",
       },
       {
-        title: "Thought process",
+        title: "Thought process & inspiration",
         body: "I started from the name itself: stacking MAN over MADE gave a strong, blocky shape, and running MEDIA vertically down the side let the letters double as the stand of a classic microphone, tying the wordmark back to the podcast.",
       },
       {
@@ -58,6 +67,7 @@ export const figmaDesigns = [
     description:
       "My personal monogram: a single flowing stroke that draws an M and a P, used across this site and as its favicon.",
     image: "/projects/figma/mp/cover.png",
+    popupImage: "/projects/figma/mp/logo.png",
     category: "Logo",
     skills: ["Figma"],
     figmaUrl:
@@ -65,11 +75,11 @@ export const figmaDesigns = [
     meta: { client: "Personal brand", role: "Logo design", year: "2025" },
     sections: [
       {
-        title: "The brief",
+        title: "Why this design?",
         body: "I wanted a personal mark for my portfolio and socials: something recognisable at favicon size that still felt hand-drawn rather than corporate.",
       },
       {
-        title: "Thought process",
+        title: "Thought process & inspiration",
         body: "I started with icon ideas built around mountains and climbing, then moved to pure letterforms. Mirroring and outlining the M and P showed they could share strokes, which led to one continuous line that writes both letters in a single motion.",
       },
       {
@@ -91,6 +101,7 @@ export const figmaDesigns = [
     description:
       "Logo and icon set for ThirdEye: an eye built around a camera aperture, with matching film and community icons.",
     image: "/projects/figma/third-eye/cover.png",
+    popupImage: "/projects/figma/third-eye/logo.png",
     category: "Logo",
     skills: ["Figma"],
     figmaUrl:
@@ -98,11 +109,11 @@ export const figmaDesigns = [
     meta: { client: "ThirdEye", role: "Logo & icon design", year: "2025" },
     sections: [
       {
-        title: "The brief",
+        title: "Why this design?",
         body: "ThirdEye needed a mark that hinted at film and vision, and that could sit alongside a small family of matching icons.",
       },
       {
-        title: "Thought process",
+        title: "Thought process & inspiration",
         body: "Early versions were shiny, 3D metal eyes. I flattened them into simple shapes, tried a dozen different pupils inside the same eye outline, and landed on a camera aperture as the iris, which ties the eye back to filmmaking.",
       },
       {
