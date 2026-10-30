@@ -31,6 +31,12 @@ const ICONS = {
 const StillContext = createContext(false);
 const useStill = () => useContext(StillContext);
 
+// true on the /posts/all grid: titles and text are cut to a fixed number of
+// lines (padded out when shorter), so every card there comes out the same
+// size; the full post opens in a modal
+const ClampContext = createContext(false);
+const useClamp = () => useContext(ClampContext);
+
 function PhotoSoon() {
   return (
     <div className="absolute inset-0 grid place-items-center bg-[repeating-linear-gradient(135deg,#262b26_0_10px,#2c322c_10px_20px)]">
@@ -39,6 +45,28 @@ function PhotoSoon() {
         photo soon
       </span>
     </div>
+  );
+}
+
+// how much larger than its layout size a card is drawn (the /posts/all
+// modal blows the whole card up), so its photos load sharp enough for it
+const PhotoScaleContext = createContext(1);
+
+// A post photo filling its frame. Photos are cropped to fit (`position`
+// picks which part stays, e.g. "top"); a logo sets `fit: "contain"` to sit
+// whole in the frame on its own `bg` colour instead.
+function Photo({ photo, sizes }) {
+  const contain = photo.fit === "contain";
+  const scale = useContext(PhotoScaleContext);
+  return (
+    <Image
+      src={photo.src}
+      alt={photo.alt}
+      fill
+      sizes={scale === 1 ? sizes : sizes.replace(/(\d+)px/g, (_, px) => `${Math.round(px * scale)}px`)}
+      className={contain ? "object-contain p-[10%]" : "object-cover"}
+      style={{ objectPosition: photo.position, backgroundColor: photo.bg }}
+    />
   );
 }
 
@@ -128,7 +156,7 @@ function Polaroid({ photo, rotate = 0, className = "", frame = "aspect-[4/3]", s
           className="absolute inset-0"
         >
           {photo ? (
-            <Image src={photo.src} alt={photo.alt} fill sizes={sizes} className="object-cover" />
+            <Photo photo={photo} sizes={sizes} />
           ) : (
             <PhotoSoon />
           )}
@@ -165,7 +193,7 @@ function Filmstrip({ photos, dir, className = "" }) {
               className="absolute inset-0"
             >
               {photo ? (
-                <Image src={photo.src} alt={photo.alt} fill sizes="200px" className="object-cover" />
+                <Photo photo={photo} sizes="200px" />
               ) : (
                 <PhotoSoon />
               )}
@@ -233,7 +261,7 @@ function PhotoStack({ photos, dir, className = "" }) {
           >
             <div className="relative aspect-[4/3] overflow-hidden bg-[#2a2e2a]">
               {photo ? (
-                <Image src={photo.src} alt={photo.alt} fill sizes="340px" className="object-cover" />
+                <Photo photo={photo} sizes="340px" />
               ) : (
                 <PhotoSoon />
               )}
@@ -263,7 +291,7 @@ function SidePhoto({ photo, dir, fromRight, className = "" }) {
           className="absolute inset-0"
         >
           {photo ? (
-            <Image src={photo.src} alt={photo.alt} fill sizes="200px" className="object-cover" />
+            <Photo photo={photo} sizes="200px" />
           ) : (
             <PhotoSoon />
           )}
@@ -287,10 +315,13 @@ function Meta({ post }) {
 }
 
 function Title({ children, className = "" }) {
+  const clamp = useClamp();
   return (
     <motion.h2
       variants={item}
-      className={`font-minecraft text-lg leading-tight text-(--pal-heading) md:text-xl ${className}`}
+      className={`font-minecraft text-lg leading-tight text-(--pal-heading) md:text-xl ${
+        clamp ? "line-clamp-2 min-h-[2lh]" : ""
+      } ${className}`}
     >
       {children}
     </motion.h2>
@@ -298,8 +329,12 @@ function Title({ children, className = "" }) {
 }
 
 function Body({ children }) {
+  const clamp = useClamp();
   return (
-    <motion.p variants={item} className="mt-2 text-[13.5px] leading-relaxed text-(--pal-text)">
+    <motion.p
+      variants={item}
+      className={`mt-2 text-[13.5px] leading-relaxed text-(--pal-text) ${clamp ? "line-clamp-4 min-h-[4lh]" : ""}`}
+    >
       {children}
     </motion.p>
   );
@@ -326,20 +361,28 @@ const shell =
 
 // `display` overrides the post's own choice (used for previews); `still`
 // renders it in its final pose with no entrance: for measuring, and for
-// cards already reached when arriving on the page
-export default function PostCard(props) {
+// cards already reached when arriving on the page; `clamp` cuts the text to
+// a fixed size (see ClampContext); `photoScale` is how much larger the card
+// will be drawn than its layout size (see PhotoScaleContext); `upright`
+// drops the card's slant
+export default function PostCard({ clamp = false, photoScale = 1, ...props }) {
   return (
     <StillContext.Provider value={!!props.still}>
-      <CardBody {...props} />
+      <ClampContext.Provider value={clamp}>
+        <PhotoScaleContext.Provider value={photoScale}>
+          <CardBody {...props} />
+        </PhotoScaleContext.Provider>
+      </ClampContext.Provider>
     </StillContext.Provider>
   );
 }
 
-function CardBody({ post, index, side, display, still = false }) {
+function CardBody({ post, index, side, display, still = false, upright = false }) {
   const layout = display ?? displayFor(post, index);
   // which way the card leans and flies in from: away from the route
   const dir = side === "left" ? -1 : 1;
-  const tilt = TILTS[index % TILTS.length] * -dir;
+  // pinned at a slant, unless it's being held up to read (the modal)
+  const tilt = upright ? 0 : TILTS[index % TILTS.length] * -dir;
   // photos overhang the card toward the route, the asymmetric side
   const towardRoute = side === "left";
   const want = SLOTS[layout] ?? 1;
@@ -426,7 +469,7 @@ function CardBody({ post, index, side, display, still = false }) {
             className="absolute inset-0"
           >
             {main ? (
-              <Image src={main.src} alt={main.alt} fill sizes="440px" className="object-cover" />
+              <Photo photo={main} sizes="440px" />
             ) : (
               <PhotoSoon />
             )}
@@ -582,14 +625,6 @@ export function SummitCard({ onRappel, onRestart, still = false }) {
         <h2 className="font-minecraft mt-3 text-2xl leading-tight text-(--pal-heading) md:text-3xl">
           You made it to the top!
         </h2>
-        <Polaroid
-          photo={{ src: "/profile-climbing.jpg", alt: "Michael grinning down from the top of a rock wall" }}
-          rotate={-3}
-          frame="aspect-[4/3]"
-          sizes="420px"
-          delay={0.9}
-          className="mx-auto mt-4 w-[88%] [&_img]:object-[50%_52%]"
-        />
         <p className="mt-3 text-[13.5px] leading-relaxed text-(--pal-text)">
           That’s every highlight so far. New holds get set whenever something
           worth sharing happens, so check back for a fresh route.

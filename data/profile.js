@@ -30,10 +30,10 @@ export const profile = {
 
   // D&D-style stat pills under the HP/EXP bars (icons mapped in ProfileCard)
   stats: [
-    { key: "STR", value: "09" },
-    { key: "DEX", value: "17" },
-    { key: "INT", value: "15" },
-    { key: "CHA", value: "12" },
+    { key: "STR", value: "13" },
+    { key: "DEX", value: "19" },
+    { key: "INT", value: "14" },
+    { key: "CHA", value: "15" },
   ],
 };
 
@@ -70,7 +70,7 @@ export const workExperience = [
     logo: "/logos/experience/avante.png",
     href: "https://www.avante.io/",
     summary:
-      "Designing client workflow architectures and building full-stack React, TypeScript & Django prototypes and automations, iterating with founders and clients.",
+      "Designing client workflow architectures and building full-stack React, TypeScript & Django prototypes and agentic automations, iterating with founders and clients.",
   },
   {
     title: "Software Engineer",
@@ -127,9 +127,6 @@ export const education = [
     company: "Anthropic Academy",
     logo: "/logos/anthropic.png",
     href: "https://anthropic.skilljar.com/",
-    courses: [
-      "Claude 101",
-      "AI Fluency: Framework & Foundations",
-    ],
+    courses: ["Claude 101", "AI Fluency: Framework & Foundations"],
   },
 ];

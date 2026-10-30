@@ -9,7 +9,8 @@ import {
   useReducedMotion,
   useTransform,
 } from "motion/react";
-import { ArrowDown, ArrowUp, Flag, RotateCcw } from "lucide-react";
+import Link from "next/link";
+import { ArrowDown, ArrowRight, ArrowUp, Flag, LayoutGrid, RotateCcw } from "lucide-react";
 import posts from "../../data/posts";
 import { FooterContent } from "../Footer";
 import PostCard, { DISPLAYS, SummitCard, cardOverhang, displayFor } from "./PostCard";
@@ -466,6 +467,7 @@ export default function ClimbingWall() {
             onHigh={() => moveTo(capRef.current, SOFT)}
             onRestart={restart}
           />
+          <AnimatePresence>{reached === 0 && <SkipClimb key="skip" />}</AnimatePresence>
         </>
       )}
     </section>
@@ -559,11 +561,104 @@ function WallSurface({ layout }) {
   );
 }
 
-// the rope, fed from a coil on the crash pad up through each clipped quickdraw
+// The slack lying on the crash pad: one strand dropped in a loose heap, each
+// turn a little off-centre, tilted and out of round, from a free end trailing
+// across the pad up to where it lifts off the top of the pile. Coordinates
+// are relative to that top end, where the climbing rope carries on; the
+// strand is split into a few runs so later (higher) turns lie over earlier
+// ones, each a shade lighter as it nears the top.
+const ROPE_PILE = (() => {
+  const turns = 4.8;
+  const n = 220;
+  const pts = [];
+  for (let i = 0; i <= n; i++) {
+    const t = i / n;
+    const a = Math.PI / 2 + t * turns * 2 * Math.PI + 0.4 * Math.sin(t * 8.3);
+    const rx = 25 - 5 * t + 10 * Math.sin(t * 8.9 + 1) + 4 * Math.sin(t * 21);
+    const ry = 8.5 - t + 3 * Math.sin(t * 7 + 2);
+    const tilt = 0.2 * Math.sin(t * 6.1);
+    // the last bit of the strand lifts off the heap toward the wall
+    const lift = Math.max(0, (t - 0.94) / 0.06) ** 2 * 10;
+    const cx = 12 * Math.sin(t * 3.7) + 4 * Math.sin(t * 17.3) - 4 * t;
+    const cy = -16 * t + 3 * Math.sin(t * 9.3) - lift;
+    const ex = rx * Math.cos(a);
+    const ey = ry * Math.sin(a);
+    pts.push([
+      cx + ex * Math.cos(tilt) - ey * Math.sin(tilt),
+      cy + ex * Math.sin(tilt) + ey * Math.cos(tilt),
+    ]);
+  }
+  const [sx, sy] = pts[0];
+  const tail = [
+    [sx + 44, sy + 12],
+    [sx + 30, sy + 13],
+    [sx + 17, sy + 6],
+    [sx + 7, sy + 2],
+  ];
+  const [ex, ey] = pts[n];
+  const all = [...tail, ...pts].map(([x, y]) => [x - ex, y - ey]);
+
+  // a smooth curve through the points (each sample a control point, the
+  // midpoints between them on the curve)
+  const f = (v) => v.toFixed(1);
+  const curve = (p) => {
+    let d = `M ${f(p[0][0])} ${f(p[0][1])}`;
+    for (let i = 1; i < p.length - 1; i++) {
+      d += ` Q ${f(p[i][0])} ${f(p[i][1])} ${f((p[i][0] + p[i + 1][0]) / 2)} ${f((p[i][1] + p[i + 1][1]) / 2)}`;
+    }
+    const last = p[p.length - 1];
+    return `${d} L ${f(last[0])} ${f(last[1])}`;
+  };
+
+  const shades = ["#a8955b", "#b29f62", "#bca868", "#c6b06e", "#d0b974", "#d9c27a"];
+  const per = Math.ceil(all.length / shades.length);
+  const runs = shades.map((shade, k) => ({
+    shade,
+    d: curve(all.slice(Math.max(0, k * per - 1), (k + 1) * per + 1)),
+  }));
+
+  const xs = all.map((p) => p[0]);
+  const ys = all.map((p) => p[1]);
+  const shadow = {
+    cx: (Math.min(...xs) + Math.max(...xs)) / 2,
+    cy: Math.max(...ys) - 4,
+    rx: (Math.max(...xs) - Math.min(...xs)) / 2,
+  };
+  return { runs, shadow };
+})();
+
+function RopePile({ x, y, flip }) {
+  const { runs, shadow } = ROPE_PILE;
+  return (
+    <g transform={`translate(${x} ${y}) scale(${flip ? -1 : 1} 1)`}>
+      <ellipse
+        cx={shadow.cx}
+        cy={shadow.cy}
+        rx={shadow.rx}
+        ry={12}
+        fill="#000"
+        opacity={0.45}
+        filter="url(#rope-pile-shadow)"
+      />
+      {runs.map(({ d, shade }) => (
+        <g key={shade}>
+          {/* a dark edge so strands crossing over each other read apart */}
+          <path d={d} fill="none" stroke="#1d180c" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round" opacity={0.75} />
+          <path d={d} fill="none" stroke={shade} strokeWidth="4.5" strokeLinecap="round" strokeLinejoin="round" />
+          <path d={d} fill="none" stroke="#5b4d24" strokeWidth="2" strokeDasharray="2 7" opacity={0.55} />
+        </g>
+      ))}
+    </g>
+  );
+}
+
+// the rope, fed from the pile on the crash pad up through each clipped quickdraw
 function Rope({ layout, reached, arrived }) {
   const { route, wallH, width, wide } = layout;
-  // the coil sits beside the footer label, clear of the HUD on phones
-  const anchor = wide ? { x: width / 2 + 230, alt: 40 } : { x: width - 36, alt: 130 };
+  // the pile sits beside the footer label, clear of the HUD on phones (where
+  // it's flipped to heap away from the screen edge). The anchor is the top
+  // of the pile, which spreads ~55px below it.
+  const anchor = wide ? { x: width / 2 + 230, alt: 70 } : { x: width - 36, alt: 160 };
   const y = (alt) => wallH - alt;
   return (
     <svg
@@ -573,20 +668,12 @@ function Rope({ layout, reached, arrived }) {
       height={wallH}
       viewBox={`0 0 ${width} ${wallH}`}
     >
-      {/* coil on the pad */}
-      {[0, 1, 2].map((k) => (
-        <ellipse
-          key={k}
-          cx={anchor.x + k * 3}
-          cy={y(anchor.alt) + 6 - k * 4}
-          rx={26 - k * 2}
-          ry={9}
-          fill="none"
-          stroke="#d9c27a"
-          strokeWidth="4"
-          opacity={0.9 - k * 0.15}
-        />
-      ))}
+      <defs>
+        <filter id="rope-pile-shadow" x="-50%" y="-100%" width="200%" height="300%">
+          <feGaussianBlur stdDeviation="4" />
+        </filter>
+      </defs>
+      <RopePile x={anchor.x} y={y(anchor.alt)} flip={!wide} />
       {route.map((h, i) => {
         if (reached <= i) return null;
         const a = i === 0 ? anchor : route[i - 1].clip;
@@ -677,11 +764,56 @@ function Intro({ slot }) {
           route reveals a milestone: program switches, events, life updates.
           Stick to green; the other routes are someone else&apos;s problem.
         </p>
-        <p className="mt-3 text-xs text-(--pal-muted)">
+        <p className="mt-3 hidden text-xs text-(--pal-muted) md:block">
           You can always scroll back down to anything you&apos;ve already reached.
         </p>
+        {/* phones: the bottom-left skip note (SkipClimb) folded in here, in
+            place of the line above so the card doesn't grow up under the
+            header */}
+        <Link href="/posts/all" className="group mt-3 flex flex-col gap-1 md:hidden">
+          <span className="text-xs text-(--pal-muted)">Don&apos;t feel like climbing right now?</span>
+          <AllPostsLabel />
+        </Link>
       </div>
     </motion.div>
+  );
+}
+
+// A way round the climb, pinned to the bottom-left corner on arrival: a note
+// offering every post at once. Wider screens only; phones have nowhere free
+// down there (the crash pad's footer fills it), so the intro card carries the
+// same line instead. Once the climb starts, the HUD has a button for it.
+function SkipClimb() {
+  return (
+    <motion.div
+      initial={{ y: 40, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      exit={{ y: 40, opacity: 0, transition: { duration: 0.3 } }}
+      transition={{ delay: 0.9, type: "spring", stiffness: 160, damping: 18 }}
+      className="absolute bottom-6 left-6 z-40 hidden md:block"
+    >
+      <Link
+        href="/posts/all"
+        className="group flex max-w-[300px] items-center gap-3 rounded-[18px_8px_18px_8px] border-2 border-dashed border-(--pal-border)/70 bg-(--pal-surface)/90 px-4 py-3 shadow-[0_12px_30px_-10px_rgba(0,0,0,0.8)] backdrop-blur transition hover:-translate-y-0.5 hover:border-(--pal-border)"
+      >
+        <LayoutGrid size={20} className="shrink-0 text-(--pal-title)" />
+        <span className="flex flex-col gap-1">
+          <span className="text-xs leading-snug text-(--pal-muted)">
+            Don&apos;t feel like climbing right now?
+          </span>
+          <AllPostsLabel />
+        </span>
+      </Link>
+    </motion.div>
+  );
+}
+
+function AllPostsLabel() {
+  return (
+    <span className="font-minecraft inline-flex items-center gap-1.5 text-sm text-(--pal-title)">
+      See all my posts in full
+      <ArrowRight size={14} className="transition-transform group-hover:translate-x-0.5" />
+    </span>
   );
 }
 
@@ -771,9 +903,14 @@ function Hud({ reached, cam, stage, visH, onGround, onHigh, onRestart }) {
         <ArrowUp size={16} />
       </button>
       {reached > 0 && (
-        <button type="button" onClick={onRestart} aria-label="Restart the climb" className={btn}>
-          <RotateCcw size={15} />
-        </button>
+        <>
+          <button type="button" onClick={onRestart} aria-label="Restart the climb" className={btn}>
+            <RotateCcw size={15} />
+          </button>
+          <Link href="/posts/all" aria-label="See all posts at once" title="All posts" className={btn}>
+            <LayoutGrid size={15} />
+          </Link>
+        </>
       )}
     </motion.div>
   );

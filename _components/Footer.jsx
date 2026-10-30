@@ -6,6 +6,7 @@ import { PiLinkedinLogo, PiLinkedinLogoBold } from "react-icons/pi";
 import { VscGithub } from "react-icons/vsc";
 import { IoMailOutline } from "react-icons/io5";
 import { IoDocumentTextOutline } from "react-icons/io5";
+import CaveFloor, { CaveShade } from "./CaveFloor";
 
 // The links and copyright line, also printed on the crash pad at the foot of
 // the /posts climbing wall (which shows them in place of this footer)
@@ -46,15 +47,21 @@ export default function Footer() {
   return (
     // bg-[#2A2B2A]/70
     <>
+      <CaveShade />
+      {/* tall enough for the cave floor's walls to rise out of the corners,
+          with the links sitting on the floor between them */}
       <footer
         id="site-footer"
-        className="flex flex-col justify-center items-center w-full h-24 pt-6 py-5 gap-2 font-medium bg-linear-to-t from-[#0c0e0c]"
+        className="relative flex flex-col justify-end items-center w-full h-40 md:h-52 pb-5 gap-2 font-medium bg-linear-to-t from-[#0c0e0c]"
         // style={{
         //   backgroundImage: "url('/comps/footer3.png')",
         //   backgroundSize: "100% 100%",
         // }}
       >
-        <FooterContent />
+        <CaveFloor />
+        <div className="relative flex flex-col items-center gap-2">
+          <FooterContent />
+        </div>
       </footer>
 
       {/* <footer className="md:hidden">

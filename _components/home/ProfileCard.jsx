@@ -9,6 +9,7 @@ import { LuBookOpen, LuSwords } from "react-icons/lu";
 import { FaRegStar, FaShieldAlt } from "react-icons/fa";
 import PhonePhoto from "./PhonePhoto";
 import Reveal from "../Reveal";
+import CountUp from "../CountUp";
 import { scrollToAbout } from "../AboutLink";
 import { profile } from "../../data/profile";
 
@@ -212,17 +213,17 @@ function MobileProfile({ stats }) {
             </div>
           </div>
           <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-[6px] border-2 border-[#a2be9c] bg-[#262d26] px-1.5 py-[3px] font-minecraft font-bold text-[11px] leading-none text-[#c7d8c0] [text-shadow:0px_1px_0px_rgba(0,0,0,0.5)]">
-            LVL {stats?.level ?? " "}
+            LVL <CountUp value={stats?.level} />
           </span>
         </div>
 
         <div className="grid flex-1 grid-cols-4 gap-1 text-center min-w-0">
-          {profile.stats.map(({ key, value }) => {
+          {profile.stats.map(({ key, value }, i) => {
             const Icon = STAT_ICONS[key];
             return (
               <div key={key} className="flex flex-col items-center gap-1">
                 <span className="font-minecraft font-bold text-[18px] leading-none text-white">
-                  {value}
+                  <CountUp value={value} delay={0.15 + i * 0.1} />
                 </span>
                 <span className="flex items-center gap-1 text-[#a6b2a3]">
                   {Icon && <Icon size={11} className="shrink-0" />}
@@ -277,7 +278,7 @@ function MobileProfile({ stats }) {
       </div>
 
       <div className="grid grid-cols-3 gap-2">
-        <Link href="/about" className={button}>
+        <Link href="/posts" className={button}>
           See more
         </Link>
         <a href="mailto:mic77p@gmail.com" className={button}>
@@ -350,7 +351,7 @@ export default function ProfileCard() {
                 LEVEL
               </span>
               <span className="text-[32px] leading-none mt-2">
-                {stats?.level ?? " "}
+                <CountUp value={stats?.level} duration={1.4} />
               </span>
             </div>
           </div>
@@ -379,7 +380,7 @@ export default function ProfileCard() {
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-[14px]">
-              {profile.stats.map(({ key, value }) => {
+              {profile.stats.map(({ key, value }, i) => {
                 const Icon = STAT_ICONS[key];
                 return (
                   <div
@@ -393,7 +394,7 @@ export default function ProfileCard() {
                       </span>
                     </span>
                     <span className="font-minecraft font-bold text-[15px] leading-none text-[#c1dab6]">
-                      {value}
+                      <CountUp value={value} delay={0.15 + i * 0.1} />
                     </span>
                   </div>
                 );
@@ -412,7 +413,7 @@ export default function ProfileCard() {
             </p>
           ))}
           <Link
-            href="/about"
+            href="/posts"
             className="group mt-auto self-end flex h-9 items-center gap-2 rounded-[8px] border-2 border-[#a2be9c] bg-[#262d26] px-3 text-[14px] leading-none text-[#c1dab6] transition-colors hover:bg-[#33402f] hover:text-white"
           >
             See more

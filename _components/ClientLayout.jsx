@@ -29,7 +29,7 @@ export default function ClientLayout({ children }) {
   // Redesigned pages sit on the plain dark page background and lay out their
   // own spacing (the home hero and the posts climbing wall run edge-to-edge
   // underneath the fixed header)
-  if (isHome || pathname === "/portfolio" || pathname === "/posts") {
+  if (isHome || pathname === "/portfolio" || pathname.startsWith("/posts")) {
     return (
       <main className="w-full flex-1 flex flex-col items-center">
         {children}

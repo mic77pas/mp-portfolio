@@ -2,11 +2,11 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import { FaGithub } from "react-icons/fa";
 import { IoLogoFigma } from "react-icons/io5";
 import { IoIosCloseCircle } from "react-icons/io";
-import { FiChevronDown } from "react-icons/fi";
+import { FiChevronDown, FiExternalLink } from "react-icons/fi";
 import SkillBadge from "./SkillBadge";
 import LaptopMockup from "./LaptopMockup";
 import { subprojectLists } from "../data/projects";
@@ -108,30 +108,42 @@ function Hero({ children }) {
   );
 }
 
-// "View in ..." button in the header's top-right corner
+// "View in ..." button in the header's top-right corner, plus a "Visit
+// website" button when the item has a live `website`
 function ViewButton({ item }) {
   const link = item.github
-    ? { href: item.github, icon: <FaGithub size={18} />, label: "GitHub" }
+    ? { href: item.github, icon: <FaGithub size={18} />, label: "View in GitHub" }
     : item.figmaUrl
-      ? { href: item.figmaUrl, icon: <IoLogoFigma size={18} />, label: "Figma" }
+      ? { href: item.figmaUrl, icon: <IoLogoFigma size={18} />, label: "View in Figma" }
       : null;
-  if (!link) return null;
+  const site = item.website && {
+    href: item.website,
+    icon: <FiExternalLink size={17} />,
+    label: "Visit Website",
+  };
+  const links = [site, link].filter(Boolean);
+  if (!links.length) return null;
 
   return (
-    <a
-      href={link.href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="button-hover shrink-0 rounded-[3px] text-[14px] md:text-[16px] text-[#e4ecd9]"
-    >
-      {link.icon} View in {link.label}
-    </a>
+    <div className="flex flex-wrap gap-2">
+      {links.map((l) => (
+        <a
+          key={l.href}
+          href={l.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="button-hover shrink-0 rounded-lg text-[14px] md:text-[16px] text-[#e4ecd9]"
+        >
+          {l.icon} {l.label}
+        </a>
+      ))}
+    </div>
   );
 }
 
-// client / role / year pills, used by designs in place of skills
+// role / year pills, used by designs in place of skills
 function MetaPills({ meta }) {
-  const pills = [meta.client, meta.role, meta.year].filter(Boolean);
+  const pills = [meta.role, meta.year].filter(Boolean);
   return (
     <ul className="flex flex-wrap gap-2">
       {pills.map((p) => (
@@ -277,55 +289,52 @@ function SoftwareLayout({ item }) {
 
 /* ---------- design: layouts (web, app screens) ---------- */
 
-// Rounded panel of screens: two stacked on the left, one large on the right.
-// Needs `gallery` (3+ images); otherwise the popup image is shown on its own,
-// at its own aspect ratio.
+// The whole Figma layout, framed like a selected frame on a Figma canvas:
+// name label above, outline with corner handles, size badge below. Full
+// content width, at the export's own aspect ratio.
 function LayoutShowcase({ item }) {
-  const [a, b, c] = item.gallery ?? [];
-
-  if (!c) {
-    return (
-      <motion.div
-        {...MEDIA_IN}
-        className="overflow-hidden rounded-[16px] md:rounded-[24px]"
-      >
-        <FitImage
-          src={item.popupImage ?? item.image}
-          alt={item.title}
-          sizes="(min-width: 1070px) 1040px, 95vw"
-        />
-      </motion.div>
-    );
-  }
+  const layout = item.layout ?? { image: item.image, label: item.title };
 
   return (
     <motion.div
       {...MEDIA_IN}
-      className="relative mx-auto w-[min(100%,calc(88svh*1080/614))] aspect-[1080/614] overflow-hidden rounded-[16px] md:rounded-[24px] bg-[#161616] p-[4.4%]"
+      className="flex w-full flex-col gap-2.5 text-[13px] md:text-[15px]"
     >
-      <div className="grid size-full grid-cols-[40%_1fr] grid-rows-2 gap-[3.7%]">
-        <MediaTile
-          src={a}
-          alt={`${item.title} 1`}
-          sizes="400px"
-          className="rounded-[5px]"
-          fit="object-cover object-top"
+      <span className="truncate text-(--pal-accent)">
+        <span className="opacity-60">#</span> {layout.label}
+      </span>
+
+      <div className="relative outline-2 outline-(--pal-accent)">
+        <Image
+          src={layout.image}
+          alt={`${item.title}: ${layout.label}`}
+          width={layout.width ?? 1600}
+          height={layout.height ?? 900}
+          sizes="(min-width: 1070px) 1040px, 95vw"
+          className="block h-auto w-full"
         />
-        <MediaTile
-          src={c}
-          alt={`${item.title} 3`}
-          sizes="(min-width: 1024px) 600px, 55vw"
-          className="row-span-2 rounded-[5px]"
-          fit="object-cover object-top"
-        />
-        <MediaTile
-          src={b}
-          alt={`${item.title} 2`}
-          sizes="400px"
-          className="rounded-[5px]"
-          fit="object-cover object-top"
-        />
+        {/* selection handles */}
+        {[
+          "-left-1.5 -top-1.5",
+          "-right-1.5 -top-1.5",
+          "-left-1.5 -bottom-1.5",
+          "-right-1.5 -bottom-1.5",
+        ].map((pos) => (
+          <span
+            key={pos}
+            aria-hidden
+            className={`absolute ${pos} size-3 border-2 border-(--pal-accent) bg-(--pal-header)`}
+          />
+        ))}
       </div>
+
+      {layout.width && (
+        <div className="flex justify-center">
+          <span className="rounded-[3px] bg-(--pal-accent) px-2 py-0.5 text-[12px] md:text-[13px] leading-tight text-(--pal-deep) tabular-nums">
+            {layout.width} × {layout.height}
+          </span>
+        </div>
+      )}
     </motion.div>
   );
 }
@@ -380,8 +389,9 @@ function LogoLayout({ item }) {
 
   return (
     <>
-      {/* no hero to fill the first screen, so pad the top like the Figma frame */}
-      <div className="flex flex-col sm:flex-row gap-5 md:pt-[100px]">
+      {/* no hero up top, so just clear the close button; the content should
+          mostly fit on the first screen */}
+      <div className="flex flex-col sm:flex-row gap-5 md:pt-12">
         <motion.div {...MEDIA_IN} className="shrink-0">
           {/* popupImage is a tight square crop, so the logo fills the tile */}
           <MediaTile
@@ -428,61 +438,96 @@ function Parts({ parts }) {
   );
 }
 
-// one large render at its own aspect ratio, with every render as a
-// thumbnail underneath to switch between them
+const GALLERY_GAP = 12;
+
+// One large render with every render as a card in a column beside it. All
+// are 16:9, so nothing jumps when the render changes. The cards share the
+// main render's height: with more of them they get smaller and the main
+// render grows to fill the space.
 function ModelGallery({ images, title }) {
   const [index, setIndex] = useState(0);
+  const n = images.length;
+  // n cards (16:9) plus their gaps are as tall as the main render beside them
+  const cardWidth = `calc((100cqw - ${GALLERY_GAP}px - ${
+    ((n - 1) * GALLERY_GAP * 16) / 9
+  }px) / ${n + 1})`;
 
   return (
-    <section className="flex flex-col gap-4 md:gap-[17px]">
-      <FitImage
-        src={images[index]}
-        alt={`${title} render ${index + 1}`}
-        sizes="(min-width: 1070px) 1040px, 95vw"
-        className="rounded-[9px]"
-      />
-      {images.length > 1 && (
-        <ul className="grid grid-cols-3 sm:grid-cols-5 gap-3 md:gap-[28px]">
-          {images.map((src, i) => (
-            <li key={src}>
-              <button
-                type="button"
-                onClick={() => setIndex(i)}
-                aria-label={`Show render ${i + 1}`}
-                aria-pressed={i === index}
-                className={`relative block w-full aspect-video cursor-pointer overflow-hidden rounded-[9px] border-2 transition ${
-                  i === index
-                    ? "border-(--pal-accent)"
-                    : "border-transparent opacity-60 hover:opacity-100"
-                }`}
-              >
-                <Image src={src} alt="" fill sizes="200px" className="object-cover" />
-              </button>
-            </li>
-          ))}
-        </ul>
-      )}
+    <section className="@container">
+      <div
+        className="flex flex-col gap-3 sm:flex-row"
+        style={{ "--card-w": cardWidth }}
+      >
+        <div className="relative aspect-video min-w-0 flex-1 overflow-hidden rounded-[9px] bg-[#161616]">
+          <AnimatePresence initial={false}>
+            <motion.div
+              key={images[index]}
+              className="absolute inset-0"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.35 }}
+            >
+              <Image
+                src={images[index]}
+                alt={`${title} render ${index + 1}`}
+                fill
+                sizes="(min-width: 1070px) 820px, 95vw"
+                className="object-cover"
+              />
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        {n > 1 && (
+          <ul className="grid grid-cols-4 gap-3 sm:flex sm:w-(--card-w) sm:shrink-0 sm:flex-col">
+            {images.map((src, i) => (
+              <li key={src}>
+                <button
+                  type="button"
+                  onClick={() => setIndex(i)}
+                  aria-label={`Show render ${i + 1}`}
+                  aria-pressed={i === index}
+                  className={`relative block w-full aspect-video cursor-pointer overflow-hidden rounded-[9px] border-2 transition ${
+                    i === index
+                      ? "border-(--pal-accent)"
+                      : "border-transparent opacity-60 hover:opacity-100"
+                  }`}
+                >
+                  <Image src={src} alt="" fill sizes="300px" className="object-cover" />
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
     </section>
   );
 }
 
+// Header, text and renders first; the interactive 3D viewer comes last
 function ModelLayout({ item }) {
   return (
     <>
-      <Hero>
-        <motion.div
-          {...MEDIA_IN}
-          className="mx-auto w-[min(100%,calc(88svh*1080/611))] overflow-hidden rounded-[14px] bg-black"
-        >
-          <ModelViewer src={item.src} aspectClass="aspect-[1080/611]" />
-        </motion.div>
-      </Hero>
-      <ProjectHeader item={item} />
+      {/* no hero up top, so just clear the close button; the content should
+          mostly fit on the first screen */}
+      <ProjectHeader item={item} className="md:pt-12" />
       <Sections sections={item.sections} />
       {item.images?.length > 0 && (
         <ModelGallery images={item.images} title={item.title} />
       )}
       {item.parts?.length > 0 && <Parts parts={item.parts} />}
+      <section className="flex flex-col gap-4">
+        <div className="flex items-baseline justify-between gap-4">
+          <SectionHeading>3D model</SectionHeading>
+          <span className="text-[13px] md:text-[15px] text-(--pal-muted)">
+            Drag to rotate
+          </span>
+        </div>
+        <div className="w-full overflow-hidden rounded-[14px] bg-black">
+          <ModelViewer src={item.src} aspectClass="aspect-[1080/611]" />
+        </div>
+      </section>
     </>
   );
 }
@@ -516,7 +561,7 @@ export default function ProjectModal({ item, onClose }) {
   return (
     <motion.div
       data-lenis-prevent
-      className="fixed inset-0 z-[200] overflow-y-auto overscroll-contain bg-black/60 backdrop-blur-[10px]"
+      className="fixed inset-0 z-[200] overflow-y-auto overscroll-contain bg-(--pal-header)/90 backdrop-blur-[10px]"
       onClick={onClose}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}

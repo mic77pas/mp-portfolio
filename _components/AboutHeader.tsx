@@ -504,10 +504,10 @@ export default function AboutHeader() {
 
         <div className="block w-full rounded-lg border-2 border-[#87a082] bg-[#121412] p-4 lg:hidden">
           <div className="grid grid-cols-2 gap-2">
-            <StatPill k="STR" v="09" icon={<LuSwords />} />
-            <StatPill k="DEX" v="17" icon={<FaShieldAlt />} />
-            <StatPill k="INT" v="15" icon={<LuBookOpen />} />
-            <StatPill k="CHA" v="12" icon={<FaRegStar />} />
+            <StatPill k="STR" v="13" icon={<LuSwords />} />
+            <StatPill k="DEX" v="19" icon={<FaShieldAlt />} />
+            <StatPill k="INT" v="14" icon={<LuBookOpen />} />
+            <StatPill k="CHA" v="15" icon={<FaRegStar />} />
           </div>
         </div>
 
@@ -535,10 +535,10 @@ export default function AboutHeader() {
               </div>
 
               <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-4">
-                <StatPill k="STR" v="09" icon={<LuSwords size={14} />} />
-                <StatPill k="DEX" v="17" icon={<FaShieldAlt size={14} />} />
-                <StatPill k="INT" v="15" icon={<LuBookOpen size={14} />} />
-                <StatPill k="CHA" v="12" icon={<FaRegStar size={14} />} />
+                <StatPill k="STR" v="13" icon={<LuSwords size={14} />} />
+                <StatPill k="DEX" v="19" icon={<FaShieldAlt size={14} />} />
+                <StatPill k="INT" v="14" icon={<LuBookOpen size={14} />} />
+                <StatPill k="CHA" v="15" icon={<FaRegStar size={14} />} />
               </div>
             </div>
           </div>

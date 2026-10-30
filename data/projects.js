@@ -20,8 +20,9 @@ const projects = [
     description:
       "Full-stack Next.js portfolio displaying my background and experience (you're in it right now!)",
 
-    image: "/projects/images/portfolio.png",
-    gif: "/projects/videos/portfolio.mp4", // optional but highly recommended
+    // a still of the current home page (no screen recording, so it never
+    // shows an older version of the site)
+    image: "/projects/images/portfolio-home.png",
 
     github: "https://github.com/mic77pas/mp-portfolio",
 

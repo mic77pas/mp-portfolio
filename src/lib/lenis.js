@@ -12,6 +12,9 @@ export const getLenis = () => instance;
 // Smooth-scrolls the page to a pixel offset, through Lenis when it's running.
 export function scrollToY(top) {
   if (instance) {
+    // Lenis re-measures the page on a 250ms debounce, so right after a route
+    // change it still clamps to the previous page's height
+    instance.resize();
     instance.scrollTo(top, { duration: 1.4 });
   } else {
     window.scrollTo({ top, behavior: "smooth" });
