@@ -21,7 +21,12 @@ export const isWide = (width) => width >= 1000;
 export const cardWidthFor = (width) =>
   isWide(width)
     ? Math.min(440, (Math.min(width - 48, 1180) - 270) / 2)
-    : Math.min(width - 32, 400);
+    : Math.min(width - 48, 360);
+
+// Narrow screens draw the cards smaller (CSS zoom, so text and photos shrink
+// with them), leaving more of the wall and its holds in view. Cards are laid
+// out at cardWidthFor / CARD_ZOOM and shown at cardWidthFor.
+export const cardZoomFor = (width) => (isWide(width) ? 1 : 0.88);
 
 export const summitWidthFor = (width) => Math.min(width - 32, 440);
 
@@ -94,18 +99,24 @@ export function buildLayout({ stage, cardHeights, summitH, count }) {
       });
     }
   } else {
-    const gap = 18;
+    // a hold sits in the strip of wall between each pair of stacked cards:
+    // a little room above it for the card's hold tag, more below for the
+    // quickdraw hanging off it and its own tag
+    const above = 24;
+    const below = 46;
     alts[0] = groundH + holds[0].size / 2 + 34;
     for (let i = 0; i < count; i++) {
-      const bottom = alts[i] + holds[i].size / 2 + gap;
+      const bottom = alts[i] + holds[i].size / 2 + above;
+      const side = i % 2 === 0 ? "left" : "right";
       cards.push({
-        left: (width - cardW) / 2,
+        // nudged toward alternate edges, so the route weaves up the wall
+        left: side === "left" ? 14 : width - cardW - 14,
         bottom,
         width: cardW,
         height: cardH(i),
-        side: i % 2 === 0 ? "left" : "right",
+        side,
       });
-      alts[i + 1] = bottom + cardH(i) + gap + holds[i + 1].size / 2;
+      alts[i + 1] = bottom + cardH(i) + below + holds[i + 1].size / 2;
     }
   }
 

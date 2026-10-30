@@ -16,7 +16,7 @@ import { FooterContent } from "../Footer";
 import PostCard, { DISPLAYS, SummitCard, cardOverhang, displayFor } from "./PostCard";
 import Volume from "./Volume";
 import { ChalkBurst, Confetti, DecoyHold, RouteHold } from "./WallHolds";
-import { PX_PER_M, buildLayout, cardWidthFor, isWide, summitWidthFor } from "./climbLayout";
+import { PX_PER_M, buildLayout, cardWidthFor, cardZoomFor, isWide, summitWidthFor } from "./climbLayout";
 
 // /posts: a climbing wall. Each green hold on the route reveals a post; the
 // camera climbs to centre the new card, and can't be scrolled past the next
@@ -352,8 +352,15 @@ export default function ClimbingWall() {
       {/* off-screen copies of the cards, in their final pose, to size the route */}
       {size && (
         <div aria-hidden inert className="pointer-events-none invisible absolute top-0 left-0">
+          {/* laid out at their pre-zoom width; heights reported as drawn */}
           {posts.map((post, i) => (
-            <Measure key={post.id} index={i} width={cardWidthFor(size.w)} onHeight={setCardHeight}>
+            <Measure
+              key={post.id}
+              index={i}
+              width={cardWidthFor(size.w) / cardZoomFor(size.w)}
+              scale={cardZoomFor(size.w)}
+              onHeight={setCardHeight}
+            >
               <PostCard post={post} index={i} side={i % 2 === 0 ? "left" : "right"} display={displays[i]} still />
             </Measure>
           ))}
@@ -405,19 +412,23 @@ export default function ClimbingWall() {
           ))}
 
           <AnimatePresence>
-            {reached === 0 && <Intro key="intro" slot={layout.intro} />}
+            {reached === 0 && <Intro key="intro" slot={layout.intro} zoom={cardZoomFor(layout.width)} />}
           </AnimatePresence>
 
           <AnimatePresence>
             {posts.slice(0, Math.min(reached, COUNT)).map((post, i) => {
               const slot = layout.cards[i];
+              const zoom = cardZoomFor(layout.width);
               return (
                 <div
                   key={post.id}
                   className="absolute z-20"
                   style={{ left: slot.left, bottom: slot.bottom, width: slot.width }}
                 >
-                  <PostCard post={post} index={i} side={slot.side} display={displays[i]} still={i < arrived} />
+                  {/* drawn smaller on narrow screens (see cardZoomFor) */}
+                  <div style={{ zoom, width: slot.width / zoom }}>
+                    <PostCard post={post} index={i} side={slot.side} display={displays[i]} still={i < arrived} />
+                  </div>
                 </div>
               );
             })}
@@ -476,15 +487,16 @@ export default function ClimbingWall() {
 
 // ── pieces ───────────────────────────────────────────────────────────────
 
-// reports its content's height as it changes (fonts loading, resizes)
-function Measure({ index, width, onHeight, children }) {
+// reports its content's height as it changes (fonts loading, resizes),
+// times `scale` when it'll be drawn zoomed
+function Measure({ index, width, scale = 1, onHeight, children }) {
   const ref = useRef(null);
   useEffect(() => {
     const el = ref.current;
-    const ro = new ResizeObserver(() => onHeight(index, Math.round(el.offsetHeight)));
+    const ro = new ResizeObserver(() => onHeight(index, Math.round(el.offsetHeight * scale)));
     ro.observe(el);
     return () => ro.disconnect();
-  }, [index, onHeight]);
+  }, [index, scale, onHeight]);
   return (
     <div ref={ref} style={{ width }}>
       {children}
@@ -738,7 +750,7 @@ function Fog({ bottom }) {
 }
 
 // welcome panel in the first card's spot, until the first hold is grabbed
-function Intro({ slot }) {
+function Intro({ slot, zoom = 1 }) {
   return (
     <motion.div
       className="absolute z-20"
@@ -748,7 +760,11 @@ function Intro({ slot }) {
       exit={{ opacity: 0, y: -80, rotate: -10, scale: 0.8, transition: { duration: 0.4 } }}
       transition={{ type: "spring", stiffness: 120, damping: 14, delay: 0.2 }}
     >
-      <div className="relative rounded-[24px_10px_24px_10px] border-2 border-dashed border-(--pal-border)/70 bg-(--pal-surface)/85 p-5 backdrop-blur-sm">
+      {/* drawn at the cards' scale on narrow screens (see cardZoomFor) */}
+      <div
+        style={{ zoom, width: slot.width / zoom }}
+        className="relative rounded-[24px_10px_24px_10px] border-2 border-dashed border-(--pal-border)/70 bg-(--pal-surface)/85 p-5 backdrop-blur-sm"
+      >
         <span className="font-minecraft text-[11px] tracking-wider text-(--pal-muted) uppercase">
           Posts · {COUNT} holds to the top
         </span>
@@ -873,9 +889,18 @@ function Hud({ reached, cam, stage, visH, onGround, onHigh, onRestart }) {
       transition={{ delay: 0.6, type: "spring", stiffness: 160, damping: 18 }}
       className="absolute bottom-4 left-1/2 z-40 flex -translate-x-1/2 items-center gap-1.5 rounded-2xl border-2 border-(--pal-border)/70 bg-(--pal-surface)/90 p-1.5 shadow-[0_12px_30px_-10px_rgba(0,0,0,0.8)] backdrop-blur md:right-6 md:left-auto md:translate-x-0"
     >
+      {/* phones: a compact count, so the bar doesn't span the screen */}
+      <div
+        className="font-minecraft flex items-center gap-1.5 px-2 text-[11px] text-(--pal-title) md:hidden"
+        aria-label={`${Math.min(reached, COUNT + 1)} of ${COUNT + 1} holds reached`}
+      >
+        <Flag size={12} className={reached > COUNT ? "text-[#8fd36b]" : "text-(--pal-muted)"} />
+        {Math.min(reached, COUNT + 1)}/{COUNT + 1}
+      </div>
+
       {/* progress: one pip per hold, a flag for the top */}
       <div
-        className="flex items-center gap-1 px-2"
+        className="hidden items-center gap-1 px-2 md:flex"
         aria-label={`${Math.min(reached, COUNT + 1)} of ${COUNT + 1} holds reached`}
       >
         {Array.from({ length: COUNT + 1 }, (_, i) => (
@@ -892,7 +917,7 @@ function Hud({ reached, cam, stage, visH, onGround, onHigh, onRestart }) {
           </motion.span>
         ))}
       </div>
-      <motion.span className="font-minecraft w-12 text-center text-[10px] text-(--pal-muted) xl:hidden">
+      <motion.span className="font-minecraft hidden w-12 text-center text-[10px] text-(--pal-muted) md:inline xl:hidden">
         {meters}
       </motion.span>
 

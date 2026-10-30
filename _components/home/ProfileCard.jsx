@@ -185,9 +185,6 @@ function StatusPill({ stats, compact = false }) {
   );
 }
 
-const RESUME_URL =
-  "https://drive.google.com/file/d/12K4VSG5kEep4KhuxYuXZ6ek6-4BCrV2P/view?usp=sharing";
-
 // Mobile layout: an Instagram-style profile header. Round photo with the level
 // badge, D&D stats in place of posts/followers/following, then name, status,
 // HP/EXP, bio and action buttons.
@@ -277,20 +274,12 @@ function MobileProfile({ stats }) {
         ))}
       </div>
 
-      <div className="grid grid-cols-3 gap-2">
+      <div className="grid grid-cols-2 gap-2">
         <Link href="/posts" className={button}>
           See more
         </Link>
         <a href="mailto:mic77p@gmail.com" className={button}>
           Message
-        </a>
-        <a
-          href={RESUME_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={button}
-        >
-          Resume
         </a>
       </div>
     </Reveal>

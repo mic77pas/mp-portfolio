@@ -29,7 +29,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div data-hero-spacer aria-hidden className="h-svh min-h-[600px]" />
+        <div data-hero-spacer aria-hidden className="h-lvh min-h-[600px]" />
       </div>
     </div>
   );

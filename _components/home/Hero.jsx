@@ -140,7 +140,9 @@ export default function Hero() {
         borderBottomLeftRadius: radius,
         borderBottomRightRadius: radius,
       }}
-      className="relative w-full h-svh min-h-[600px] overflow-hidden flex items-center justify-center px-6 md:px-[110px] shadow-[0px_11px_11.3px_0px_rgba(0,0,0,0.45)] bg-[#242524]"
+      // lvh, not svh: the full screen height, so on phones the hero still
+      // fills the screen behind a translucent or retracting browser toolbar
+      className="relative w-full h-lvh min-h-[600px] overflow-hidden flex items-center justify-center px-6 md:px-[110px] shadow-[0px_11px_11.3px_0px_rgba(0,0,0,0.45)] bg-[#242524]"
     >
       {/* the waterfall sits on its own layer, 20% taller than the hero
           (extending above it), so it can drift down as the hero lifts
@@ -214,7 +216,9 @@ export default function Hero() {
           hero starts lifting. */}
       <motion.div
         style={{ opacity: arrowOpacity }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        // lifted by the toolbar's height (lvh - svh), so the arrow sits above
+        // a phone's bottom browser bar rather than under it
+        className="absolute bottom-[calc(100lvh-100svh+2rem)] left-1/2 -translate-x-1/2"
       >
         <motion.button
           type="button"

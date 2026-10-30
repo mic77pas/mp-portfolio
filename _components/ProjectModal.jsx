@@ -390,22 +390,36 @@ function LogoLayout({ item }) {
   return (
     <>
       {/* no hero up top, so just clear the close button; the content should
-          mostly fit on the first screen */}
-      <div className="flex flex-col sm:flex-row gap-5 md:pt-12">
-        <motion.div {...MEDIA_IN} className="shrink-0">
+          mostly fit on the first screen. Phones: a small logo with the title
+          and tags beside it, then the buttons and description full width.
+          Wider: a big logo with the whole header beside it. */}
+      <div className="grid grid-cols-[auto_minmax(0,1fr)] items-center sm:items-start gap-x-4 sm:gap-x-5 gap-y-4 md:gap-y-[19px] md:pt-12">
+        <motion.div {...MEDIA_IN} className="shrink-0 sm:row-span-2">
           {/* popupImage is a tight square crop, so the logo fills the tile */}
           <MediaTile
             src={item.popupImage ?? item.image}
             alt={item.title}
-            sizes="(min-width: 768px) 230px, 160px"
-            className="size-40 md:size-[230px] rounded-[16px] md:rounded-[20px]"
+            sizes="(min-width: 768px) 230px, (min-width: 640px) 160px, 104px"
+            className="size-[104px] sm:size-40 md:size-[230px] rounded-[14px] sm:rounded-[16px] md:rounded-[20px]"
           />
         </motion.div>
-        <ProjectHeader
-          item={item}
-          className="flex-1"
-          descriptionClass="text-[18px] md:text-[24px]"
-        />
+        <div className="flex min-w-0 flex-col gap-3 md:gap-[19px]">
+          <div className="flex flex-wrap items-start justify-between gap-4">
+            <h2 className="font-bold text-[26px] sm:text-[28px] md:text-[40px] leading-none text-(--pal-title) [text-shadow:0px_4px_0px_#040404]">
+              {item.title}
+            </h2>
+            <div className="hidden sm:block">
+              <ViewButton item={item} />
+            </div>
+          </div>
+          <Pills item={item} />
+        </div>
+        <div className="col-span-2 flex flex-col gap-4 sm:col-span-1 sm:col-start-2">
+          <div className="sm:hidden">
+            <ViewButton item={item} />
+          </div>
+          {item.description && <p className="text-[18px] md:text-[24px]">{item.description}</p>}
+        </div>
       </div>
       <Sections sections={beforeProcess} />
       {item.process?.length > 0 && <ProcessGrid steps={item.process} />}

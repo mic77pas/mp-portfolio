@@ -30,9 +30,10 @@ function Entry({ entry }) {
         </a>
 
         <div className="flex flex-1 min-w-0 flex-col items-start gap-1 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
-          <span className="flex flex-col gap-[3px] font-minecraft text-[15px] leading-none text-white min-w-0">
-            <span className="font-bold truncate">{title}</span>
-            <span className="truncate">{company}</span>
+          {/* phones wrap long titles rather than cutting them off */}
+          <span className="flex flex-col gap-[3px] font-minecraft text-[15px] leading-tight sm:leading-none text-white min-w-0 max-w-full">
+            <span className="font-bold [overflow-wrap:anywhere] sm:truncate">{title}</span>
+            <span className="[overflow-wrap:anywhere] sm:truncate">{company}</span>
           </span>
 
           <span className="font-minecraft font-bold text-[12px] md:text-[14px] leading-none text-white whitespace-nowrap">
@@ -42,7 +43,7 @@ function Entry({ entry }) {
       </div>
 
       {summary && (
-        <p className="ml-[54px] mt-2 font-minecraft text-[14px] leading-snug text-[#c7dac3]">
+        <p className="ml-[54px] mt-2 font-minecraft text-[14px] leading-snug text-[#c7dac3] [overflow-wrap:anywhere]">
           {summary}
         </p>
       )}
@@ -55,7 +56,7 @@ function Entry({ entry }) {
               className="flex gap-3 font-minecraft text-[14px] leading-snug text-[#c7dac3]"
             >
               <span className="text-[#80967d] leading-snug">⯀</span>
-              <span>{c}</span>
+              <span className="min-w-0 [overflow-wrap:anywhere]">{c}</span>
             </li>
           ))}
         </ul>

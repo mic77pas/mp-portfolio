@@ -34,7 +34,7 @@ export const models = [
     description:
       "A nutcracker beaver figure, built with modeling techniques taught in SYDE101L as a final project at the University of Waterloo",
     images: [
-      "/models/Beaver/FinalModel.jpg",
+      "/models/Beaver/FinalModel.JPG",
       "/models/Beaver/BeaverExploded.png",
     ],
   },
